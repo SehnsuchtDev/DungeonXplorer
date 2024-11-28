@@ -9,6 +9,10 @@
 	<script src="public/script/tailwind.config.js"></script>
 </head>
 <body>
-    <h1> Connexion <h1> 
+    <h1 class="text-center text-4xl"> Connexion </h1> 
+    
+
+    
+    
 </body>
-</html>
+</html>-
