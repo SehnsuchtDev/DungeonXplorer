@@ -1,16 +1,18 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+tailwind.config = {
   theme: {
-    extend:{
-      colors: {
-        'mainbg': '#1A1A1A',
-        'secondarygray': '#2E2E2E',
-        'maintxt': '#E5E5E5',
-        'secondarytxt': '#BFBFBF',
-        'gold': '#C4975E',
-        'red' : '#8B1E1E',
-        'green': '#4A7A66',
+    colors: {
+      'mainbg': '#1A1A1A',
+      'secondarygray': '#2E2E2E',
+      'maintxt': '#E5E5E5',
+      'secondarytxt': '#BFBFBF',
+      'gold': '#C4975E',
+      'red' : '#8B1E1E',
+      'green': '#4A7A66',
+    },
+    extend: {
+      fontFamily: {
+        pirata: ['Pirata One', 'system-ui'],
       },
-    }
+    },
   }
 }
