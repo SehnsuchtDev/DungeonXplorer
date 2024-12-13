@@ -17,7 +17,8 @@
     <img src="..\public\assets\castle.png" alt="Castle" title="Castle" class="z-0 max-w-[55%] absolute right-0"/>
     
     <main class="z-20 relative">
-        <h1 class="font-['Pirata_One'] text-[#e5e5e5] text-center m-[3em] text-4xl [text-shadow:_0_3px_0_rgb(0_0_0_/_60%)]">DungeonXplorer</h1>
+        <h1 class="font-['Pirata_One'] text-[#e5e5e5] text-center m-[3em] text-4xl [text-shadow:_0_3px_0_rgb(0_0_0_/_60%)]
+            max-[440px]:m-[1em]">DungeonXplorer</h1>
 
         <div class="bg-[rgba(46,46,46,0.80)] place-self-center max-w-[50em] rounded text-[#e5e5e5] font-['Roboto'] p-12 m-24 text-center text-xl">
             <p>
@@ -31,9 +32,12 @@
         </div>
 
         <div class="bg-[rgba(46,46,46,0.80)] place-self-center max-w-[50em] rounded text-[#e5e5e5] font-['Roboto'] p-12 m-24 text-center text-xl flex 
-                max-[800px]:flex-col">
+                max-[800px]:flex-col
+                max-[400px]:text-lg
+                max-[330px]:p-8">
             <img src="..\public\assets\logo.webp" alt="Logo Association" title="Logo Association" class="max-w-48 m-5
-                max-[800px]:self-center "/>
+                max-[800px]:self-center 
+                max-[400px]:max-w-36"/>
             <p class="text-justify m-5 content-center">
                 Ce projet est né de la volonté de l’association Les Aventuriers du Val Perdu de 
                 raviver l’expérience unique  des livres dont vous êtes le héros. Notre vision : 
@@ -49,7 +53,9 @@
     <main class="z-20 relative">
 
         <div class="bg-[rgba(46,46,46,0.80)] place-self-center max-w-[50em] rounded text-[#e5e5e5] font-['Roboto'] px-12 m-24 text-center text-xl flex
-                max-[800px]:flex-col">
+                max-[800px]:flex-col
+                max-[400px]:text-lg
+                max-[330px]:p-8">
             <p class="text-justify m-5 content-center">
                 Dans sa première version, DungeonXplorer permettra aux joueurs de créer un personnage 
                 parmi trois  classes emblématiques — guerrier, voleur, magicien — et d’évoluer dans 
@@ -57,18 +63,21 @@
                 progression.
             </p>
             <img src="..\public\assets\knight.png" alt="knight" title="knight" class="max-w-48 m-5
-                max-[800px]:self-center"/>
+                max-[800px]:self-center
+                max-[400px]:max-w-36"/>
         </div>
 
-        <div class="bg-[rgba(46,46,46,0.80)] max-w-[50em] rounded text-[#e5e5e5] font-['Roboto'] p-12 m-24 text-center text-xl flex flex-col items-center">
+        <div class="bg-[rgba(46,46,46,0.80)] place-self-center max-w-[50em] rounded text-[#e5e5e5] font-['Roboto'] p-12 m-24 text-center text-xl flex flex-col items-center
+            max-[500px]:m-12">
             <p>
                 Nous sommes enthousiastes de partager avec vous cette application et espérons qu'elle saura 
                 vous  plonger au cœur des mystères du Val Perdu !
             </p>
             </br>
-            <span class="flex justify-between w-full max-w-72 text-[#C4975E] text-2xl">
+            <span class="flex justify-between w-full max-w-72 text-[#C4975E] text-2xl
+                max-[500px]:flex-col">
                 <p class=""> Connexion </p>
-                <p class="text-[#e5e5e5]">|</p>
+                <p class="text-[#e5e5e5] max-[500px]:invisible" >|</p>
                 <p class=""> Inscription </p>
             </span>
             
