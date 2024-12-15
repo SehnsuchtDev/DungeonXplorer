@@ -1,1 +1,0 @@
-<h1>page de fou malade 2</h1><button class="btn-next z-10 pointer-events-auto">next</button>
