@@ -17,6 +17,10 @@ abstract class Hero{
     private $currentChapter;    // Chapter
     private $purse = 0;
         
+    public function setNameHero($heroName){
+        $name = $heroName;
+    }
+
 }
 
 ?>
