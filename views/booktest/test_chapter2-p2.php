@@ -7,6 +7,6 @@
     btn = document.getElementById("ch2_next");
     btn.removeAttribute("id");
     btn.addEventListener("click",() => {
-        window.bookmanager.loadTwoPageAndTurn("http://localhost/DungeonXplorer/views/booktest/test_chapter1-p1.php","http://localhost/DungeonXplorer/views/booktest/test_chapter1-p2.php");
+        window.bookmanager.loadTwoPageAndTurn("http://localhost/medieval/DungeonXplorer/views/booktest/test_chapter1-p1.php","http://localhost/medieval/DungeonXplorer/views/booktest/test_chapter1-p2.php");
     });
 </script>

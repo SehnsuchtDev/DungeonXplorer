@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="book" class="pointer-events-none z-0">
-        <?php include "./booktest/test_cover.php"; ?>          
+        <?php include "./booktest/StoryMode_Load.php"; ?>
     </div>
 </body>
 </html>

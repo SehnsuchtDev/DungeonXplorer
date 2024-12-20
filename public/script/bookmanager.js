@@ -7,8 +7,8 @@ window.bookmanager = {}
 const htmlParentElement = document.getElementById('book');
 const settings = {
     width: 400,
-    height: 600,
-    showCover: true
+    height: 800,
+    showCover: false
 }
 const pageFlip = new St.PageFlip(htmlParentElement, settings);
 
