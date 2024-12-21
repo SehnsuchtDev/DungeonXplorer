@@ -20,7 +20,7 @@ tableData.forEach(rowData => {
     rowData.forEach(cellData => {
         const cell = document.createElement('th'); // Crée une cellule
         cell.textContent = cellData; // Ajoute le contenu
-        cell.className = "bg-[#1A1A1A] border border-[#C4975E]"; // Ajoute les classes
+        cell.className = "bg-[#1A1A1A] border border-[#C4975E] p-5"; // Ajoute les classes
         row.appendChild(cell); // Ajoute la cellule à la ligne
     });
     table.appendChild(row); // Ajoute la ligne au tableau
