@@ -8,14 +8,28 @@
 	<script src="public/script/tailwind.config.js"></script>
     <script defer src="./script/popupinventory.js"></script>
 </head>
-<body>
+<body class="bg-[#2E2E2E]">
     <button onclick="displayInventory()">Cliquer ici</button>
     <div id="inventory">
-        <thead>
-            <tr>
-                <th> a </th>
-            </tr>
-        </thead>
+        <table>
+            <thead>
+                <tr>
+                    <th class="bg-[#1A1A1A]"> a </th>
+                    <th class="bg-[#1A1A1A]"> b </th>
+                    <th class="bg-[#1A1A1A]"> c </th>
+                    <th class="bg-[#1A1A1A]"> d </th>
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                    <th class="bg-[#1A1A1A]"> e </th>
+                    <th class="bg-[#1A1A1A]"> f </th>
+                    <th class="bg-[#1A1A1A]"> g </th>
+                    <th class="bg-[#1A1A1A]"> h </th>
+                </tr>
+            </thead>
+        </table>
+        
     </div>
 </body>
 
