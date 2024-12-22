@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DungeonXPlorer</title>
-    <link rel="stylesheet" href="./style/style.css">
-	<script src="https://cdn.tailwindcss.com"></script>
-	<script src="./script/tailwind.config.js"></script>
+    <?php include('./shared/head.php'); ?>
 </head>
 <body class="bg-[#1a1a1a]">
     <!-- HEADER -->
-    <?php include('header.php'); ?>
+    <?php include('./shared/header.php'); ?>
 
     <!-- ACCUEIL -->
 
@@ -84,7 +79,7 @@
         </div>
     </main>
 
-    <?php include('footer.php'); ?>
+    <?php include('./shared/footer.php'); ?>
 
 </body>
 </html>
