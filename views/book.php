@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book test</title>
-	<script src="https://cdn.tailwindcss.com"></script>
+    <?php include('./shared/head.php'); ?>
     <script type="module" src="../public/script/bookmanager.js"></script>
 </head>
-<body>
+
+<body class="bg-[#1a1a1a]">
+    <?php include('./shared/header.php'); ?>
+
     <div id="book" class="pointer-events-none z-0">
         <?php include "./booktest/StoryMode_Load.php"; ?>
     </div>
+    <?php include "./shared/footer.php"; ?>
 </body>
+
 </html>
