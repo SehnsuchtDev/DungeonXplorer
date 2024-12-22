@@ -1,5 +1,7 @@
 <?php
 
+namespace dungonxplorer\item;
+
 class Item{
 
     private $name = "";

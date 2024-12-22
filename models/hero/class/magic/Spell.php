@@ -1,5 +1,7 @@
 <?php
 
+namespace dungonxplorer\hero\class\magic;
+
 class Spell{
 
     private $name = "";

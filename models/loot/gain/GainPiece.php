@@ -1,5 +1,6 @@
 <?php
 
+namespace dungonxplorer\loot\gain;
 class GainPiece implements Gain{
 
     private $quantity = 0;

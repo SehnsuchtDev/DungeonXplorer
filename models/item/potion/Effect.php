@@ -1,5 +1,7 @@
 <?php
 
+namespace dungonxplorer\item\potion;
+
 enum Effect{
 
     case STRENGHT;
