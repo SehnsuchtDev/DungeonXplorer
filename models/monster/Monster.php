@@ -1,5 +1,7 @@
 <?php
 
+namespace dungonxplorer\monster;
+
 class Monster{
 
     private $name = "";

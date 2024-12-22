@@ -1,5 +1,7 @@
 <?php
 
+namespace dungonxplorer\hero;
+
 class Level{
 
     private $classHero;     // ClassHero

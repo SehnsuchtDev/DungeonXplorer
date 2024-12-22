@@ -1,5 +1,7 @@
 <?php
 
+namespace dungonxplorer\item\potion;
+
 class GainEffect{
 
     private $effect;    //Enum Effect
