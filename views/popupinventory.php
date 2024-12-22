@@ -10,12 +10,15 @@
 </head>
 <body >
     <button onclick="displayInventory()">Cliquer ici</button>
-    <div id="inventory" class="bg-[#2E2E2E]">
-        <table id="table" class="border-separate border-spacing-5  ">
-           
-        </table>
-        
+ 
+    <div id="inventory" class="bg-[#2E2E2E] inset-0 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-max">
+    <table id="table" class="border-separate border-spacing-5">
+    </table>
     </div>
+    
+
+<h1> page de test</h1>
+
 </body>
 
 </html>
