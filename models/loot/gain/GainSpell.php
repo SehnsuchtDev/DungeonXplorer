@@ -1,6 +1,6 @@
 <?php
 
-namespace dungonxplorer\loot\gain;
+namespace dungeonxplorer\loot\gain;
 class GainSpell implements Gain{
 
     private $spell;     //Spell

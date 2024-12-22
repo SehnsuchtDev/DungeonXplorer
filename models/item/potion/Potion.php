@@ -1,7 +1,7 @@
 <?php
 
-namespace dungonxplorer\item\potion;
-class Potion extends \dungonxplorer\item\Item{
+namespace dungeonxplorer\item\potion;
+class Potion extends \dungeonxplorer\item\Item{
 
     private $effect;     // GainEffect
 

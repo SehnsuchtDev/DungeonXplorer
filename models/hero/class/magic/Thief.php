@@ -1,6 +1,6 @@
 <?php
 
-namespace dungonxplorer\hero\class\magic;
+namespace dungeonxplorer\hero\class\magic;
 
 class Thief extends MagicHero{
 

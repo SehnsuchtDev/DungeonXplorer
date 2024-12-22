@@ -1,8 +1,8 @@
 <?php
 
-namespace dungonxplorer\item\class;
+namespace dungeonxplorer\item\class;
 
-class Parchmant extends ClassItem implements \dungonxplorer\item\HandItem{
+class Parchmant extends ClassItem implements \dungeonxplorer\item\HandItem{
 
 
     

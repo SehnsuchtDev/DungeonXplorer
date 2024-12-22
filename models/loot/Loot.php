@@ -1,6 +1,6 @@
 <?php
 
-namespace dungonxplorer\loot;
+namespace dungeonxplorer\loot;
 
 class Loot{
 
