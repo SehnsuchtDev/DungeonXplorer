@@ -1,8 +1,8 @@
 <?php
 
-namespace dungonxplorer\item\class;
+namespace dungeonxplorer\item\class;
 
-abstract class ClassItem extends \dungonxplorer\item\Item{
+abstract class ClassItem extends \dungeonxplorer\item\Item{
 
     private $allowedClass;  // HeroClass[]
 

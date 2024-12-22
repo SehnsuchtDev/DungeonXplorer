@@ -1,6 +1,6 @@
 <?php
 
-namespace dungonxplorer\monster;
+namespace dungeonxplorer\monster;
 
 class Monster{
 

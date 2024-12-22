@@ -1,8 +1,8 @@
 <?php
 
-namespace dungonxplorer\item\class;
+namespace dungeonxplorer\item\class;
 
-class MagicWand extends ClassItem implements \dungonxplorer\item\HandItem{
+class MagicWand extends ClassItem implements \dungeonxplorer\item\HandItem{
     
 }
 

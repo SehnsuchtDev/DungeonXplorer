@@ -1,6 +1,6 @@
 <?php
 
-namespace dungonxplorer\item\potion;
+namespace dungeonxplorer\item\potion;
 
 class GainEffect{
 

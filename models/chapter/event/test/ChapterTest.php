@@ -1,8 +1,8 @@
 <?php
 
-namespace dungonxplorer\chapter\event\test;
+namespace dungeonxplorer\chapter\event\test;
 
-abstract class ChapterTest extends \dungonxplorer\chapter\event\ChapterEvent{
+abstract class ChapterTest extends \dungeonxplorer\chapter\event\ChapterEvent{
 
     
 }

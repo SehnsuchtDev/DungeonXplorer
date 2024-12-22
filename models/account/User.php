@@ -1,6 +1,6 @@
 <?php
 
-namespace dungonxplorer\account;
+namespace dungeonxplorer\account;
 
 class User{
 

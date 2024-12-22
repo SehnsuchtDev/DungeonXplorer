@@ -1,8 +1,8 @@
 <?php
 
-namespace dungonxplorer\hero\class\magic;
+namespace dungeonxplorer\hero\class\magic;
 
-abstract class MagicHero extends \dungonxplorer\hero\Hero{
+abstract class MagicHero extends \dungeonxplorer\hero\Hero{
 
     private $mana = 0;
     private $spells = []; // Spell[]

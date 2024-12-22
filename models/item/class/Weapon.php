@@ -1,8 +1,8 @@
 <?php
 
-namespace dungonxplorer\item\class;
+namespace dungeonxplorer\item\class;
 
-class Weapon extends ClassItem implements \dungonxplorer\item\HandItem{
+class Weapon extends ClassItem implements \dungeonxplorer\item\HandItem{
 
     private $strenght = 0;
 
