@@ -1,5 +1,7 @@
 <?php
 
+namespace dungonxplorer\loot;
+
 class Loot{
 
     private $name = "";
