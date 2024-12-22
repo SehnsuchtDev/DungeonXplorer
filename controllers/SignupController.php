@@ -1,0 +1,44 @@
+<?php
+
+require __DIR__ . '/../autoload.php';
+
+class SignupController {
+
+
+    public function show(): void{
+        require __DIR__ . '/../views/devview/signup.php';
+    }
+
+    public function signup() : void {
+
+        User::test();
+        exit;
+    
+        $errors = [];
+
+        $username = $_POST['username'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $password = $_POST['password'] ?? '';
+        $password_confirm = $_POST['confirm_password'] ?? '';
+
+        if(empty($username))
+            $errors[] = "Vous devez saisir un pseudo !";
+
+        if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
+            $errors[] = "Vous devez saisir un email valide !";
+        
+        if(empty($password))
+            $errors[] = "Vous devez saisir un mot de passe !";
+
+        if(empty($password_confirm))
+            $errors[] = "Vous devez confirmer votre mot de passe !";
+        else if($password !== $password_confirm)
+            $errors[] = "Les mots de passe ne sont pas identique !";
+
+
+        User::createUser($username,$email,$password);
+
+        require __DIR__ . '/../views/devview/signup.php';
+    }
+
+}
