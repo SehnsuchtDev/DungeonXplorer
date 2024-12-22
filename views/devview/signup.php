@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login tempo</title>
+    <title>Sign tempo</title>
 </head>
 <body>
     <form method="POST">
@@ -22,18 +22,18 @@
 
     <!-- Exemple de popup -->
     <?php if(isset($errors)) : ?>
-        <?php if(empty($errors)): ?>
-            <p>inscription reussi</p>
-        <?php else: ?>
-            <p>
-                POPUP:
+        <p>
+            POPUP:
+            <?php if(empty($errors)): ?>
+                inscription reussi
+            <?php else: ?>
                 <ul>
                     <?php foreach($errors as $e): ?>
                         <li><?=$e?></li>
                     <?php endforeach ?>
                 </ul>
-            </p>
-        <?php endif ?>
+            <?php endif ?>
+        </p>
     <?php endif ?>
 
 </body>

@@ -1,6 +1,8 @@
-<?php
+<?php session_start();
 
-require __DIR__ . '/../autoload.php';
+use dungeonxplorer\account\User;
+
+require_once __DIR__ . '/../autoload.php';
 
 class SignupController {
 
@@ -10,10 +12,7 @@ class SignupController {
     }
 
     public function signup() : void {
-
-        User::test();
-        exit;
-    
+        
         $errors = [];
 
         $username = $_POST['username'] ?? '';
@@ -36,7 +35,13 @@ class SignupController {
             $errors[] = "Les mots de passe ne sont pas identique !";
 
 
-        User::createUser($username,$email,$password);
+        if(empty($errors)){
+            try{
+                $_SESSION['user'] = User::createUser($username,$email,$password);
+            }catch(\InvalidArgumentException){
+                $errors[] = "L'utilisateur existe déja !";
+            }
+        }
 
         require __DIR__ . '/../views/devview/signup.php';
     }
