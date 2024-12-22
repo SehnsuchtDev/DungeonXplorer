@@ -101,7 +101,8 @@ CREATE TABLE `Links` (
 
 CREATE TABLE `User` (
   `us_id` INT PRIMARY KEY AUTO_INCREMENT,
-  `us_username` varchar(255) NOT NULL,
+  `us_username` varchar(255) NOT NULL unique,
+  `us_email` varchar(255) NOT NULL unique,
   `us_password` varchar(255) NOT NULL,
   `he_id` INT NOT NULL
 );
