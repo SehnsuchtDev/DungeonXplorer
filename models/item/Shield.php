@@ -1,6 +1,6 @@
 <?php
 
-namespace dungonxplorer\item;
+namespace dungeonxplorer\item;
 
 class Shield extends Item implements HandItem{
 

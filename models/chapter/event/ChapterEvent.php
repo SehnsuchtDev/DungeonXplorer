@@ -1,7 +1,7 @@
 <?php
 
 
-namespace dungonxplorer\chapter\event;
+namespace dungeonxplorer\chapter\event;
 
 abstract class ChapterEvent{
 

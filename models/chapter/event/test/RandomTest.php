@@ -1,6 +1,6 @@
 <?php
 
-namespace dungonxplorer\chapter\event\test;
+namespace dungeonxplorer\chapter\event\test;
 
 class RandomTest extends ChapterTest{
 
