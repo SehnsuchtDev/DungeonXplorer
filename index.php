@@ -15,4 +15,8 @@ $router->set404(function () {
 $router->get("signup","SignupController@show");
 $router->post("signup","SignupController@signup");
 
+
+$router->get("login","LoginController@show");
+$router->post("login","LoginController@login");
+
 $router->run();
