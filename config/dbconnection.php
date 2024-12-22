@@ -1,6 +1,6 @@
 <?php
 
-$_ENV = parse_ini_file("../.env");
+$_ENV = parse_ini_file(dirname(__DIR__) . DIRECTORY_SEPARATOR . '.env');
 
 try
 {
