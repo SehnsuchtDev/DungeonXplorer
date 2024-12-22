@@ -1,8 +1,16 @@
 <?php 
 // autoload.php
 spl_autoload_register(function ($class) {
+
+    
+    if(str_contains($class,'dungeonxplorer')){
+        $class = str_replace('dungeonxplorer\\','',$class);
+        $class = str_replace('\\',DIRECTORY_SEPARATOR,$class);
+        require 'models' . DIRECTORY_SEPARATOR . $class . '.php';
+        return;
+    }
+
     $directories = array(
-        'models/',
         'controllers/'
     );
 
