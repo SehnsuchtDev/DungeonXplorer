@@ -1,7 +1,6 @@
 <?php 
 // autoload.php
 spl_autoload_register(function ($class) {
-
     
     if(str_contains($class,'dungeonxplorer')){
         $class = str_replace('dungeonxplorer\\','',$class);
@@ -22,3 +21,5 @@ spl_autoload_register(function ($class) {
         }
     }
 });
+
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'Dbconnection.php';
