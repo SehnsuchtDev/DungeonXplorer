@@ -11,5 +11,8 @@ $router->set404(function () {
     echo '404, route not found!';
 });
 
+$router->get('/',function(){
+    include __DIR__ . DIRECTORY_SEPARATOR . 'views'. DIRECTORY_SEPARATOR . 'index.php';
+});
 
 $router->run();
