@@ -1,14 +1,29 @@
 <?php
 
-$_ENV = parse_ini_file(dirname(__DIR__) . DIRECTORY_SEPARATOR . '.env');
+class Dbconnection{
 
-try
-{
-    $bdd = new PDO('mysql:host='. $_ENV["DB_HOST"] . ';dbname='. $_ENV["DB_NAME"] . ';charset=utf8', $_ENV["DB_USER"], $_ENV["DB_PASS"]);
-}
+    private static $bdd;
 
-// Gestion des erreurs
-catch(Exception $e)
-{
-        die('Erreur : '.$e->getMessage());
+    public static function getConnection() : PDO {
+        if(!isset(Dbconnection::$bdd))
+            Dbconnection::connection();
+        return Dbconnection::$bdd; 
+    }
+
+    private function __construct(){}
+
+    private static function connection(){
+        $env = parse_ini_file(dirname(__DIR__) . DIRECTORY_SEPARATOR . '.env');
+
+        try
+        {
+            Dbconnection::$bdd = new PDO('mysql:host='. $env["DB_HOST"] . ';dbname='. $env["DB_NAME"] . ';charset=utf8', $env["DB_USER"], $env["DB_PASS"]);
+        }
+        catch(Exception $e)
+        {
+            die('Erreur : '.$e->getMessage());
+        }
+    }
+
+
 }
