@@ -1,5 +1,7 @@
 <?php 
 
+namespace dungonxplorer\hero;
+
 abstract class Hero{
 
     private $name = "";

@@ -1,5 +1,7 @@
 <?php
 
+namespace dungonxplorer\account;
+
 class User{
 
     private $name = "";

@@ -1,5 +1,7 @@
 <?php
 
+namespace dungonxplorer\chapter;
+
 class Chapter{
 
     private $content = "";
