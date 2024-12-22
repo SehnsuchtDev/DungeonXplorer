@@ -1,9 +1,9 @@
 <?php
 
 
-namespace dungonxplorer\chapter;
+namespace dungeonxplorer\chapter;
 
-class Treasure extends \dungonxplorer\loot\Loot{
+class Treasure extends \dungeonxplorer\loot\Loot{
 
 
     

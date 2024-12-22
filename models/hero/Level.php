@@ -1,6 +1,6 @@
 <?php
 
-namespace dungonxplorer\hero;
+namespace dungeonxplorer\hero;
 
 class Level{
 

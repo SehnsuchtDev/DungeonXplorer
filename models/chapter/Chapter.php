@@ -1,6 +1,6 @@
 <?php
 
-namespace dungonxplorer\chapter;
+namespace dungeonxplorer\chapter;
 
 class Chapter{
 

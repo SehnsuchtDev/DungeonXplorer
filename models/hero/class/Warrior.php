@@ -1,8 +1,8 @@
 <?php
 
-namespace dungonxplorer\hero\class;
+namespace dungeonxplorer\hero\class;
 
-class Warrior extends \dungonxplorer\hero\Hero{
+class Warrior extends \dungeonxplorer\hero\Hero{
 
     private $armor;     // Armor
 

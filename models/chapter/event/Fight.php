@@ -1,6 +1,6 @@
 <?php
 
-namespace dungonxplorer\chapter\event;
+namespace dungeonxplorer\chapter\event;
 
 class Fight extends ChapterEvent{
 
