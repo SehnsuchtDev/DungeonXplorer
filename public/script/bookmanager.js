@@ -4,11 +4,13 @@ import {} from './page-flip.browser.js';
 window.bookmanager = {}
 
 
+
 const htmlParentElement = document.getElementById('book');
+// Faire CTRL + F5 pour voir les modifs sur la page: 
 const settings = {
     width: 400,
-    height: 800,
-    showCover: false
+    height: 600,
+    showCover: true
 }
 const pageFlip = new St.PageFlip(htmlParentElement, settings);
 

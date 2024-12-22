@@ -5,7 +5,7 @@
 <script defer>
 
     document.addEventListener("DOMContentLoaded",() => {
-        window.bookmanager.loadTwoPage("http://localhost/medieval/DungeonXplorer/views/booktest/test_chapter1-p1.php","http://localhost/medieval/DungeonXplorer/views/booktest/test_chapter1-p2.php");
+        window.bookmanager.loadTwoPage("./views/booktest/test_chapter1-p1.php","./booktest/test_chapter1-p2.php");
     });
     
     document.getElementById("cover_btn").addEventListener("click",() => {

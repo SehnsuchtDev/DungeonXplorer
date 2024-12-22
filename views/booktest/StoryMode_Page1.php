@@ -31,13 +31,13 @@
         btnContinue = document.getElementById("continue");
         btnContinue.removeAttribute("id");
         btnContinue.addEventListener("click",() => {
-            window.bookmanager.loadTwoPageAndTurn("http://localhost/medieval/DungeonXplorer/views/booktest/test_chapter2-p1.php","http://localhost/medieval/DungeonXplorer/views/booktest/test_chapter2-p2.php");
+            window.bookmanager.loadTwoPageAndTurn("./booktest/test_chapter2-p1.php","./booktest/test_chapter2-p2.php");
         });
 
         btnSettings = document.getElementById("settings");
         btnSettings.removeAttribute("id");
         btnSettings.addEventListener("click",() => {
-            window.bookmanager.loadTwoPageAndTurn("http://localhost/medieval/DungeonXplorer/views/booktest/test_chapter2-p1.php","http://localhost/medieval/DungeonXplorer/views/booktest/test_chapter2-p2.php");
+            window.bookmanager.loadTwoPageAndTurn("./booktest/test_chapter2-p1.php","./booktest/test_chapter2-p2.php");
         });
         
 </script>
