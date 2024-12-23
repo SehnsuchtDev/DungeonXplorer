@@ -29,11 +29,11 @@ CREATE TABLE `ItemsClass` (
 );
 
 CREATE TABLE `Loot` (
-                        `lo_id` INT,
+                        `lo_id` INT NOT NULL,
                         `it_id` INT,
                         `lo_effet` varchar(30),
                         `lo_piece` BOOLEAN,
-                        `lo_quantity` INT NOT NULL
+                        `lo_quantity` INT
 );
 
 CREATE TABLE `Monster` (
