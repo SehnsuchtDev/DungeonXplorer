@@ -1,6 +1,6 @@
 const popup = document.getElementById("inventory");
 popup.style.visibility = "hidden";
-
+/*
 const tableData = [
     ['a', 'b', 'c', 'd'], // Première ligne
     ['e', 'e', 'f', 'g'], // Deuxième ligne
@@ -21,13 +21,12 @@ tableData.forEach(rowData => {
     });
     table.appendChild(row); // Ajoute la ligne au tableau
 });
+*/
 
 function displayInventory(){
-    console.log("display");
     popup.style.visibility = "visible";
 }
 
 function hiddenInventory(){
-    console.log("hidden");
     popup.style.visibility = "hidden";
 }
