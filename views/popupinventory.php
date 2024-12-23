@@ -12,24 +12,31 @@
     <button onclick="displayInventory()">Cliquer ici</button>
     
     <div id="inventory" class="bg-[#2E2E2E] inset-0 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-max">
-        <button  onclick="hiddenInventory()" class="float-right bg-[#C4975E] absolute top-2 right-2 rounded w-6 h-6"> &times; </button>
-        <table id="table" class="border-separate border-spacing-5 p-5">
+    <button onclick="hiddenInventory()"  class="float-right bg-[#C4975E] absolute top-2 right-2 rounded w-6 h-6 text-s flex items-center justify-center leading-none ">
+  &times;
+</button>
+
+    <div >
+        
+    </div>
+
+        <table id="table" class="border-separate border-spacing-5 p-10">
             <tr>
-                <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-10 h-10 rounded"> <img src="./img/Sword01.jpg" alt="Sword01" class="object-cover"> </th>
-                <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-10 h-10 rounded"> <img src="./img/Sword02.png" alt="Sword02" class="object-cover"> </th>
-                <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-10 h-10 rounded"> <img src="./img/Sword03.png" alt="Sword03" class="object-cover"> </th>
-                <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-10 h-10 rounded"> <img src="./img/Potions.jpg" alt="Potions" class="object-cover"> </th>
+                <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-20 h-20 rounded"> <img src="./img/Sword01.jpg" alt="Sword01" class="object-cover"> </th>
+                <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-20 h-20 rounded"> <img src="./img/Sword02.png" alt="Sword02" class="object-cover"> </th>
+                <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-20 h-20 rounded"> <img src="./img/Sword03.png" alt="Sword03" class="object-cover"> </th>
+                <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-20 h-20 rounded"> <img src="./img/Potions.jpg" alt="Potions" class="object-cover"> </th>
             </tr>
             
             <tr>
-            <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-10 h-10 rounded"> <img src="./img/Chest01.jpg" alt=" Chest01" class="object-cover"> </th>
-                <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-10 h-10 rounded"> <img src="./img/Chest02.jpg" alt="Chest02" class="object-cover"> </th>
-                <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-10 h-10 rounded"> </th>
-                <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-10 h-10 rounded">  </th>
+            <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-20 h-20 rounded"> <img src="./img/Chest01.jpg" alt=" Chest01" class="object-cover"> </th>
+                <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-20 h-20 rounded"> <img src="./img/Chest02.jpg" alt="Chest02" class="object-cover"> </th>
+                <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-20 h-20 rounded"> </th>
+                <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-20 h-20 rounded">  </th>
             </tr>
         </table>
         <div class="text-xs flex justify-between p-2">
-            <p> Capicité: ...%</p>
+            <p> Capacité: ...%</p>
             <p> Items: .../8 </p>
         </div>     
     </div>
