@@ -8,7 +8,7 @@ require '../config/dbconnection.php';
 
 echo (($bdd->query("select cl_name from Class where cl_id = 1"))->fetch(PDO::FETCH_OBJ))->cl_name;
 
-//echo " ". htmlspecialchars($currentHero['name']);  
+//echo " ". htmlspecialchars($currentHero['name']);
 
 
 /*

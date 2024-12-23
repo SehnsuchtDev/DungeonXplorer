@@ -2,6 +2,8 @@
 
 require __DIR__ . '/libs/router/Router.php';
 
+require __DIR__ . DIRECTORY_SEPARATOR . 'autoload.php';
+
 $router = new Router();
 
 
@@ -11,5 +13,6 @@ $router->set404(function () {
     echo '404, route not found!';
 });
 
+$router->get("heroHydratation","HeroController@show");
 
 $router->run();
