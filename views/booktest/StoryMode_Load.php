@@ -1,14 +1,14 @@
-<div class="bg-blue-900">
-    Page Cover
-    <button id="cover_btn" class="btn-next z-10 pointer-events-auto">page après</button>
-</div>
+<?php include('./connection.php'); ?>
 <script defer>
 
     document.addEventListener("DOMContentLoaded", () => {
         window.bookmanager.loadTwoPage("./booktest/StoryMode_Page1.php", "./booktest/StoryMode_Page2.php");
     });
 
-    document.getElementById("cover_btn").addEventListener("click", () => {
-        window.bookmanager.flipNext();
+    btnContinue = document.getElementById("connecter");
+    btnContinue.removeAttribute("id");
+    btnContinue.addEventListener("click", () => {
+        window.bookmanager.flipNext()
     });
+
 </script>
