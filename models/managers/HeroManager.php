@@ -2,75 +2,49 @@
 
 namespace dungeonxplorer\managers;
 
-use dungeonxplorer\hero\class\magic\Wizzard;
 use dungeonxplorer\hero\class\magic\Thief;
+use dungeonxplorer\hero\class\magic\Wizard;
 use dungeonxplorer\hero\class\Warrior;
+use dungeonxplorer\loot\Loot;
 
-use dungeonxplorer\hero;
-
-require_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'autoload.php';
+require_once dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'autoload.php';
 
 class HeroManager{
+    private static self $instance;
 
-            
-    public function retrieveAllInformation($userID){
-        $bdd = \Dbconnection::getConnection();
+    private function __construct(){}
 
-        //Everything that is not an object has an alias 
-        $stmt = $bdd->prepare("select 
-        he_id, he_name as name, cl_id, he_image as image, he_biography as biography, he_pv as pv, he_mana,
-        he_strength as strength, he_initiative as initiative, he_armor, he_primary_weapon, he_secondary_weapon, he_shield,
-        he_spell_list, he_xp as xp, he_current_level as current_level, ch_id, he_purse as purse
-        from Hero where he_id = (select he_id from User where us_id = :idOfTheUser)");
-        $stmt->bindParam(":idOfTheUser", $userID);
-
-        $stmt->execute();
-
-        $idOfMyHeroClass = $this->retrieveClassOfTheHero($userID);
-        $myHeroClass = null;
-
-        //It's a warrior if it's 1
-        if($idOfMyHeroClass === 1){
-            $myHeroClass = Warrior::Class;
-        //It's a mage if it's 2
-        }elseif($idOfMyHeroClass === 2){
-            $myHeroClass = Wizzard::Class;
-        //It's a thief if it's 3
-        }elseif($idOfMyHeroClass === 3){
-            $myHeroClass = Thief::Class;
-        }
-        $stmt->setFetchMode(\PDO::FETCH_CLASS, $myHeroClass);
-
-
-        return ($stmt->fetch());;
+    public static function getInstance() : self {
+        if(!isset(self::$instance))
+            self::$instance = new self();
+        return self::$instance;
     }
 
-    public function retrieveClassOfTheHero($userID) :int{
+    public function getHero(int $heroId) : ?Loot {
         $bdd = \Dbconnection::getConnection();
-        $request = $bdd->prepare("select cl_id from Hero where he_id = (select he_id from User where us_id = :idOfTheUser)");
-        $request->bindParam(":idOfTheUser", $userID);
 
-        $request->execute();
+        $stmt = $bdd->prepare("SELECT * FROM Hero WHERE he_id = ?;");
+        $stmt->execute([$heroId]);
+        $stmt->setFetchMode(\PDO::FETCH_ASSOC);
 
-        $result = $request->fetch(\PDO::FETCH_OBJ);
-        return $result->cl_id;
-    }
+        $res = $stmt->fetch();
 
-    /*
-    public function hydrate(array $data){
-        foreach($data as $key => $value){
-            //On récupere le nom du setter correspondant à l'attribut
-            $method = 'set'.ucfirst($key);
-
-            // si le setter correspondant existe
-            if(method_exists($this, $method)){
-                $this->$method($value);
+        if(isset($res['cl_id']))
+            switch ($res['cl_id']) {
+                case 1:
+                    $hero = new Warrior();
+                    break;
+                case 2:
+                    $hero = new Wizard();
+                    break;
+                case 3:
+                    $hero = new Thief();
+                    break;
             }
-        }
-    }
-    */
 
+        $hero->hydrate($res);
+
+        return $hero;
+    }
 
 }
-
-?>

@@ -1,12 +1,12 @@
 <?php
 
-use dungeonxplorer\managers\HeroManager;
+use dungeonxplorer\managers\SpellManager;
 require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'autoload.php';
 
 class HeroController{
   
     public function show(): void{
-        $heroManager = new HeroManager();
+        $heroManager = new SpellManager();
         $data = $heroManager->retrieveAllInformation(11);       // à modifier !!
         require __DIR__ . '/../views/devview/heroHydratation.php';
     }
