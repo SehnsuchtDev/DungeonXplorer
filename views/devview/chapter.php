@@ -9,7 +9,10 @@
 </head>
 <body>
     <h1>Chapter title</h1>
-    <p>Lorem ipsum</p>
+    <p><?=$chapter->getContent();?></p>
+    <pre>
+        <?php var_dump($chapter);?>
+    </pre>
     <img src="" alt=""/>
 </body>
 </html>
