@@ -3,7 +3,7 @@
 namespace dungeonxplorer\managers;
 
 use dungeonxplorer\item\potion\Effect;
-use dungeonxplorer\item\potion\GainEffect;
+use dungeonxplorer\loot\gain\GainEffect;
 use dungeonxplorer\loot\gain\GainItem;
 use dungeonxplorer\loot\gain\GainPiece;
 use dungeonxplorer\loot\Loot;

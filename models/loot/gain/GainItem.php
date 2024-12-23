@@ -1,6 +1,7 @@
 <?php
 
 namespace dungeonxplorer\loot\gain;
+
 use dungeonxplorer\item\Item;
 
 class GainItem implements Gain{

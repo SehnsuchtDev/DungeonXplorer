@@ -1,8 +1,10 @@
 <?php
 
-namespace dungeonxplorer\item\potion;
+namespace dungeonxplorer\loot\gain;
 
-class GainEffect{
+use dungeonxplorer\item\potion\Effect;
+
+class GainEffect implements Gain {
 
     private Effect $effect;    //Enum Effect
     private int $quantity = 0;
@@ -18,6 +20,10 @@ class GainEffect{
     }
 
 
+    public function give()
+    {
+        // TODO: Implement give() method.
+    }
 }
 
 ?>
