@@ -1,4 +1,4 @@
-<div class="bookcover text-[#FFFFFF] flex justify-between items-center font-['Pirata_One'] ">
+<div class="bookcover text-[#FFFFFF] place-self-center font-['Pirata_One']">
 
     <h1 class="text-center text-4xl p-16 font-['Pirata_One']"> Connexion </h1>
     <form method="post" action="">
@@ -34,5 +34,7 @@
     });
 
     btnRegister = document.getElementById("register");
-    btnRegister.addEventListener("click", (event) => { });
+    btnRegister.addEventListener("click", (event) => {
+        window.bookmanager.replacePage("./signup.php")
+    });
 </script>

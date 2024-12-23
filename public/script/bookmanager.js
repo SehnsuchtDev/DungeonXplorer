@@ -52,4 +52,26 @@ window.bookmanager.loadPageAndTurn = async (url) => {
     pageFlip.flipNext();
 }
 
+window.bookmanager.replacePage = async (url) => {
+    console.log("replacing");
+    const newBookPage = document.createElement("div");
+
+    newBookPage.innerHTML = await (await (fetch(url))).text();
+
+    const bookPages = Array.from(pageFlip.getPageCollection().pagesElement);
+    bookPages[0] = newBookPage;
+
+    pageFlip.updateFromHtml(bookPages);
+
+    for (let script of newBookPage.querySelectorAll("script")) {
+        const newScript = document.createElement("script");
+        if (script.src)
+            newScript.src = script.src;
+        else
+            newScript.textContent = script.textContent;
+        document.head.appendChild(newScript);
+        document.head.removeChild(newScript);
+    }
+}
+
 window.bookmanager.flipNext = () => pageFlip.flipNext();

@@ -1,39 +1,43 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription</title>
-    <link rel="stylesheet" href="./style/style.css">
-	<script src="https://cdn.tailwindcss.com"></script>
-	<script src="public/script/tailwind.config.js"></script>
-</head>
-<body class="bg-[#000000] text-[#FFFFFF]">
-    
-    <div class="place-self-center  bg-[#582900]">
-        <h1 class="text-center text-4xl p-16"> Inscription </h1> 
-        <form method="post" action="">
-            <div class="flex justify-between items-center p-4 max-[600px]:flex-col">
-                    <label class="px-5">Votre pseudo:</label>
-                    <input type="text" name="pseudo" placeholder="Veuillez rentrer pseudo" class="border-2 w-[30vw] bg-[#2E2E2E] rounded text-center">
-            </div> 
+<div class="bookcover text-[#FFFFFF] place-self-center font-['Pirata_One']">
+    <h1 class="text-center text-4xl p-16"> Inscription </h1>
+    <form method="post" action="">
+        <span class="flex justify-between items-center p-4 max-[600px]:flex-col">
+            <label class="px-4 text-[2.5vh] w-[10vw]">Pseudo:</label>
+            <input type="text" name="pseudo" placeholder="Veuillez rentrer votre pseudo"
+                class="text-[2.5vh] border-2 w-[25vw] bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
+        </span>
 
-            <div class="flex justify-between items-center p-4 max-[600px]:flex-col">
-                    <label class="px-5">Votre adresse mail:</label>
-                    <input type="email" name="mail" placeholder="Veuillez rentrer votre adresse mail" class="border-2 w-[30vw] bg-[#2E2E2E] rounded text-center">
-            </div>
+        <span class="flex justify-between items-center p-4 max-[600px]:flex-col">
+            <label class="px-4 text-[2.5vh] w-[10vw]">E-mail:</label>
+            <input type="email" name="mail" placeholder="Veuillez rentrer votre adresse mail"
+                class="text-[2.5vh] border-2 w-[25vw] bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
+        </span>
 
-            <div class="flex justify-between items-center p-4 max-[600px]:flex-col">
-                    <label class="px-5">Votre mot de passe:</label>
-                    <input type="password" name="motDePasse" placeholder="Veuillez rentrer votre mot de passe" class="border-2 w-[30vw] bg-[#2E2E2E] rounded text-center">
-            </div> 
-        </form>
-        <div class="flex flex-col items-center space-y-4 p-32">
-            <button class=" bg-[#2E2E2E] p-4 w-48  rounded"> S'inscrire </button> 
-            <p> ou </p> 
-            <button class=" bg-[#2E2E2E] p-4 w-48 rounded" > Se connecter </button> 
-        </div>
-        
-    </div> 
-</body>
-</html>
+        <span class="flex justify-between items-center p-4 max-[600px]:flex-col">
+            <label class="px-4 text-[2.5vh] w-[10vw]">Mot de passe:</label>
+            <input type="password" name="motDePasse" placeholder="Veuillez rentrer votre mot de passe"
+                class="text-[2.5vh] border-2 w-[25vw] bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
+        </span>
+    </form>
+    <span class="flex flex-col items-center space-y-4 mt-16">
+        <button id="register" type="button" class=" bg-[#2E2E2E] p-4 w-48  rounded pointer-events-auto"> S'inscrire
+        </button>
+        <p class="text-[2.2vh] h-1"> ou </p>
+        <button id="connect" type="button"
+            class=" bg-[#2E2E2E] p-2 w-32 m-100 text-[2.2vh] rounded pointer-events-auto"> Se connecter
+        </button>
+    </span>
+</div>
+
+<script defer>
+
+    btnRegister = document.getElementById("register");
+    btnRegister.addEventListener("click", (event) => {
+        window.bookmanager.flipNext();
+    });
+
+    btnConnect = document.getElementById("connect");
+    btnConnect.addEventListener("click", (event) => {
+        window.bookmanager.replacePage("./connection.php");
+    });
+</script>
