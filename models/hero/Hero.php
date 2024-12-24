@@ -10,7 +10,7 @@ abstract class Hero{
 
     protected int $id = 0;
     private string $name = "";
-    //private int $classHero;         // ClassHero
+    private int $classHero;
     private string $image = "";
     private string $biography = "";
     private int $pv = 0;
@@ -31,6 +31,7 @@ abstract class Hero{
                 $this->$property = $value;
             }
         }
+        $this->classHero = $donnees['cl_id'];
         $this->currentLevel = $donnees['he_current_level'];
         $this->currentChapter = ChapterManager::getInstance()->getChapter($donnees['ch_id']);
 
