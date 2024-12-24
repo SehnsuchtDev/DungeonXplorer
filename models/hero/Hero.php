@@ -2,10 +2,13 @@
 
 namespace dungeonxplorer\hero;
 
-use Dbconnection;
+use dungeonxplorer\chapter\Chapter;
+use dungeonxplorer\item\HandItem;
 use dungeonxplorer\item\Inventory;
+use dungeonxplorer\managers\ChapterManager;
+use dungeonxplorer\managers\ItemManager;
 
-require dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'autoload.php';
+require dirname(__DIR__,2) . DIRECTORY_SEPARATOR . 'autoload.php';
 
 abstract class Hero{
 
@@ -26,10 +29,11 @@ abstract class Hero{
     private Inventory $inventory;        // Inventory
 
     public function hydrate(array $donnees): void {
-        foreach ($donnees as $key => $value) {
-            $property=str_replace('he', '', $key);
 
-            if (property_exists($this, $property)) {
+        foreach ($donnees as $key => $value) {
+            $property=str_replace('he_', '', $key);
+
+            if (property_exists(self::class, $property)) {
                 $this->$property = $value;
             }
         }

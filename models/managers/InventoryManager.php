@@ -19,7 +19,7 @@ class InventoryManager{
         return self::$instance;
     }
 
-    public function getInventoryWithHeroId(Hero $hero) : ?Inventory {
+    public function getInventoryWithHeroId(Hero $hero) : void {
         $bdd = \Dbconnection::getConnection();
 
         $stmt = $bdd->prepare("SELECT it_id,quantity FROM Inventory WHERE he_id = ?;");

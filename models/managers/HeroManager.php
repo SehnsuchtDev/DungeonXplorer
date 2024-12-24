@@ -5,6 +5,7 @@ namespace dungeonxplorer\managers;
 use dungeonxplorer\hero\class\magic\Thief;
 use dungeonxplorer\hero\class\magic\Wizard;
 use dungeonxplorer\hero\class\Warrior;
+use dungeonxplorer\hero\Hero;
 use dungeonxplorer\loot\Loot;
 
 require_once dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'autoload.php';
@@ -20,7 +21,7 @@ class HeroManager{
         return self::$instance;
     }
 
-    public function getHero(int $heroId) : ?Loot {
+    public function getHero(int $heroId) : ?Hero {
         $bdd = \Dbconnection::getConnection();
 
         $stmt = $bdd->prepare("SELECT * FROM Hero WHERE he_id = ?;");
@@ -43,8 +44,15 @@ class HeroManager{
             }
 
         $hero->hydrate($res);
+        InventoryManager::getInstance()->getInventoryWithHeroId($hero);
 
         return $hero;
     }
 
 }
+
+$hero = HeroManager::getInstance()->getHero(1);
+
+echo '<pre>';
+    print_r($hero);
+echo '</pre></br>';
