@@ -29,7 +29,8 @@ class HeroCreationController{
         }
 
         if(empty($errors)){
-            HeroManager::createHero($name, $biography, $class);
+            $hero = HeroManager::createHero($name, $biography, $class);
+            $_SESSION['user']->setHero($hero);
         }
 
 

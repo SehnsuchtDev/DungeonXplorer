@@ -21,11 +21,11 @@ class HeroManager
         return self::$instance;
     }
 
-    public static function createHero($heroName, $biography, $class) : void {
+    public static function createHero($heroName, $biography, $class){
         $bdd = \Dbconnection::getConnection();
 
         $stmt = $bdd->prepare("INSERT INTO Hero(he_name, cl_id, he_biography, he_pv, he_mana, he_strength, he_initiative, he_armor, he_primary_weapon, 
-        he_secondary_weapon, he_xp, he_current_level, he_purse, ch_id) VALUES(:nameOfMyHero, :idOfMyUser, :biographyOfMyHero,
+        he_secondary_weapon, he_xp, he_current_level, he_purse, ch_id) VALUES(:nameOfMyHero, :classOfMyHero, :biographyOfMyHero,
         (select cl_base_pv from Class where cl_id = :classOfMyHero), (select cl_base_mana from Class where cl_id = :classOfMyHero), 
         (select cl_strength from Class where cl_id = :classOfMyHero), (select cl_initiative from Class where cl_id = :classOfMyHero),
         null, (select cl_primary_weapon from Class where cl_id = :classOfMyHero), null, 0, 1, 0, 1)");
@@ -39,14 +39,33 @@ class HeroManager
 
         $stmt->bindParam(':nameOfMyHero',$heroName);
 
-        $userId = $_SESSION['user']->getUserId();
-        $stmt->bindParam(':idOfMyUser',$userId);
-
         $stmt->bindParam(':biographyOfMyHero',$biography);
         $stmt->bindParam(':classOfMyHero', $class);
 
         $stmt->execute();
-        $stmt->fetch(\PDO::FETCH_OBJ);
+        $idOfTheHero = intval($bdd->lastInsertId());
+        echo "id du héro : " . $idOfTheHero;
+
+
+        $result = $stmt->fetch(\PDO::FETCH_OBJ);        //result of the query
+
+        $classData = $bdd->prepare("select cl_id, cl_name, cl_base_pv, cl_base_mana, cl_strength, cl_initiative, cl_primary_weapon
+        from Class where cl_id = :classOfMyHero");
+        $classData->bindParam(":classOfMyHero", $class);
+
+        $classData->execute();
+        $classInformation = $classData->fetch(\PDO::FETCH_OBJ);
+
+        /*
+        echo "<h1>INFO</h1>";
+        echo "id classe : " . $classInformation->cl_id;
+        echo ", name classe : " . $classInformation->cl_name;
+        echo ", pv de base classe : " . $classInformation->cl_base_pv;
+        echo ", mana de base classe : " . $classInformation->cl_base_mana;
+        echo ", force classe : " . $classInformation->cl_strength;
+        echo ", initiative classe : " . $classInformation->cl_initiative;
+        echo ", arme principal classe : " . $classInformation->cl_primary_weapon;
+        */
 
         $hero;
 
@@ -55,16 +74,30 @@ class HeroManager
             $hero->setArmor(0);
         }else{
             if($class === "2"){
-                echo "c'est un mage !";
-                $hero = new Wizzard();
+                $hero = new Wizard();
             }elseif($class === "3"){
-                echo "c'est un Voleur !";
                 $hero = new Thief(); 
             }
-            
         }
 
+        $hero->setId($idOfTheHero);
+        $hero->setName($heroName);
+        $hero->setClassHero($class);
+        //$hero->setImage($heroImage);
+        $hero->setBiography($biography);
+
+        $hero->setPv($classInformation->cl_base_pv);
+        $hero->setStrenght($classInformation->cl_strength);
+        $hero->setInitiative($classInformation->cl_initiative);
+        $hero->setPrimaryWeapon($classInformation->cl_primary_weapon);
+        $hero->setSecondaryWeapon(null);
+        $hero->setSpellList(null);
+        $hero->setXp(0);
+        $hero->setCurrentLevel(1);
+        $hero->setCurrentChapter(1);
+        $hero->setPurse(0);
         
+        echo "id -> " . $hero->getId();
         
         return $hero;
     }

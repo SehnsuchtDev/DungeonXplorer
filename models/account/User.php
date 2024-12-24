@@ -9,7 +9,7 @@ require_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'autoload.php';
 
 class User{
 
-    //private $id;
+    private int $id;
     private string $name = "";
     private string $email = "";
     private bool $isAdmin = false;
@@ -47,7 +47,7 @@ class User{
         $user = new self();
         $user->name = $name;
         $user->email = $email;
-        //$user->id = intval($bdd->lastInsertId());
+        $user->id = intval($bdd->lastInsertId());
 
         return $user;
     }
@@ -56,7 +56,7 @@ class User{
         
         $bdd = Dbconnection::getConnection();
 
-        $stmt = $bdd->prepare("SELECT us_username, us_email,us_password FROM User WHERE us_email=:email");
+        $stmt = $bdd->prepare("SELECT us_username, us_email,us_password, us_id FROM User WHERE us_email=:email");
         $stmt->bindParam(':email',$email);
         $stmt->execute();
 
@@ -73,10 +73,32 @@ class User{
         $user = new self();
         $user->name = $res['us_username'];
         $user->email = $res['us_email'];
+        $user->id = $res['us_id'];
 
         return $user;
 
     }
+
+    public function getUserId() : int{
+        return $this->id;
+    }
+
+    public function setHero(Hero $newHero){
+        $hero = $newHero;
+
+        $bdd = Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("update User set he_id = :idOfMyHero where us_id = :idOfMyUser");
+
+        $userId = $hero->getId();
+        $stmt->bindParam(':idOfMyHero',$userId);
+
+        $stmt->bindParam(':idOfMyUser',$this->id);
+
+        $stmt->execute();
+        //$result = $stmt->fetch(\PDO::FETCH_OBJ);        //result of the query
+    }
+
 }
 
 ?>

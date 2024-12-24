@@ -6,6 +6,10 @@ class Warrior extends \dungeonxplorer\hero\Hero{
 
     private $armor;     // Armor
 
+    public function setArmor($newArmor){
+        $armor = $newArmor;
+    }
+
 }
 
 ?>
