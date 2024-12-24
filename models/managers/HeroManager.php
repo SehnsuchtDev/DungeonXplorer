@@ -50,9 +50,3 @@ class HeroManager{
     }
 
 }
-
-$hero = HeroManager::getInstance()->getHero(1);
-
-echo '<pre>';
-    print_r($hero);
-echo '</pre></br>';
