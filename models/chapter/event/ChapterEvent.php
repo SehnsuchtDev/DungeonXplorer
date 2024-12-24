@@ -4,9 +4,10 @@
 namespace dungeonxplorer\chapter\event;
 
 use dungeonxplorer\loot\Loot;
+
 abstract class ChapterEvent{
 
-    private array $loot; // Loot[]
+    private Loot $loot;
     private String $image = "";
 
     public function hydrate(array $donnees): void {
