@@ -21,7 +21,29 @@
     </div>
 
         <table id="table" class="border-separate border-spacing-5 p-10">
-           
+           <tr>
+                <td rowspan="3" class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md p-0 w-20 h-20 rounded"> 
+                    <img src="img/Potions.jpg" alt="Potions">
+                </td>
+           </tr>
+
+           <tr>
+                <td> 
+                    <h2> Potion de soin </h2> 
+                </td>
+
+                <td>
+                    <p>
+                        test
+                    </p>
+                </td>
+
+                <td>
+                    <button> Utiliser </button>
+                    <button> Jeter </button>
+                </td>
+
+           </tr>
         </table>
          
     </div>
