@@ -20,9 +20,9 @@ delete from Chapter;
 delete from Monster;
 delete from ChapterEvent;
 
-insert into Class values(1,'Guerrier',20,0,10,3,8);
-insert into Class values(2,'Mage',15,20,0,5,8);
-insert into Class values(3,'Voleur ',10,5,5,10,8);
+insert into Class values(1,'Guerrier',20,0,10,3,1);
+insert into Class values(2,'Mage',15,20,0,5,5);
+insert into Class values(3,'Voleur ',10,5,5,10,12);
 insert into Items values(1,'Baton en Bois','Baton très simple','1',1,1,0,null,0,NULL,NULL,5);
 insert into Items values(2,'Canine du Loup Noir','Canine du loup tué','3',1,1,0,null,0,NULL,NULL,7);
 insert into Items values(3,'Bouclier en Bois','Bouclier du pauvre','2',1,1,0,null,0,NULL,3,NULL);

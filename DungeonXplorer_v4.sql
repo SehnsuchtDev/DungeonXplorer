@@ -5,7 +5,7 @@ CREATE TABLE `Class` (
                          `cl_base_mana` INT NOT NULL,
                          `cl_strength` INT NOT NULL,
                          `cl_initiative` INT NOT NULL,
-                         `cl_max_items` INT NOT NULL
+                         `cl_primary_weapon` INT NOT NULL
 );
 
 CREATE TABLE `Items` (
@@ -51,17 +51,16 @@ CREATE TABLE `Monster` (
 CREATE TABLE `Hero` (
                         `he_id` INT PRIMARY KEY AUTO_INCREMENT,
                         `he_name` VARCHAR(50) NOT NULL,
-                        `cl_id` INT,
+                        `cl_id` INT NOT NULL,
                         `he_image` VARCHAR(255),
                         `he_biography` TEXT,
                         `he_pv` INT NOT NULL,
-                        `he_mana` INT NOT NULL,
-                        `he_strength` INT NOT NULL,
+                        `he_mana` INT,
+                        `he_strength` INT,
                         `he_initiative` INT NOT NULL,
-                        `he_armor` VARCHAR(50),
-                        `he_primary_weapon` VARCHAR(50),
-                        `he_secondary_weapon` VARCHAR(50),
-                        `he_shield` VARCHAR(50),
+                        `he_armor` INT,
+                        `he_primary_weapon` INT,
+                        `he_secondary_weapon` INT,
                         `he_spell_list` TEXT,
                         `he_xp` INT NOT NULL,
                         `he_current_level` INT DEFAULT 1,
@@ -179,3 +178,11 @@ ALTER TABLE `Links` ADD FOREIGN KEY (`li_next_chapter_id`) REFERENCES `Chapter` 
 ALTER TABLE `Hero` ADD FOREIGN KEY (`ch_id`) REFERENCES `Chapter` (`ch_id`);
 
 ALTER TABLE `Chapter` ADD FOREIGN KEY (`ce_id`) REFERENCES `ChapterEvent` (`ce_id`);
+
+ALTER TABLE `Hero` ADD FOREIGN KEY (`he_armor`) REFERENCES `Items` (`it_id`);
+
+ALTER TABLE `Hero` ADD FOREIGN KEY (`he_primary_weapon`) REFERENCES `Items` (`it_id`);
+
+ALTER TABLE `Hero` ADD FOREIGN KEY (`he_secondary_weapon`) REFERENCES `Items` (`it_id`);
+
+ALTER TABLE `Class` ADD FOREIGN KEY (`cl_primary_weapon`) REFERENCES `Items` (`it_id`);
