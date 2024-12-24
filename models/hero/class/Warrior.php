@@ -18,7 +18,6 @@ class Warrior extends \dungeonxplorer\hero\Hero{
         if($this->getPrimaryWeapon() instanceof Weapon){
             $strength = $this->getPrimaryWeapon()->getStrength();
         }
-
         $attaque = rand(1,6) + parent::getStrength() + $strength;
         echo "attaque : $attaque";
         $defense = rand(1,6) + (int)($monster->getStrength()/2);
@@ -28,7 +27,9 @@ class Warrior extends \dungeonxplorer\hero\Hero{
         if($attaque > $defense){
             $degats = $attaque - $defense;
         }
-
+        if(($monster->getPV() - $degats) <= 0 ){
+            $this->kill($monster);
+        }
         $monster->setPV($monster->getPV() - $degats);
     }
 

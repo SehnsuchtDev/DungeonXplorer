@@ -24,6 +24,9 @@ class Thief extends MagicHero{
             $degats = $attaque - $defense;
         }
 
+        if(($monster->getPV() - $degats) <= 0 ){
+            $this->kill($monster);
+        }
         $monster->setPV($monster->getPV() - $degats);
     }
     

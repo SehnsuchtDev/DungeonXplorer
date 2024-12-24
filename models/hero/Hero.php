@@ -87,7 +87,7 @@ abstract class Hero{
     public abstract function attack(Monster $monster):void;
   
     public function setPV(int $pv){
-        $this->pV = $pv;
+        $this->pv = $pv;
     }
 
     //Renvoie 1 si le monstre à l'initiative et 0 si c'est le héros
@@ -104,6 +104,10 @@ abstract class Hero{
         else{
             return 1;
         }
+    }
+
+    public function kill($monster){
+        echo "Le monstre est mort";
     }
 
 

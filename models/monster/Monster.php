@@ -3,6 +3,7 @@
 namespace dungeonxplorer\monster;
 
 use dungeonxplorer\hero\Hero;
+use dungeonxplorer\item\Shield;
 
 class Monster{
 
@@ -24,10 +25,23 @@ class Monster{
 
     public function attack(Hero $hero): void{
         $attaque = rand(1,6) + $this->getStrength();
-        $defense = $this->defense();
-
-        $degats = max(0,$attaque - $defense);
-
+        echo "attaque : $attaque";
+        $defense = rand(1,6) + (int)($hero->getStrength()/2);
+        echo " defense : $defense";
+        if($hero instanceof Warrior){
+            $defense += $defense + $hero->getArmor();
+        }
+        if($hero->getPrimaryWeapon() instanceOf Shield){
+            $defense += $defense + $hero->getPrimaryWeapon()->getArmourAmount();
+        }
+        $degats = 0;
+        if($attaque > $defense){
+            $degats = $attaque - $defense;
+        }
+        echo " degats : $degats";
+        if(($hero->getPV() - $degats) <= 0 ){
+            $this->kill($hero);
+        }
         $hero->setPV($hero->getPV() - $degats);
     }
 
@@ -67,6 +81,10 @@ class Monster{
 
     public function getLoot(){
         return $this->loot;
+    }
+
+    public function kill($hero){
+        echo "Vous êtes mort";
     }
 
 }
