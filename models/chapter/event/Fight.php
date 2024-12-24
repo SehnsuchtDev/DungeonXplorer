@@ -6,7 +6,7 @@ use dungeonxplorer\monster\Monster;
 
 class Fight extends ChapterEvent{
 
-    private $monster;   // Monster
+    private Monster $monster;   // Monster
 
     public function hydrate(array $donnees): void
     {
@@ -14,6 +14,12 @@ class Fight extends ChapterEvent{
         $this->monster = new Monster();
         $this->monster->hydrate($donnees);
     }
+
+    public function getMonster() : Monster{
+        return $this->monster;
+    }
+
+
 }
 
 ?>

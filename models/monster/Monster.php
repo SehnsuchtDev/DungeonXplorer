@@ -21,6 +21,43 @@ class Monster{
         }
     }
 
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getPv(): int
+    {
+        return $this->pv;
+    }
+
+    public function getMana(): int
+    {
+        return $this->mana;
+    }
+
+    public function getInitiative(): int
+    {
+        return $this->initiative;
+    }
+
+    public function getStrength(): int
+    {
+        return $this->strength;
+    }
+
+    public function getAttack(): string
+    {
+        return $this->attack;
+    }
+
+    public function getXp(): int
+    {
+        return $this->xp;
+    }
+
+
+
 }
 
 ?>

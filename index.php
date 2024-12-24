@@ -4,8 +4,11 @@ require __DIR__ . '/libs/router/Router.php';
 
 require __DIR__ . DIRECTORY_SEPARATOR . 'autoload.php';
 
-$router = new Router();
+define('URLROOTPATH', dirname($_SERVER['PHP_SELF']));
+define('FULLURLROOTPATH', (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']));
+define('FULLCURRENTURL', (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']));
 
+$router = new Router();
 
 // Custom 404 Handler
 $router->set404(function () {
@@ -18,5 +21,6 @@ $router->get('/',function(){
 });
 
 $router->get('/chapter/(\d+)','ChapterController@showChapter');
+$router->post('/chapter/(\d+)/mcqtest','ChapterController@MCQTestAnswer');
 
 $router->run();

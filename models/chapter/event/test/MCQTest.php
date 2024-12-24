@@ -23,6 +23,7 @@ class MCQTest extends ChapterTest{
     }
 
     public function getChoices(): array{
+        unset($this->choices);
         if(!isset($this->choices) && isset($this->ce_id)){
             $bdd = \Dbconnection::getConnection();
 
@@ -30,18 +31,25 @@ class MCQTest extends ChapterTest{
                                                            WHERE ce_id = ?
                                                            ORDER BY mcqt_answer_num;");
             $stmt->execute([$this->ce_id]);
-            $this->choices = $stmt->fetchAll(\PDO::FETCH_COLUMN);
+            $this->choices = [];
+            $res = $stmt->fetchAll(\PDO::FETCH_COLUMN);
+            foreach ($res as $row)
+                $this->choices[] = $row;
         }
         return $this->choices;
+    }
+
+    public function getQuestions(): string
+    {
+        return $this->questions;
+    }
+
+    public function getAnswer(): int
+    {
+        return $this->answer;
     }
 
 
 
 
-
-
-
-
 }
-
-?>

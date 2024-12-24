@@ -8,11 +8,39 @@
     <title>Chapter dev view</title>
 </head>
 <body>
-    <h1>Chapter title</h1>
-    <p><?=$chapter->getContent();?></p>
-    <pre>
-        <?php var_dump($chapter);?>
-    </pre>
-    <img src="" alt=""/>
+    <h1>Chapter <?=$chapterId?></h1>
+    <p><?=$content?></p>
+    <img src="<?=constant('FULLURLROOTPATH')?>/public/assets/<?=$image?>" width=300px>
+    <br>
+
+    <?php if($mcq):?>
+        <h2>Question</h2>
+        <p><?=$mcqQuestion?></p>
+        <h3>Choix:</h3>
+        <form method="post" action="<?=constant('FULLURLROOTPATH'). '/chapter/' . $chapterId?>/mcqtest" style="<?= isset($mcqAnswer) ? ($mcqAnswer ? 'background-color: green;' : 'background-color: red;') : '' ?>">
+            <?php foreach ($mcqChoices as $key => $choice):?>
+                <input type="radio" name="choice" value="<?=$key?>"><?=$choice?><br>
+            <?php endforeach;?>
+            <input type="submit" value="Valider">
+        </form>
+    <?php elseif ($fight):?>
+        <h2>Combat</h2>
+        <p><?=$monster['name']?> (<?=$monster['pv']?> PV)</p>
+        <p>Mana : <?=$monster['mana']?></p>
+        <p>Initiative : <?=$monster['initiative']?></p>
+        <p>XP : <?=$monster['xp']?></p>
+    <?php endif;?>
+    <br>
+
+    <?php foreach ($nextChapterId as $id):?>
+        <a href="<?=constant('FULLURLROOTPATH'). '/chapter/' . $id?>">
+            <button>Chapter <?=$id?></button>
+        </a>
+    <?php endforeach;?>
+
+    <br>
+
+    <br><br><br><br><br><br><br><br><br>
+    <pre><?php var_dump($chapter);?></pre>
 </body>
 </html>

@@ -2,7 +2,6 @@
 
 namespace dungeonxplorer\chapter;
 
-use Dbconnection;
 use dungeonxplorer\chapter\event\ChapterEvent;
 use dungeonxplorer\chapter\event\Fight;
 use dungeonxplorer\chapter\event\test\MCQTest;
@@ -10,17 +9,21 @@ use dungeonxplorer\loot\Loot;
 use dungeonxplorer\managers\ChapterManager;
 use dungeonxplorer\managers\LootManager;
 
-require dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'autoload.php';
+require dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'autoload.php';
 
 class Chapter{
-
 
     private int $chapterId;
     private string $content = "";
     private string $image = "";
     private array $nextChapter;        // Chapter[]
     private ChapterEvent $chapterEvent;   // ChapterEvent
-    private Loot $treasures; //Loot
+    private Loot $treasures;
+
+    public function getChapterId(): int
+    {
+        return $this->chapterId;
+    }
 
     public function getContent(): string{
         return $this->content;
@@ -35,9 +38,9 @@ class Chapter{
             $bdd = \DbConnection::getConnection();
 
             $stmt = $bdd->prepare("SELECT * FROM ChapterEvent
-                                            LEFT JOIN Monster USING(ce_id)
-                                            LEFT JOIN MCQTest USING (ce_id)
-                                            WHERE ce_id = ?;");
+                                                    LEFT JOIN Monster USING(ce_id)
+                                                    LEFT JOIN MCQTest USING (ce_id)
+                                                    WHERE ce_id = ?;");
             $stmt->execute([$this->ce_id]);
             $stmt->setFetchMode(\PDO::FETCH_ASSOC);
             if($stmt->rowCount() == 0){
@@ -81,11 +84,4 @@ class Chapter{
     }
 
 
-
-
-
 }
-
-
-
-?>
