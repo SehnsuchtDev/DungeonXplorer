@@ -11,7 +11,7 @@
 
 <body>
     <div id="book" class="pointer-events-none z-0">
-        <?php include "./booktest/ChoiceChapter_Load.php"; ?>
+        <?php include "./booktest/FightChapter_Load.php"; ?>
     </div>
 </body>
 

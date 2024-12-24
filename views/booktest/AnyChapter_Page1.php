@@ -17,10 +17,8 @@
     <div class="bg-[#F6F0E8] h-full w-full filter drop-shadow-lg shadow-inner">
 
         <div class="p-6 font-['Pirata_One'] justify-items-center text-center">
-            <p class="text-black font-bold text-4xl m-14">CHAPITRE X</p>
-            </br>
-            <img src="..\public\assets\Chest01.jpg" alt="" width="250" height="150" title="" />
-            </br>
+            <p class="text-black font-bold text-4xl m-8">CHAPITRE X</p>
+
             <p class="font-['Roboto'] text-xl text-justify">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem delectus eum porro doloribus?
                 Nobis nostrum voluptatem voluptates esse dolorum nisi doloribus obcaecati odit recusandae similique,

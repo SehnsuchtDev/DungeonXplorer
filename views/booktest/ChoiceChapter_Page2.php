@@ -17,11 +17,7 @@
     <div class="bg-[#F6F0E8] h-full w-full filter drop-shadow-lg shadow-inner">
 
         <div class="p-6 font-['Pirata_One'] justify-items-center text-center">
-            <p class="font-['Roboto'] text-xl text-justify">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem delectus eum porro doloribus?
-                Nobis nostrum voluptatem voluptates esse dolorum nisi doloribus obcaecati odit recusandae similique,
-                vitae optio totam vel nam.
-            </p>
+            <img src="..\public\assets\Chest01.jpg" alt="" width="250" height="150" title="" />
             </br></br>
             <p class="text-2xl font-bold">Choix possibles pour le joueur?</p>
             <div class="flex">
