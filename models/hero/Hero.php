@@ -3,6 +3,7 @@
 namespace dungeonxplorer\hero;
 
 use Dbconnection;
+use dungeonxplorer\item\Inventory;
 
 require dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'autoload.php';
 
@@ -22,6 +23,7 @@ abstract class Hero{
     private int $currentLevel = 0;
     private Chapter $currentChapter;    // Chapter
     private int $purse = 0;
+    private Inventory $inventory;        // Inventory
 
     public function hydrate(array $donnees): void {
         foreach ($donnees as $key => $value) {
@@ -47,6 +49,18 @@ abstract class Hero{
                 $this->primaryWeapon = $item;
         }
     }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setInventory(Inventory $inventory): void
+    {
+        $this->inventory = $inventory;
+    }
+
+
 
 }
 

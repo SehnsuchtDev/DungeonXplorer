@@ -4,6 +4,7 @@ namespace dungeonxplorer\item;
 
 class Item{
 
+    private $id = 0;
     private $name = "";
     private $description = "";
     private $weight = 0;
@@ -18,6 +19,13 @@ class Item{
             }
         }
     }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+
 
 } 
 
