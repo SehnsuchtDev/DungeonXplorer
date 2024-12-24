@@ -20,28 +20,37 @@
         
     </div>
 
-    <table id="table" class="border-separate border-spacing-5">
+    <table id="table" class="border-separate border-spacing-5  max-w-[600px] bg-[#1A1A1A] rounded">
+    
     <tr>
-        <td rowspan="4" class="border border-[#C4975E] shadow-md p-0 rounded overflow-hidden w-40 h-40"> /td>
+        <td rowspan="3" class="border border-[#C4975E] rounded overflow-hidden">
             <img src="img/Potions.jpg" alt="Potions" class="object-cover w-full h-full">
+        </td>
+        <td>
+            <p class="text-lg font-bold text-white">Potion de soin</p>
         </td>
     </tr>
 
-            
-            <tr>
-                <td> <h2> Potion de soin </h2> </td>
-            </tr>
+   
+    <tr>
+        <td>
+            <p class="text-sm text-gray-300">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas nisi quisquam error fugit dicta assumenda molestias animi quo praesentium nihil, ipsa perspiciatis nobis aliquid, laborum ea aliquam. At, placeat itaque.
+            </p>
+        </td>
+    </tr>
 
-            <tr>
-                <td> <p> test </p></td>
-            </tr>
-            
-            <tr>
-                <td> <button> Utiliser </button> 
-                <td> <button> Jeter </button> </td>
-            </tr>
+    
+    <tr>
+        <td>
+            <div>
+                <button class="bg-[#4A7A66] text-white rounded px-3 py-1 hover:bg-[#3B6253]">Utiliser</button>
+                <button class="bg-[#8B1E1E] text-white rounded px-3 py-1 hover:bg-[#6E1818]">Jeter</button>
+            </div>
+        </td>
+    </tr>
+</table>
 
-        </table>
 
          
     </div>
