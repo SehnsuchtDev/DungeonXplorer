@@ -13,8 +13,10 @@ class MCQTest extends ChapterTest{
 
     public function hydrate(array $donnees): void
     {
+
+
         parent::hydrate($donnees);
-        $this->questions = $donnees["mcqt_questions"];
+        $this->questions = $donnees["mcqt_question"];
         $this->answer = $donnees["mcqta_anwser_num"];
         $this->ce_id = $donnees["ce_id"];
 

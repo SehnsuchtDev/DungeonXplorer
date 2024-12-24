@@ -47,8 +47,10 @@ class Chapter{
 
             if(isset($res['mo_id']))
                 $this->chapterEvent = new Fight();
-            else
+            else if(isset($res['mcqt_question']))
                 $this->chapterEvent = new MCQTest();
+            else
+                return null;
 
             $this->chapterEvent->hydrate($res);
         }
