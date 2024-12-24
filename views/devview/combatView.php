@@ -74,14 +74,17 @@
     <div class="combat-container">
         <div class="combat-title">Combat en cours</div>
         <div class="enemy-stats">
-            <div><strong>Ennemi:</strong> Giant Spider</div>
-            <div><strong>PV:</strong> 80</div>
-            <div><strong>Attaque:</strong> 5</div>
-            <div><strong>Défense:</strong> 5</div>
+            <div><strong></strong> </div>
+            <div><strong>PV:</strong> <?php echo $monstre->getPV(); ?> </div>
+            <div><strong>Attaque:</strong> <?php echo $monstre->getStrength(); ?></div>
         </div>
         <div class="combat-buttons">
-            <button>Attaquer</button>
+            
+            <form method="post">
+                <input type="submit" name="Attaquer" value="Attaquer"></>
+            </form>
             <button>Potion</button>
+            
         </div>
         <div class="combat-log" id="combat-log">
             C'est votre tour.
