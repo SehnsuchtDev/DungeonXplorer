@@ -2,7 +2,7 @@
 <header class="bg-[#2e2e2e] flex flex-row justify-between">
 
     <div class="flex flex-row">
-        <img src="..\public\assets\Logo.png" title="logoDungeonXplorer" class="size-28
+        <img src="public/assets/Logo.png" title="logoDungeonXplorer" class="size-28
             max-[380px]:size-24
             max-[380px]:self-center">
 

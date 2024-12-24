@@ -2,6 +2,8 @@
 
 require __DIR__ . '/libs/router/Router.php';
 
+require __DIR__ . DIRECTORY_SEPARATOR . 'autoload.php';
+
 $router = new Router();
 
 
@@ -14,5 +16,7 @@ $router->set404(function () {
 $router->get('/',function(){
     include __DIR__ . DIRECTORY_SEPARATOR . 'views'. DIRECTORY_SEPARATOR . 'index.php';
 });
+
+$router->get('home', 'HomeController@show');
 
 $router->run();
