@@ -1,4 +1,4 @@
-<div class="bookcover text-[#FFFFFF] place-self-center font-['Pirata_One']">
+<div class="bookcover text-[#FFFFFF] place-self-center font-['Pirata_One'] w-full h-full">
     <h1 class="text-center text-4xl p-16"> Inscription </h1>
     <form method="post" action="">
         <span class="flex justify-between items-center p-4 max-[600px]:flex-col">
@@ -34,6 +34,7 @@
     btnRegister = document.getElementById("register");
     btnRegister.addEventListener("click", (event) => {
         window.bookmanager.flipNext();
+        window.bookmanager.center();
     });
 
     btnConnect = document.getElementById("connect");

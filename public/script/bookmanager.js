@@ -53,7 +53,6 @@ window.bookmanager.loadPageAndTurn = async (url) => {
 }
 
 window.bookmanager.replacePage = async (url) => {
-    console.log("replacing");
     const newBookPage = document.createElement("div");
 
     newBookPage.innerHTML = await (await (fetch(url))).text();
@@ -72,6 +71,14 @@ window.bookmanager.replacePage = async (url) => {
         document.head.appendChild(newScript);
         document.head.removeChild(newScript);
     }
+}
+
+window.bookmanager.center = () => {
+    htmlParentElement.parentElement.classList.add("flex");
+}
+
+window.bookmanager.displayHeroData = () => {
+    document.getElementById("hero-data").classList.remove("hidden");
 }
 
 window.bookmanager.flipNext = () => pageFlip.flipNext();
