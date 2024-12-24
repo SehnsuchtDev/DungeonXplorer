@@ -15,7 +15,7 @@ class GainItem implements Gain{
 
     public function getItem(): ?Item{
         if(!isset($this->item) && isset($this->it_id)){
-
+            //TODO: Recupèré l'item avec le futur item manager.
         }
         return $this->item;
     }

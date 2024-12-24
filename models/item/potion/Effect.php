@@ -4,7 +4,7 @@ namespace dungeonxplorer\item\potion;
 
 enum Effect{
 
-    case STRENGHT;
+    case STRENGTH;
     case LIFE;
     case MANA;
     case INITIATIVE;
