@@ -26,29 +26,35 @@
                     <tr>
                         <th
                             class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md   rounded">
-                            <img src="./img/Sword01.jpg" alt="Sword01" class="object-cover w-full h-full rounded">
+                            <img src="../public/assets/Sword01.jpg" alt="Sword01"
+                                class="object-cover w-full h-full rounded">
                         </th>
                         <th
                             class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
-                            <img src="./img/Sword02.png" alt="Sword02" class="object-cover w-full h-full rounded">
+                            <img src="../public/assets/Sword02.png" alt="Sword02"
+                                class="object-cover w-full h-full rounded">
                         </th>
                         <th
                             class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
-                            <img src="./img/Sword03.png" alt="Sword03" class="object-cover w-full h-full rounded">
+                            <img src="../public/assets/Sword03.png" alt="Sword03"
+                                class="object-cover w-full h-full rounded">
                         </th>
                         <th
                             class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
-                            <img src="./img/Potions.jpg" alt="Potions" class="object-cover w-full h-full rounded">
+                            <img src="../public/assets/Potions.jpg" alt="Potions"
+                                class="object-cover w-full h-full rounded">
                         </th>
                     </tr>
                     <tr>
                         <th
                             class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
-                            <img src="./img/Chest01.jpg" alt="Chest01" class="object-cover w-full h-full rounded">
+                            <img src="../public/assets/Chest01.jpg" alt="Chest01"
+                                class="object-cover w-full h-full rounded">
                         </th>
                         <th
                             class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
-                            <img src="./img/Chest02.jpg" alt="Chest02" class="object-cover w-full h-full rounded">
+                            <img src="../public/assets/Chest02.jpg" alt="Chest02"
+                                class="object-cover w-full h-full rounded">
                         </th>
                         <th
                             class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">

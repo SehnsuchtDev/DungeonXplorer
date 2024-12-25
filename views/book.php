@@ -3,7 +3,7 @@
 
 <head>
     <?php include('./shared/head.php'); ?>
-    <script defer src="./script/popupinventory.js"></script>
+    <script defer src="../public/script/popupinventory.js"></script>
     <script type="module" src="../public/script/bookmanager.js"></script>
 </head>
 

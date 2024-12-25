@@ -1,4 +1,4 @@
-<div class="w-[100%] flex flex-col items-center justify-center font-['Pirata_One'] text-[#ADADAD] text-[5vh]"
+<div class="w-[100%] flex flex-col items-center justify-center font-['Pirata_One'] text-[#ADADAD] text-[5vh] hidden"
     id="hero-data">
     <div class="w-[800px] flex flex-row">
         <div class="flex flex-row justify-between w-[60%]">
