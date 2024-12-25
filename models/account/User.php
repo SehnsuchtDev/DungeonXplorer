@@ -7,6 +7,7 @@ use dungeonxplorer\hero\Hero;
 
 require_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'autoload.php';
 
+
 class User{
 
     //private $id;
