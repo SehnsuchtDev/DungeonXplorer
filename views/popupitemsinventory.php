@@ -8,51 +8,50 @@
 	<script src="public/script/tailwind.config.js"></script>
     <script defer src="./script/popupitemsinventory.js"></script>
 </head>
-<body >
+
+<body>
     <button onclick="displayInventory()">Cliquer ici</button>
     
-    <div id="inventory" class="bg-[#2E2E2E] inset-0 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-max">
-    <button onclick="hiddenInventory()"  class="float-right bg-[#C4975E] absolute top-2 right-2 rounded w-6 h-6 text-s flex items-center justify-center leading-none ">
-  &times;
-</button>
+    <div id="inventory" class="bg-[#2E2E2E] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-max fixed  inset-0  max-w-sm rounded">
+        <button onclick="hiddenInventory()"  class="float-right bg-[#C4975E] absolute top-2 right-2 rounded w-6 h-6 text-s flex items-center justify-center leading-none ">
+        &times;
+        </button>
 
-    <div >
+        <div class="bg-[#1A1A1A] rounded ">
+  
+            <table id="table" class="border-separate border-spacing-5   bg-[#1A1A1A] rounded ">
+                          
+            <tr>
+            <td rowspan="3" class="border border-[#C4975E] rounded overflow-hidden ">
+    <img src="img/Potions.jpg" alt="Potions" class="object-cover">
+</td>
+                <td>
+                    <p class="text-lg font-bold text-white">Potion de soin</p>
+                </td>
+            </tr>
+
         
-    </div>
+            <tr>
+                <td>
+                    <p class="text-sm text-gray-300">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas nisi quisquam error fugit dicta assumenda molestias animi quo praesentium nihil, ipsa perspiciatis nobis aliquid, laborum ea aliquam. At, placeat itaque.
+                    </p>
+                </td>
+            </tr>
 
-    <table id="table" class="border-separate border-spacing-5  max-w-[600px] bg-[#1A1A1A] rounded">
-    
-    <tr>
-        <td rowspan="3" class="border border-[#C4975E] rounded overflow-hidden">
-            <img src="img/Potions.jpg" alt="Potions" class="object-cover w-full h-full">
-        </td>
-        <td>
-            <p class="text-lg font-bold text-white">Potion de soin</p>
-        </td>
-    </tr>
+            
+            <tr>
+                <td>
+                    <div>
+                        <button class="bg-[#4A7A66] text-white rounded px-3 py-1 hover:bg-[#3B6253]">Utiliser</button>
+                        <button class="bg-[#8B1E1E] text-white rounded px-3 py-1 hover:bg-[#6E1818]">Jeter</button>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        </div>
 
-   
-    <tr>
-        <td>
-            <p class="text-sm text-gray-300">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas nisi quisquam error fugit dicta assumenda molestias animi quo praesentium nihil, ipsa perspiciatis nobis aliquid, laborum ea aliquam. At, placeat itaque.
-            </p>
-        </td>
-    </tr>
-
-    
-    <tr>
-        <td>
-            <div>
-                <button class="bg-[#4A7A66] text-white rounded px-3 py-1 hover:bg-[#3B6253]">Utiliser</button>
-                <button class="bg-[#8B1E1E] text-white rounded px-3 py-1 hover:bg-[#6E1818]">Jeter</button>
-            </div>
-        </td>
-    </tr>
-</table>
-
-
-         
+            
     </div>
     
 
