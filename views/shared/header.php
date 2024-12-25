@@ -27,16 +27,30 @@
     </div>
 
     <div class="flex flex-row space-w">
-
+        
         <div class="bg-[#C4975E] my-7 mx-6 place-content-center rounded-lg 
             max-[615px]:invisible
             max-[615px]:absolute" >
-            <p class="font-['Pirata_One'] mx-3 text-[#e5e5e5]">Mode Histoire</p>
+
+            <?php if(isset($_SESSION["user"])) : ?>
+            <p class="font-['Pirata_One'] mx-3 text-[#e5e5e5]">
+                Mode Histoire 
+            </p> 
+            <?php endif; ?>
+            
         </div>
         
         <div class="bg-[#C4975E] my-7 mx-6 place-content-center rounded-lg 
             max-[615px]:invisible">
-            <p class="font-['Pirata_One'] mx-3 text-[#e5e5e5]">Se déconnecter</p>
+            <p class="font-['Pirata_One'] mx-3 text-[#e5e5e5]">     
+            <?php if(isset($_SESSION["user"])) : ?>
+                <a href="logout">    
+                Se déconnecter</a>
+                
+            <?php else : ?>
+                <a href="login"> Se connecter</a>
+            <?php endif; ?>
+            </p>
         </div>
 
         <div class="bg-[#C4975E] p-3 my-7 mx-4 right-1 place-content-center rounded-lg absolute invisible
