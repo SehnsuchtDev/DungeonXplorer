@@ -15,7 +15,7 @@ abstract class Hero{
     protected int $id = 0;
     private string $name = "";
     private int $classHero;
-    private string $image = "";
+    private ?string $image = null;
     private string $biography = "";
     private int $pv = 0;
     private int $strength = 0;
@@ -124,6 +124,43 @@ abstract class Hero{
     {
         $this->strength = $strength;
     }
+
+    public function getCurrentChapter(): Chapter
+    {
+        return $this->currentChapter;
+    }
+
+    public function changeChapter(int $chapterId) : bool{
+        $this->getCurrentChapter()->getNextChapter();
+        foreach ($this->getCurrentChapter()->getNextChapter() as $nextChapter) {
+            if($nextChapter->getChapterId() == $chapterId){
+                $this->setCurrentChapter($nextChapter);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function getPv(): int
+    {
+        return $this->pv;
+    }
+
+    public function getStrength(): int
+    {
+        return $this->strength;
+    }
+
+    public function getInitiative(): int
+    {
+        return $this->initiative;
+    }
+
+    public function getXp(): int
+    {
+        return $this->xp;
+    }
+
 
 
 }

@@ -39,8 +39,14 @@
     <?php endforeach;?>
 
     <br>
-
-    <br><br><br><br><br><br><br><br><br>
-    <pre><?php var_dump($chapter);?></pre>
+    <hr>
+    <h2>Hero info</h2>
+    <p>PV : <?=$hero['pv']?></p>
+    <p>Strength : <?=$hero['strength']?></p>
+    <p>Initiative : <?=$hero['initiative']?></p>
+    <?php if(isset($hero['mana'])):?>
+        <p>Mana : <?=$hero['mana']?></p>
+    <?php endif;?>
+    <p>XP : <?=$hero['xp']?></p>
 </body>
 </html>

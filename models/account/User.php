@@ -4,6 +4,7 @@ namespace dungeonxplorer\account;
 
 use Dbconnection;
 use dungeonxplorer\hero\Hero;
+use dungeonxplorer\managers\HeroManager;
 
 require_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'autoload.php';
 
@@ -56,7 +57,7 @@ class User{
         
         $bdd = Dbconnection::getConnection();
 
-        $stmt = $bdd->prepare("SELECT us_username, us_email,us_password, us_id FROM User WHERE us_email=:email");
+        $stmt = $bdd->prepare("SELECT us_username, us_email,us_password, us_id, he_id FROM User WHERE us_email=:email");
         $stmt->bindParam(':email',$email);
         $stmt->execute();
 
@@ -74,6 +75,9 @@ class User{
         $user->name = $res['us_username'];
         $user->email = $res['us_email'];
         $user->id = $res['us_id'];
+
+        if(isset($res['he_id']))
+            $user->hero = HeroManager::getInstance()->getHero($res['he_id']);
 
         return $user;
 
@@ -98,6 +102,12 @@ class User{
         $stmt->execute();
         //$result = $stmt->fetch(\PDO::FETCH_OBJ);        //result of the query
     }
+
+    public function getHero(): Hero{
+        return $this->hero;
+    }
+
+
 
 }
 

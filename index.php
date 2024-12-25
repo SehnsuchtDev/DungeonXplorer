@@ -22,8 +22,9 @@ $router->get('/',function(){
     include __DIR__ . DIRECTORY_SEPARATOR . 'views'. DIRECTORY_SEPARATOR . 'index.php';
 });
 
-$router->get('/chapter/(\d+)','ChapterController@showChapter');
-$router->post('/chapter/(\d+)/mcqtest','ChapterController@MCQTestAnswer');
+$router->get('/chapter','ChapterController@showChapter');
+$router->get('/chapter/(\d+)','ChapterController@changeChapter');
+$router->post('/chapter/mcqtest','ChapterController@MCQTestAnswer');
 
 $router->get("signup","SignupController@show");
 $router->post("signup","SignupController@signup");

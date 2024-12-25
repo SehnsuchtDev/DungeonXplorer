@@ -1,39 +1,65 @@
-<?php
+<?php session_start();
 
+use dungeonxplorer\account\User;
+use dungeonxplorer\chapter\Chapter;
 use dungeonxplorer\chapter\event\Fight;
 use dungeonxplorer\chapter\event\test\MCQTest;
-use dungeonxplorer\managers\ChapterManager;
+use dungeonxplorer\hero\class\magic\MagicHero;
+use dungeonxplorer\hero\Hero;
 
 class ChapterController{
 
-    public function show(int $id){
-        $this->showChapter($id);
+    private User $user;
+    private Hero $hero;
+
+    public function __construct(){
+        $this->user = $_SESSION['user'];
+        if(!isset($this->user)){
+            header('Location: '.FULLURLROOTPATH.'/login');
+            exit();
+        }
+        $this->hero = $this->user->getHero();
+        if(!isset($this->hero)){
+            header('Location: '.FULLURLROOTPATH.'/hero');
+            exit();
+        }
     }
 
-    public function showChapter(int $id,bool $mcqAnswer = null) : void
+    public function show(){
+        $this->showChapter();
+    }
+
+    public function showChapter(bool $mcqAnswer = null) : void
     {
 
-        $chapter = ChapterManager::getInstance()->getChapter($id);
+        $chapterId = $this->getChapter()->getChapterId();
+        $content = $this->getChapter()->getContent();
+        $image = $this->getChapter()->getImage();
 
-        $chapterId = $chapter->getChapterId();
-        $content = $chapter->getContent();
-        $image = $chapter->getImage();
+        $hero = array();
+        $hero['pv'] = $this->hero->getPv();
+        $hero['strength'] = $this->hero->getStrength();
+        $hero['initiative'] = $this->hero->getInitiative();
+        if($this->hero instanceof MagicHero)
+            $hero['mana'] = $this->hero->getMana();
+        $hero['xp'] = $this->hero->getXp();
+
 
         $nextChapterId = [];
-        foreach ($chapter->getNextChapter() as $nextChapter) {
+        foreach ($this->getChapter()->getNextChapter() as $nextChapter) {
             $nextChapterId[] = $nextChapter->getChapterId();
         }
 
         //MCQ Test
-        $mcq = $chapter->getChapterEvent() instanceof MCQTest;
+        $mcq = $this->getChapter()->getChapterEvent() instanceof MCQTest;
         if ($mcq) {
-            $mcqQuestion = $chapter->getChapterEvent()->getQuestions();
-            $mcqChoices = $chapter->getChapterEvent()->getChoices();
+            $mcqQuestion = $this->getChapter()->getChapterEvent()->getQuestions();
+            $mcqChoices = $this->getChapter()->getChapterEvent()->getChoices();
         }
 
-        $fight = $chapter->getChapterEvent() instanceof Fight;
+        $fight = $this->getChapter()->getChapterEvent() instanceof Fight;
         if ($fight){
-            $monsterModel = $chapter->getChapterEvent()->getMonster();
+            $monsterModel = $this->getChapter()->getChapterEvent()->getMonster();
             $monster = array();
             $monster['name'] = $monsterModel->getName();
             $monster['pv'] = $monsterModel->getPv();
@@ -45,17 +71,24 @@ class ChapterController{
         require dirname(__DIR__). DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'devview' . DIRECTORY_SEPARATOR . 'chapter.php';
     }
 
-    public function MCQTestAnswer(int $id) : void{
-        $chapter = ChapterManager::getInstance()->getChapter($id);
-        $mcq = $chapter->getChapterEvent();
+    public function MCQTestAnswer() : void{
+        $mcq = $this->getChapter()->getChapterEvent();
         if($mcq instanceof MCQTest){
             $answer = $mcq->getAnswer();
             $choice = $_POST['choice'];
             $mcqAnswer = ($answer == ($choice+1));
         }
 
+        $this->showChapter($mcqAnswer);
+    }
 
-        $this->showChapter($id,$mcqAnswer);
+    public function changeChapter(int $chapterId) : void{
+        $this->hero->changeChapter($chapterId);
+        $this->showChapter();
+    }
+
+    private function getChapter(): Chapter{
+        return $this->hero->getCurrentChapter();
     }
 
 }
