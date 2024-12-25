@@ -73,10 +73,6 @@ window.bookmanager.replacePage = async (url) => {
     }
 }
 
-window.bookmanager.center = () => {
-    htmlParentElement.parentElement.classList.add("flex");
-}
-
 window.bookmanager.displayHeroData = () => {
     document.getElementById("hero-data").classList.remove("hidden");
 }

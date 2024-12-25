@@ -30,8 +30,7 @@
 
     btnConnect = document.getElementById("connect");
     btnConnect.addEventListener("click", (event) => {
-        window.bookmanager.flipNext()
-        window.bookmanager.center();
+        window.bookmanager.flipNext();
     });
 
     btnRegister = document.getElementById("register");
