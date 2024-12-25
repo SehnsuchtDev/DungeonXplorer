@@ -13,7 +13,6 @@ class LoginController {
 
     public function login() : void {
 
-
         $errors = [];
 
         $email = $_POST['email'] ?? '';

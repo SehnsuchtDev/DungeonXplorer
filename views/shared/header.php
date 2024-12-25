@@ -13,7 +13,17 @@
         </span>
         <p class="font-['Pirata_One'] text-[#e5e5e5] text-2xl ml-2 my-auto 
             max-[615px]:invisible
-            max-[615px]:absolute">Username</p>
+            max-[615px]:absolute">
+            <?php session_start();
+                if(isset($_SESSION['user'])){
+                    $user = $_SESSION['user']->getName();
+                    echo "Bienvenue, " . $user . "!";
+                }
+                else{
+                    echo "Bienvenue, invité !";
+                }
+            ?>
+            </p>
     </div>
 
     <div class="flex flex-row space-w">

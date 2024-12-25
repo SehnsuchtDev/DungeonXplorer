@@ -78,6 +78,12 @@ class User{
         return $user;
 
     }
+
+    public function getName(){
+        return $this->name;
+    }
+
+
 }
 
 ?>
