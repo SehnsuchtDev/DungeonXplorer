@@ -12,39 +12,39 @@
     <h1 class="p-10 text-center text-2xl"> Gestionnaire des comptes</h1>
 
     <table class="w-full border border-gray-300 rounded shadow"> 
-        <tr>
+        <tr class="border border-[#C4975E]">
             <td class="p-5">
                
-                <p> elt1 </p>
+                <p> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ullam modi suscipit quasi ad odit reiciendis, tempore porro deserunt quam laboriosam ut. Dolores error magnam, aliquam molestias ullam quod suscipit! </p>
             </td>
             
             <td class="p-4 text-right">
-                <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"> Modifier</button>
-                <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 ml-2">Supprimer</button>
+                <button class="bg-blue-600 text-white w-20 h-10 rounded hover:bg-blue-700 my-1.5"> Modifier</button>
+                <button class="bg-red-600 text-white w-20 h-10 rounded hover:bg-red-700 ml-2 my-1.5">Supprimer</button>
             </td>
         </tr>
        
-        <tr>
+        <tr class="border border-[#C4975E]">
             <td class="p-5">
                
-                <p> elt2 </p>
+                <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque magnam, nobis, rerum, iste incidunt illo eaque esse quisquam unde odio ab necessitatibus eveniet pariatur consequuntur veniam iusto ducimus deserunt itaque. </p>
             </td>
             
             <td class="p-4 text-right">
-                <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"> Modifier</button>
-                <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 ml-2">Supprimer</button>
+                <button class="bg-blue-600 text-white w-20 h-10 rounded hover:bg-blue-700 my-1.5"> Modifier</button>
+                <button class="bg-red-600 text-white w-20 h-10 rounded hover:bg-red-700 ml-2 my-1.5">Supprimer</button>
             </td>
         </tr>
 
         <tr>
             <td class="p-5">
                
-                <p> elt3 </p>
+                <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid omnis assumenda recusandae quasi tenetur officiis labore, accusamus suscipit, ullam error voluptatibus nihil officia! Dicta soluta nulla ad. Aliquam, cum minima! </p>
             </td>
             
             <td class="p-4 text-right">
-                <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-950"> Modifier</button>
-                <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-950 ml-2">Supprimer</button>
+                <button class="bg-blue-600 text-white w-20 h-10  rounded hover:bg-blue-950 my-1.5"> Modifier</button>
+                <button class="bg-red-600 text-white w-20 h-10 rounded hover:bg-red-950 ml-2 my-1.5">Supprimer</button>
             </td>
         </tr>
     </table>
