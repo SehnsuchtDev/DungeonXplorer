@@ -10,7 +10,7 @@
 <body class="bg-[#1a1a1a]">
     <?php include('./shared/header.php'); ?>
 
-    <div class="flex ml-[-400px] 
+    <div class="flex
  flex-col items-center justify-center mb-12">
         <object id="inventory-object" title="Inventaire" data="./popupinventory.php" type="text/html"
             class="absolute z-10 h-full w-full"></object>
