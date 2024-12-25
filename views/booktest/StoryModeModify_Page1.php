@@ -19,12 +19,12 @@
         <div class="p-6 font-['Pirata_One'] justify-items-center text-center">
             <p class="text-black font-bold text-4xl m-20">MENU</p>
             <div class="bg-[#C4975E] p-6 m-20 text-2xl border-solid border-2 border-black rounded max-w-xs mx-auto cursor-pointer pointer-events-auto"
-                id="continue">
-                <p>Continuer l'aventure</p>
+                id="cancel">
+                <p>Annuler</p>
             </div>
             <div class="bg-[#C4975E] p-6 m-20 text-2xl border-solid border-2 border-black rounded max-w-xs mx-auto cursor-pointer pointer-events-auto"
-                id="settings">
-                <p>Modifier</p>
+                id="submit">
+                <p>Valider</p>
             </div>
         </div>
 
@@ -32,16 +32,16 @@
 
     <script>
 
-        btnContinue = document.getElementById("continue");
-        btnContinue.removeAttribute("id");
-        btnContinue.addEventListener("click", () => {
-            window.bookmanager.loadTwoPageAndTurn("./booktest/test_chapter2-p1.php", "./booktest/test_chapter2-p2.php");
+        btnCancel = document.getElementById("cancel");
+        btnCancel.removeAttribute("id");
+        btnCancel.addEventListener("click", () => {
+            window.bookmanager.loadTwoPageAndTurn("./booktest/StoryMode_Page1.php", "./booktest/StoryMode_Page2.php");
         });
 
-        btnSettings = document.getElementById("settings");
-        btnSettings.removeAttribute("id");
-        btnSettings.addEventListener("click", () => {
-            window.bookmanager.loadTwoPageAndTurn("./booktest/StoryModeModify_Page1.php", "./booktest/StoryModeModify_Page2.php");
+        btnSubmit = document.getElementById("submit");
+        btnSubmit.removeAttribute("id");
+        btnSubmit.addEventListener("click", () => {
+            window.bookmanager.loadTwoPageAndTurn("./booktest/StoryMode_Page1.php", "./booktest/StoryMode_Page2.php");
         });
 
     </script>
