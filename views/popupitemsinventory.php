@@ -12,7 +12,7 @@
 <body>
     <button onclick="displayInventory()">Cliquer ici</button>
     
-    <div id="inventory" class="bg-[#2E2E2E] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-max fixed  inset-0  max-w-sm rounded">
+    <div id="inventory" class="bg-[#2E2E2E] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-max fixed  inset-0  max-w-xs rounded">
         <button onclick="hiddenInventory()"  class="float-right bg-[#C4975E] absolute top-2 right-2 rounded w-6 h-6 text-s flex items-center justify-center leading-none ">
         &times;
         </button>
@@ -23,7 +23,7 @@
                           
             <tr>
             <td rowspan="3" class="border border-[#C4975E] rounded overflow-hidden ">
-    <img src="img/Potions.jpg" alt="Potions" class="object-cover">
+    <img src="img/Potions.jpg" alt="Potions" class="object-cover w-full h-full">
 </td>
                 <td>
                     <p class="text-lg font-bold text-white">Potion de soin</p>
