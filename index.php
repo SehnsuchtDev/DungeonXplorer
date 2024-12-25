@@ -17,6 +17,10 @@ $router->get('/',function(){
     include __DIR__ . DIRECTORY_SEPARATOR . 'views'. DIRECTORY_SEPARATOR . 'index.php';
 });
 
-$router->get('home', 'HomeController@show');
+$router->get('/', 'HomeController@show');
+
+$router->set404(function (){
+    (new ErrorController())->show();
+});
 
 $router->run();

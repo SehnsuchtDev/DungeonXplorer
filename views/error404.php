@@ -2,12 +2,12 @@
 <html lang="fr">
 
 <head>
-    <?php include('./shared/head.php'); ?>
+    <?php include(__DIR__ .'/shared/head.php'); ?>
 </head>
 
 <body class="bg-[#1a1a1a]">
     <!-- HEADER -->
-    <?php include('./shared/header.php'); ?>
+    <?php include(__DIR__ . '/shared/header.php'); ?>
 
     <!-- ACCUEIL -->
 
@@ -18,13 +18,13 @@
             dire que la
             page recherchée
             n'existe plus.</p>
-        <img src="../public/assets/Giant Spider.jpg" alt="a giant spider" width="400" height="341" title="giant spider"
+        <img src="public/assets/Giant Spider.jpg" alt="a giant spider" width="400" height="341" title="giant spider"
             class="m-5 justify-self-center" />
     </div>
 
     </main>
 
-    <?php include('./shared/footer.php'); ?>
+    <?php include( __DIR__ . '/shared/footer.php'); ?>
 
 </body>
 
