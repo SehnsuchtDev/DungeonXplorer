@@ -1,5 +1,17 @@
-const popup = document.getElementById("inventory");
+const button = document.getElementById("inventory-button");
+// const popup = document.getElementById("inventory");
+
+const popup = document.getElementById("inventory-object");
 popup.style.visibility = "hidden";
+
+popup.addEventListener("load", () => {
+    const close = popup.contentDocument.getElementById("close");
+    close.addEventListener("click", hiddenInventory);
+});
+
+button.addEventListener("click", displayInventory);
+
+
 /*
 const tableData = [
     ['a', 'b', 'c', 'd'], // Première ligne
@@ -23,10 +35,11 @@ tableData.forEach(rowData => {
 });
 */
 
-function displayInventory(){
-    popup.style.visibility = "visible";
+
+function hiddenInventory() {
+    popup.style.visibility = "hidden";
 }
 
-function hiddenInventory(){
-    popup.style.visibility = "hidden";
+function displayInventory() {
+    popup.style.visibility = "visible";
 }

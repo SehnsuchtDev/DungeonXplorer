@@ -1,4 +1,4 @@
-<div class="w-[100%] flex flex-col items-center justify-center font-['Pirata_One'] text-[#ADADAD] text-[5vh] hidden"
+<div class="w-[100%] flex flex-col items-center justify-center font-['Pirata_One'] text-[#ADADAD] text-[5vh]"
     id="hero-data">
     <div class="w-[800px] flex flex-row">
         <div class="flex flex-row justify-between w-[60%]">
@@ -16,7 +16,9 @@
             </div>
         </div>
         <div class="ml-10 w-[40%] flex flex-row-reverse ">
-            <img src="../public/assets/hero_data_icons/inventory_icon.svg" alt="Inventory icon" width="50 vw">
+            <button id="inventory-button">
+                <img src="../public/assets/hero_data_icons/inventory_icon.svg" alt="Inventory icon" width="50 vw">
+            </button>
         </div>
     </div>
 </div>

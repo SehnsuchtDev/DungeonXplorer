@@ -82,3 +82,7 @@ window.bookmanager.displayHeroData = () => {
 }
 
 window.bookmanager.flipNext = () => pageFlip.flipNext();
+
+
+
+
