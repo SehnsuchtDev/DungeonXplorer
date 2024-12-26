@@ -58,6 +58,8 @@ class ChapterController{
             $hero['mana'] = $this->hero->getMana();
         $hero['xp'] = $this->hero->getXp();
 
+        $purse = $this->hero->getPurse() ?? '0';
+
         $items = array();
         foreach ($this->hero->getInventory()->getItems() as $item)
             $items[] = ['name' => $item['item']->getName(), 'quantity' => $item['quantity']];
@@ -86,15 +88,18 @@ class ChapterController{
             $monster['xp'] = $monsterModel->getXp();
         }
 
+        $eventIsDone = true;
+        if($this->getChapter()->getChapterEvent() != null)
+            $eventIsDone = $this->getChapter()->getChapterEvent()->isDone();
+
         require dirname(__DIR__). DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'devview' . DIRECTORY_SEPARATOR . 'chapter.php';
     }
 
     public function MCQTestAnswer() : void{
         $mcq = $this->getChapter()->getChapterEvent();
         if($mcq instanceof MCQTest){
-            $answer = $mcq->getAnswer();
             $choice = $_POST['choice'];
-            $mcqAnswer = ($answer == ($choice+1));
+            $mcqAnswer = $mcq->isCorrect(($choice+1),$this->hero);
         }
 
         $this->showChapter($mcqAnswer);

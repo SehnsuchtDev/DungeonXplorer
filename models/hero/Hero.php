@@ -131,6 +131,10 @@ abstract class Hero{
     }
 
     public function changeChapter(int $chapterId) : bool{
+        if($this->getCurrentChapter()->getChapterId() == $chapterId)
+            return false;
+        if($this->getCurrentChapter()->getChapterEvent() != null && !$this->getCurrentChapter()->getChapterEvent()->isDone())
+            return false;
         if($chapterId <= 1){
             $this->death();
             return true;
@@ -180,6 +184,13 @@ abstract class Hero{
         //TODO: Restore default heros values
         throw new \Exception("=========== Todo dead function in Hero.php =============");
     }
+
+    public function getPurse(): int
+    {
+        return $this->purse;
+    }
+
+
 
 
 }

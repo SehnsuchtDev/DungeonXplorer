@@ -3,6 +3,8 @@
 
 namespace dungeonxplorer\chapter\event\test;
 
+use dungeonxplorer\hero\Hero;
+
 require dirname(__DIR__,4) . DIRECTORY_SEPARATOR . 'autoload.php';
 
 class MCQTest extends ChapterTest{
@@ -49,7 +51,16 @@ class MCQTest extends ChapterTest{
         return $this->answer;
     }
 
-
+    public function isCorrect(int $answer,Hero $hero): bool{
+        if($this->isDone()) return false;
+        $this->setDone(true);
+        $rep = $this->answer == $answer;
+        if(!$rep)
+            $hero->death();
+        else
+            $this->getLoot()->give($hero);
+        return $rep;
+    }
 
 
 }

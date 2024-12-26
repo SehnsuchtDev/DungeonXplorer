@@ -34,7 +34,7 @@
 
     <?php foreach ($nextChapterId as $id):?>
         <a href="<?=constant('FULLURLROOTPATH'). '/chapter/' . $id?>">
-            <button>Chapter <?=$id?></button>
+            <button <?= $eventIsDone ? '' : 'disabled' ?>>Chapter <?=$id?></button>
         </a>
     <?php endforeach;?>
 
@@ -57,5 +57,6 @@
             <li><?=$item['name']?> : <?=$item['quantity']?></li>
         <?php endforeach;?>
     </ul>
+    <p>Purse <?=$purse?></p>
 </body>
 </html>
