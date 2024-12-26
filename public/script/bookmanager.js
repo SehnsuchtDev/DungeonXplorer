@@ -80,5 +80,40 @@ window.bookmanager.displayHeroData = () => {
 window.bookmanager.flipNext = () => pageFlip.flipNext();
 
 
+window.bookmanager.refreshDivWithPostMethod = async(lien,formData,elementid) => {
+    try {
+        const response = await fetch(lien, {
+            method: "POST",
+            body: formData,
+        });
+        
+        if (response.ok) {
+            const html = await response.text();
+            
+            const div = document.getElementById(elementid);
+            div.innerHTML="";
+
+            const parser = new DOMParser(),
+            dom = parser.parseFromString(html, "text/html");
+            for(let child of dom.getElementById(elementid).children){
+                div.appendChild(child.cloneNode(true))
+            }
+
+            for (let script of dom.querySelectorAll("script")) {
+                const newScript = document.createElement("script");
+                if (script.src)
+                    newScript.src = script.src;
+                else
+                    newScript.textContent = script.textContent;
+                document.head.appendChild(newScript);
+                document.head.removeChild(newScript);
+            }
+
+        }
+    } catch(e){
+
+    }
+}
+
 
 

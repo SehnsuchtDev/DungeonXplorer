@@ -1,5 +1,9 @@
 <div
     id="divConnection" class="ml-[-200px] bookcover bg-contain bg-no-repeat text-[#FFFFFF] place-self-center font-['Pirata_One'] w-full h-full">
+
+    <!-- Tempo pour test -->
+    <pre><?php if(isset($errors)) print_r($errors) ?></pre>
+    
  
     <h1 class="text-center text-4xl p-16 font-['Pirata_One']"> Connexion </h1>
     <form id="formulaire-connexion" method="post" action="<?= FULLURLROOTPATH ?>/book/page/login ">
@@ -39,24 +43,8 @@
     document.getElementById("formulaire-connexion").addEventListener("submit",(event)=>{
         event.preventDefault();
         const formData = new FormData(event.target);
-        post(event.target.action, formData);
+        bookmanager.refreshDivWithPostMethod(event.target.action, formData,"divConnection");
     });
-
-    async function post(lien,formData){
-        try {
-            const response = await fetch(lien, {
-                method: "POST",
-                body: formData,
-            });
-            
-            if (response.ok) {
-                const html = await response.text();
-                document.getElementById("divConnection").innerHTML = html;
-            }
-        } catch(e){
-
-        }
-    }
         
 
     btnRegister = document.getElementById("register");

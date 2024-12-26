@@ -36,6 +36,7 @@ class LoginController {
             }
         }
 
+
         require __DIR__ . '/../views/connection.php';
     }
 
