@@ -4,10 +4,6 @@ namespace dungeonxplorer\hero\class\magic;
 
 class Thief extends MagicHero{
 
-    public function __construct($pv, $strength, $initiative,$mana){
-        parent::__construct($pv, $strength, $initiative, $mana);
-    }
-
     public function attack(\dungeonxplorer\monster\Monster $monster): void{
         $strength = 0;
         if($this->getPrimaryWeapon() instanceof Weapon){

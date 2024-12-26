@@ -7,6 +7,7 @@ use dungeonxplorer\item\HandItem;
 use dungeonxplorer\item\Inventory;
 use dungeonxplorer\managers\ChapterManager;
 use dungeonxplorer\managers\ItemManager;
+use dungeonxplorer\monster\Monster;
 
 require dirname(__DIR__,2) . DIRECTORY_SEPARATOR . 'autoload.php';
 

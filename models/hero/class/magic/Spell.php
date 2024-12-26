@@ -8,12 +8,6 @@ class Spell{
     private $manaCost = 0;
     private $damage = 0;
 
-    public function __construct($name, $manaCost, $damage){
-        $this->name = $name;
-        $this->manaCost = $manaCost;
-        $this->damage = $damage;
-    }
-
     public function getName(){
         return $this->name;
     }

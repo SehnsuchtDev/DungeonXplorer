@@ -60,14 +60,6 @@ class Monster{
     }
 
 
-
-    public function __construct($pv, $strength, $initiative){
-        $this->pv = $pv;
-        $this->strength = $strength;
-        $this->initiative = $initiative;
-    }
-
-
     public function attack(Hero $hero): void{
         $attaque = rand(1,6) + $this->getStrength();
         echo "attaque : $attaque";
@@ -93,39 +85,6 @@ class Monster{
 
     public function setPV(int $pv){
         $this->pv = $pv;
-    }
-
-
-    public function getName(): string{
-        return $this->name;
-    }
-
-    public function getPV(){
-        return $this->pv;
-    }
-
-    public function getMana(){
-        return $this->mana;
-    }
-
-    public function getInitiative(){
-        return $this->initiative;
-    }
-
-    public function getStrength(){
-        return $this->strength;
-    }
-
-    public function getAttack(){
-        return $this->attack;
-    }
-
-    public function getXP(){
-        return $this->xp;
-    }
-
-    public function getLoot(){
-        return $this->loot;
     }
 
     public function kill($hero){
