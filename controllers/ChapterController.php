@@ -9,6 +9,7 @@ use dungeonxplorer\hero\class\magic\Thief;
 use dungeonxplorer\hero\class\magic\Wizard;
 use dungeonxplorer\hero\class\Warrior;
 use dungeonxplorer\hero\Hero;
+use dungeonxplorer\item\Armor;
 use dungeonxplorer\item\ConsumableItem;
 use dungeonxplorer\item\HandItem;
 
@@ -59,10 +60,15 @@ class ChapterController{
         $hero['initiative'] = $this->hero->getInitiative();
         if($this->hero instanceof MagicHero)
             $hero['mana'] = $this->hero->getMana();
+        $hero['armor'] = $this->hero->getArmorAmount();
         $hero['xp'] = $this->hero->getXp();
+
+        if($this->hero instanceof Warrior && $this->hero->getArmor() !== null)
+            $armor = $this->hero->getArmor()->getName();
 
         $purse = $this->hero->getPurse() ?? '0';
 
+        $inventory = $this->hero->getInventory();
         $items = array();
         foreach ($this->hero->getInventory()->getItems() as $item)
             $items[] = ['id' => $item['item']->getId(),
@@ -70,6 +76,7 @@ class ChapterController{
                         'quantity' => $item['quantity'],
                         'image' => $item['item']->getImage(),
                         'usable' => $item['item'] instanceof ConsumableItem,
+                        'armor' => $item['item'] instanceof Armor,
                         'handitem' => $item['item'] instanceof HandItem
                         ];
 

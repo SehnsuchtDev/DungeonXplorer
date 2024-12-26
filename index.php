@@ -32,6 +32,7 @@ $router->post('/chapter/mcqtest','ChapterController@MCQTestAnswer');
 $router->get('/inventory/use/(\d+)','InventoryController@useItem');
 $router->get('/inventory/equip/(\d+)/primaryweapon','InventoryController@equipPrimaryWeapon');
 $router->get('/inventory/equip/(\d+)/secondaryweapon','InventoryController@equipSecondaryWeapon');
+$router->get('/inventory/equip/(\d+)/armor','InventoryController@equipArmor');
 $router->get('/inventory/drop/(\d+)','InventoryController@dropItem');
 
 $router->get("signup","SignupController@show");

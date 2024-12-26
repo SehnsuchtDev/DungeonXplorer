@@ -46,6 +46,16 @@ class Warrior extends Hero{
         return $this->armor;
     }
 
+    public function getArmorAmount()
+    {
+        $armor = parent::getArmorAmount();
+        if(isset($this->armor) && $this->armor instanceof Armor){
+            $armor += $this->armor->getArmorAmount();
+        }
+        return $armor;
+    }
+
+
 }
 
 ?>

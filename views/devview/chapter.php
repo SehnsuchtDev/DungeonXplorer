@@ -50,12 +50,16 @@
     <?php if(isset($hero['mana'])):?>
         <p>Mana : <?=$hero['mana']?></p>
     <?php endif;?>
+    <p>Protection : <?=$hero['armor']?></p>
     <p>XP : <?=$hero['xp']?></p>
     <?php if(isset($primaryWeapon)):?>
         <p>Arme principale : <?=$primaryWeapon?></p>
     <?php endif;?>
     <?php if(isset($secondaryWeapon)):?>
         <p>Arme secondaire : <?=$secondaryWeapon?></p>
+    <?php endif;?>
+    <?php if(isset($armor)):?>
+        <p>Armure : <?=$armor?></p>
     <?php endif;?>
 
     <br>
@@ -70,6 +74,8 @@
                 <?php elseif ($item['handitem']) :?>
                     <a href="<?=constant('FULLURLROOTPATH')?>/inventory/equip/<?=$item['id']?>/primaryweapon">Equiper en Arme principale</a>
                     <a href="<?=constant('FULLURLROOTPATH')?>/inventory/equip/<?=$item['id']?>/secondaryweapon">Equiper en Arme secondaire</a>
+                <?php elseif ($item['armor']) :?>
+                    <a href="<?=constant('FULLURLROOTPATH')?>/inventory/equip/<?=$item['id']?>/armor">Equiper</a>
                 <?php endif;?>
                 <span style="color: red">  <a style="color: red" href="<?=constant('FULLURLROOTPATH')?>/inventory/drop/<?=$item['id']?>">Jetter</a></span>
             </li>

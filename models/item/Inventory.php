@@ -2,6 +2,7 @@
 
 namespace dungeonxplorer\item;
 
+use dungeonxplorer\hero\class\Warrior;
 use dungeonxplorer\hero\Hero;
 
 define('MAXWEIGHT', 15);
@@ -99,6 +100,17 @@ class Inventory{
         }
     }
 
+    public function equipArmorWithId(int $id, Warrior $hero){
+        if($this->countItem($this->items[$id]['item']) >= 1){
+            $item = $this->items[$id]['item'];
+            if($item instanceof Armor) {
+                $item->equip($hero);
+                $this->removeItem($item, 1);
+            }
+        }else{
+            throw new \InvalidArgumentException("Item not found in inventory");
+        }
+    }
 
 
 }

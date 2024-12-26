@@ -5,6 +5,7 @@ namespace dungeonxplorer\hero;
 use dungeonxplorer\chapter\Chapter;
 use dungeonxplorer\item\HandItem;
 use dungeonxplorer\item\Inventory;
+use dungeonxplorer\item\Shield;
 use dungeonxplorer\managers\ChapterManager;
 use dungeonxplorer\managers\ItemManager;
 use dungeonxplorer\monster\Monster;
@@ -221,6 +222,16 @@ abstract class Hero{
     }
 
     public abstract function attack(Monster &$monster):void;
+
+    public function getArmorAmount(){
+        $armor = 0;
+        if($this->getPrimaryWeapon() != null && $this->getPrimaryWeapon() instanceof Shield)
+            $armor += $this->getPrimaryWeapon()->getArmourAmount();
+        if($this->getPrimaryWeapon() != null && $this->getSecondaryWeapon() instanceof Shield)
+            $armor += $this->getPrimaryWeapon()->getArmourAmount();
+        return $armor;
+
+    }
 
 
 }

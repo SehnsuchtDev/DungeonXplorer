@@ -2,6 +2,7 @@
 
 use dungeonxplorer\account\User;
 use dungeonxplorer\exceptions\NotMagicHeroException;
+use dungeonxplorer\hero\class\Warrior;
 use dungeonxplorer\hero\Hero;
 use dungeonxplorer\item\Inventory;
 
@@ -55,4 +56,11 @@ class InventoryController{
         $this->redirect();
     }
 
+    public function equipArmor(int $id): void{
+        if(!$this->hero instanceof Warrior){
+            throw new \InvalidArgumentException("Only Warrior can equip armor");
+        }
+        $this->inventory->equipArmorWithId($id,$this->hero);
+        $this->redirect();
+    }
 }
