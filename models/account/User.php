@@ -4,6 +4,7 @@ namespace dungeonxplorer\account;
 
 use Dbconnection;
 use dungeonxplorer\hero\Hero;
+use dungeonxplorer\managers\HeroManager;
 
 require_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'autoload.php';
 
@@ -13,10 +14,11 @@ class User{
     private int $id;
     private string $name = "";
     private string $email = "";
-    private bool $isAdmin = false;
+    private bool $isAdmin = false;  
     private ?Hero $hero = null;
 
 
+   
     private static function exists(string $email, string $name):bool{
         $bdd = Dbconnection::getConnection();
 
@@ -57,7 +59,8 @@ class User{
         
         $bdd = Dbconnection::getConnection();
 
-        $stmt = $bdd->prepare("SELECT us_username, us_email,us_password,us_id FROM User WHERE us_email=:email");
+        $stmt = $bdd->prepare("SELECT us_username, us_email,us_password, us_id, he_id FROM User WHERE us_email=:email");
+
         $stmt->bindParam(':email',$email);
         $stmt->execute();
 
@@ -76,8 +79,40 @@ class User{
         $user->email = $res['us_email'];
         $user->id = $res['us_id'];
 
+        if(isset($res['he_id']))
+            $user->hero = HeroManager::getInstance()->getHero($res['he_id']);
+
+
         return $user;
 
+    }
+
+
+    public function getUserId() : int{
+        return $this->id;
+    }
+
+    public function setHero(Hero $newHero){
+        $this->hero = $newHero;
+      
+        $bdd = Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("update User set he_id = :idOfMyHero where us_id = :idOfMyUser");
+
+
+        $userId = $this->hero->getId();
+
+        $stmt->bindParam(':idOfMyHero',$userId);
+
+        $stmt->bindParam(':idOfMyUser',$this->id);
+
+        $stmt->execute();
+        //$result = $stmt->fetch(\PDO::FETCH_OBJ);        //result of the query
+    }
+
+
+    public function getHero() : ?Hero{
+        return $this->hero;
     }
 
     public function getName(){
@@ -88,9 +123,6 @@ class User{
         return $this->email;
     }
 
-    public function getHero(){
-        return $this->hero;
-    }
 
     public function delete(){
 
