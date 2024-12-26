@@ -21,3 +21,7 @@
         </div>
 
     </div>
+
+    <script defer>
+        canChange = true;
+    </script>

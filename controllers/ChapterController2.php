@@ -36,54 +36,6 @@ class ChapterController{
         $this->showChapter();
     }
 
-    public function showChapterP1(){
-        $chapterId = $this->getChapter()->getChapterId();
-        $content = $this->getChapter()->getContent();
-        require dirname(__DIR__) . '/views/booktest/AnyChapter_Page1.php'; 
-    }
-
-    public function showChapterP2(){
-
-        $seed = rand();
-        
-        $image = $this->getChapter()->getImage();
-
-        //CHAPITRE
-        $nextChapterId = [];
-        foreach ($this->getChapter()->getNextChapter() as $nextChapter) {
-            $nextChapterId[] = $nextChapter->getChapterId();
-        }
-
-        //MCQ TEST
-        $mcq = $this->getChapter()->getChapterEvent() instanceof MCQTest;
-        if ($mcq) {
-            $mcqQuestion = $this->getChapter()->getChapterEvent()->getQuestions();
-            $mcqChoices = $this->getChapter()->getChapterEvent()->getChoices();
-        }
-
-        //COMBAT
-        $fight = $this->getChapter()->getChapterEvent() instanceof Fight;
-        if ($fight){
-            $monsterModel = $this->getChapter()->getChapterEvent()->getMonster();
-            $monster = array();
-            $monster['name'] = $monsterModel->getName();
-            $monster['pv'] = $monsterModel->getPv();
-            $monster['initiative'] = $monsterModel->getInitiative();
-            $monster['strength'] = $monsterModel->getStrength();
-            $monster['mana'] = $monsterModel->getMana();
-            $monster['xp'] = $monsterModel->getXp();
-
-            $fightStatus = $this->getChapter()->getChapterEvent()->getPlayerTurn($this->hero) ? 'Attaquer le monstre' : 'Suite du combat';
-        }
-
-        //EVENT DONE
-        $eventIsDone = true;
-        if($this->getChapter()->getChapterEvent() != null)
-            $eventIsDone = $this->getChapter()->getChapterEvent()->isDone();
-        require dirname(__DIR__) . '/views/booktest/AnyChapter_Page2.php'; 
-
-    }
-
     public function showChapter(bool $mcqAnswer = null) : void
     {
 
@@ -180,7 +132,7 @@ class ChapterController{
             $mcqAnswer = $mcq->isCorrect(($choice+1),$this->hero);
         }
 
-        $this->showChapterP2();
+        $this->showChapter($mcqAnswer);
     }
 
     public function fight() : void{
@@ -188,11 +140,12 @@ class ChapterController{
         if($fight instanceof Fight){
             $fight->fight($this->hero);
         }
-        $this->showChapterP2();
+        $this->showChapter();
     }
 
     public function changeChapter(int $chapterId) : void{
-        $this->hero->changeChapter($chapterId); 
+        $this->hero->changeChapter($chapterId);
+        $this->showChapter();
     }
 
     private function getChapter(): Chapter{
@@ -200,6 +153,3 @@ class ChapterController{
     }
 
 }
-
-
-

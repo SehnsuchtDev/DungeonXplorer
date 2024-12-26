@@ -21,10 +21,15 @@ $router->get('logout','LogoutController@logout');
 
 $router->get('account','AccountController@show');
 
-$router->get('/chapter','ChapterController@showChapter');
-$router->get('/chapter/(\d+)','ChapterController@changeChapter');
-$router->get('/chapter/fight','ChapterController@fight');
-$router->post('/chapter/mcqtest','ChapterController@MCQTestAnswer');
+$router->get('/chapter','ChapterController2@showChapter');
+$router->get('/book/page/chapter/p1','ChapterController@showChapterP1');
+$router->get('/book/page/chapter/p2','ChapterController@showChapterP2');
+
+$router->get('book/page/chapter/changeChapter/(\d+)','ChapterController@changeChapter');
+//$router->get('/chapter/fight','ChapterController@fight');
+$router->get('/book/page/chapter/fight','ChapterController@fight');
+//$router->post('/chapter/mcqtest','ChapterController@MCQTestAnswer');
+$router->post('book/page/chapter/mcqtest','ChapterController@MCQTestAnswer');
 
 $router->get('/inventory/use/(\d+)','InventoryController@useItem');
 $router->get('/inventory/equip/(\d+)/primaryweapon','InventoryController@equipPrimaryWeapon');
@@ -50,6 +55,8 @@ $router->set404(function (){
 $router->get("book/page/hero/p1","HeroCreationController@showp1");
 $router->post("book/page/hero","HeroCreationController@creation");
 $router->get("book/page/hero/p2","HeroCreationController@showp2");
+
+
 
 $router->run();
 

@@ -37,7 +37,7 @@
     
 
     <script defer> 
-
+    
             const selectElement = document.getElementById('class');
             selectElement.addEventListener('change',(event)=>{
                 const selectedValue = event.target.value;

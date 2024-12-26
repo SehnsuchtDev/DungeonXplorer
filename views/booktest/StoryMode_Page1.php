@@ -8,27 +8,18 @@
                 id="continue">
                 <p><?= $bouton ?></p>
             </div>
-            <!-- <div class="bg-[#C4975E] p-6 m-20 text-2xl border-solid border-2 border-black rounded max-w-xs mx-auto pointer-events-auto cursor-pointer"
-                id="settings">
-                <p>Paramètres</p>
-            </div> -->
         </div>
 
     </div>
 
     <script>
 
+        let canChange = false;
+
         btnContinue = document.getElementById("continue");
         btnContinue.removeAttribute("id");
         btnContinue.addEventListener("click", () => {
-            window.bookmanager.loadTwoPageAndTurn("./booktest/test_chapter2-p1.php", "./booktest/test_chapter2-p2.php");
+            if(canChange) window.bookmanager.loadTwoPageAndTurn("<?=FULLURLROOTPATH?>/book/page/chapter/p1", "<?=FULLURLROOTPATH?>/book/page/chapter/p2");
         });
-
-        // btnSettings = document.getElementById("settings");
-        // btnSettings.removeAttribute("id");
-        // btnSettings.addEventListener("click", () => {
-        //     window.bookmanager.loadTwoPageAndTurn("./booktest/test_chapter2-p1.php", "./booktest/test_chapter2-p2.php");
-        // });
-
     </script>
 

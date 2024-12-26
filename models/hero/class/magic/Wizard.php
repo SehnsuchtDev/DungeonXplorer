@@ -21,20 +21,25 @@ class Wizard extends MagicHero{
     }
   
     public function attack(Monster &$monster): void{
-        $spell = $this->spells[rand(0, count($this->spells)-1)];
-        if(parent::getMana() >= $spell->getManaCost()){
-            $attaque_magique = (rand(1,6)+rand(1,6) + $spell->getDamage());
-            parent::setMana(parent::getMana() - $spell->getManaCost());
-            $defense = rand(1,6) + (int)($monster->getStrength()/2);
-            $degats = 0;
-            if($attaque_magique > $defense){
-                $degats = $attaque_magique - $defense;
-            }
-            $monster->setPV($monster->getPV() - $degats);
+        if(count($this->spells)> 0){
+            $spell = $this->spells[rand(0, count($this->spells)-1)];
         }
         else{
-            throw new \Exception("Not enough mana");
+            $spell = null;
         }
+        if($spell != null && parent::getMana() >= $spell->getManaCost()){
+            $attaque_magique = (rand(1,6)+rand(1,6) + $spell->getDamage());
+            parent::setMana(parent::getMana() - $spell->getManaCost());
+        }
+        else{
+            $attaque_magique = (rand(1,6)+rand(1,6));
+        }
+        $defense = rand(1,6) + (int)($monster->getStrength()/2);
+        $degats = 0;
+        if($attaque_magique > $defense){
+            $degats = $attaque_magique - $defense;
+        }
+        $monster->setPV($monster->getPV() - $degats);
     }
 
     public function setSpells(array $spells): void
