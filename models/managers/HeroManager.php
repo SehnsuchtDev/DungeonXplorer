@@ -9,8 +9,7 @@ use dungeonxplorer\loot\Loot;
 
 require_once dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'autoload.php';
 
-class HeroManager
-{
+class HeroManager{
     private static self $instance;
 
     private function __construct(){}
@@ -21,7 +20,35 @@ class HeroManager
         return self::$instance;
     }
 
-    public static function createHero($heroName, $biography, $class){
+    public function getHero(int $heroId) : ?Hero {
+        $bdd = \Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("SELECT * FROM Hero WHERE he_id = ?;");
+        $stmt->execute([$heroId]);
+        $stmt->setFetchMode(\PDO::FETCH_ASSOC);
+
+        $res = $stmt->fetch();
+
+        if(isset($res['cl_id']))
+            switch ($res['cl_id']) {
+                case 1:
+                    $hero = new Warrior();
+                    break;
+                case 2:
+                    $hero = new Wizard();
+                    break;
+                case 3:
+                    $hero = new Thief();
+                    break;
+            }
+
+        $hero->hydrate($res);
+        InventoryManager::getInstance()->getInventoryWithHeroId($hero);
+
+        return $hero;
+    }
+
+    public function createHero($heroName, $biography, $class){
         $bdd = \Dbconnection::getConnection();
 
         $stmt = $bdd->prepare("INSERT INTO Hero(he_name, cl_id, he_biography, he_pv, he_mana, he_strength, he_initiative, he_armor, he_primary_weapon, 
@@ -30,11 +57,11 @@ class HeroManager
         (select cl_strength from Class where cl_id = :classOfMyHero), (select cl_initiative from Class where cl_id = :classOfMyHero),
         null, (select cl_primary_weapon from Class where cl_id = :classOfMyHero), null, 0, 1, 0, 1)");
         /*
-        insert into Hero(he_name, cl_id, he_biography, he_pv, he_mana, he_strength, he_initiative, he_armor, he_primary_weapon, 
-        he_secondary_weapon, he_xp, he_current_level, he_purse, ch_id) values("lala", 1, "lala", 
-        (select cl_base_pv from Class where cl_id = 1), (select cl_base_mana from Class where cl_id = 1), 
+        insert into Hero(he_name, cl_id, he_biography, he_pv, he_mana, he_strength, he_initiative, he_armor, he_primary_weapon,
+        he_secondary_weapon, he_xp, he_current_level, he_purse, ch_id) values("lala", 1, "lala",
+        (select cl_base_pv from Class where cl_id = 1), (select cl_base_mana from Class where cl_id = 1),
         (select cl_strength from Class where cl_id = 1), (select cl_initiative from Class where cl_id = 1),
-        null, (select cl_primary_weapon from Class where cl_id = 1), null, 0, 1, 0, 1); 
+        null, (select cl_primary_weapon from Class where cl_id = 1), null, 0, 1, 0, 1);
         */
 
         $stmt->bindParam(':nameOfMyHero',$heroName);
@@ -76,7 +103,7 @@ class HeroManager
             if($class === "2"){
                 $hero = new Wizard();
             }elseif($class === "3"){
-                $hero = new Thief(); 
+                $hero = new Thief();
             }
         }
 
@@ -96,11 +123,10 @@ class HeroManager
         $hero->setCurrentLevel(1);
         $hero->setCurrentChapter(1);
         $hero->setPurse(0);
-        
+
         echo "id -> " . $hero->getId();
-        
+
         return $hero;
     }
-
 
 }

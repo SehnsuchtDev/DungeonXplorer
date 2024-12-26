@@ -1,7 +1,8 @@
 <?php
 
 require __DIR__ . '/libs/router/Router.php';
-require __DIR__ . '/autoload.php';
+
+require __DIR__ . DIRECTORY_SEPARATOR . 'autoload.php';
 
 $router = new Router();
 
@@ -11,6 +12,12 @@ $router->set404(function () {
     header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
     echo '404, route not found!';
 });
+
+$router->get('/',function(){
+    include __DIR__ . DIRECTORY_SEPARATOR . 'views'. DIRECTORY_SEPARATOR . 'index.php';
+});
+
+$router->get('/chapter/(\d+)','ChapterController@showChapter');
 
 $router->get("signup","SignupController@show");
 $router->post("signup","SignupController@signup");
