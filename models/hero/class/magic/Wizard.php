@@ -2,15 +2,23 @@
 
 namespace dungeonxplorer\hero\class\magic;
 
+use dungeonxplorer\managers\SpellManager;
+
 class Wizard extends MagicHero{
 
-    private array $spells = []; // Spell[]
+    private $spells = [];
 
-    public function __construct($pv, $strength, $initiative,$mana,array $spell = []){
-        parent::__construct($pv,$strength, $initiative, $mana);
-        $this->spells = $spell;
+    public function getSpells(): array{
+        if(!isset($this->spells) && isset($this->id)){
+            $this->spells = SpellManager::getInstance()->getSpellsWithHeroId($this->id);
+        }
+        return $this->spells;
     }
 
+    public function addSpell(Spell $spell){
+        $this->spells[] = $spell;
+    }
+  
     public function attack(\dungeonxplorer\monster\Monster $monster): void{
         $spell = $this->spells[rand(0, count($this->spells)-1)];
         if(parent::getMana() >= $spell->getManaCost()){
