@@ -28,6 +28,7 @@
                     </td>
                     <td>
                         <p class="text-lg font-bold text-white">Potion de soin</p>
+                        <p class="text-lg font-bold text-[#C4975E]">x5</p>
                     </td>
                 </tr>
 

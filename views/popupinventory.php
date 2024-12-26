@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="bg-[#50505060] h-full w-full">
+    <div class="bg-[#50505060] h-full w-full  text-[#ADADAD]">
         <div id=""
             class="bg-[#2E2E2E] inset-0 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-max w-11/12 max-w-3xl p-4 rounded shadow-lg ">
 
@@ -41,7 +41,9 @@
                                 class="object-cover w-full h-full rounded">
                         </th>
                         <th
-                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
+                            class="relative hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
+
+                            <div class="absolute z-20 left-0 ml-2 text-[#C4975E]">x5</div>
                             <img src="../public/assets/Potions.jpg" alt="Potions"
                                 class="object-cover w-full h-full rounded">
                         </th>
@@ -68,7 +70,7 @@
             </div>
 
 
-            <div class="text-xs flex justify-between text-[#ADADAD] ">
+            <div class="text-xs flex justify-between ">
                 <p>Capacité: ...%</p>
                 <p>Items: .../8</p>
             </div>
