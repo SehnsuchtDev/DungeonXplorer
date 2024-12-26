@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <?php include('./shared/head.php'); ?>
+    <?php include(__DIR__ .'/shared/head.php'); ?>
 </head>
 <body class="bg-[#1a1a1a]">
     <!-- HEADER -->
-    <?php include('./shared/header.php'); ?>
+    <?php include(__DIR__ . '/shared/header.php'); ?>
 
     <!-- ACCUEIL -->
 
-    <img src="..\public\assets\castle.png" alt="Castle" title="Castle" class="z-0 max-w-[55%] absolute right-0"/>
+    <img src="public/assets/castle.png" alt="Castle" title="Castle" class="z-0 max-w-[55%] absolute right-0"/>
     
     <main class="z-20 relative">
         <h1 class="font-['Pirata_One'] text-[#e5e5e5] text-center m-[3em] text-4xl [text-shadow:_0_3px_0_rgb(0_0_0_/_60%)]
@@ -22,7 +22,7 @@
             </p>
             </br>
             <p class="text-[#C4975E]">
-                COMMENCER L'AVENTURE
+                <a href="book">COMMENCER L'AVENTURE</a>
             </p>
         </div>
 
@@ -30,7 +30,7 @@
                 max-[800px]:flex-col
                 max-[400px]:text-lg
                 max-[330px]:p-8">
-            <img src="..\public\assets\logo.webp" alt="Logo Association" title="Logo Association" class="max-w-48 m-5
+            <img src="public/assets/logo.webp" alt="Logo Association" title="Logo Association" class="max-w-48 m-5
                 max-[800px]:self-center 
                 max-[400px]:max-w-36"/>
             <p class="text-justify m-5 content-center">
@@ -43,7 +43,7 @@
 
     </main>
 
-    <img src="..\public\assets\dungeon.png" alt="Dungeon" title="Dungeon" class="z-0 max-w-[50%] absolute left-0 mt-20"/>
+    <img src="public/assets/dungeon.png" alt="Dungeon" title="Dungeon" class="z-0 max-w-[50%] absolute left-0 mt-20"/>
 
     <main class="z-20 relative">
 
@@ -57,7 +57,7 @@
                 un scénario captivant, tout en  assurant à chacun la possibilité de conserver sa 
                 progression.
             </p>
-            <img src="..\public\assets\knight.png" alt="knight" title="knight" class="max-w-48 m-5
+            <img src="public/assets/knight.png" alt="knight" title="knight" class="max-w-48 m-5
                 max-[800px]:self-center
                 max-[400px]:max-w-36"/>
         </div>
@@ -79,7 +79,7 @@
         </div>
     </main>
 
-    <?php include('./shared/footer.php'); ?>
+    <?php include( __DIR__ . '/shared/footer.php'); ?>
 
 </body>
 </html>
