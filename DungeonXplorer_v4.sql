@@ -20,8 +20,10 @@ CREATE TABLE `Items` (
                          `it_effectvalue` int,
                          `it_manacost` int,
                          `it_protectvalue` int,
-                         `it_damage` int
+                         `it_damage` int,
+                         `it_image` TEXT NOT NULL
 );
+
 
 CREATE TABLE `ItemsClass` (
                               `it_id` INT,
