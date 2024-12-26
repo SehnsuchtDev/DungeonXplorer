@@ -1,13 +1,13 @@
-<?php
+<a?php
     if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 ?>
 <!DOCTYPE html>
 <header class="bg-[#2e2e2e] flex flex-row justify-between">
 
     <div class="flex flex-row">
-        <img src="public/assets/Logo.png" title="logoDungeonXplorer" class="size-28
+       <a href="<?= FULLURLROOTPATH ?>"><img src="public/assets/Logo.png" title="logoDungeonXplorer" class="size-28
             max-[380px]:size-24
-            max-[380px]:self-center">
+            max-[380px]:self-center"> </a>
 
         <span class="material-icons my-auto ml-7 text-[#e5e5e5] 
             max-[615px]:invisible
