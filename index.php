@@ -7,14 +7,6 @@ define('URLROOTPATH', dirname($_SERVER['PHP_SELF']));
 define('FULLURLROOTPATH', (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']));
 define('FULLCURRENTURL', (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']));
 
-require __DIR__ . DIRECTORY_SEPARATOR . 'autoload.php';
-
-define('URLROOTPATH', dirname($_SERVER['PHP_SELF']));
-define('FULLURLROOTPATH', (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']));
-define('FULLCURRENTURL', (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']));
-
-require __DIR__ . DIRECTORY_SEPARATOR . 'autoload.php';
-
 $router = new Router();
 
 $router->get("book/page/signup","SignupController@show");
@@ -55,8 +47,9 @@ $router->set404(function (){
     (new ErrorController())->show();
 });
 
-$router->get("hero","HeroCreationController@show");
-$router->post("hero","HeroCreationController@creation");
+$router->get("book/page/hero/p1","HeroCreationController@showp1");
+$router->post("book/page/hero","HeroCreationController@creation");
+$router->get("book/page/hero/p2","HeroCreationController@showp2");
 
 $router->run();
 

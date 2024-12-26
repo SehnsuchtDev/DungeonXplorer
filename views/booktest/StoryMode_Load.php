@@ -9,7 +9,7 @@
 <script defer>  
 
     document.addEventListener("DOMContentLoaded", () => {
-        window.bookmanager.loadTwoPage("./booktest/StoryMode_Page1.php", "./booktest/StoryMode_Page2.php");
+        window.bookmanager.loadTwoPage("<?= FULLURLROOTPATH?>/book/page/hero/p1", "<?= FULLURLROOTPATH?>/book/page/hero/p2");
     });
 
 
