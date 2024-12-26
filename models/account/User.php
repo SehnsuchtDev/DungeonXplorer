@@ -103,6 +103,36 @@ class User{
         $stmt->execute();
     }
 
+
+    public function updatePassword($newpassword){
+
+        $bdd = \Dbconnection::getConnection();
+
+        $password = password_hash($newpassword, PASSWORD_ARGON2I);
+
+        $stmt = $bdd->prepare("UPDATE User set us_password = :us_password where us_id = :us_id");
+
+        $stmt->bindParam(':us_id',$this->id);
+        $stmt->bindParam(':us_password',$password);
+        
+        $stmt->execute();
+
+    }
+
+    public function updateUsername($newUsername){
+        
+        $bdd = \Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("UPDATE User set us_username = :us_username where us_id = :us_id");
+
+        $stmt->bindParam(':us_id',$this->id);
+        $stmt->bindParam(':us_username',$newUsername);
+        
+        $stmt->execute();
+
+        $this->name = $newUsername;
+    }
+
 }
 
 ?>

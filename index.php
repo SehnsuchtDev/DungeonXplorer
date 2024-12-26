@@ -33,7 +33,7 @@ $router->get('account/delete', 'AccountController@delete');
 
 $router->get('account/modify', 'AccountController@showModify');
 
-$router->get('account/modify/validation', 'AccountController@modify');
+$router->post('account/modify/validation', 'AccountController@modify');
 
 $router->set404(function (){
     (new ErrorController())->show();

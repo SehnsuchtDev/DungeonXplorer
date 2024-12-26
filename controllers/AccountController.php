@@ -46,11 +46,21 @@ class AccountController{
 
     public function modify(){
 
-        $nouveauMDP = $_POST['new-password'];
-        echo $nouveauMDP;
+        $user = $_SESSION['user'];
 
-        //header("location:".FULLURLROOTPATH);
-        
+        $nouveauMDP = $_POST['new-password'];
+        $nouveauUsername = $_POST['profile-name'];
+
+        session_destroy();
+
+        if($nouveauMDP != ''){
+            $user->updatePassword($nouveauMDP);
+        }
+        if($nouveauUsername != ''){
+            $user->updateUsername($nouveauUsername);
+        }
+
+        header("location:".FULLURLROOTPATH."/login");
 
     }
 
