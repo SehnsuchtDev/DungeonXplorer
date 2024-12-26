@@ -59,13 +59,6 @@ class HeroManager{
         (select cl_base_pv from Class where cl_id = :classOfMyHero), (select cl_base_mana from Class where cl_id = :classOfMyHero), 
         (select cl_strength from Class where cl_id = :classOfMyHero), (select cl_initiative from Class where cl_id = :classOfMyHero),
         null, (select cl_primary_weapon from Class where cl_id = :classOfMyHero), null, 0, 1, 0, 1)");
-        /*
-        insert into Hero(he_name, cl_id, he_biography, he_pv, he_mana, he_strength, he_initiative, he_armor, he_primary_weapon,
-        he_secondary_weapon, he_xp, he_current_level, he_purse, ch_id) values("lala", 1, "lala",
-        (select cl_base_pv from Class where cl_id = 1), (select cl_base_mana from Class where cl_id = 1),
-        (select cl_strength from Class where cl_id = 1), (select cl_initiative from Class where cl_id = 1),
-        null, (select cl_primary_weapon from Class where cl_id = 1), null, 0, 1, 0, 1);
-        */
 
         $stmt->bindParam(':nameOfMyHero',$heroName);
 
@@ -75,7 +68,6 @@ class HeroManager{
         $stmt->execute();
         $idOfTheHero = intval($bdd->lastInsertId());
 
-
         $result = $stmt->fetch(\PDO::FETCH_OBJ);        //result of the query
 
         $classData = $bdd->prepare("select cl_id, cl_name, cl_base_pv, cl_base_mana, cl_strength, cl_initiative, cl_primary_weapon
@@ -84,17 +76,6 @@ class HeroManager{
 
         $classData->execute();
         $classInformation = $classData->fetch(\PDO::FETCH_OBJ);
-
-        /*
-        echo "<h1>INFO</h1>";
-        echo "id classe : " . $classInformation->cl_id;
-        echo ", name classe : " . $classInformation->cl_name;
-        echo ", pv de base classe : " . $classInformation->cl_base_pv;
-        echo ", mana de base classe : " . $classInformation->cl_base_mana;
-        echo ", force classe : " . $classInformation->cl_strength;
-        echo ", initiative classe : " . $classInformation->cl_initiative;
-        echo ", arme principal classe : " . $classInformation->cl_primary_weapon;
-        */
 
         $hero;
         $itemManager = ItemManager::getInstance();
@@ -129,14 +110,83 @@ class HeroManager{
         $hero->setXp(0);
         $hero->setCurrentLevel(1);
 
-
         $chapterManager = ChapterManager::getInstance();
         $chapter = $chapterManager->getChapter(1);
         $hero->setCurrentChapter($chapter);
         $hero->setPurse(0);
 
-
         return $hero;
+    }
+
+    public function reset(Hero $hero){
+        // First we retrieve the informations
+        // that will still be the same :
+        // name, biography and class stay !!
+
+        /*// Don't need this informations
+        $biographyOfMyHero = $hero->getBiography();
+        $nameOfMyHero = $hero->getName();
+        */
+        $classOfMyHero = $hero->getClassHero();
+        $idOfMyHero = $hero->getId();
+
+
+        // Then we reset the information of our hero in the database
+        $bdd = \Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("UPDATE Hero   
+        set he_pv = (select cl_base_pv from Class where cl_id = :classOfMyHero),
+        he_mana = (select cl_base_mana from Class where cl_id = :classOfMyHero),
+        he_strength = (select cl_strength from Class where cl_id = :classOfMyHero), 
+        he_initiative = (select cl_initiative from Class where cl_id = :classOfMyHero),
+        he_armor = null, 
+        he_primary_weapon = (select cl_primary_weapon from Class where cl_id = :classOfMyHero), 
+        he_secondary_weapon = null, 
+        he_xp = 0,
+        he_current_level = 1, 
+        he_purse = 0, 
+        ch_id = 1 
+        where he_id = :idOfMyHero
+        ");
+
+        $stmt->bindParam(':classOfMyHero', $classOfMyHero);
+        $stmt->bindParam(':idOfMyHero', $idOfMyHero);
+
+        $stmt->execute();
+
+        // Now we reset our hero as an object  
+        $classData = $bdd->prepare("select cl_id, cl_name, cl_base_pv, cl_base_mana, cl_strength, cl_initiative, cl_primary_weapon
+        from Class where cl_id = :classOfMyHero");
+        $classData->bindParam(":classOfMyHero", $classOfMyHero);
+
+        $classData->execute();
+        $classInformation = $classData->fetch(\PDO::FETCH_OBJ);
+        $itemManager = ItemManager::getInstance();
+
+        /*We don't have to change this information
+        $hero->setId($idOfTheHero);
+        $hero->setName($heroName);
+        $hero->setClassHero($class);
+        $hero->setBiography($biography);
+        */
+        //$hero->setImage($heroImage);
+        $hero->setPv($classInformation->cl_base_pv);
+        $hero->setStrength($classInformation->cl_strength);
+        $hero->setInitiative($classInformation->cl_initiative);
+
+        $idOfThePrimaryWeapon = $classInformation->cl_primary_weapon;
+        $item = $itemManager->getItem($idOfThePrimaryWeapon);
+        $hero->setPrimaryWeapon($item);
+
+        $hero->setSecondaryWeapon(null);
+
+        $hero->setXp(0);
+        $hero->setCurrentLevel(1);
+
+        $chapterManager = ChapterManager::getInstance();
+        $chapter = $chapterManager->getChapter(1);
+        $hero->setCurrentChapter($chapter);
+        $hero->setPurse(0);
     }
 
 }
