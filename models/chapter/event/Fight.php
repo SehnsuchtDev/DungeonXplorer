@@ -41,6 +41,8 @@ class Fight extends ChapterEvent{
             $this->monster->attack($hero);
         if($this->monster->isDead()){
             $this->setDone(true);
+            $hero->setXp($hero->getXp() + $this->monster->getXp());
+            $this->getLoot()->give($hero);
             return;
         }
         $this->changeTurn();
