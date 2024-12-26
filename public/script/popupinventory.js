@@ -5,16 +5,26 @@ const popup = document.getElementById("inventory-object");
 popup.style.visibility = "hidden";
 
 popup.addEventListener("load", () => {
-    const close = popup.contentDocument.getElementById("close");
-    close.addEventListener("click", hiddenInventory);
+    console.log("loaded");
+
+    if (popup.getAttribute("data") === "./popupitemsinventory.php") {
+        const closeDetails = popup.contentDocument.getElementById("close-details");
+        closeDetails.addEventListener("click", closeItemsDetails);
+    } else {
+        const close = popup.contentDocument.getElementById("close");
+        close.addEventListener("click", hiddenInventory);
+    }
 
     const items = popup.contentDocument.querySelectorAll("th");
+
     items.forEach(item => {
-        console.log(item);
         item.addEventListener("click", () => {
             console.log(item);
+            openItemDetails();
         });
     });
+
+
 });
 
 button.addEventListener("click", displayInventory);
@@ -53,5 +63,9 @@ function displayInventory() {
 }
 
 function openItemDetails() {
-    popup.attributes.data = "item-details.html";
+    popup.setAttribute("data", "./popupitemsinventory.php");
+}
+
+function closeItemsDetails() {
+    popup.setAttribute("data", "./popupinventory.php");
 }
