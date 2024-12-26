@@ -14,12 +14,10 @@ class User{
     private string $name = "";
     private string $email = "";
     private bool $isAdmin = false;
+  
     private ?Hero $hero = null;
 
-    public function getHero() : ?Hero{
-        return $this->hero;
-    }
-
+   
     private static function exists(string $email, string $name):bool{
         $bdd = Dbconnection::getConnection();
 
@@ -92,12 +90,14 @@ class User{
 
     public function setHero(Hero $newHero){
         $this->hero = $newHero;
-        var_dump($this);
+      
         $bdd = Dbconnection::getConnection();
 
         $stmt = $bdd->prepare("update User set he_id = :idOfMyHero where us_id = :idOfMyUser");
 
+
         $userId = $this->hero->getId();
+
         $stmt->bindParam(':idOfMyHero',$userId);
 
         $stmt->bindParam(':idOfMyUser',$this->id);
@@ -105,6 +105,12 @@ class User{
         $stmt->execute();
         //$result = $stmt->fetch(\PDO::FETCH_OBJ);        //result of the query
     }
+
+
+    public function getHero() : ?Hero{
+        return $this->hero;
+    }
+
 
 }
 

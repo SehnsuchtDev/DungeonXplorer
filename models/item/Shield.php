@@ -3,6 +3,7 @@
 namespace dungeonxplorer\item;
 
 class Shield extends Item implements HandItem{
+    use HandItemTrait;
 
     private int $armorAmount = 0;
 
@@ -12,6 +13,11 @@ class Shield extends Item implements HandItem{
         if(isset($donnees['it_protectvalue'])){
             $this->armorAmount = $donnees['it_protectvalue'];
         }
+    }
+
+
+    public function getArmourAmount() : int{
+        return $this->armorAmount;
     }
 
 }

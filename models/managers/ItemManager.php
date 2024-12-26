@@ -37,13 +37,13 @@ class ItemManager{
 
         if($res['it_armor'] == 1){
             $item = new Armor();
-        }elseif ($res['it_handitem'] == 1) {
+        }else if(isset($res['it_manacost'],$res['it_effectname'],$res['it_effectvalue']))
+            $item = new Parchmant();
+        elseif ($res['it_handitem'] == 1) {
             if(isset($res['it_damage']))
                 $item = new Weapon();
             elseif(isset($res['it_protectvalue']))
                 $item = new Shield();
-            elseif(isset($res['it_manacost'],$res['it_effectname'],$res['it_effectvalue']))
-                $item = new Parchmant();
             elseif(isset($res['it_manacost']))
                 $item = new MagicWand();
         }elseif(isset($res['it_effectname'])){

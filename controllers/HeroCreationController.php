@@ -34,11 +34,9 @@ class HeroCreationController{
         }
 
         if(empty($errors)){
-            $heroManager = HeroManager::getInstance();
-            $hero = $heroManager->createHero($name, $biography, $class);
+            $hero = HeroManager::getInstance()->createHero($name, $biography, $class);
             $_SESSION['user']->setHero($hero);
         }
-
 
         require __DIR__ . "/../views/devview/infoHero.php";
     }

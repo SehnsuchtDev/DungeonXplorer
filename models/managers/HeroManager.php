@@ -7,6 +7,7 @@ use dungeonxplorer\hero\class\magic\Thief;
 use dungeonxplorer\hero\class\magic\Wizard;
 use dungeonxplorer\hero\class\Warrior;
 use dungeonxplorer\loot\Loot;
+use dungeonxplorer\hero\Hero;
 
 use dungeonxplorer\hero\Hero;
 

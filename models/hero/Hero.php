@@ -5,8 +5,10 @@ namespace dungeonxplorer\hero;
 use dungeonxplorer\chapter\Chapter;
 use dungeonxplorer\item\HandItem;
 use dungeonxplorer\item\Inventory;
+use dungeonxplorer\item\Shield;
 use dungeonxplorer\managers\ChapterManager;
 use dungeonxplorer\managers\ItemManager;
+use dungeonxplorer\monster\Monster;
 
 require dirname(__DIR__,2) . DIRECTORY_SEPARATOR . 'autoload.php';
 
@@ -15,14 +17,14 @@ abstract class Hero{
     protected int $id = 0;
     private string $name = "";
     private int $classHero;
-    private ?string $image = "";
+    private ?string $image = null;
     private string $biography = "";
     private int $pv = 0;
     private int $strength = 0;
     private int $initiative = 0;
     private HandItem $primaryWeapon;     // HandItem
-    private ?HandItem $secondaryWeapon;   // HandItem
-    private int $xp = 0;    
+    private ?HandItem $secondaryWeapon = null;   // HandItem
+    private int $xp = 0;
     private int $currentLevel = 0;
     private Chapter $currentChapter;    // Chapter
     private int $purse = 0;
@@ -150,6 +152,164 @@ abstract class Hero{
         $this->purse = $purse;
     }
 
-}
+    public function setClassHero($heroClass){
+        $this->classHero = $heroClass;
+    }
 
-?>
+    public function setImage($heroImage){
+        $this->image = $heroImage;
+    }
+
+    public function setBiography($heroBiography){
+        $this->biography = $heroBiography;
+    }
+
+    public function setPv($heroPV){
+        $this->pv = $heroPV;
+    }
+
+    public function setInitiative($initiativeHero){
+        $this->initiative = $initiativeHero;
+    }
+
+    public function setPrimaryWeapon(HandItem $heroPrimaryWeapon){
+        $this->primaryWeapon = $heroPrimaryWeapon;
+    }
+
+    public function setSecondaryWeapon(HandItem $heroSecondaryWeapon){
+        $this->secondaryWeapon = $heroSecondaryWeapon;
+    }
+
+    public function setSpellList(array $heroSpellList){
+        $this->spellList = $heroSpellList;
+    }
+
+    public function setXp($heroXP){
+        $this->xp = $heroXP;
+    }
+
+    public function setCurrentLevel($heroCurrentLevel){
+        $this->currentLevel = $heroCurrentLevel;
+    }
+
+    public function setCurrentChapter(Chapter $heroCurrentChapter){
+        $this->currentChapter = $heroCurrentChapter;
+    }
+
+    public function setPurse($heroPurse){
+        $this->purse = $heroPurse;
+    }
+
+    public function setStrength(int $strength): void
+    {
+        $this->strength = $strength;
+    }
+
+    public function getCurrentChapter(): Chapter
+    {
+        return $this->currentChapter;
+    }
+
+    public function changeChapter(int $chapterId) : bool{
+        if($this->getCurrentChapter()->getChapterId() == $chapterId)
+            return false;
+        if($this->getCurrentChapter()->getChapterEvent() != null && !$this->getCurrentChapter()->getChapterEvent()->isDone())
+            return false;
+        if($chapterId <= 1){
+            $this->death();
+            return true;
+        }
+        $this->getCurrentChapter()->getNextChapter();
+        foreach ($this->getCurrentChapter()->getNextChapter() as $nextChapter) {
+            if($nextChapter->getChapterId() == $chapterId){
+                if($nextChapter->getTreasures() != null)
+                    $nextChapter->getTreasures()->give($this);
+                $this->setCurrentChapter($nextChapter);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function getPv(): int
+    {
+        return $this->pv;
+    }
+
+    public function getStrength(): int
+    {
+        return $this->strength;
+    }
+
+    public function getInitiative(): int
+    {
+        return $this->initiative;
+    }
+
+    public function getXp(): int
+    {
+        return $this->xp;
+    }
+
+    public function getInventory(): Inventory
+    {
+        return $this->inventory;
+    }
+
+    public function addPiece(int $quantity){
+        $this->purse += $quantity;
+    }
+
+    public function death(){
+        //TODO: Restore default heros values
+        throw new \Exception("=========== Todo dead function in Hero.php =============");
+    }
+
+    public function getPurse(): int
+    {
+        return $this->purse;
+    }
+
+     
+    public function getCurrentLevel(){
+        return $this->currentLevel;
+    }
+
+    public function getName(){
+        return $this->name;
+    }
+
+    public function getClassHero(){
+        return $this->classHero;
+    }
+
+    public function getImage(){
+        return $this->image;
+    }
+
+    public function getBiography(){
+        return $this->biography;
+    }
+
+    public function getPrimaryWeapon(){
+        return $this->primaryWeapon;
+    }
+
+    public function getSecondaryWeapon() : ?HandItem{
+        return $this->secondaryWeapon;
+    }
+
+    public abstract function attack(Monster &$monster):void;
+
+    public function getArmorAmount(){
+        $armor = 0;
+        if($this->getPrimaryWeapon() != null && $this->getPrimaryWeapon() instanceof Shield)
+            $armor += $this->getPrimaryWeapon()->getArmourAmount();
+        if($this->getPrimaryWeapon() != null && $this->getSecondaryWeapon() instanceof Shield)
+            $armor += $this->getPrimaryWeapon()->getArmourAmount();
+        return $armor;
+
+    }
+
+
+}
