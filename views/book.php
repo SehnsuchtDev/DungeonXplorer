@@ -14,7 +14,8 @@
         <object id="inventory-object" title="Inventaire" data="./popupinventory.php" type="text/html"
             class="absolute z-10 h-full w-full"></object>
         <div id="book" class="pointer-events-none z-0 mb-4 mt-4 
-            max-[615px]:rotate-90"> <!-- max-w-6 -->
+            max-[615px]:rotate-90
+            max-[540px]:my-10"> <!-- max-w-6 -->
             <?php include "./booktest/StoryMode_Load.php"; ?>
         </div>
         <?php include "./shared/hero_data.php"; ?>

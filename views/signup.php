@@ -1,4 +1,5 @@
-<div class="bookcover text-[#FFFFFF] place-self-center font-['Pirata_One'] w-full h-full">
+<div
+    class="ml-[-200px] bookcover bg-contain bg-no-repeat text-[#FFFFFF] place-self-center font-['Pirata_One'] w-full h-full">
     <h1 class="text-center text-4xl p-16"> Inscription </h1>
     <form method="post" action="">
         <span class="flex justify-between items-center p-4 max-[600px]:flex-col">

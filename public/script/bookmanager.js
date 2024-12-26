@@ -14,17 +14,27 @@ let settings = {
 function resizeListener() {
     let window_width;
     let window_height;
-    if (window.innerWidth <= 615){
-        console.log("dans if");
-
+    if (window.innerWidth <= 419){
+        window_width = 180;        
+        window_height = 365;
+    }
+    else if (window.innerWidth <= 460){
+        window_width =210;        
+        window_height = 395;
+    }
+    else if (window.innerWidth <= 490){
+        window_width =230;        
+        window_height = 425;
+    }
+    else if (window.innerWidth <= 515){
+        window_width =245;        
+        window_height = 450;
+    }
+    else if (window.innerWidth <= 615){ 
         window_width = window.innerHeight/1.80;
-        //if (window_width > 400) window_width = 400;
-        
         window_height = window.innerWidth-50;
-        //if (window_height > 600) window_height = 600;
     }
     else{
-        console.log("dans else");
         window_width = window.innerWidth/2-15;
         if (window_width > 400) window_width = 400;
     
