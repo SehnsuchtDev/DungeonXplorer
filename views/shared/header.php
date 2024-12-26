@@ -51,7 +51,7 @@
                 Se déconnecter</a>
                 
             <?php else : ?>
-                <a href="<?= FULLURLROOTPATH?>/book/page/login"> Se connecter</a>
+                <a href="<?= FULLURLROOTPATH?>/book"> Se connecter</a>
             <?php endif; ?>
             </p>
         </div>

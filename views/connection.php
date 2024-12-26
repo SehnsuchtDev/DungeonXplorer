@@ -1,10 +1,6 @@
 <div
     id="divConnection" class="ml-[-200px] bookcover bg-contain bg-no-repeat text-[#FFFFFF] place-self-center font-['Pirata_One'] w-full h-full">
-
-    <!-- Tempo pour test -->
-    <pre><?php if(isset($errors)) print_r($errors) ?></pre>
     
- 
     <h1 class="text-center text-4xl p-16 font-['Pirata_One']"> Connexion </h1>
     <form id="formulaire-connexion" method="post" action="<?= FULLURLROOTPATH ?>/book/page/login ">
         <span class="flex justify-between items-center p-4 max-[600px]:flex-col">
@@ -34,6 +30,26 @@
 </div>
 
 <script defer>
+
+
+            <?php if(isset($errors) && empty($errors)): ?>
+                if(window.bookmanager == undefined){
+                    document.addEventListener("DOMContentLoaded",async()=>{
+                    await new Promise(r => setTimeout(r, 200));
+                    window.bookmanager.flipNext();
+                });
+                }
+                else{
+                    window.location.reload();
+                }
+                
+                <?php elseif(isset($errors)): ?>
+                    let str = "";
+                    <?php foreach($errors as $e): ?>
+                        str += "<?=$e?>\n";
+                    <?php endforeach ?>
+                    alert(str);
+                <?php endif; ?>
 
     /*btnConnect = document.getElementById("connect");
     btnConnect.addEventListener("click", (event) => {
