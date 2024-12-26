@@ -17,11 +17,13 @@ class Armor extends Item{
     }
 
     public function equip(Warrior $hero){
+        if($hero->getArmor() != null){
+            $hero->getInventory()->addItem($hero->getArmor(), 1);
+        }
         $hero->setArmor($this);
     }
 
-    public function getArmorAmount(): int
-    {
+    public function getArmorAmount(): int{
         return $this->armorAmount;
     }
 

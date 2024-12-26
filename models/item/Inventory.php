@@ -6,6 +6,7 @@ use dungeonxplorer\hero\class\Warrior;
 use dungeonxplorer\hero\Hero;
 
 define('MAXWEIGHT', 15);
+define('MAXITEMNUMBER', 8);
 class Inventory{
 
     private array $items = [];
@@ -13,12 +14,17 @@ class Inventory{
     public function addItem(Item $item, int $quantity): void {
         $weight = $this->calculateWeight();
         if($weight + $item->getWeight() * $quantity > MAXWEIGHT){
+            throw new \InvalidArgumentException("Inventory is full the item is too heavy");
             return;
         }
 
         if(array_key_exists($item->getId(), $this->items)){
             $this->items[$item->getId()]['quantity'] += $quantity;
         }else{
+            if(count($this->items) >= MAXITEMNUMBER){
+                throw new \InvalidArgumentException("Inventory is full the number of items is too high");
+                return;
+            }
             $this->items[$item->getId()] = ['item' => $item, 'quantity' => $quantity];
         }
         if($this->items[$item->getId()]['quantity'] > $item->getMaxStack()){
@@ -62,10 +68,10 @@ class Inventory{
         if($this->countItem($this->items[$id]['item']) > 0){
             $item = $this->items[$id]['item'];
             if($item instanceof ConsumableItem) {
-                $item->consume($hero);
                 if (!$item->unlimitedUse()) {
                     $this->removeItem($item, 1);
                 }
+                $item->consume($hero);
             }
         }else{
             throw new \InvalidArgumentException("Item not found in inventory");
@@ -80,8 +86,8 @@ class Inventory{
         if($this->countItem($this->items[$id]['item']) >= 1){
             $item = $this->items[$id]['item'];
             if($item instanceof HandItem) {
-                $item->equipPrimary($hero);
                 $this->removeItem($item, 1);
+                $item->equipPrimary($hero);
             }
         }else{
             throw new \InvalidArgumentException("Item not found in inventory");
@@ -92,8 +98,8 @@ class Inventory{
         if($this->countItem($this->items[$id]['item']) >= 1){
             $item = $this->items[$id]['item'];
             if($item instanceof HandItem) {
-                $item->equipSecondary($hero);
                 $this->removeItem($item, 1);
+                $item->equipSecondary($hero);
             }
         }else{
             throw new \InvalidArgumentException("Item not found in inventory");
@@ -104,8 +110,8 @@ class Inventory{
         if($this->countItem($this->items[$id]['item']) >= 1){
             $item = $this->items[$id]['item'];
             if($item instanceof Armor) {
-                $item->equip($hero);
                 $this->removeItem($item, 1);
+                $item->equip($hero);
             }
         }else{
             throw new \InvalidArgumentException("Item not found in inventory");
