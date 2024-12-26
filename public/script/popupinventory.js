@@ -1,19 +1,16 @@
 const button = document.getElementById("inventory-button");
-// const popup = document.getElementById("inventory");
-
 const popup = document.getElementById("inventory-object");
+const primary = document.getElementById("primary-weapon");
+const secondary = document.getElementById("secondary-weapon");
+
+// management of the inventory popup
 popup.style.visibility = "hidden";
 
 popup.addEventListener("load", () => {
     console.log("loaded");
 
-    if (popup.getAttribute("data") === "./popupitemsinventory.php") {
-        const closeDetails = popup.contentDocument.getElementById("close-details");
-        closeDetails.addEventListener("click", closeItemsDetails);
-    } else {
-        const close = popup.contentDocument.getElementById("close");
-        close.addEventListener("click", hiddenInventory);
-    }
+    const close = popup.contentDocument.getElementById("close");
+    close.addEventListener("click", hiddenInventory);
 
     const items = popup.contentDocument.querySelectorAll("th");
 
@@ -27,8 +24,19 @@ popup.addEventListener("load", () => {
 
 });
 
+// inventory button in the hero bar
 button.addEventListener("click", displayInventory);
 
+// weapon buttons in the hero bar
+primary.addEventListener("click", () => {
+    openItemDetails();
+    displayInventory();
+});
+
+secondary.addEventListener("click", () => {
+    openItemDetails();
+    displayInventory();
+});
 
 /*
 const tableData = [

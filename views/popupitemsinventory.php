@@ -13,7 +13,7 @@
 
     <div id="inventory"
         class="bg-[#2E2E2E] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-max fixed  inset-0  max-w-xs rounded">
-        <button id="close-details"
+        <button id="close"
             class="float-right bg-[#C4975E] absolute top-2 right-2 rounded w-6 h-6 text-s flex items-center justify-center leading-none ">
             &times;
         </button>
