@@ -18,12 +18,15 @@
 
         <div class="p-6 font-['Pirata_One'] justify-items-center text-center">
             <p class="text-black font-bold text-4xl m-20">MENU</p>
-            <div class="bg-[#C4975E] p-6 m-20 text-2xl border-solid border-2 border-black rounded max-w-xs mx-auto pointer-events-auto cursor-pointer"
-                id="continue">
+            <div class="bg-[#C4975E] p-6 m-20 text-2xl border-solid border-2 border-black rounded max-w-xs mx-auto pointer-events-auto cursor-pointer
+                max-[560px]:m-10
+                max-[560px]:p-3
+                max-[560px]:text-xl" id="continue">
                 <p>Continuer l'aventure</p>
             </div>
-            <div class="bg-[#C4975E] p-6 m-20 text-2xl border-solid border-2 border-black rounded max-w-xs mx-auto pointer-events-auto cursor-pointer"
-                id="settings">
+            <div class="bg-[#C4975E] p-6 m-20 text-2xl border-solid border-2 border-black rounded max-w-xs mx-auto pointer-events-auto cursor-pointer
+                max-[560px]:m-10
+                max-[560px]:text-xl" id="settings">
                 <p>Paramètres</p>
             </div>
         </div>

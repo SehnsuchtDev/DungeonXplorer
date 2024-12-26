@@ -17,10 +17,10 @@ function resizeListener() {
     if (window.innerWidth <= 615){
         console.log("dans if");
 
-        window_width = window.innerHeight/2-15;
+        window_width = window.innerHeight/1.80;
         //if (window_width > 400) window_width = 400;
         
-        window_height = window.innerWidth-20;
+        window_height = window.innerWidth-50;
         //if (window_height > 600) window_height = 600;
     }
     else{
@@ -28,7 +28,7 @@ function resizeListener() {
         window_width = window.innerWidth/2-15;
         if (window_width > 400) window_width = 400;
     
-        window_height = window.innerHeight-55;
+        window_height = window.innerHeight+55;
         if (window_height > 600) window_height = 600;
     }
     
