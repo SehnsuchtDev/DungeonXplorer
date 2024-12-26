@@ -14,6 +14,11 @@ class Shield extends Item implements HandItem{
         }
     }
 
+
+    public function getArmourAmount() : int{
+        return $this->armorAmount;
+    }
+
 }
 
 ?>

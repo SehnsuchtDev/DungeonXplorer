@@ -11,7 +11,10 @@ class Weapon extends ClassItem implements \dungeonxplorer\item\HandItem{
         parent::hydrate($donnees);
         $this->strenght = $donnees['it_damage'];
     }
-
+  
+    public function getStrength(){
+        return $this->strength;
+    }
 
 }
 
