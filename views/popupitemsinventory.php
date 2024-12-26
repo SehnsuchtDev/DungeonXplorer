@@ -12,18 +12,18 @@
 <body>
 
     <div id="inventory"
-        class="bg-[#2E2E2E] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-max fixed  inset-0  max-w-xs rounded">
+        class="bg-[#2E2E2E] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-max fixed  inset-0  max-w-xl rounded">
         <button id="close"
             class="float-right bg-[#C4975E] absolute top-2 right-2 rounded w-6 h-6 text-s flex items-center justify-center leading-none ">
             &times;
         </button>
 
-        <div class="bg-[#1A1A1A] rounded ">
+        <div class="bg-[#1A1A1A] rounded">
 
-            <table id="table" class="border-separate border-spacing-5   bg-[#1A1A1A] rounded ">
+            <table id="table" class="border-separate border-spacing-5 bg-[#1A1A1A] rounded w-full h-full">
 
                 <tr>
-                    <td rowspan="3" class="border border-[#C4975E] rounded overflow-hidden ">
+                    <td rowspan="3" class="border border-[#C4975E] rounded overflow-hidden">
                         <img src="../public/assets/Potions.jpg" alt="Potions" class="object-cover w-full h-full">
                     </td>
                     <td>
