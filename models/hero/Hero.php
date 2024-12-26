@@ -30,6 +30,22 @@ abstract class Hero{
     private int $purse = 0;
     private Inventory $inventory;        // Inventory
 
+    public function getImage(){
+        return $this->image;
+    }
+
+    public function getClassHero(){
+        return $this->classHero;
+    }
+
+    public function getName(){
+        return $this->name;
+    }
+
+    public function getBiography(){
+        return $this->biography;
+    }
+
     public function hydrate(array $donnees): void {
 
         foreach ($donnees as $key => $value) {
@@ -66,12 +82,74 @@ abstract class Hero{
         $this->inventory = $inventory;
     }
 
-    public function setId($heroId){
-        $this->id = $heroId;
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
-    public function setName($heroName){
-        $this->name = $heroName;
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function setClassHero(int $classHero): void
+    {
+        $this->classHero = $classHero;
+    }
+
+    public function setImage(string $image): void
+    {
+        $this->image = $image;
+    }
+
+    public function setBiography(string $biography): void
+    {
+        $this->biography = $biography;
+    }
+
+    public function setPv(int $pv): void
+    {
+        $this->pv = $pv;
+    }
+
+    public function setStrength(int $strength): void
+    {
+        $this->strength = $strength;
+    }
+
+    public function setInitiative(int $initiative): void
+    {
+        $this->initiative = $initiative;
+    }
+
+    public function setPrimaryWeapon($primaryWeapon): void
+    {
+        $this->primaryWeapon = $primaryWeapon;
+    }
+
+    public function setSecondaryWeapon($secondaryWeapon): void
+    {
+        $this->secondaryWeapon = $secondaryWeapon;
+    }
+
+    public function setXp(int $xp): void
+    {
+        $this->xp = $xp;
+    }
+
+    public function setCurrentLevel(int $currentLevel): void
+    {
+        $this->currentLevel = $currentLevel;
+    }
+
+    public function setCurrentChapter(Chapter $currentChapter): void
+    {
+        $this->currentChapter = $currentChapter;
+    }
+
+    public function setPurse(int $purse): void
+    {
+        $this->purse = $purse;
     }
 
     public function setClassHero($heroClass){

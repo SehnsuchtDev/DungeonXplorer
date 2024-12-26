@@ -12,7 +12,12 @@ require_once __DIR__ . '/../autoload.php';
 class HeroCreationController{
 
     public function show() :void{
-        require __DIR__ . "/../views/devview/hero.php";
+        if($_SESSION['user']->getHero() != null){ 
+            echo 'Vous avez déjà un héro !!!';
+            require __DIR__ . "/../views/devview/infoHero.php";
+        }else{
+            require __DIR__ . "/../views/devview/hero.php";
+        }
     }
     
     public function creation() :void{
@@ -29,12 +34,11 @@ class HeroCreationController{
         }
 
         if(empty($errors)){
-            $hero = HeroManager::createHero($name, $biography, $class);
+            $hero = HeroManager::getInstance()->createHero($name, $biography, $class);
             $_SESSION['user']->setHero($hero);
         }
 
-
-        require __DIR__ . "/../views/devview/hero.php";
+        require __DIR__ . "/../views/devview/infoHero.php";
     }
 
 }

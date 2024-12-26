@@ -2,9 +2,13 @@
 
 namespace dungeonxplorer\managers;
 
+use dungeonxplorer\item\HandItem;
 use dungeonxplorer\hero\class\magic\Thief;
 use dungeonxplorer\hero\class\magic\Wizard;
 use dungeonxplorer\hero\class\Warrior;
+use dungeonxplorer\loot\Loot;
+use dungeonxplorer\hero\Hero;
+
 use dungeonxplorer\hero\Hero;
 
 require_once dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'autoload.php';
@@ -48,7 +52,7 @@ class HeroManager{
         return $hero;
     }
 
-    public static function createHero($heroName, $biography, $class){
+    public function createHero($heroName, $biography, $class){
         $bdd = \Dbconnection::getConnection();
 
         $stmt = $bdd->prepare("INSERT INTO Hero(he_name, cl_id, he_biography, he_pv, he_mana, he_strength, he_initiative, he_armor, he_primary_weapon, 
@@ -71,7 +75,6 @@ class HeroManager{
 
         $stmt->execute();
         $idOfTheHero = intval($bdd->lastInsertId());
-        echo "id du héro : " . $idOfTheHero;
 
 
         $result = $stmt->fetch(\PDO::FETCH_OBJ);        //result of the query
@@ -95,10 +98,11 @@ class HeroManager{
         */
 
         $hero;
+        $itemManager = ItemManager::getInstance();
 
         if($class === "1"){
             $hero = new Warrior();
-            $hero->setArmor(0);
+            $hero->setArmor(null);
         }else{
             if($class === "2"){
                 $hero = new Wizard();
@@ -114,17 +118,24 @@ class HeroManager{
         $hero->setBiography($biography);
 
         $hero->setPv($classInformation->cl_base_pv);
-        $hero->setStrenght($classInformation->cl_strength);
+        $hero->setStrength($classInformation->cl_strength);
         $hero->setInitiative($classInformation->cl_initiative);
-        $hero->setPrimaryWeapon($classInformation->cl_primary_weapon);
+
+        $idOfThePrimaryWeapon = $classInformation->cl_primary_weapon;
+        $item = $itemManager->getItem($idOfThePrimaryWeapon);
+        $hero->setPrimaryWeapon($item);
+
         $hero->setSecondaryWeapon(null);
-        $hero->setSpellList(null);
+
         $hero->setXp(0);
         $hero->setCurrentLevel(1);
-        $hero->setCurrentChapter(1);
+
+
+        $chapterManager = ChapterManager::getInstance();
+        $chapter = $chapterManager->getChapter(1);
+        $hero->setCurrentChapter($chapter);
         $hero->setPurse(0);
 
-        echo "id -> " . $hero->getId();
 
         return $hero;
     }

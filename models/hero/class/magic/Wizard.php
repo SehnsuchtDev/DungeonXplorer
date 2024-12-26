@@ -7,7 +7,7 @@ use dungeonxplorer\monster\Monster;
 
 class Wizard extends MagicHero{
 
-    private $spells = [];
+    private array $spells = [];
 
     public function getSpells(): array{
         if(!isset($this->spells) && isset($this->id)){
