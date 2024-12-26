@@ -21,8 +21,7 @@ class GainEffect implements Gain {
     }
 
 
-    public function give(Hero $hero): void
-    {
+    public function give(Hero $hero): void{
         $this->effect->apply($hero, $this->quantity);
     }
 }

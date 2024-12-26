@@ -29,6 +29,11 @@ $router->get('/chapter/(\d+)','ChapterController@changeChapter');
 $router->get('/chapter/fight','ChapterController@fight');
 $router->post('/chapter/mcqtest','ChapterController@MCQTestAnswer');
 
+$router->get('/inventory/use/(\d+)','InventoryController@useItem');
+$router->get('/inventory/equip/(\d+)/primaryweapon','InventoryController@equipPrimaryWeapon');
+$router->get('/inventory/equip/(\d+)/secondaryweapon','InventoryController@equipSecondaryWeapon');
+$router->get('/inventory/drop/(\d+)','InventoryController@dropItem');
+
 $router->get("signup","SignupController@show");
 $router->post("signup","SignupController@signup");
 

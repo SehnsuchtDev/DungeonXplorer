@@ -3,6 +3,7 @@
 namespace dungeonxplorer\item;
 
 class Shield extends Item implements HandItem{
+    use HandItemTrait;
 
     private int $armorAmount = 0;
 

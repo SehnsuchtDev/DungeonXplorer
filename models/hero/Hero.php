@@ -22,7 +22,7 @@ abstract class Hero{
     private int $strength = 0;
     private int $initiative = 0;
     private HandItem $primaryWeapon;     // HandItem
-    private HandItem $secondaryWeapon;   // HandItem
+    private ?HandItem $secondaryWeapon = null;   // HandItem
     private int $xp = 0;
     private int $currentLevel = 0;
     private Chapter $currentChapter;    // Chapter
@@ -216,13 +216,11 @@ abstract class Hero{
         return $this->primaryWeapon;
     }
 
-    public function getSecondaryWeapon(){
+    public function getSecondaryWeapon() : ?HandItem{
         return $this->secondaryWeapon;
     }
 
     public abstract function attack(Monster &$monster):void;
-
-
 
 
 }

@@ -51,13 +51,27 @@
         <p>Mana : <?=$hero['mana']?></p>
     <?php endif;?>
     <p>XP : <?=$hero['xp']?></p>
+    <?php if(isset($primaryWeapon)):?>
+        <p>Arme principale : <?=$primaryWeapon?></p>
+    <?php endif;?>
+    <?php if(isset($secondaryWeapon)):?>
+        <p>Arme secondaire : <?=$secondaryWeapon?></p>
+    <?php endif;?>
 
     <br>
     <hr>
     <h2>Inventory :</h2>
     <ul>
         <?php foreach ($items as $item):?>
-            <li><?=$item['name']?> : <?=$item['quantity']?></li>
+            <li><?=$item['name']?> : <?=$item['quantity']?>
+                <?php if ($item['usable']) :?>
+                    <a href="<?=constant('FULLURLROOTPATH')?>/inventory/use/<?=$item['id']?>">Utiliser</a>
+                <?php elseif ($item['handitem']) :?>
+                    <a href="<?=constant('FULLURLROOTPATH')?>/inventory/equip/<?=$item['id']?>/primaryweapon">Equiper en Arme principale</a>
+                    <a href="<?=constant('FULLURLROOTPATH')?>/inventory/equip/<?=$item['id']?>/secondaryweapon">Equiper en Arme secondaire</a>
+                <?php endif;?>
+                <span style="color: red">  <a style="color: red" href="<?=constant('FULLURLROOTPATH')?>/inventory/drop/<?=$item['id']?>">Jetter</a></span>
+            </li>
         <?php endforeach;?>
     </ul>
     <p>Purse <?=$purse?></p>

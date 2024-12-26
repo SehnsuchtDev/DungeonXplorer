@@ -6,7 +6,6 @@ use dungeonxplorer\hero\class\magic\Thief;
 use dungeonxplorer\hero\class\magic\Wizard;
 use dungeonxplorer\hero\class\Warrior;
 use dungeonxplorer\hero\Hero;
-use dungeonxplorer\loot\Loot;
 
 require_once dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'autoload.php';
 

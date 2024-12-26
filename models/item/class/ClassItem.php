@@ -5,10 +5,11 @@ namespace dungeonxplorer\item\class;
 use dungeonxplorer\hero\class\magic\Thief;
 use dungeonxplorer\hero\class\magic\Wizard;
 use dungeonxplorer\hero\class\Warrior;
+use dungeonxplorer\item\Item;
 
 require dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'autoload.php';
 
-abstract class ClassItem extends \dungeonxplorer\item\Item{
+abstract class ClassItem extends Item{
 
     private array $allowedClass;
 

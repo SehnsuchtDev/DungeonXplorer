@@ -2,7 +2,11 @@
 
 namespace dungeonxplorer\item\class;
 
-class Weapon extends ClassItem implements \dungeonxplorer\item\HandItem{
+use dungeonxplorer\item\HandItem;
+use dungeonxplorer\item\HandItemTrait;
+
+class Weapon extends ClassItem implements HandItem{
+    use HandItemTrait;
 
     private int $strength = 0;
 

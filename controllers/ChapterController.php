@@ -9,11 +9,14 @@ use dungeonxplorer\hero\class\magic\Thief;
 use dungeonxplorer\hero\class\magic\Wizard;
 use dungeonxplorer\hero\class\Warrior;
 use dungeonxplorer\hero\Hero;
+use dungeonxplorer\item\ConsumableItem;
+use dungeonxplorer\item\HandItem;
 
 class ChapterController{
 
     private User $user;
     private Hero $hero;
+
 
     public function __construct(){
         $this->user = $_SESSION['user'];
@@ -62,7 +65,19 @@ class ChapterController{
 
         $items = array();
         foreach ($this->hero->getInventory()->getItems() as $item)
-            $items[] = ['name' => $item['item']->getName(), 'quantity' => $item['quantity']];
+            $items[] = ['id' => $item['item']->getId(),
+                        'name' => $item['item']->getName(),
+                        'quantity' => $item['quantity'],
+                        'usable' => $item['item'] instanceof ConsumableItem,
+                        'handitem' => $item['item'] instanceof HandItem
+                        ];
+
+        if($this->hero->getPrimaryWeapon() != null)
+            $primaryWeapon = $this->hero->getPrimaryWeapon()->getName();
+
+        if($this->hero->getSecondaryWeapon() != null)
+            $secondaryWeapon = $this->hero->getSecondaryWeapon()->getName();
+
 
         $nextChapterId = [];
         foreach ($this->getChapter()->getNextChapter() as $nextChapter) {
@@ -101,6 +116,10 @@ class ChapterController{
     public function MCQTestAnswer() : void{
         $mcq = $this->getChapter()->getChapterEvent();
         if($mcq instanceof MCQTest){
+            if(!array_key_exists('choice',$_POST)){
+                $this->showChapter(false);
+                return;
+            }
             $choice = $_POST['choice'];
             $mcqAnswer = $mcq->isCorrect(($choice+1),$this->hero);
         }

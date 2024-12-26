@@ -2,6 +2,7 @@
 
 namespace dungeonxplorer\item\potion;
 
+use dungeonxplorer\exceptions\NotMagicHeroException;
 use dungeonxplorer\hero\class\magic\MagicHero;
 use dungeonxplorer\hero\Hero;
 
@@ -30,7 +31,7 @@ enum Effect{
                 break;
             case self::MANA:
                 if(!$hero instanceof MagicHero)
-                    throw new \Exception("This hero is not a magic hero");
+                    throw new NotMagicHeroException();
                 $hero->setMana($hero->getMana() + $quantity);
                 break;
             case self::INITIATIVE:
