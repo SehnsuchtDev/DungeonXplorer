@@ -26,6 +26,7 @@ $router->get('/',function(){
 
 $router->get('/chapter','ChapterController@showChapter');
 $router->get('/chapter/(\d+)','ChapterController@changeChapter');
+$router->get('/chapter/fight','ChapterController@fight');
 $router->post('/chapter/mcqtest','ChapterController@MCQTestAnswer');
 
 $router->get("signup","SignupController@show");

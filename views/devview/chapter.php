@@ -26,9 +26,12 @@
     <?php elseif ($fight):?>
         <h2>Combat</h2>
         <p><?=$monster['name']?> (<?=$monster['pv']?> PV)</p>
+        <p>Force : <?=$monster['strength']?></p>
         <p>Mana : <?=$monster['mana']?></p>
         <p>Initiative : <?=$monster['initiative']?></p>
         <p>XP : <?=$monster['xp']?></p>
+        <a href="<?=constant('FULLURLROOTPATH')?>/chapter/fight"><button <?= $eventIsDone ? 'disabled' : '' ?> ><?=$fightStatus?></button></a>
+        <br><br>
     <?php endif;?>
     <br>
 

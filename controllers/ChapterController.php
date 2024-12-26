@@ -84,8 +84,11 @@ class ChapterController{
             $monster['name'] = $monsterModel->getName();
             $monster['pv'] = $monsterModel->getPv();
             $monster['initiative'] = $monsterModel->getInitiative();
+            $monster['strength'] = $monsterModel->getStrength();
             $monster['mana'] = $monsterModel->getMana();
             $monster['xp'] = $monsterModel->getXp();
+
+            $fightStatus = $this->getChapter()->getChapterEvent()->getPlayerTurn($this->hero) ? 'Attaquer le monstre' : 'Suite du combat';
         }
 
         $eventIsDone = true;
@@ -103,6 +106,14 @@ class ChapterController{
         }
 
         $this->showChapter($mcqAnswer);
+    }
+
+    public function fight() : void{
+        $fight = $this->getChapter()->getChapterEvent();
+        if($fight instanceof Fight){
+            $fight->fight($this->hero);
+        }
+        $this->showChapter();
     }
 
     public function changeChapter(int $chapterId) : void{

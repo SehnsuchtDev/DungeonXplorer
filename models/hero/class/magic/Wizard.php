@@ -3,6 +3,7 @@
 namespace dungeonxplorer\hero\class\magic;
 
 use dungeonxplorer\managers\SpellManager;
+use dungeonxplorer\monster\Monster;
 
 class Wizard extends MagicHero{
 
@@ -19,7 +20,7 @@ class Wizard extends MagicHero{
         $this->spells[] = $spell;
     }
   
-    public function attack(\dungeonxplorer\monster\Monster $monster): void{
+    public function attack(Monster &$monster): void{
         $spell = $this->spells[rand(0, count($this->spells)-1)];
         if(parent::getMana() >= $spell->getManaCost()){
             $attaque_magique = (rand(1,6)+rand(1,6) + $spell->getDamage());
@@ -28,9 +29,6 @@ class Wizard extends MagicHero{
             $degats = 0;
             if($attaque_magique > $defense){
                 $degats = $attaque_magique - $defense;
-            }
-            if(($monster->getPV() - $degats) <= 0 ){
-                $this->kill($monster);
             }
             $monster->setPV($monster->getPV() - $degats);
         }

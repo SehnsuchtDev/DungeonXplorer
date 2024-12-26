@@ -220,23 +220,9 @@ abstract class Hero{
         return $this->secondaryWeapon;
     }
 
-    public abstract function attack(Monster $monster):void;
+    public abstract function attack(Monster &$monster):void;
 
 
-    //Renvoie 1 si le monstre à l'initiative et 0 si c'est le héros
-    public function initiativeCalcul(Monster $monster){
-        $initiativeHero = rand(1,6) + $this->getInitiative();
-        $initiativeMonster = rand(1,6) + $monster->getInitiative();
 
-        if( $initiativeHero < $initiativeMonster ){
-            return 1;
-        }
-        else if( $initiativeHero > $initiativeMonster ){
-            return 0;
-        }
-        else{
-            return 1;
-        }
-    }
 
 }

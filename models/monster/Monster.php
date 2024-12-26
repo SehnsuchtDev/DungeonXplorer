@@ -60,11 +60,9 @@ class Monster{
     }
 
 
-    public function attack(Hero $hero): void{
-        $attaque = rand(1,6) + $this->getStrength();
-        echo "attaque : $attaque";
+    public function attack(Hero &$hero): void{
+        $attaque = rand(1,6) + $this->getStrength() + $this->getMana();
         $defense = rand(1,6) + (int)($hero->getStrength()/2);
-        echo " defense : $defense";
         if($hero instanceof Warrior){
             $defense += $defense + $hero->getArmor();
         }
@@ -75,9 +73,8 @@ class Monster{
         if($attaque > $defense){
             $degats = $attaque - $defense;
         }
-        echo " degats : $degats";
         if(($hero->getPV() - $degats) <= 0 ){
-            $this->kill($hero);
+            $hero->death();
         }
         $hero->setPV($hero->getPV() - $degats);
     }
@@ -85,12 +82,12 @@ class Monster{
 
     public function setPV(int $pv){
         $this->pv = $pv;
+        if($this->pv < 0)
+            $this->pv = 0;
     }
 
-    public function kill($hero){
-        echo "Vous êtes mort";
+    public function isDead() : bool{
+        return $this->pv <= 0;
     }
 
 }
-
-?>
