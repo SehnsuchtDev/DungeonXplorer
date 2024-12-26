@@ -13,7 +13,7 @@
 
     <div class="place-self-center text-[#E5E5E5] m-20">
         <p class="text-center text-3xl m-5 font-['Pirata_One']">AHHHH! TU M'AS TROUVÉ!</p>
-        <p class="text-center text-xl m-5 font-['Roboto']">Malhereusement, vous avez également trouvé une page d'erreur
+        <p class="text-center text-xl m-5 font-['Roboto']">Malheureusement, vous avez également trouvé une page d'erreur
             404, ce qui veux
             dire que la
             page recherchée
