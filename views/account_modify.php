@@ -17,7 +17,7 @@
         </br>
         <div class="flex m-2">
             <p class="text-[#C4975E]">Nom du profile : &nbsp;</p>
-            <input type="text" placeholder="VicLeTombeur" id="profile_name" name="profile name" class="rounded max-h-6">
+            <input type="text" value="VicLeTombeur" id="profile_name" name="profile name" class="rounded max-h-6">
         </div>
         <div class="flex m-2">
             <p class="text-[#C4975E]">Mot de passe actuel : &nbsp;</p>
