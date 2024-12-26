@@ -148,11 +148,27 @@ class HeroManager{
         ch_id = 1 
         where he_id = :idOfMyHero
         ");
-
         $stmt->bindParam(':classOfMyHero', $classOfMyHero);
         $stmt->bindParam(':idOfMyHero', $idOfMyHero);
-
         $stmt->execute();
+
+        // We also have to delete all the information related to the hero
+        // like the inventory and the spell
+
+        //We begin with the spell information
+        $stmt2 = $bdd->prepare("DELETE FROM HeroSpell
+        where he_id = :idOfMyHero
+        ");
+        $stmt2->bindParam(':idOfMyHero', $idOfMyHero);
+        $stmt2->execute();
+
+        //Then with inventory information
+        $stmt3 = $bdd->prepare("DELETE FROM Inventory
+        where he_id = :idOfMyHero
+        ");
+        $stmt3->bindParam(':idOfMyHero', $idOfMyHero);
+        $stmt3->execute();
+
 
         // Now we reset our hero as an object  
         $classData = $bdd->prepare("select cl_id, cl_name, cl_base_pv, cl_base_mana, cl_strength, cl_initiative, cl_primary_weapon
@@ -187,6 +203,27 @@ class HeroManager{
         $chapter = $chapterManager->getChapter(1);
         $hero->setCurrentChapter($chapter);
         $hero->setPurse(0);
+
+
     }
 
 }
+/*
+$hero = HeroManager::getInstance()->getHero(70);
+echo '<pre>';
+    var_dump($hero);
+echo '</pre></br>';
+
+$hero->setPV(40000);
+
+echo '<pre>';
+    var_dump($hero);
+echo '</pre></br>';
+
+HeroManager::getInstance()->reset($hero);
+
+echo '<pre>';
+    var_dump($hero);
+echo '</pre></br>';
+*/
+
