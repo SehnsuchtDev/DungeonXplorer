@@ -3,15 +3,50 @@ import { } from './page-flip.browser.js';
 // Nouveau namespace:
 window.bookmanager = {}
 
+/////////////////////////////////////////////////////////////////////
 
-
-const htmlParentElement = document.getElementById('book');
-// Faire CTRL + F5 pour voir les modifs sur la page: 
-const settings = {
+let settings = {
     width: 400,
     height: 600,
     showCover: true
 }
+
+function resizeListener() {
+    let window_width;
+    let window_height;
+    if (window.innerWidth <= 615){
+        console.log("dans if");
+
+        window_width = window.innerHeight/2-15;
+        //if (window_width > 400) window_width = 400;
+        
+        window_height = window.innerWidth-20;
+        //if (window_height > 600) window_height = 600;
+    }
+    else{
+        console.log("dans else");
+        window_width = window.innerWidth/2-15;
+        if (window_width > 400) window_width = 400;
+    
+        window_height = window.innerHeight-55;
+        if (window_height > 600) window_height = 600;
+    }
+    
+
+    settings.width = window_width;
+    settings.height = window_height;
+}
+
+resizeListener();
+
+window.addEventListener("resize", resizeListener);
+
+
+/////////////////////////////////////////////////////////////////////
+
+const htmlParentElement = document.getElementById('book');
+// Faire CTRL + F5 pour voir les modifs sur la page: 
+
 const pageFlip = new St.PageFlip(htmlParentElement, settings);
 
 pageFlip.loadFromHTML(htmlParentElement.querySelectorAll("div"));
