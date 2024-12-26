@@ -4,7 +4,7 @@
     <form id="formulaireCreateHero" method="post" action="<?= FULLURLROOTPATH ?>/book/page/hero " >
         <div class="p-10 font-['Pirata_One']">
             <div class="flex">
-                <img src="<?= FULLURLROOTPATH ?>/public\assets\Wizard.jpg" alt="profile picture" width="100" height="100"
+                <img id="image" src="<?= FULLURLROOTPATH ?>/public\assets\Wizard.jpg" alt="profile picture" width="100" height="100"
                     title="profile picture" class="rounded" />
                 <input type="text" value="Nom" name="name" id="name" alt="character's name"
                     class="pointer-events-auto text-black font-bold text-3xl ml-6 p-1 place-content-center max-h-12 max-w-48">
@@ -37,6 +37,26 @@
     
 
     <script defer> 
+
+            const selectElement = document.getElementById('class');
+            selectElement.addEventListener('change',(event)=>{
+                const selectedValue = event.target.value;
+                let imageSource = "";
+                switch(selectedValue){
+                    case '1':
+                        imageSource = "Dark Knight.jpg";
+                        break;
+                    case '2':
+                        imageSource = "Wizard.jpg";
+                        break;
+                    case '3':
+                        imageSource = "Thief.jpg";
+                        break;
+                }
+                
+                const imageElement = document.getElementById('image');
+                imageElement.src =`<?=FULLURLROOTPATH?>/public/assets/${imageSource}`;
+            })
 
             <?php if(isset($errors) && empty($errors)): ?>
                 <?php elseif(isset($errors)): ?>
