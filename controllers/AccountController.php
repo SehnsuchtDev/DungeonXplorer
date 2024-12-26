@@ -5,8 +5,6 @@ require_once __DIR__ . '/../autoload.php';
 class AccountController{
     public function show(){
         if(isset($_SESSION['user'])){
-
-
             $user = $_SESSION['user'];
             $name = $user->getName();
             $email = $user->getEmail();
@@ -23,13 +21,13 @@ class AccountController{
             require dirname(__DIR__) . "/views/account.php";
         }
         else{
-            header("location:".FULLURLROOTPATH."/error404");
+            header("location:".FULLURLROOTPATH."/error403");
         }
     }
 
 
     public function delete(){
-
+        if(isset($_SESSION["user"])){
         $user = $_SESSION['user'];
         session_destroy();
 
@@ -37,30 +35,44 @@ class AccountController{
         unset( $user );
 
         header("location:".FULLURLROOTPATH);
+        }
+        else{
+            header("location:".FULLURLROOTPATH."/error403");
+        }
     }
 
     public function showModify(){
-        $username = $_SESSION["user"]->getName();
-        require dirname(__DIR__) . "/views/account_modify.php";
+        if(isset($_SESSION["user"])){
+            $username = $_SESSION["user"]->getName();
+            require dirname(__DIR__) . "/views/account_modify.php";
+        }
+        else{
+            header("location:".FULLURLROOTPATH."/error403");
+        }
     }
 
     public function modify(){
 
-        $user = $_SESSION['user'];
+        if(isset($_SESSION["user"])){
+            $user = $_SESSION['user'];
 
-        $nouveauMDP = $_POST['new-password'];
-        $nouveauUsername = $_POST['profile-name'];
+            $nouveauMDP = $_POST['new-password'];
+            $nouveauUsername = $_POST['profile-name'];
 
-        session_destroy();
+            session_destroy();
 
-        if($nouveauMDP != ''){
-            $user->updatePassword($nouveauMDP);
+            if($nouveauMDP != ''){
+                $user->updatePassword($nouveauMDP);
+            }
+            if($nouveauUsername != ''){
+                $user->updateUsername($nouveauUsername);
+            }
+
+            header("location:".FULLURLROOTPATH."/login");
         }
-        if($nouveauUsername != ''){
-            $user->updateUsername($nouveauUsername);
+        else{
+            header("location:".FULLURLROOTPATH."/error403");
         }
-
-        header("location:".FULLURLROOTPATH."/login");
 
     }
 

@@ -29,6 +29,8 @@ $router->post('account/modify/validation', 'AccountController@modify');
 
 $router->get('book','BookController@show');
 
+$router->get('error403', 'ErrorController@show403');
+
 $router->set404(function (){
     (new ErrorController())->show();
 });
