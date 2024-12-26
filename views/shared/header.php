@@ -47,11 +47,11 @@
             max-[615px]:invisible">
             <p class="font-['Pirata_One'] mx-3 text-[#e5e5e5]">     
             <?php if(isset($_SESSION["user"])) : ?>
-                <a href="logout">    
+                <a href="<?= FULLURLROOTPATH?>/logout">    
                 Se déconnecter</a>
                 
             <?php else : ?>
-                <a href="login"> Se connecter</a>
+                <a href="<?= FULLURLROOTPATH?>/book/page/login"> Se connecter</a>
             <?php endif; ?>
             </p>
         </div>

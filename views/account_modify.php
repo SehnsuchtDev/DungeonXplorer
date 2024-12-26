@@ -29,7 +29,7 @@
                 </div>
         </form>
             <div class="bg-[#C4975E] my-7 mx-6 p-3 place-content-center rounded-lg">
-                <button class="font-['Pirata_One'] mx-3 text-[#e5e5e5]"> Annuler </button>
+                <a href="<?= FULLURLROOTPATH?>" class="font-['Pirata_One'] mx-3 text-[#e5e5e5]"> Annuler </a>
             </div>
         </div>
     </div>
