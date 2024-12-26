@@ -71,9 +71,9 @@
             </br>
             <span class="flex justify-between w-full max-w-72 text-[#C4975E] text-2xl
                 max-[500px]:flex-col">
-                <p class=""> Connexion </p>
+                <a href="<?=FULLURLROOTPATH ?>/book/"><p class=""> Connexion </p></a>
                 <p class="text-[#e5e5e5] max-[500px]:invisible" >|</p>
-                <p class=""> Inscription </p>
+                <a href="<?=FULLURLROOTPATH ?>/book/"><p class=""> Inscription </p></a>
             </span>
             
         </div>
