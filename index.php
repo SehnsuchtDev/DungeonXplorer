@@ -27,6 +27,10 @@ $router->get('/', 'HomeController@show');
 
 $router->get('logout','LogoutController@logout');
 
+$router->get('account','AccountController@show');
+
+$router->get('delete', 'AccountController@delete');
+
 $router->set404(function (){
     (new ErrorController())->show();
 });

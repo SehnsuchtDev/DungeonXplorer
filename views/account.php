@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <?php include('./shared/head.php'); ?>
+    <?php include(__DIR__ .'/shared/head.php'); ?>
 </head>
 <body class="bg-[#1a1a1a]">
     <!-- HEADER -->
-    <?php include('./shared/header.php'); ?>
+    <?php include(__DIR__ . '/shared/header.php'); ?>
 
     <!-- ACCUEIL -->
 
@@ -13,24 +13,33 @@
             <p class="font-['Pirata_One'] text-center">VicLeTombeur</p>
             </br>
             <div class="flex">
-                <p class="text-[#C4975E]">Personnage(s) : &nbsp;</p>
-                <p class="text-[#e5e5e5]">dylan </p>
+                <p class="text-[#C4975E]">Username(s) : &nbsp;</p>
+                <p class="text-[#e5e5e5]">
+                    <?= $name ?>
+                </p>
             </div>
             <div class="flex">
                 <p class="text-[#C4975E]">Adresse mail : &nbsp;</p>
-                <p class="text-[#e5e5e5]">vicletombeur@lemail.com </p>
+                <p class="text-[#e5e5e5]">
+                    <?= $email ?>
+                </p>
             </div>
             <div class="flex">
-                <p class="text-[#C4975E]">Date de création : &nbsp;</p>
-                <p class="text-[#e5e5e5]">02/07/2024 </p>
+                <p class="text-[#C4975E]">Hero : &nbsp;</p>
+                <p class="text-[#e5e5e5]">
+                    <?= $heroName ?>
+                </p>
             </div>
-            
             <div class="flex p-3">
                 <div class="bg-[#C4975E] my-7 mx-6 p-3 place-content-center rounded-lg" >
-                    <p class="font-['Pirata_One'] mx-3 text-[#e5e5e5]">Modifier le profil</p>
-                </div>
+                    <p class="font-['Pirata_One'] mx-3 text-[#e5e5e5]">
+                        Modifier le profil</p>
+
+                    </div>
                 <div class="bg-[#C4975E] my-7 mx-6 p-3 place-content-center rounded-lg" >
-                    <p class="font-['Pirata_One'] mx-3 text-[#e5e5e5]">Supprimer le compte</p>
+                    <p class="font-['Pirata_One'] mx-3 text-[#e5e5e5]">
+                    <a href="delete">Supprimer le compte</a>        
+                </p>
                 </div>
             </div>
         </div>
@@ -38,7 +47,7 @@
         
     </main>
 
-    <?php include('./shared/footer.php'); ?>
+    <?php include( __DIR__ . '/shared/footer.php'); ?>
 
 </body>
 </html>

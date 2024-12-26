@@ -10,11 +10,11 @@ require_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'autoload.php';
 
 class User{
 
-    //private $id;
+    private int $id;
     private string $name = "";
     private string $email = "";
     private bool $isAdmin = false;
-    private Hero $hero;
+    private ?Hero $hero = null;
 
 
     private static function exists(string $email, string $name):bool{
@@ -48,7 +48,7 @@ class User{
         $user = new self();
         $user->name = $name;
         $user->email = $email;
-        //$user->id = intval($bdd->lastInsertId());
+        $user->id = intval($bdd->lastInsertId());
 
         return $user;
     }
@@ -57,7 +57,7 @@ class User{
         
         $bdd = Dbconnection::getConnection();
 
-        $stmt = $bdd->prepare("SELECT us_username, us_email,us_password FROM User WHERE us_email=:email");
+        $stmt = $bdd->prepare("SELECT us_username, us_email,us_password,us_id FROM User WHERE us_email=:email");
         $stmt->bindParam(':email',$email);
         $stmt->execute();
 
@@ -74,6 +74,7 @@ class User{
         $user = new self();
         $user->name = $res['us_username'];
         $user->email = $res['us_email'];
+        $user->id = $res['us_id'];
 
         return $user;
 
@@ -82,7 +83,25 @@ class User{
     public function getName(){
         return $this->name;
     }
+        
+    public function getEmail(){
+        return $this->email;
+    }
 
+    public function getHero(){
+        return $this->hero;
+    }
+
+    public function delete(){
+
+        $bdd = \Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("DELETE FROM User where us_id = :us_id");
+
+        $stmt->bindParam(':us_id',$this->id);
+        
+        $stmt->execute();
+    }
 
 }
 
