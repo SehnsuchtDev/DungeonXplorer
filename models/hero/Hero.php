@@ -64,7 +64,75 @@ abstract class Hero{
         $this->inventory = $inventory;
     }
 
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
 
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function setClassHero(int $classHero): void
+    {
+        $this->classHero = $classHero;
+    }
+
+    public function setImage(string $image): void
+    {
+        $this->image = $image;
+    }
+
+    public function setBiography(string $biography): void
+    {
+        $this->biography = $biography;
+    }
+
+    public function setPv(int $pv): void
+    {
+        $this->pv = $pv;
+    }
+
+    public function setStrength(int $strength): void
+    {
+        $this->strength = $strength;
+    }
+
+    public function setInitiative(int $initiative): void
+    {
+        $this->initiative = $initiative;
+    }
+
+    public function setPrimaryWeapon(HandItem $primaryWeapon): void
+    {
+        $this->primaryWeapon = $primaryWeapon;
+    }
+
+    public function setSecondaryWeapon(HandItem $secondaryWeapon): void
+    {
+        $this->secondaryWeapon = $secondaryWeapon;
+    }
+
+    public function setXp(int $xp): void
+    {
+        $this->xp = $xp;
+    }
+
+    public function setCurrentLevel(int $currentLevel): void
+    {
+        $this->currentLevel = $currentLevel;
+    }
+
+    public function setCurrentChapter(Chapter $currentChapter): void
+    {
+        $this->currentChapter = $currentChapter;
+    }
+
+    public function setPurse(int $purse): void
+    {
+        $this->purse = $purse;
+    }
 
 }
 
