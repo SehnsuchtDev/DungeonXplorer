@@ -7,7 +7,9 @@ use dungeonxplorer\item\HandItem;
 use dungeonxplorer\item\Inventory;
 use dungeonxplorer\item\Shield;
 use dungeonxplorer\managers\ChapterManager;
+use dungeonxplorer\managers\HeroManager;
 use dungeonxplorer\managers\ItemManager;
+use dungeonxplorer\managers\LevelManager;
 use dungeonxplorer\monster\Monster;
 
 require dirname(__DIR__,2) . DIRECTORY_SEPARATOR . 'autoload.php';
@@ -134,9 +136,9 @@ abstract class Hero{
         $this->secondaryWeapon = $secondaryWeapon;
     }
 
-    public function setXp(int $xp): void
-    {
+    public function setXp(int $xp): void{
         $this->xp = $xp;
+        $this->setCurrentLevel(LevelManager::getInstance()->getLevelWithXp($this->getClassHero(),$this->xp)->getLevel());
     }
 
     public function setCurrentLevel(int $currentLevel): void
@@ -216,8 +218,7 @@ abstract class Hero{
     }
 
     public function death(){
-        //TODO: Restore default heros values
-        throw new \Exception("=========== Todo dead function in Hero.php =============");
+        HeroManager::getInstance()->reset($this);
     }
 
     public function getPurse(): int

@@ -22,7 +22,7 @@ class Warrior extends Hero{
         }
     }
 
-    public function setArmor(Armor $newArmor) : void{
+    public function setArmor(?Armor $newArmor) : void{
         $this->armor = $newArmor;
     }
 

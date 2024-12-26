@@ -2,10 +2,12 @@
 
 namespace dungeonxplorer\managers;
 
+use dungeonxplorer\hero\class\magic\MagicHero;
 use dungeonxplorer\hero\class\magic\Thief;
 use dungeonxplorer\hero\class\magic\Wizard;
 use dungeonxplorer\hero\class\Warrior;
 use dungeonxplorer\hero\Hero;
+use dungeonxplorer\item\Inventory;
 
 require_once dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'autoload.php';
 
@@ -201,26 +203,20 @@ class HeroManager{
         $hero->setCurrentChapter($chapter);
         $hero->setPurse(0);
 
+        $hero->setInventory(new Inventory());
+
+        if($hero instanceof MagicHero)
+            $hero->setMana($classInformation->cl_base_mana);
+
+        switch (get_class($hero)) {
+            case Warrior::class :
+                $hero->setArmor(null);
+                break;
+            case Wizard::class :
+                $hero->setSpells(array());
+                break;
+        }
 
     }
 
 }
-/*
-$hero = HeroManager::getInstance()->getHero(70);
-echo '<pre>';
-    var_dump($hero);
-echo '</pre></br>';
-
-$hero->setPV(40000);
-
-echo '<pre>';
-    var_dump($hero);
-echo '</pre></br>';
-
-HeroManager::getInstance()->reset($hero);
-
-echo '<pre>';
-    var_dump($hero);
-echo '</pre></br>';
-*/
-

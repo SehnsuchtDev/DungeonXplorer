@@ -35,7 +35,11 @@ class Wizard extends MagicHero{
         else{
             throw new \Exception("Not enough mana");
         }
+    }
 
+    public function setSpells(array $spells): void
+    {
+        $this->spells = $spells;
     }
 
 }
