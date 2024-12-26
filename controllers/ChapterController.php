@@ -68,6 +68,7 @@ class ChapterController{
             $items[] = ['id' => $item['item']->getId(),
                         'name' => $item['item']->getName(),
                         'quantity' => $item['quantity'],
+                        'image' => $item['item']->getImage(),
                         'usable' => $item['item'] instanceof ConsumableItem,
                         'handitem' => $item['item'] instanceof HandItem
                         ];
