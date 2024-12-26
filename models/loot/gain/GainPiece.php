@@ -1,6 +1,8 @@
 <?php
 
 namespace dungeonxplorer\loot\gain;
+use dungeonxplorer\hero\Hero;
+
 class GainPiece implements Gain{
 
     private $quantity = 0;
@@ -14,10 +16,10 @@ class GainPiece implements Gain{
     }
 
 
-    public function give(){
-
+    public function give(Hero $hero): void
+    {
+        $hero->addPiece($this->quantity);
     }
-
 }
 
 ?>

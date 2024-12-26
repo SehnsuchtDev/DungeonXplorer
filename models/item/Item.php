@@ -18,15 +18,27 @@ class Item{
                 $this->$property = $value;
             }
         }
+        $this->maxStack = $donnees['it_maxstack'];
     }
 
-    public function getId(): int
-    {
+    public function getId(): int{
         return $this->id;
     }
 
+    public function getName(): string{
+        return $this->name;
+    }
 
+    public function getDescription(): string{
+        return $this->description;
+    }
 
-} 
+    public function getWeight(): int{
+        return $this->weight;
+    }
 
-?>
+    public function getMaxStack(): int{
+        return $this->maxStack;
+    }
+
+}

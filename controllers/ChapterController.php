@@ -5,6 +5,9 @@ use dungeonxplorer\chapter\Chapter;
 use dungeonxplorer\chapter\event\Fight;
 use dungeonxplorer\chapter\event\test\MCQTest;
 use dungeonxplorer\hero\class\magic\MagicHero;
+use dungeonxplorer\hero\class\magic\Thief;
+use dungeonxplorer\hero\class\magic\Wizard;
+use dungeonxplorer\hero\class\Warrior;
 use dungeonxplorer\hero\Hero;
 
 class ChapterController{
@@ -37,6 +40,17 @@ class ChapterController{
         $image = $this->getChapter()->getImage();
 
         $hero = array();
+        switch (get_class($this->hero)){
+            case Wizard::class:
+                $hero['class'] = 'Magicien';
+                break;
+            case Warrior::class:
+                $hero['class'] = 'Guerrier';
+                break;
+            case Thief::class:
+                $hero['class'] = 'Voleur';
+                break;
+        }
         $hero['pv'] = $this->hero->getPv();
         $hero['strength'] = $this->hero->getStrength();
         $hero['initiative'] = $this->hero->getInitiative();
@@ -44,13 +58,17 @@ class ChapterController{
             $hero['mana'] = $this->hero->getMana();
         $hero['xp'] = $this->hero->getXp();
 
+        $items = array();
+        foreach ($this->hero->getInventory()->getItems() as $item)
+            $items[] = ['name' => $item['item']->getName(), 'quantity' => $item['quantity']];
 
         $nextChapterId = [];
         foreach ($this->getChapter()->getNextChapter() as $nextChapter) {
             $nextChapterId[] = $nextChapter->getChapterId();
         }
 
-        //MCQ Test
+
+
         $mcq = $this->getChapter()->getChapterEvent() instanceof MCQTest;
         if ($mcq) {
             $mcqQuestion = $this->getChapter()->getChapterEvent()->getQuestions();

@@ -18,7 +18,7 @@ class Chapter{
     private string $image = "";
     private array $nextChapter;        // Chapter[]
     private ChapterEvent $chapterEvent;   // ChapterEvent
-    private Loot $treasures;
+    private ?Loot $treasures = null;
 
     public function getChapterId(): int
     {

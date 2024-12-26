@@ -131,9 +131,15 @@ abstract class Hero{
     }
 
     public function changeChapter(int $chapterId) : bool{
+        if($chapterId <= 1){
+            $this->death();
+            return true;
+        }
         $this->getCurrentChapter()->getNextChapter();
         foreach ($this->getCurrentChapter()->getNextChapter() as $nextChapter) {
             if($nextChapter->getChapterId() == $chapterId){
+                if($nextChapter->getTreasures() != null)
+                    $nextChapter->getTreasures()->give($this);
                 $this->setCurrentChapter($nextChapter);
                 return true;
             }
@@ -161,6 +167,19 @@ abstract class Hero{
         return $this->xp;
     }
 
+    public function getInventory(): Inventory
+    {
+        return $this->inventory;
+    }
+
+    public function addPiece(int $quantity){
+        $this->purse += $quantity;
+    }
+
+    public function death(){
+        //TODO: Restore default heros values
+        throw new \Exception("=========== Todo dead function in Hero.php =============");
+    }
 
 
 }

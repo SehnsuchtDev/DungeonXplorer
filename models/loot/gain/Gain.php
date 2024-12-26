@@ -2,9 +2,11 @@
 
 namespace dungeonxplorer\loot\gain;
 
+use dungeonxplorer\hero\Hero;
+
 interface Gain{
 
-    public function give();
+    public function give(Hero $hero): void;
 
 }
 

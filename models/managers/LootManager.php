@@ -28,6 +28,9 @@ class LootManager
         $stmt = $bdd->prepare("SELECT * FROM Loot WHERE lo_id = ?;");
         $stmt->execute([$lootId]);
         $stmt->setFetchMode(\PDO::FETCH_ASSOC);
+        if($stmt->rowCount() == 0){
+            return null;
+        }
 
         $res = $stmt->fetchAll();
 

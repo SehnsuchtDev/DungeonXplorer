@@ -15,5 +15,9 @@ class Wizard extends MagicHero{
         return $this->spells;
     }
 
+    public function addSpell(Spell $spell){
+        $this->spells[] = $spell;
+    }
+
 
 }

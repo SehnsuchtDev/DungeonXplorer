@@ -2,6 +2,10 @@
 
 namespace dungeonxplorer\item\class;
 
+use dungeonxplorer\hero\class\magic\Thief;
+use dungeonxplorer\hero\class\magic\Wizard;
+use dungeonxplorer\hero\class\Warrior;
+
 require dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'autoload.php';
 
 abstract class ClassItem extends \dungeonxplorer\item\Item{
@@ -20,7 +24,21 @@ abstract class ClassItem extends \dungeonxplorer\item\Item{
 
             $stmt = $bdd->prepare("SELECT cl_id FROM ItemsClass WHERE `it_id` = ?");
             $stmt->execute([$this->it_id]);
-            $this->allowedClass = $stmt->fetchAll(\PDO::FETCH_COLUMN);
+            $res = $stmt->fetchAll(\PDO::FETCH_COLUMN);
+            $this->allowedClass = array();
+            foreach ($res as $r){
+                switch ($r){
+                    case 1:
+                        $this->allowedClass[] = Warrior::class;
+                        break;
+                    case 2:
+                        $this->allowedClass[] = Wizard::class;
+                        break;
+                    case 3:
+                        $this->allowedClass[] = Thief::class;
+                        break;
+                }
+            }
         }
         return $this->allowedClass;
     }

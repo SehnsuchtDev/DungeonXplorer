@@ -2,8 +2,6 @@
 
 namespace dungeonxplorer\hero\class\magic;
 
-use dungeonxplorer\managers\SpellManager;
-
 abstract class MagicHero extends \dungeonxplorer\hero\Hero{
 
     private $mana = 0;
@@ -18,6 +16,13 @@ abstract class MagicHero extends \dungeonxplorer\hero\Hero{
     {
         return $this->mana;
     }
+
+    public function setMana(int $mana): void
+    {
+        $this->mana = $mana;
+    }
+
+
 
 
 }

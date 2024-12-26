@@ -17,7 +17,7 @@
         <h2>Question</h2>
         <p><?=$mcqQuestion?></p>
         <h3>Choix:</h3>
-        <form method="post" action="<?=constant('FULLURLROOTPATH'). '/chapter/' . $chapterId?>/mcqtest" style="<?= isset($mcqAnswer) ? ($mcqAnswer ? 'background-color: green;' : 'background-color: red;') : '' ?>">
+        <form method="post" action="<?=constant('FULLURLROOTPATH')?>/chapter/mcqtest" style="<?= isset($mcqAnswer) ? ($mcqAnswer ? 'background-color: green;' : 'background-color: red;') : '' ?>">
             <?php foreach ($mcqChoices as $key => $choice):?>
                 <input type="radio" name="choice" value="<?=$key?>"><?=$choice?><br>
             <?php endforeach;?>
@@ -40,7 +40,7 @@
 
     <br>
     <hr>
-    <h2>Hero info</h2>
+    <h2>Hero info <?=$hero['class']?></h2>
     <p>PV : <?=$hero['pv']?></p>
     <p>Strength : <?=$hero['strength']?></p>
     <p>Initiative : <?=$hero['initiative']?></p>
@@ -48,5 +48,14 @@
         <p>Mana : <?=$hero['mana']?></p>
     <?php endif;?>
     <p>XP : <?=$hero['xp']?></p>
+
+    <br>
+    <hr>
+    <h2>Inventory :</h2>
+    <ul>
+        <?php foreach ($items as $item):?>
+            <li><?=$item['name']?> : <?=$item['quantity']?></li>
+        <?php endforeach;?>
+    </ul>
 </body>
 </html>
