@@ -1,34 +1,45 @@
 const button = document.getElementById("inventory-button");
-// const popup = document.getElementById("inventory");
-
 const popup = document.getElementById("inventory-object");
+const primary = document.getElementById("primary-weapon");
+const secondary = document.getElementById("secondary-weapon");
+
+// management of the inventory popup
 popup.style.visibility = "hidden";
 
 popup.addEventListener("load", () => {
     console.log("loaded");
 
-    if (popup.getAttribute("data") === "./popupitemsinventory.php") {
-        const closeDetails = popup.contentDocument.getElementById("close-details");
-        closeDetails.addEventListener("click", closeItemsDetails);
-    } else {
-        const close = popup.contentDocument.getElementById("close");
-        close.addEventListener("click", hiddenInventory);
-    }
+    const close = popup.contentDocument.getElementById("close");
+    close.addEventListener("click", () => {
+        closeItemsDetails();
+        hiddenInventory();
+    });
 
     const items = popup.contentDocument.querySelectorAll("th");
 
     items.forEach(item => {
         item.addEventListener("click", () => {
             console.log(item);
-            openItemDetails();
+            openItemDetails(true);
         });
     });
 
 
 });
 
+// inventory button in the hero bar
 button.addEventListener("click", displayInventory);
 
+// weapon buttons in the hero bar
+primary.addEventListener("click", () => {
+    openItemDetails(false);
+    displayInventory();
+});
+
+secondary.addEventListener("click", () => {
+    openItemDetails(false);
+    displayInventory();
+});
 
 /*
 const tableData = [
@@ -62,8 +73,15 @@ function displayInventory() {
     popup.style.visibility = "visible";
 }
 
-function openItemDetails() {
+function openItemDetails(backButton) {
     popup.setAttribute("data", "./popupitemsinventory.php");
+    if (backButton == true) {
+        popup.addEventListener("load", () => {
+            const back = popup.contentDocument.getElementById("back");
+            back.addEventListener("click", closeItemsDetails);
+            back.style.visibility = "visible";
+        });
+    }
 }
 
 function closeItemsDetails() {
