@@ -22,7 +22,7 @@
             </p>
             </br>
             <p class="text-[#C4975E]">
-                COMMENCER L'AVENTURE
+                <a href="book">COMMENCER L'AVENTURE</a>
             </p>
         </div>
 

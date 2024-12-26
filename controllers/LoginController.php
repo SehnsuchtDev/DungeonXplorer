@@ -8,7 +8,7 @@ class LoginController {
 
 
     public function show(): void{
-        require __DIR__ . '/../views/devview/login.php';
+        require __DIR__ . '/../views/connection.php';
     }
 
     public function login() : void {
@@ -36,7 +36,7 @@ class LoginController {
             }
         }
 
-        require __DIR__ . '/../views/devview/login.php';
+        require __DIR__ . '/../views/connection.php';
     }
 
 }

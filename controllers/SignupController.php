@@ -8,7 +8,7 @@ class SignupController {
 
 
     public function show(): void{
-        require __DIR__ . '/../views/devview/signup.php';
+        require __DIR__ . '/../views/signup.php';
     }
 
     public function signup() : void {

@@ -38,6 +38,6 @@
 
     btnConnect = document.getElementById("connect");
     btnConnect.addEventListener("click", (event) => {
-        window.bookmanager.replacePage("./connection.php");
+        window.bookmanager.replacePage("book/page/login");
     });
 </script>
