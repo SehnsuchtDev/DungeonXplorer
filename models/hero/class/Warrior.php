@@ -2,10 +2,11 @@
 
 namespace dungeonxplorer\hero\class;
 
+use dungeonxplorer\hero\Hero;
 use dungeonxplorer\item\Armor;
 use dungeonxplorer\managers\ItemManager;
 
-class Warrior extends \dungeonxplorer\hero\Hero{
+class Warrior extends Hero{
 
     private Armor $armor;     // Armor
 
@@ -20,6 +21,9 @@ class Warrior extends \dungeonxplorer\hero\Hero{
 
     }
 
+    public function setArmor(Armor $newArmor) : void{
+        $armor = $newArmor;
+    }
 
 }
 

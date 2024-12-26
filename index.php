@@ -19,4 +19,14 @@ $router->get('/',function(){
 
 $router->get('/chapter/(\d+)','ChapterController@showChapter');
 
+$router->get("signup","SignupController@show");
+$router->post("signup","SignupController@signup");
+
+
+$router->get("login","LoginController@show");
+$router->post("login","LoginController@login");
+
+$router->get("hero","HeroCreationController@show");
+$router->post("hero","HeroCreationController@creation");
+
 $router->run();
