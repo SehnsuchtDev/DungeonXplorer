@@ -6,7 +6,7 @@ use dungeonxplorer\managers\SpellManager;
 
 class Wizard extends MagicHero{
 
-    private $spells = [];
+    private array $spells = [];
 
     public function getSpells(): array{
         if(!isset($this->spells) && isset($this->id)){
@@ -15,5 +15,8 @@ class Wizard extends MagicHero{
         return $this->spells;
     }
 
+    public function addSpell(Spell $spell){
+        $this->spells[] = $spell;
+    }
 
 }

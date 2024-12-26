@@ -4,6 +4,7 @@ namespace dungeonxplorer\account;
 
 use Dbconnection;
 use dungeonxplorer\hero\Hero;
+use dungeonxplorer\managers\HeroManager;
 
 require_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'autoload.php';
 
@@ -13,8 +14,11 @@ class User{
     private string $name = "";
     private string $email = "";
     private bool $isAdmin = false;
-    private Hero $hero;
+    private ?Hero $hero = null;
 
+    public function getHero() : ?Hero{
+        return $this->hero;
+    }
 
     private static function exists(string $email, string $name):bool{
         $bdd = Dbconnection::getConnection();
@@ -56,7 +60,7 @@ class User{
         
         $bdd = Dbconnection::getConnection();
 
-        $stmt = $bdd->prepare("SELECT us_username, us_email,us_password, us_id FROM User WHERE us_email=:email");
+        $stmt = $bdd->prepare("SELECT us_username, us_email,us_password, us_id, he_id FROM User WHERE us_email=:email");
         $stmt->bindParam(':email',$email);
         $stmt->execute();
 
@@ -75,6 +79,9 @@ class User{
         $user->email = $res['us_email'];
         $user->id = $res['us_id'];
 
+        if(isset($res['he_id']))
+            $user->hero = HeroManager::getInstance()->getHero($res['he_id']);
+
         return $user;
 
     }
@@ -84,13 +91,13 @@ class User{
     }
 
     public function setHero(Hero $newHero){
-        $hero = $newHero;
-
+        $this->hero = $newHero;
+        var_dump($this);
         $bdd = Dbconnection::getConnection();
 
         $stmt = $bdd->prepare("update User set he_id = :idOfMyHero where us_id = :idOfMyUser");
 
-        $userId = $hero->getId();
+        $userId = $this->hero->getId();
         $stmt->bindParam(':idOfMyHero',$userId);
 
         $stmt->bindParam(':idOfMyUser',$this->id);

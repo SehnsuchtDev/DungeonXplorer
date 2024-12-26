@@ -8,7 +8,7 @@ use dungeonxplorer\managers\ItemManager;
 
 class Warrior extends Hero{
 
-    private Armor $armor;     // Armor
+    private ?Armor $armor;     // Armor
 
     public function hydrate(array $donnees): void
     {
@@ -21,7 +21,7 @@ class Warrior extends Hero{
 
     }
 
-    public function setArmor(Armor $newArmor) : void{
+    public function setArmor($newArmor) : void{
         $armor = $newArmor;
     }
 

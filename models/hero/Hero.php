@@ -15,13 +15,13 @@ abstract class Hero{
     protected int $id = 0;
     private string $name = "";
     private int $classHero;
-    private string $image = "";
+    private ?string $image = "";
     private string $biography = "";
     private int $pv = 0;
     private int $strength = 0;
     private int $initiative = 0;
     private HandItem $primaryWeapon;     // HandItem
-    private HandItem $secondaryWeapon;   // HandItem
+    private ?HandItem $secondaryWeapon;   // HandItem
     private int $xp = 0;    
     private int $currentLevel = 0;
     private Chapter $currentChapter;    // Chapter
@@ -104,12 +104,12 @@ abstract class Hero{
         $this->initiative = $initiative;
     }
 
-    public function setPrimaryWeapon(HandItem $primaryWeapon): void
+    public function setPrimaryWeapon($primaryWeapon): void
     {
         $this->primaryWeapon = $primaryWeapon;
     }
 
-    public function setSecondaryWeapon(HandItem $secondaryWeapon): void
+    public function setSecondaryWeapon($secondaryWeapon): void
     {
         $this->secondaryWeapon = $secondaryWeapon;
     }
