@@ -1,4 +1,4 @@
-<?php session_start();
+<?php if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
 use dungeonxplorer\account\User;
 
@@ -8,17 +8,20 @@ class SignupController {
 
 
     public function show(): void{
-        require __DIR__ . '/../views/devview/signup.php';
+        if(isset($_SESSION['user'])){
+            $errors = [];
+        }
+        require __DIR__ . '/../views/signup.php';
     }
 
     public function signup() : void {
         
         $errors = [];
 
-        $username = $_POST['username'] ?? '';
-        $email = $_POST['email'] ?? '';
-        $password = $_POST['password'] ?? '';
-        $password_confirm = $_POST['confirm_password'] ?? '';
+        $username = $_POST['pseudo'] ?? '';
+        $email = $_POST['mail'] ?? '';
+        $password = $_POST['motDePasse'] ?? '';
+        //$password_confirm = $_POST['confirm_password'] ?? '';
 
         if(empty($username))
             $errors[] = "Vous devez saisir un pseudo !";
@@ -29,10 +32,10 @@ class SignupController {
         if(empty($password))
             $errors[] = "Vous devez saisir un mot de passe !";
 
-        if(empty($password_confirm))
-            $errors[] = "Vous devez confirmer votre mot de passe !";
-        else if($password !== $password_confirm)
-            $errors[] = "Les mots de passe ne sont pas identique !";
+        // if(empty($password_confirm))
+        //     $errors[] = "Vous devez confirmer votre mot de passe !";
+        // else if($password !== $password_confirm)
+        //     $errors[] = "Les mots de passe ne sont pas identique !";
 
 
         if(empty($errors)){
@@ -43,7 +46,7 @@ class SignupController {
             }
         }
 
-        require __DIR__ . '/../views/devview/signup.php';
+        require __DIR__ . '/../views/signup.php';
     }
 
 }
