@@ -45,10 +45,10 @@
 
                 <tr>
                     <td>
-                        <div>
-                            <button
-                                class="bg-[#4A7A66] text-white rounded px-3 py-1 hover:bg-[#3B6253]">Utiliser</button>
-                            <button class="bg-[#8B1E1E] text-white rounded px-3 py-1 hover:bg-[#6E1818]">Jeter</button>
+                        <div class=" text-white  px-3 py-1">
+                            <button class="bg-[#4A7A66] hover:bg-[#3B6253] rounded">Utiliser</button>
+                            <button class="bg-[#8B1E1E] hover:bg-[#6E1818] rounded">Jeter</button>
+                            <button id="back" class="bg-[#ADADAD] hover:bg-[#1A1A1A] rounded hidden">Retour</button>
                         </div>
                     </td>
                 </tr>

@@ -10,14 +10,17 @@ popup.addEventListener("load", () => {
     console.log("loaded");
 
     const close = popup.contentDocument.getElementById("close");
-    close.addEventListener("click", hiddenInventory);
+    close.addEventListener("click", () => {
+        closeItemsDetails();
+        hiddenInventory();
+    });
 
     const items = popup.contentDocument.querySelectorAll("th");
 
     items.forEach(item => {
         item.addEventListener("click", () => {
             console.log(item);
-            openItemDetails();
+            openItemDetails(true);
         });
     });
 
@@ -29,12 +32,12 @@ button.addEventListener("click", displayInventory);
 
 // weapon buttons in the hero bar
 primary.addEventListener("click", () => {
-    openItemDetails();
+    openItemDetails(false);
     displayInventory();
 });
 
 secondary.addEventListener("click", () => {
-    openItemDetails();
+    openItemDetails(false);
     displayInventory();
 });
 
@@ -70,8 +73,15 @@ function displayInventory() {
     popup.style.visibility = "visible";
 }
 
-function openItemDetails() {
+function openItemDetails(backButton) {
     popup.setAttribute("data", "./popupitemsinventory.php");
+    if (backButton == true) {
+        popup.addEventListener("load", () => {
+            const back = popup.contentDocument.getElementById("back");
+            back.addEventListener("click", closeItemsDetails);
+            back.style.visibility = "visible";
+        });
+    }
 }
 
 function closeItemsDetails() {
