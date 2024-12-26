@@ -14,21 +14,17 @@
 
 <body>
 
-    <div class="bg-[#F6F0E8] h-full w-full filter drop-shadow-lg shadow-inner">
+    <div class="bg-[#F6F0E8] h-full w-full filter drop-shadow-lg shadow-inner place-content-center">
 
         <div class="p-6 font-['Pirata_One'] justify-items-center text-center">
-            <img src="..\public\assets\Chest01.jpg" alt="" width="250" height="150" title="" />
-            </br></br>
-            <p class="text-2xl font-bold">Choix possibles pour le joueur?</p>
-            <div class="flex">
-                <div class="bg-[#C4975E] py-3 px-6 m-10 mr-16 text-2xl border-solid border-2 border-black rounded max-w-xs mx-auto pointer-events-auto cursor-pointer"
-                    id="choice1">
-                    <p>oui</p>
-                </div>
-                <div class="bg-[#C4975E] py-3 px-6 m-10 text-2xl border-solid border-2 border-black rounded max-w-xs mx-auto pointer-events-auto cursor-pointer"
-                    id="choice2">
-                    <p>non</p>
-                </div>
+
+            <div class="bg-[#C4975E] py-3 px-6 m-16 text-2xl border-solid border-2 border-black rounded max-w-xs mx-auto pointer-events-auto cursor-pointer"
+                id="restart">
+                <p>Recommencer l'aventure</p>
+            </div>
+            <div class="bg-[#C4975E] py-3 px-6 m-16 text-2xl border-solid border-2 border-black rounded max-w-xs mx-auto pointer-events-auto cursor-pointer"
+                id="index">
+                <p>Retourner à l'accueil</p>
             </div>
         </div>
 
@@ -36,15 +32,15 @@
 
     <script>
 
-        btnChoice1 = document.getElementById("choice1");
-        btnChoice1.removeAttribute("id");
-        btnChoice1.addEventListener("click", () => {
+        btnRestart = document.getElementById("restart");
+        btnRestart.removeAttribute("id");
+        btnRestart.addEventListener("click", () => {
             window.bookmanager.loadTwoPageAndTurn("http://localhost/medieval/DungeonXplorer/views/booktest/test_chapter2-p1.php", "http://localhost/medieval/DungeonXplorer/views/booktest/test_chapter2-p2.php");
         });
 
-        btnChoice2 = document.getElementById("choice2");
-        btnChoice2.removeAttribute("id");
-        btnChoice2.addEventListener("click", () => {
+        btnIndex = document.getElementById("index");
+        btnIndex.removeAttribute("id");
+        btnIndex.addEventListener("click", () => {
             window.bookmanager.loadTwoPageAndTurn("http://localhost/medieval/DungeonXplorer/views/booktest/test_chapter2-p1.php", "http://localhost/medieval/DungeonXplorer/views/booktest/test_chapter2-p2.php");
         });
 

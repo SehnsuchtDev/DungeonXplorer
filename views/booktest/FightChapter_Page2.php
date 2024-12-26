@@ -46,8 +46,8 @@
             </div>
 
             <!-- AVANT COMBAT -->
-            <div class="bg-[#C4975E] py-3 px-6 m-3 text-2xl rounded max-w-xs mx-auto" id="choice1"
-                class="pointer-events-auto">
+            <div class="bg-[#C4975E] py-3 px-6 m-3 text-2xl rounded max-w-xs mx-auto pointer-events-auto cursor-pointer"
+                id="choice1">
                 <p>Commencer le combat</p>
             </div>
 
@@ -55,12 +55,12 @@
             <!-- COMBAT EN COURS 
             <p>C'est votre tour.</p>
             <div class="flex">
-                <div class="bg-[#C4975E] py-1 px-3 m-3 mr-6 text-xl border-solid border-2 border-black rounded max-w-36 w-32 mx-auto"
-                    id="choice1" class="pointer-events-auto">
+                <div class="bg-[#C4975E] py-1 px-3 m-3 mr-6 text-xl border-solid border-2 border-black rounded max-w-36 w-32 mx-auto pointer-events-auto cursor-pointer"
+                    id="choice1">
                     <p>ATTAQUER</p>
                 </div>
-                <div class="bg-[#C4975E] py-1 px-3 m-3 text-xl border-solid border-2 border-black rounded max-w-36 w-32 mx-auto"
-                    id="choice1" class="pointer-events-auto">
+                <div class="bg-[#C4975E] py-1 px-3 m-3 text-xl border-solid border-2 border-black rounded max-w-36 w-32 mx-auto pointer-events-auto cursor-pointer"
+                    id="choice1">
                     <p>FUIR</p>
                 </div>
             </div>-->
