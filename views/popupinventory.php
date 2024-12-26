@@ -25,34 +25,35 @@
                 <table id="table" class="border-separate border-spacing-2 w-full">
                     <tr>
                         <th
-                            class="hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md   rounded">
+                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md   rounded">
                             <img src="../public/assets/Sword01.jpg" alt="Sword01"
                                 class="object-cover w-full h-full rounded">
                         </th>
                         <th
-                            class="hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
+                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
                             <img src="../public/assets/Sword02.png" alt="Sword02"
                                 class="object-cover w-full h-full rounded">
                         </th>
+
                         <th
-                            class="hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
+                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
                             <img src="../public/assets/Sword03.png" alt="Sword03"
                                 class="object-cover w-full h-full rounded">
                         </th>
                         <th
-                            class="hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
+                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
                             <img src="../public/assets/Potions.jpg" alt="Potions"
                                 class="object-cover w-full h-full rounded">
                         </th>
                     </tr>
                     <tr>
                         <th
-                            class="hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
+                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
                             <img src="../public/assets/Chest01.jpg" alt="Chest01"
                                 class="object-cover w-full h-full rounded">
                         </th>
                         <th
-                            class="hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
+                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
                             <img src="../public/assets/Chest02.jpg" alt="Chest02"
                                 class="object-cover w-full h-full rounded">
                         </th>

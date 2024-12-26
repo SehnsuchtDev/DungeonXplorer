@@ -7,6 +7,14 @@ popup.style.visibility = "hidden";
 popup.addEventListener("load", () => {
     const close = popup.contentDocument.getElementById("close");
     close.addEventListener("click", hiddenInventory);
+
+    const items = popup.contentDocument.querySelectorAll("th");
+    items.forEach(item => {
+        console.log(item);
+        item.addEventListener("click", () => {
+            console.log(item);
+        });
+    });
 });
 
 button.addEventListener("click", displayInventory);
@@ -42,4 +50,8 @@ function hiddenInventory() {
 
 function displayInventory() {
     popup.style.visibility = "visible";
+}
+
+function openItemDetails() {
+    popup.attributes.data = "item-details.html";
 }
