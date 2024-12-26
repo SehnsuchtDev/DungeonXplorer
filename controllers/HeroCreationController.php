@@ -12,10 +12,6 @@ require_once __DIR__ . '/../autoload.php';
 class HeroCreationController{
 
     public function show() :void{
-        echo '<pre>';
-        var_dump($_SESSION['user']);
-        var_dump($_SESSION['user']->getHero());
-        echo '</pre></br>';
         if($_SESSION['user']->getHero() != null){ 
             echo 'Vous avez déjà un héro !!!';
             require __DIR__ . "/../views/devview/infoHero.php";

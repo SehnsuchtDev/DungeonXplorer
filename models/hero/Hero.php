@@ -28,6 +28,22 @@ abstract class Hero{
     private int $purse = 0;
     private Inventory $inventory;        // Inventory
 
+    public function getImage(){
+        return $this->image;
+    }
+
+    public function getClassHero(){
+        return $this->classHero;
+    }
+
+    public function getName(){
+        return $this->name;
+    }
+
+    public function getBiography(){
+        return $this->biography;
+    }
+
     public function hydrate(array $donnees): void {
 
         foreach ($donnees as $key => $value) {
