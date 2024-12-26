@@ -39,6 +39,21 @@ class AccountController{
         header("location:".FULLURLROOTPATH);
     }
 
+    public function showModify(){
+        $username = $_SESSION["user"]->getName();
+        require dirname(__DIR__) . "/views/account_modify.php";
+    }
+
+    public function modify(){
+
+        $nouveauMDP = $_POST['new-password'];
+        echo $nouveauMDP;
+
+        //header("location:".FULLURLROOTPATH);
+        
+
+    }
+
 }
 
 ?>

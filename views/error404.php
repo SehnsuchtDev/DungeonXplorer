@@ -18,7 +18,7 @@
             dire que la
             page recherchée
             n'existe plus.</p>
-        <img src="public/assets/Giant Spider.jpg" alt="a giant spider" width="400" height="341" title="giant spider"
+        <img src="<?= FULLURLROOTPATH ?>/public/assets/Giant Spider.jpg" alt="a giant spider" width="400" height="341" title="giant spider"
             class="m-5 justify-self-center" />
     </div>
 

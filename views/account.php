@@ -33,12 +33,11 @@
             <div class="flex p-3">
                 <div class="bg-[#C4975E] my-7 mx-6 p-3 place-content-center rounded-lg" >
                     <p class="font-['Pirata_One'] mx-3 text-[#e5e5e5]">
-                        Modifier le profil</p>
-
-                    </div>
+                        <a href="account/modify"> Modifier le profil </a> </p>
+                </div>
                 <div class="bg-[#C4975E] my-7 mx-6 p-3 place-content-center rounded-lg" >
                     <p class="font-['Pirata_One'] mx-3 text-[#e5e5e5]">
-                    <a href="delete">Supprimer le compte</a>        
+                    <a href="account/delete">Supprimer le compte</a>        
                 </p>
                 </div>
             </div>

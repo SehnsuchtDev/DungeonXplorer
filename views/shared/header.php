@@ -1,18 +1,18 @@
-<a?php
+<?php
     if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 ?>
 <!DOCTYPE html>
 <header class="bg-[#2e2e2e] flex flex-row justify-between">
 
     <div class="flex flex-row">
-       <a href="<?= FULLURLROOTPATH ?>"><img src="public/assets/Logo.png" title="logoDungeonXplorer" class="size-28
+       <a href="<?= FULLURLROOTPATH ?>"><img src="<?= FULLURLROOTPATH ?>/public/assets/Logo.png" title="logoDungeonXplorer" class="size-28
             max-[380px]:size-24
             max-[380px]:self-center"> </a>
 
         <span class="material-icons my-auto ml-7 text-[#e5e5e5] 
             max-[615px]:invisible
             max-[615px]:absolute">
-            <a href="account">person</a>
+            <a href="<?= FULLURLROOTPATH ?>/account">person</a>
         </span>
         <p class="font-['Pirata_One'] text-[#e5e5e5] text-2xl ml-2 my-auto 
             max-[615px]:invisible
