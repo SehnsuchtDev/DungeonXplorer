@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <?php include(__DIR__ .'/shared/head.php'); ?>
 </head>
+
 <body class="bg-[#1a1a1a]">
     <!-- HEADER -->
     <?php include(__DIR__ . '/shared/header.php'); ?>
 
     <!-- ACCUEIL -->
-
+     
         <div class="bg-[rgba(46,46,46,0.80)] place-self-center max-w-[50em] rounded text-[#e5e5e5] font-['Roboto'] p-12 m-24 text-xl">
             <p class="font-['Pirata_One'] text-center">VicLeTombeur</p>
             </br>
@@ -42,11 +44,13 @@
                 </div>
             </div>
         </div>
+  
 
-        
+
     </main>
 
     <?php include( __DIR__ . '/shared/footer.php'); ?>
 
 </body>
+
 </html>
