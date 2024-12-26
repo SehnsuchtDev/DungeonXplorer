@@ -30,6 +30,10 @@ class Chapter{
         return $this->image;
     }
 
+    public function getId(){
+        return $this->chapterId;
+    }
+
     public function getChapterEvent(): ?ChapterEvent{
         if(!isset($this->chapterEvent) && isset($this->ce_id)){
             $bdd = \DbConnection::getConnection();

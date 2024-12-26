@@ -14,6 +14,10 @@ abstract class MagicHero extends \dungeonxplorer\hero\Hero{
         $this->mana = $donnees['he_mana'];
     }
 
+    public function getMana(){
+        return $this->mana;
+    }
+
 }
 
 ?>

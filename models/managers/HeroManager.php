@@ -7,8 +7,12 @@ use dungeonxplorer\hero\class\magic\Thief;
 use dungeonxplorer\hero\class\magic\Wizard;
 use dungeonxplorer\hero\class\Warrior;
 use dungeonxplorer\loot\Loot;
-
+use dungeonxplorer\hero\class\magic\Spell;
 use dungeonxplorer\hero\Hero;
+use dungeonxplorer\managers\ItemManager;
+use dungeonxplorer\item\Inventory;
+
+use dungeonxplorer\item\Item;
 
 require_once dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'autoload.php';
 
@@ -207,7 +211,153 @@ class HeroManager{
 
     }
 
+    public function save($hero){
+
+        $bdd = \Dbconnection::getConnection();
+
+        // First we update the hero information
+        $stmt = $bdd->prepare("UPDATE Hero   
+        set he_name = :nameOfMyHero,
+        he_pv = :pvOfOurHero,
+        he_mana = :manaOfOurHero,
+        he_strength = :strengthOfOurHero, 
+        he_initiative = :initiativeOfOurHero,
+        he_armor = :armorOfOurHero, 
+        he_primary_weapon = :primaryWeaponOfOurHero, 
+        he_secondary_weapon = :secondaryWeaponOfOurHero, 
+        he_xp = :xpOfOurHero,
+        he_current_level = :currentLevelOfOurHero, 
+        he_purse = :purseOfOurHero, 
+        ch_id = :chapterOfOurHero 
+        where he_id = :idOfMyHero
+        ");
+
+        $id = $hero->getId();
+
+        $name = $hero->getName();
+        $pv = $hero->getPv();
+        $mana = $hero->getMana();
+        $strength = $hero->getStrength();
+        $initiative = $hero->getInitiative();
+        $primaryWeapon = $hero->getPrimaryWeapon()->getId();
+        $secondaryWeapon = $hero->getSecondaryWeapon()?->getId();
+        $xp = $hero->getXp();
+        $currentLevel = $hero->getCurrentLevel();
+        $purse =  $hero->getPurse();
+        $chapter = $hero->getCurrentChapter()->getId();
+
+        $stmt->bindParam(":idOfMyHero", $id);
+
+        $stmt->bindParam(":nameOfMyHero", $name);
+        $stmt->bindParam(":pvOfOurHero", $pv);
+        $stmt->bindParam(":manaOfOurHero", $mana);
+        $stmt->bindParam(":strengthOfOurHero", $strength); 
+        $stmt->bindParam(":initiativeOfOurHero", $initiative); 
+        $stmt->bindParam(":primaryWeaponOfOurHero", $primaryWeapon); 
+        $stmt->bindParam(":secondaryWeaponOfOurHero", $secondaryWeapon); 
+        $stmt->bindParam(":xpOfOurHero", $xp);
+        $stmt->bindParam(":currentLevelOfOurHero", $currentLevel); 
+        $stmt->bindParam(":purseOfOurHero", $purse); 
+        $stmt->bindParam(":chapterOfOurHero", $chapter);
+        
+        // If he's a warrior
+        $armor = null;
+        if($hero->getClassHero() === 1){
+            $armor = $hero->getArmor()->getId();
+        }
+        $stmt->bindParam(":armorOfOurHero", $armor);
+        
+        
+        $stmt->execute();
+
+        // Then we update the spell information if he's a wizzard 
+        // First we update the hero information
+        var_dump($hero->getSpells());
+        if($hero->getSpells() !== null){
+            
+            // On supprime d'abord tout les spells puis on rajoute 
+            // afin d'actualiser si il y a des nouveaux spells
+            $spellRemovalRequest = $bdd->prepare("delete from HeroSpell  where he_id = :idOfMyHero");
+            $spellRemovalRequest->bindParam(":idOfMyHero", $id);
+            $spellRemovalRequest->execute();
+
+            foreach($hero->getSpells() as $key){
+                echo '<pre>';
+                echo "the key , " . $key->getName();
+                echo '</pre></br>';
+                $spellsRequest = null;
+                $spellsRequest = $bdd->prepare("insert into HeroSpell(he_id, sp_id) VALUES (:idOfMyHero, (select sp_id from Spell where sp_name = :nameOfMySpell))");
+
+                $spellName = $key->getName();
+                $spellsRequest->bindParam(":idOfMyHero", $id);
+                $spellsRequest->bindParam(":nameOfMySpell", $spellName);
+
+                $spellsRequest->execute();
+            }
+        }
+        
+        
+        $inventoryRemovalRequest = $bdd->prepare("delete from Inventory where he_id = :idOfMyHero");
+        $inventoryRemovalRequest->bindParam(":idOfMyHero", $id);
+        $inventoryRemovalRequest->execute();
+
+        echo "------------------------------------------<br>";
+        foreach($hero->getInventory()->getItems() as $key){
+            echo '<pre>';
+            var_dump($key);
+            echo "the key name  : " . $key['item']->getName() . ", item id : " . $key['item']->getId() . ", quantité : " . $key['quantity'];
+            echo '</pre></br>';
+            
+            $inventoryRequest = null;
+            $inventoryRequest = $bdd->prepare("insert into Inventory(he_id, it_id, quantity) VALUES (:idOfMyHero, :idOfMyItem, :quantityOfMyItem)");
+
+            $itemId = $key['item']->getId();
+            $itemQuantity = $key['quantity'];
+
+            $inventoryRequest->bindParam(":idOfMyHero", $id);
+            $inventoryRequest->bindParam(":idOfMyItem", $itemId);
+            $inventoryRequest->bindParam(":quantityOfMyItem", $itemQuantity);
+
+            $inventoryRequest->execute();
+            
+        }
+            
+
+    }
+
 }
+
+$hero = HeroManager::getInstance()->getHero(74);
+echo '<pre>';
+    var_dump($hero);
+echo '</pre></br>';
+
+$inventory = new Inventory();
+$item1 = ItemManager::getInstance()->getItem(5);
+$item2 = ItemManager::getInstance()->getItem(6);
+
+$inventory->addItem($item1, 3);
+$inventory->addItem($item2, 10);
+
+$hero->setInventory($inventory);
+var_dump($hero->getInventory());
+
+/*// test de save de spell
+$spell = new Spell();
+$spell->setName("Boule de Feu");
+
+$spell2 = new Spell();
+$spell2->setName("Caca en boîte");
+
+$hero->addSpell($spell);
+$hero->addSpell($spell2);
+
+echo '<pre>';
+    var_dump($hero);
+echo '</pre></br>';
+*/
+HeroManager::getInstance()->save($hero);
+
 /*
 $hero = HeroManager::getInstance()->getHero(70);
 echo '<pre>';

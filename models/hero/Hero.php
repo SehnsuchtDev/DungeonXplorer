@@ -7,6 +7,7 @@ use dungeonxplorer\item\HandItem;
 use dungeonxplorer\item\Inventory;
 use dungeonxplorer\managers\ChapterManager;
 use dungeonxplorer\managers\ItemManager;
+use dungeonxplorer\monster\Monster;
 
 require dirname(__DIR__,2) . DIRECTORY_SEPARATOR . 'autoload.php';
 
@@ -15,36 +16,18 @@ abstract class Hero{
     protected int $id = 0;
     private string $name = "";
     private int $classHero;
-    private ?string $image = "";
+    private ?string $image = null;
     private string $biography = "";
     private int $pv = 0;
     private int $strength = 0;
     private int $initiative = 0;
     private HandItem $primaryWeapon;     // HandItem
-    private ?HandItem $secondaryWeapon;   // HandItem
-    private int $xp = 0;    
+    private ?HandItem $secondaryWeapon = null;   // HandItem
+    private int $xp = 0;
     private int $currentLevel = 0;
     private Chapter $currentChapter;    // Chapter
     private int $purse = 0;
     private Inventory $inventory;        // Inventory
-
-    
-
-    public function getImage(){
-        return $this->image;
-    }
-
-    public function getClassHero(){
-        return $this->classHero;
-    }
-
-    public function getName(){
-        return $this->name;
-    }
-
-    public function getBiography(){
-        return $this->biography;
-    }
 
     public function hydrate(array $donnees): void {
 
@@ -82,34 +65,60 @@ abstract class Hero{
         $this->inventory = $inventory;
     }
 
-    public function setId(int $id): void
-    {
-        $this->id = $id;
+    public function setId($heroId){
+        $this->id = $heroId;
     }
 
-    public function setName(string $name): void
-    {
-        $this->name = $name;
+    public function setName($heroName){
+        $this->name = $heroName;
     }
 
-    public function setClassHero(int $classHero): void
-    {
-        $this->classHero = $classHero;
+    public function setClassHero($heroClass){
+        $this->classHero = $heroClass;
     }
 
-    public function setImage(string $image): void
-    {
-        $this->image = $image;
+    public function setImage($heroImage){
+        $this->image = $heroImage;
     }
 
-    public function setBiography(string $biography): void
-    {
-        $this->biography = $biography;
+    public function setBiography($heroBiography){
+        $this->biography = $heroBiography;
     }
 
-    public function setPv(int $pv): void
-    {
-        $this->pv = $pv;
+    public function setPv($heroPV){
+        $this->pv = $heroPV;
+    }
+
+    public function setInitiative($initiativeHero){
+        $this->initiative = $initiativeHero;
+    }
+
+    public function setPrimaryWeapon(HandItem $heroPrimaryWeapon){
+        $this->primaryWeapon = $heroPrimaryWeapon;
+    }
+
+    public function setSecondaryWeapon($heroSecondaryWeapon){
+        $this->secondaryWeapon = $heroSecondaryWeapon;
+    }
+
+    public function setSpellList(array $heroSpellList){
+        $this->spellList = $heroSpellList;
+    }
+
+    public function setXp($heroXP){
+        $this->xp = $heroXP;
+    }
+
+    public function setCurrentLevel($heroCurrentLevel){
+        $this->currentLevel = $heroCurrentLevel;
+    }
+
+    public function setCurrentChapter(Chapter $heroCurrentChapter){
+        $this->currentChapter = $heroCurrentChapter;
+    }
+
+    public function setPurse($heroPurse){
+        $this->purse = $heroPurse;
     }
 
     public function setStrength(int $strength): void
@@ -117,41 +126,99 @@ abstract class Hero{
         $this->strength = $strength;
     }
 
-    public function setInitiative(int $initiative): void
+    public function getCurrentChapter(): Chapter
     {
-        $this->initiative = $initiative;
+        return $this->currentChapter;
     }
 
-    public function setPrimaryWeapon($primaryWeapon): void
-    {
-        $this->primaryWeapon = $primaryWeapon;
+    public function changeChapter(int $chapterId) : bool{
+        if($this->getCurrentChapter()->getChapterId() == $chapterId)
+            return false;
+        if($this->getCurrentChapter()->getChapterEvent() != null && !$this->getCurrentChapter()->getChapterEvent()->isDone())
+            return false;
+        if($chapterId <= 1){
+            $this->death();
+            return true;
+        }
+        $this->getCurrentChapter()->getNextChapter();
+        foreach ($this->getCurrentChapter()->getNextChapter() as $nextChapter) {
+            if($nextChapter->getChapterId() == $chapterId){
+                if($nextChapter->getTreasures() != null)
+                    $nextChapter->getTreasures()->give($this);
+                $this->setCurrentChapter($nextChapter);
+                return true;
+            }
+        }
+        return false;
     }
 
-    public function setSecondaryWeapon($secondaryWeapon): void
+    public function getPv(): int
     {
-        $this->secondaryWeapon = $secondaryWeapon;
+        return $this->pv;
     }
 
-    public function setXp(int $xp): void
+    public function getStrength(): int
     {
-        $this->xp = $xp;
+        return $this->strength;
     }
 
-    public function setCurrentLevel(int $currentLevel): void
+    public function getInitiative(): int
     {
-        $this->currentLevel = $currentLevel;
+        return $this->initiative;
     }
 
-    public function setCurrentChapter(Chapter $currentChapter): void
+    public function getXp(): int
     {
-        $this->currentChapter = $currentChapter;
+        return $this->xp;
     }
 
-    public function setPurse(int $purse): void
+    public function getInventory(): Inventory
     {
-        $this->purse = $purse;
+        return $this->inventory;
     }
+
+    public function addPiece(int $quantity){
+        $this->purse += $quantity;
+    }
+
+    public function death(){
+        //TODO: Restore default heros values
+        throw new \Exception("=========== Todo dead function in Hero.php =============");
+    }
+
+    public function getPurse(): int
+    {
+        return $this->purse;
+    }
+
+     
+    public function getCurrentLevel(){
+        return $this->currentLevel;
+    }
+
+    public function getName(){
+        return $this->name;
+    }
+
+    public function getClassHero(){
+        return $this->classHero;
+    }
+
+    public function getImage(){
+        return $this->image;
+    }
+
+    public function getBiography(){
+        return $this->biography;
+    }
+
+    public function getPrimaryWeapon(){
+        return $this->primaryWeapon;
+    }
+
+    public function getSecondaryWeapon() : ?HandItem{
+        return $this->secondaryWeapon;
+    }
+
 
 }
-
-?>
