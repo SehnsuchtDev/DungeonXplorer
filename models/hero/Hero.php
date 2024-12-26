@@ -152,58 +152,11 @@ abstract class Hero{
         $this->purse = $purse;
     }
 
-    public function setClassHero($heroClass){
-        $this->classHero = $heroClass;
-    }
-
-    public function setImage($heroImage){
-        $this->image = $heroImage;
-    }
-
-    public function setBiography($heroBiography){
-        $this->biography = $heroBiography;
-    }
-
-    public function setPv($heroPV){
-        $this->pv = $heroPV;
-    }
-
-    public function setInitiative($initiativeHero){
-        $this->initiative = $initiativeHero;
-    }
-
-    public function setPrimaryWeapon(HandItem $heroPrimaryWeapon){
-        $this->primaryWeapon = $heroPrimaryWeapon;
-    }
-
-    public function setSecondaryWeapon(HandItem $heroSecondaryWeapon){
-        $this->secondaryWeapon = $heroSecondaryWeapon;
-    }
 
     public function setSpellList(array $heroSpellList){
         $this->spellList = $heroSpellList;
     }
 
-    public function setXp($heroXP){
-        $this->xp = $heroXP;
-    }
-
-    public function setCurrentLevel($heroCurrentLevel){
-        $this->currentLevel = $heroCurrentLevel;
-    }
-
-    public function setCurrentChapter(Chapter $heroCurrentChapter){
-        $this->currentChapter = $heroCurrentChapter;
-    }
-
-    public function setPurse($heroPurse){
-        $this->purse = $heroPurse;
-    }
-
-    public function setStrength(int $strength): void
-    {
-        $this->strength = $strength;
-    }
 
     public function getCurrentChapter(): Chapter
     {
@@ -273,22 +226,6 @@ abstract class Hero{
      
     public function getCurrentLevel(){
         return $this->currentLevel;
-    }
-
-    public function getName(){
-        return $this->name;
-    }
-
-    public function getClassHero(){
-        return $this->classHero;
-    }
-
-    public function getImage(){
-        return $this->image;
-    }
-
-    public function getBiography(){
-        return $this->biography;
     }
 
     public function getPrimaryWeapon(){

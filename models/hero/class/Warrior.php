@@ -10,7 +10,7 @@ use dungeonxplorer\monster\Monster;
 
 class Warrior extends Hero{
 
-    private ?Armor $armor;     // Armor
+    private ?Armor $armor = null;     // Armor
 
     public function hydrate(array $donnees): void
     {
@@ -42,7 +42,7 @@ class Warrior extends Hero{
         $monster->setPV($monster->getPV() - $degats);
     }
 
-    public function getArmor(){
+    public function getArmor() : ?Armor{
         return $this->armor;
     }
 
@@ -55,10 +55,4 @@ class Warrior extends Hero{
         return $armor;
     }
 
-    public function setArmor($newArmor) : void{
-        $armor = $newArmor;
-    }
-
 }
-
-?>

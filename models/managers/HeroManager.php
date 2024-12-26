@@ -2,13 +2,9 @@
 
 namespace dungeonxplorer\managers;
 
-use dungeonxplorer\item\HandItem;
 use dungeonxplorer\hero\class\magic\Thief;
 use dungeonxplorer\hero\class\magic\Wizard;
 use dungeonxplorer\hero\class\Warrior;
-use dungeonxplorer\loot\Loot;
-use dungeonxplorer\hero\Hero;
-
 use dungeonxplorer\hero\Hero;
 
 require_once dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'autoload.php';

@@ -1,9 +1,4 @@
 <?php session_start();
-/*
-use dungeonxplorer\hero\class\Warrior;
-use dungeonxplorer\hero\class\magic\Thief;
-use dungeonxplorer\hero\class\magic\Wizzard;
-*/
 
 use dungeonxplorer\managers\HeroManager;
 
