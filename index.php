@@ -89,6 +89,11 @@ $router->get("admin/item/delete/(\d+)", "AdminController@deleteItem");
 $router->post("admin/item/modify/(\d+)", "AdminController@modifyItem");
 $router->post("admin/item/add", "AdminController@addItem");
 
+
+$router->post("admin/spell/modify/(\d+)", "AdminController@modifySpell");
+$router->get("admin/spell/delete/(\d+)", "AdminController@deleteSpell");
+$router->post("admin/spell/add", "AdminController@addSpell");
+
 $router->get('account/delete/hero',"AccountController@deleteHero");
 
 

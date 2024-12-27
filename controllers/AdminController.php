@@ -176,15 +176,8 @@ class AdminController{
             $errors[] = "Vous devez saisir un poids à cet item !!";
         if(empty($nbMax))
             $errors[] = "Vous devez saisir une capacité max possible de cet item !";
-    
         if(empty($errors)){
-            echo "Il y a pas d'erreurs !!";
             ItemManager::getInstance()->modifyItem( $itemID, $name, $description, $poids, $nbMax, $equipable, $armure, $nomEffet, $valEffet, $coutMana, $valProtection, $nbDegat);
-        }else{
-            foreach($errors as $error){
-                echo $error . "<br>";
-            }
-            echo "Il y a des erreurs !!";
         }
         header("Location: " . FULLURLROOTPATH . "/adminItem");
     }
@@ -247,11 +240,27 @@ class AdminController{
     
     public function showManageSpell(){
         if($_SESSION['user']->isTheUserAnAdmin()){
+            $spellTable =  AdminManager::getInstance()->getAllSpellInformation();
             require dirname(__DIR__) . "/views/admin_manageSpell.php";
         }else{
             header("Location: " . FULLURLROOTPATH . "/error403");
         }
     }
+
+    public function deleteSpell($spellID){
+        AdminManager::getInstance()->deleteSpell($spellID);
+        header("Location: " . FULLURLROOTPATH . "/adminSpell");
+    }
+
+    public function modifySpell($spellID){
+        $name = $_POST["name"];
+        $manaCost = $_POST["manaCost"];
+        $damage = $_POST["damage"];
+        
+        AdminManager::getInstance()->modifySpell($spellID, $name, $manaCost, $damage);
+        header("Location: " . FULLURLROOTPATH . "/adminSpell");
+    }
+
 
 
 }
