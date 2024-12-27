@@ -75,11 +75,8 @@
 
 </div>
 <script defer>
-<<<<<<< HEAD
 
     // Updates the status bar (e.g., health, mana, etc.)
-=======
->>>>>>> 92a2ac1b5d7d28db19a5ca04fd759092f061fe7e
     updateStatusBar();
 
     // Prevents multiple page turns for the same chapter

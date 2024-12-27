@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-<!-- header -->
-<?php
-if (session_status() != PHP_SESSION_ACTIVE)
-    session_start();
-?>
-=======
->>>>>>> 92a2ac1b5d7d28db19a5ca04fd759092f061fe7e
 <header class="bg-[#2e2e2e] flex flex-row justify-between">
 
     <div class="flex flex-row">
