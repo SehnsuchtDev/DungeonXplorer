@@ -18,7 +18,7 @@ require dirname(__DIR__, ) . DIRECTORY_SEPARATOR . 'autoload.php';
     <div class="flex flex-col items-center justify-center mb-12">
         <object id="inventory-object" title="Inventaire" data="<?= FULLURLROOTPATH ?>/book/inventory" type="text/html"
             class="absolute z-10 h-full w-full"></object>
-        <div id="book" class="pointer-events-none z-0 mb-4 mt-4">
+        <div id="book" class="pointer-events-none z-0 mb-4 mt-4 max-[615px]:rotate-90 max-[540px]:my-10">
             <?php include(__DIR__ . "/booktest/StoryMode_Load.php"); ?>
         </div>
         <?php //include(__DIR__ . "/shared/hero_data.php"); ?>

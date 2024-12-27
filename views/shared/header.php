@@ -53,7 +53,7 @@ if (session_status() != PHP_SESSION_ACTIVE)
             </span>
         </div>
 
-        <div class="bg-[#C4975E] absolute invisible p-3 rounded m-2 mt-24 z-30 max-[615px]:visible">
+        <div class="bg-[#C4975E] absolute invisible p-3 rounded m-2 mt-24 z-30">
             <!-- max-[615px]:visible -->
             <div class="flex flex-row">
                 <span class="material-icons text-[#e5e5e5]">

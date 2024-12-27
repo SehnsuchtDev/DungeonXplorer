@@ -5,13 +5,59 @@ window.bookmanager = {}
 
 
 
-const htmlParentElement = document.getElementById('book');
-// Faire CTRL + F5 pour voir les modifs sur la page: 
-const settings = {
+// Responsive
+
+let settings = {
     width: 400,
     height: 600,
     showCover: true
 }
+
+function resizeListener() {
+    let window_width;
+    let window_height;
+    if (window.innerWidth <= 420){
+        window_width = 180;        
+        window_height = 365;
+    }
+    else if (window.innerWidth <= 460){
+        window_width =210;        
+        window_height = 395;
+    }
+    else if (window.innerWidth <= 490){
+        window_width =230;        
+        window_height = 425;
+    }
+    else if (window.innerWidth <= 515){
+        window_width =245;        
+        window_height = 450;
+    }
+    else if (window.innerWidth <= 615){ 
+        window_width = window.innerHeight/1.80;
+        window_height = window.innerWidth-50;
+    }
+    else{
+        window_width = window.innerWidth/2-15;
+        if (window_width > 400) window_width = 400;
+    
+        window_height = window.innerHeight+55;
+        if (window_height > 600) window_height = 600;
+    }
+    
+
+    settings.width = window_width;
+    settings.height = window_height;
+}
+
+resizeListener();
+
+window.addEventListener("resize", resizeListener);
+
+
+// Faire CTRL + F5 pour voir les modifs sur la page: 
+
+const htmlParentElement = document.getElementById('book');
+
 const pageFlip = new St.PageFlip(htmlParentElement, settings);
 
 pageFlip.loadFromHTML(htmlParentElement.querySelectorAll("div"));
