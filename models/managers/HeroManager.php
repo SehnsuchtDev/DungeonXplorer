@@ -79,6 +79,7 @@ class HeroManager{
         $classData->execute();
         $classInformation = $classData->fetch(\PDO::FETCH_OBJ);
 
+
         $itemManager = ItemManager::getInstance();
 
         if($class === "1"){
@@ -361,4 +362,40 @@ class HeroManager{
 
     }
 
-}
+    public function deleteHero($userID){
+
+        $bdd = \Dbconnection::getConnection();
+
+        // First we retrieve our hero id of our user
+        // to simplify future queries
+        $retrieveHeroIDRequest = $bdd->prepare("select he_id from User where us_id = :idOfOurUser");
+        $retrieveHeroIDRequest->bindParam(":idOfOurUser", $userID);
+        $retrieveHeroIDRequest->execute();
+
+        $result = $retrieveHeroIDRequest->fetch(\PDO::FETCH_OBJ);        //result of the query
+        $idOfOurHero = $result->he_id;
+
+        // We delete the information in the HeroSpell table 
+        $removalSpellRequest = $bdd->prepare("DELETE FROM HeroSpell where he_id = :idOfOurHero");
+        $removalSpellRequest->bindParam(":idOfOurHero", $idOfOurHero);
+        $removalSpellRequest->execute();
+
+        // We delete the information in the Inventory table
+        $removalInventoryRequest = $bdd->prepare("DELETE FROM Inventory where he_id = :idOfOurHero");
+        $removalInventoryRequest->bindParam(":idOfOurHero", $idOfOurHero);
+        $removalInventoryRequest->execute();
+
+        // We change he_id value in the User table to be able to delete the hero
+        $updateHeroIdRequest = $bdd->prepare("UPDATE User set he_id = null where us_id = :idOfOurUser");
+        $updateHeroIdRequest->bindParam(":idOfOurUser", $userID);
+        $updateHeroIdRequest->execute();
+
+        // Finally we delete the Hero from our Database 
+        $removalHeroRequest = $bdd->prepare("DELETE FROM Hero where he_id = :idOfOurHero");
+        $removalHeroRequest->bindParam(":idOfOurHero", $idOfOurHero);
+        $removalHeroRequest->execute();
+
+    }
+
+}   
+

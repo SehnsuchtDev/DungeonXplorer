@@ -47,7 +47,6 @@
                 menu
             </span>
         </div>
-
         <div class="bg-[#C4975E] absolute invisible p-3 rounded m-2 mt-24 z-30">
             <!-- max-[615px]:visible -->
             <div class="flex flex-row">

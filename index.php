@@ -67,8 +67,26 @@ $router->get("book/page/hero/p1","HeroCreationController@showp1");
 $router->post("book/page/hero","HeroCreationController@creation");
 $router->get("book/page/hero/p2","HeroCreationController@showp2");
 
+$router->get("admin", "AdminController@show");
+// $router->get("adminAccount", "AdminController@showManageAccount");
+$router->get("adminChapter", "AdminController@showManageChapter");
+$router->get("adminItem", "AdminController@showManageItem");
+$router->get("adminLevel", "AdminController@showManageLevel");
+$router->get("adminSpell", "AdminController@showManageSpell");
+
+// Everything to do with managing a hero
+$router->get("admin/user/delete/(\d+)","AdminController@deleteUser");
+$router->post("admin/user/modify/(\d+)", "AdminController@modifyUser");
+$router->get("admin/user/delete/adventure/(\d+)", "AdminController@deleteAdventure");
+$router->get("admin/user/delete/character/(\d+)", "AdminController@deleteCharacter");
+
+// Everything to do with managing an item
+$router->get("admin/item/delete/(\d+)", "AdminController@deleteItem");
+$router->post("admin/item/modify/(\d+)", "AdminController@modifyItem");
+$router->post("admin/item/add", "AdminController@addItem");
 
 $router->get('account/delete/hero',"AccountController@deleteHero");
+
 
 $router->run();
 
