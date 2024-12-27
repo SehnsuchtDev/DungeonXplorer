@@ -1,3 +1,4 @@
+
 <?php
     if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 ?>
@@ -8,7 +9,6 @@
        <a href="<?= FULLURLROOTPATH ?>"><img src="<?= FULLURLROOTPATH ?>/public/assets/Logo.png" title="logoDungeonXplorer" class="size-28
             max-[380px]:size-24
             max-[380px]:self-center"> </a>
-
         <span class="material-icons my-auto ml-7 text-[#e5e5e5] 
             max-[615px]:invisible
             max-[615px]:absolute">
@@ -62,7 +62,6 @@
                 menu
             </span>
         </div>
-
         <div class="bg-[#C4975E] absolute invisible p-3 rounded m-2 mt-24 z-30 max-[615px]:visible"> <!-- max-[615px]:visible -->
             <div class="flex flex-row">
                 <span class="material-icons text-[#e5e5e5]">
