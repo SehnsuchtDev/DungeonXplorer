@@ -11,7 +11,7 @@ require_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'autoload.php';
 
 class User{
 
-    private int $id;
+    private $id;
     private string $name = "";
     private string $email = "";
     private bool $isAdmin = false;  
@@ -88,7 +88,7 @@ class User{
     }
 
 
-    public function getUserId() : int{
+    public function getUserId(){
         return $this->id;
     }
 

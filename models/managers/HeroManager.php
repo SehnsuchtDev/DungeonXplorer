@@ -6,12 +6,8 @@ use dungeonxplorer\hero\class\magic\MagicHero;
 use dungeonxplorer\hero\class\magic\Thief;
 use dungeonxplorer\hero\class\magic\Wizard;
 use dungeonxplorer\hero\class\Warrior;
-use dungeonxplorer\loot\Loot;
-use dungeonxplorer\hero\class\magic\Spell;
 use dungeonxplorer\hero\Hero;
-use dungeonxplorer\managers\ItemManager;
 use dungeonxplorer\item\Inventory;
-use dungeonxplorer\item\Item;
 
 require_once dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'autoload.php';
 

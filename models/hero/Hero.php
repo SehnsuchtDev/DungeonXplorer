@@ -32,6 +32,9 @@ abstract class Hero{
     private int $purse = 0;
     private Inventory $inventory;        // Inventory
 
+    public function __construct(){
+        $this->inventory = new Inventory();
+    }
 
 
     public function getImage(){
