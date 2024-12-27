@@ -243,10 +243,10 @@ abstract class Hero{
 
     public function getArmorAmount(){
         $armor = 0;
-        if($this->getPrimaryWeapon() != null && $this->getPrimaryWeapon() instanceof Shield)
+        if($this->getPrimaryWeapon() instanceof Shield)
             $armor += $this->getPrimaryWeapon()->getArmourAmount();
-        if($this->getPrimaryWeapon() != null && $this->getSecondaryWeapon() instanceof Shield)
-            $armor += $this->getPrimaryWeapon()->getArmourAmount();
+        if($this->getSecondaryWeapon() != null && $this->getSecondaryWeapon() instanceof Shield)
+            $armor += $this->getSecondaryWeapon()->getArmourAmount();
         return $armor;
 
     }
