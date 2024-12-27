@@ -67,10 +67,23 @@ class AdminManager{
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+
     public function getAllLevelInformation(){
         $bdd = \Dbconnection::getConnection();
 
         $stmt = $bdd->prepare("select le_id,cl_id,le_level,le_required_xp,le_pv_bonus,le_mana_bonus,le_strength_bonus,le_initiative_bonus from Level"); ///
+  
+          $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function getAllItemInformation(){
+        $bdd = \Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("select it_id, it_name, it_description, it_weight, it_maxstack, it_handitem, it_armor, it_effectname, it_effectvalue,
+        it_manacost, it_protectvalue, it_damage, it_image from Items");
+
         $stmt->execute();
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -91,6 +104,17 @@ class AdminManager{
 
         $stmt = $bdd->prepare("delete from Level where le_id=$id");
         $stmt->execute();
+    }
+
+    public function deleteItem($itemID){
+         $bdd = \Dbconnection::getConnection();
+ 
+         $stmt = $bdd->prepare("DELETE FROM Items where it_id = :idOfOurItem");
+ 
+         $stmt->bindParam(':idOfOurItem',$itemID);
+         
+         $stmt->execute();
+
     }
 
 }

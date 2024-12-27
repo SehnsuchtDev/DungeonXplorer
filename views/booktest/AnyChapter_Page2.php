@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 
+<!-- Page 2 for any chapter -->
 
 <div id="chapDiv" class="pagediv bg-[#F6F0E8] h-full w-full filter drop-shadow-lg shadow-inner">
 
     <div class="p-6 font-['Pirata_One'] justify-items-center text-center">
 
+        <!-- Conditional content for a fight -->
         <?php if ($fight): ?>
             <div class="bg-[#C4975E] py-1 px-6 m-3 text-2xl rounded max-w-xs mx-auto" id="choice2"
                 class="pointer-events-auto">
@@ -12,8 +14,10 @@
             </div>
         <?php endif; ?>
 
+        <!-- Display chapter image -->
         <img src="<?= constant('FULLURLROOTPATH') ?>/public/assets/<?= $image ?>" width=250px>
 
+        <!-- Conditional content for Multiple Choice Questions (MCQ) -->
         <?php if ($mcq): ?>
 
             <br>
@@ -44,7 +48,7 @@
                     <p class="content-center">&nbsp; <?= $monster['mana'] ?> </p>
                 </div>
                 <div class="flex m-4">
-                    <img src="<?= FULLURLROOTPATH ?>/public\assets\shield.png" alt="player's shield" width="50" height="50"
+                    <img src="<?= FULLURLROOTPATH ?>/public\assets\initiative_icon.png" alt="player's shield" width="50" height="50"
                         title="player's shield" />
                     <p class="content-center">&nbsp; <?= $monster['initiative'] ?></p>
                 </div>
@@ -58,10 +62,11 @@
         <?php endif; ?>
         <br>
 
+        <!-- Link to the next chapters -->
         <?php foreach ($nextChapterId as $id): ?>
             <a class="btn-next<?= $seed ?> p-1 m-2 bg-[#C4975E] rounded"
                 href="<?= constant('FULLURLROOTPATH') . '/book/page/chapter/changeChapter/' . $id ?>">
-                <button class="z-10 pointer-events-auto" <?= $eventIsDone ? '' : 'disabled' ?>>Allez au chapitre
+                <button class="z-10 pointer-events-auto cursor-pointer" <?= $eventIsDone ? '' : 'disabled' ?>>Allez au chapitre
                     <?= $id ?></button>
             </a>
         <?php endforeach; ?>
@@ -71,9 +76,10 @@
 </div>
 <script defer>
 
+    // Updates the status bar (e.g., health, mana, etc.)
     updateStatusBar();
 
-
+    // Prevents multiple page turns for the same chapter
     let chapterTrun<?= $seed ?> = false;
 
     for (let e of document.querySelectorAll(".pageButton<?= $seed ?>")) {

@@ -2,13 +2,16 @@
 
 require_once __DIR__ . '/../autoload.php';
 
-class LogoutController{
-  
+class LogoutController
+{
 
-    public function logout(){
-        session_start();
+    /**
+     * Handles the logout functionality.
+     */
+    public function logout()
+    {
         session_destroy();
-        header("location:".FULLURLROOTPATH);
+        header("location:" . FULLURLROOTPATH);
     }
 
 }
