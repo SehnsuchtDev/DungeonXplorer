@@ -17,7 +17,7 @@ class Chapter{
     private string $content = "";
     private string $image = "";
     private array $nextChapter;        // Chapter[]
-    private ChapterEvent $chapterEvent;   // ChapterEvent
+    private ?ChapterEvent $chapterEvent = null;   // ChapterEvent
     private ?Loot $treasures = null;
 
     public function getChapterId(): int
@@ -35,6 +35,8 @@ class Chapter{
 
     public function getChapterEvent(): ?ChapterEvent{
         if(!isset($this->chapterEvent) && isset($this->ce_id)){
+            if($this->ce_id == null)
+                return null;
             $bdd = \DbConnection::getConnection();
 
             $stmt = $bdd->prepare("SELECT * FROM ChapterEvent
@@ -78,6 +80,9 @@ class Chapter{
     public function getTreasures(): ?Loot
     {
         if(!isset($this->treasures) && isset($this->lo_id)){
+            if($this->lo_id == null)
+                return null;
+            var_dump($this->lo_id);
             $this->treasures = LootManager::getInstance()->getLoot($this->lo_id);
         }
         return $this->treasures;

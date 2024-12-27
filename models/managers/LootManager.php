@@ -44,8 +44,8 @@ class LootManager
                 $gain = new GainEffect(Effect::getEffect($row['lo_effet']),$row['lo_quantity']);
             }elseif(isset($row['lo_piece'])) {
                 $gain = new GainPiece($row['lo_piece']);
-            }elseif(isset($row['lo_spell'])){
-                $spell = SpellManager::getInstance()->getSpell($row['lo_spell']);
+            }elseif(isset($row['sp_id'])){
+                $spell = SpellManager::getInstance()->getSpell($row['sp_id']);
                 $gain = new GainSpell($spell);
             }else
                 throw new \InvalidArgumentException('Loot not found');
