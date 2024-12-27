@@ -33,18 +33,6 @@ class Spell{
         $this->damage = $damage;
     }
 
-    public function getName() : string{
-        return $this->name;
-    }
-
-    public function getManaCost() : int{
-        return $this->manaCost;
-    }
-
-    public function getDamage() : int{
-        return $this->damage;
-    }
-
 }
 
 ?>
