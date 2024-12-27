@@ -136,8 +136,11 @@
 
 
             <div class="text-xs flex justify-between ">
-                <p>Capacité: ...%</p>
-                <p>Items: .../8</p>
+                <p>Capacité: <?php 
+                $nbItems = count($items);
+                echo ($nbItems/8)*100 . "%";
+                ?></p>
+                <p>Items: <?php echo $nbItems ?>/8</p>
             </div>
         </div>
 
