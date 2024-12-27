@@ -17,7 +17,7 @@
     <h1 class="p-10 text-center text-3xl font-['Pirata_One'] text-[#E5E5E5]"> Gestionnaire des items</h1>
 
     <div
-    class="overflow-y-auto h-auto w-full sm:w-[90%] md:w-[80%] lg:w-[500px] bg-[#2e2e2e] rounded shadow text-xl text-[#E5E5E5] font-['Roboto'] mx-auto my-5 p-5">
+    class="overflow-y-auto h-auto w-full sm:w-[80%] md:w-[90%] lg:w-[700px] bg-[#2e2e2e] rounded shadow text-xl text-[#E5E5E5] font-['Roboto'] mx-auto my-5 p-5">
     <table class="w-full">
         <tr class="border border-[#C4975E] flex flex-wrap md:flex-nowrap">
             <td class="p-5 flex-1">
