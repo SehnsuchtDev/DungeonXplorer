@@ -2,11 +2,7 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Page Administrateur </title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="public/script/tailwind.config.js"></script>
+    <?php include(__DIR__ . '/shared/head.php'); ?>
 </head>
 
 <body class="bg-[#1a1a1a]">
@@ -24,7 +20,7 @@
             <?php foreach($level as $key => $levelId):?>
 
             <tr class="border border-[#C4975E]">
-                <form action="<?= FULLURLROOTPATH ?>/admin/class/modify/<?=$levelId['le_id']?>" method="post">
+                <form action="<?= FULLURLROOTPATH ?>/admin/level/modify/<?=$levelId['le_id']?>" method="post">
                 <td class="p-10">
                     <div class="flex">
                         <p>Numéro du niveau : </p>
@@ -56,7 +52,7 @@
                     <div class="flex flex-col">
                         <input type="submit" value="Modifier" class="bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] my-1.5">
 
-                        <a href="admin/class/delete" class="bg-[#C4975E] text-center text-white w-36 h-10 rounded hover:bg-[#C49700] my-1.5">
+                        <a href="admin/level/delete" class="bg-[#C4975E] text-center text-white w-36 h-10 rounded hover:bg-[#C49700] my-1.5">
                             Supprimer</a>
                     </div>
                 </td>
