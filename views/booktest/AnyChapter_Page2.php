@@ -44,7 +44,7 @@
                     <p class="content-center">&nbsp; <?= $monster['mana'] ?> </p>
                 </div>
                 <div class="flex m-4">
-                    <img src="<?= FULLURLROOTPATH ?>/public\assets\shield.png" alt="player's shield" width="50" height="50"
+                    <img src="<?= FULLURLROOTPATH ?>/public\assets\initiative_icon.png" alt="player's shield" width="50" height="50"
                         title="player's shield" />
                     <p class="content-center">&nbsp; <?= $monster['initiative'] ?></p>
                 </div>
