@@ -45,7 +45,20 @@ class AdminManager{
         $user->updatePassword($password);
     }
 
+    public function deleteAdventure($userID){
+        $user = User::getUserById($userID);
 
+        $hero = $user->getHero();
+        HeroManager::getInstance()->reset($hero);
+    }
+
+    public function deleteCharacter($userID){
+        $user = User::getUserById($userID);
+
+        HeroManager::getInstance()->deleteHero($userID);
+    }
 
 }
+
+
 
