@@ -71,6 +71,8 @@
 </div>
 <script defer>
 
+    updateStatusBar();
+
 
     let chapterTrun<?= $seed ?> = false;
 

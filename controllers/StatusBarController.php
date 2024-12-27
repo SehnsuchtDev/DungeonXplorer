@@ -1,7 +1,6 @@
-<?php session_start();
+<?php if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
 use dungeonxplorer\account\User;
-use dungeonxplorer\chapter\Chapter;
 use dungeonxplorer\chapter\event\Fight;
 use dungeonxplorer\chapter\event\test\MCQTest;
 use dungeonxplorer\hero\class\magic\MagicHero;
@@ -13,75 +12,41 @@ use dungeonxplorer\item\Armor;
 use dungeonxplorer\item\ConsumableItem;
 use dungeonxplorer\item\HandItem;
 
-class ChapterController{
+class StatusBarController{
 
     private User $user;
     private Hero $hero;
 
 
     public function __construct(){
+        if(!array_key_exists('user', $_SESSION) && !isset($_SESSION['user'])){
+            return;
+        }
         $this->user = $_SESSION['user'];
-        if(!isset($this->user)){
-            header('Location: '.FULLURLROOTPATH.'/error403');
-            exit();
-        }
         $this->hero = $this->user->getHero();
-        if(!isset($this->hero)){
-            header('Location: '.FULLURLROOTPATH.'/error403');
-            exit();
-        }
+    }
+
+    public function showEmptyDiv(){
+        echo '<div id="hero-data"></div>';
+        return;
     }
 
     public function show(){
-        $this->showChapter();
-    }
-
-    public function showChapterP1(){
-        $chapterId = $this->getChapter()->getChapterId();
-        $content = $this->getChapter()->getContent();
-        require dirname(__DIR__) . '/views/booktest/AnyChapter_Page1.php'; 
-    }
-
-    public function showChapterP2(){
-
-        $seed = rand();
-        
-        $image = $this->getChapter()->getImage();
-
-        //CHAPITRE
-        $nextChapterId = [];
-        foreach ($this->getChapter()->getNextChapter() as $nextChapter) {
-            $nextChapterId[] = $nextChapter->getChapterId();
+        if(!isset($this->hero)){
+            $this->showEmptyDiv();
+            return;
         }
+        $hero['pv'] = $this->hero->getPv();
+        $hero['strength'] = $this->hero->getStrength();
+        $hero['initiative'] = $this->hero->getInitiative();
+        if($this->hero instanceof MagicHero)
+            $hero['mana'] = $this->hero->getMana();
+        $hero['armor'] = $this->hero->getArmorAmount();
+        $hero['xp'] = $this->hero->getXp();
+        $hero['level'] = $this->hero->getCurrentLevel();
 
-        //MCQ TEST
-        $mcq = $this->getChapter()->getChapterEvent() instanceof MCQTest;
-        if ($mcq) {
-            $mcqQuestion = $this->getChapter()->getChapterEvent()->getQuestions();
-            $mcqChoices = $this->getChapter()->getChapterEvent()->getChoices();
-        }
 
-        //COMBAT
-        $fight = $this->getChapter()->getChapterEvent() instanceof Fight;
-        if ($fight){
-            $monsterModel = $this->getChapter()->getChapterEvent()->getMonster();
-            $monster = array();
-            $monster['name'] = $monsterModel->getName();
-            $monster['pv'] = $monsterModel->getPv();
-            $monster['initiative'] = $monsterModel->getInitiative();
-            $monster['strength'] = $monsterModel->getStrength();
-            $monster['mana'] = $monsterModel->getMana();
-            $monster['xp'] = $monsterModel->getXp();
-
-            $fightStatus = $this->getChapter()->getChapterEvent()->getPlayerTurn($this->hero) ? 'Attaquer le monstre' : 'Suite du combat';
-        }
-
-        //EVENT DONE
-        $eventIsDone = true;
-        if($this->getChapter()->getChapterEvent() != null)
-            $eventIsDone = $this->getChapter()->getChapterEvent()->isDone();
-        require dirname(__DIR__) . '/views/booktest/AnyChapter_Page2.php'; 
-
+        require dirname(__DIR__). DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR .'shared'. DIRECTORY_SEPARATOR. 'hero_data.php';
     }
 
     public function showChapter(bool $mcqAnswer = null) : void
@@ -169,54 +134,5 @@ class ChapterController{
         require dirname(__DIR__). DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'devview' . DIRECTORY_SEPARATOR . 'chapter.php';
     }
 
-    public function MCQTestAnswer() : void{
-        $mcq = $this->getChapter()->getChapterEvent();
-        if($mcq instanceof MCQTest){
-            if((!array_key_exists('choice',$_POST)) || $mcq->isDone()){
-                $this->showChapterP2();
-                return;
-            }
-            $choice = $_POST['choice'];
-            $mcqAnswer = $mcq->isCorrect(($choice+1),$this->hero);
-            if(!$mcqAnswer){
-                require dirname(__DIR__) . '/views/booktest/Death_Load.php';
-                return;
-            }
-        }
-
-        $this->showChapterP2();
-    }
-
-    public function fight() : void{
-        $fight = $this->getChapter()->getChapterEvent();
-        if($fight instanceof Fight){
-            if($fight->fight($this->hero)){
-                require dirname(__DIR__) . '/views/booktest/Death_Load.php';
-                return;
-            }
-        }
-        $this->showChapterP2();
-    }
-
-
-    public function changeChapter(int $chapterId) : void{
-        $this->hero->changeChapter($chapterId); 
-    }
-
-    private function getChapter(): Chapter{
-        return $this->hero->getCurrentChapter();
-    }
-
-    public function showDeathP1() : void{
-        require dirname(__DIR__) . '/views/booktest/Death_Page1.php';
-    }
-
-    public function showDeathP2() : void{
-        $seed = rand();
-        require dirname(__DIR__) . '/views/booktest/Death_Page2.php';
-    }
 
 }
-
-
-

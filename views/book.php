@@ -1,3 +1,6 @@
+<?php
+    require dirname(__DIR__,) . DIRECTORY_SEPARATOR . 'autoload.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -16,7 +19,9 @@
         <div id="book" class="pointer-events-none z-0 mb-4 mt-4">
             <?php include(__DIR__ . "/booktest/StoryMode_Load.php"); ?>
         </div>
-        <?php include(__DIR__ . "/shared/hero_data.php"); ?>
+        <?php //include(__DIR__ . "/shared/hero_data.php"); ?>
+        <?php (new StatusBarController())->show(); ?>
+        <!--<object id="statusbar" title="Barre d'info sur le hero" data="<?= FULLURLROOTPATH ?>/book/statusbar" type="text/html" class="w-full h-[8vh]"></object>-->
     </div>
 
     <?php include( __DIR__ . '/shared/footer.php'); ?>

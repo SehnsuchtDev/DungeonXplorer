@@ -34,6 +34,8 @@ $router->get('/book/page/chapter/fight','ChapterController@fight');
 //$router->post('/chapter/mcqtest','ChapterController@MCQTestAnswer');
 $router->post('book/page/chapter/mcqtest','ChapterController@MCQTestAnswer');
 
+$router->get('book/statusbar','StatusBarController@show');
+
 
 
 $router->get('/inventory/use/(\d+)','InventoryController@useItem');
