@@ -54,7 +54,8 @@
 
         <!-- <div class="ml-4  flex flex-row-reverse justify-evenly">-->
 
-        <div class="flex flex-row items-center mr-10">
+        <div class="flex flex-row items-center mr-10 
+            max-[420px]:mr-2">
             <img src="../public/assets/Sword01.jpg" alt="Arme primaire" width="50 vw" class="mr-[1vw] border border-[#C4975E] hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] rounded
                         max-[615px]:rotate-90
                         max-[560px]:w-[8vw]" id="primary-weapon">

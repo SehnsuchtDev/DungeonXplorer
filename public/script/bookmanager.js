@@ -14,7 +14,7 @@ let settings = {
 function resizeListener() {
     let window_width;
     let window_height;
-    if (window.innerWidth <= 419){
+    if (window.innerWidth <= 420){
         window_width = 180;        
         window_height = 365;
     }
