@@ -81,9 +81,6 @@ window.bookmanager.replacePage = async (url) => {
     }
 }
 
-window.bookmanager.displayHeroData = () => {
-    document.getElementById("hero-data").classList.remove("hidden");
-}
 
 window.bookmanager.flipNext = () => pageFlip.flipNext();
 
