@@ -104,13 +104,6 @@ abstract class Hero{
         $this->secondaryWeapon = $heroSecondaryWeapon;
     }
 
-    public function setSpellList(array $heroSpellList){
-        $this->spellList = $heroSpellList;
-    }
-
-    public function setXp($heroXP){
-        $this->xp = $heroXP;
-    }
 
     public function setCurrentLevel($heroCurrentLevel){
         $this->currentLevel = $heroCurrentLevel;
@@ -132,27 +125,6 @@ abstract class Hero{
     public function getCurrentChapter(): Chapter
     {
         return $this->currentChapter;
-    }
-
-    public function changeChapter(int $chapterId) : bool{
-        if($this->getCurrentChapter()->getChapterId() == $chapterId)
-            return false;
-        if($this->getCurrentChapter()->getChapterEvent() != null && !$this->getCurrentChapter()->getChapterEvent()->isDone())
-            return false;
-        if($chapterId <= 1){
-            $this->death();
-            return true;
-        }
-        $this->getCurrentChapter()->getNextChapter();
-        foreach ($this->getCurrentChapter()->getNextChapter() as $nextChapter) {
-            if($nextChapter->getChapterId() == $chapterId){
-                if($nextChapter->getTreasures() != null)
-                    $nextChapter->getTreasures()->give($this);
-                $this->setCurrentChapter($nextChapter);
-                return true;
-            }
-        }
-        return false;
     }
 
     public function getPv(): int
@@ -189,26 +161,11 @@ abstract class Hero{
         $this->purse += $quantity;
     }
 
-    public function death(){
-        //TODO: Restore default heros values
-        throw new \Exception("=========== Todo dead function in Hero.php =============");
-    }
-
     public function getPurse(): int
     {
         return $this->purse;
     }
 
-
-    public function setSpellList(array $heroSpellList){
-        $this->spellList = $heroSpellList;
-    }
-
-
-    public function getCurrentChapter(): Chapter
-    {
-        return $this->currentChapter;
-    }
 
     public function changeChapter(int $chapterId) : bool{
         if($this->getCurrentChapter()->getChapterId() == $chapterId)
@@ -231,42 +188,8 @@ abstract class Hero{
         return false;
     }
 
-    public function getPv(): int
-    {
-        return $this->pv;
-    }
-
-    public function getStrength(): int
-    {
-        return $this->strength;
-    }
-
-    public function getInitiative(): int
-    {
-        return $this->initiative;
-    }
-
-    public function getXp(): int
-    {
-        return $this->xp;
-    }
-
-    public function getInventory(): Inventory
-    {
-        return $this->inventory;
-    }
-
-    public function addPiece(int $quantity){
-        $this->purse += $quantity;
-    }
-
     public function death(){
         HeroManager::getInstance()->reset($this);
-    }
-
-    public function getPurse(): int
-    {
-        return $this->purse;
     }
 
      
