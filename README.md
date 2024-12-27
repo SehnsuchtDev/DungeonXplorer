@@ -26,6 +26,11 @@ L’internaute (joueur) peut :
 ✔️ Consulter sa page de profil
 ✔️ Supprimer son compte
 
+L’administrateur (client) doit pouvoir :  
+✔️ Disposer des mêmes fonctionnalités que le joueur
+✔️ Supprimer les comptes des joueurs
+✔️ Ajouter, supprimer ou modifier des contenus (chapitres, monstres, trésors, images)
+
 ## :mag: Manuel d'utilisation
 
 - placez un fichier .env à la racine, un exemple est disponible
