@@ -34,8 +34,8 @@
         <?php if(isset($errors) && empty($errors)): ?>
             if(window.bookmanager == undefined){
                 document.addEventListener("DOMContentLoaded",async()=>{
-                    await new Promise(r => setTimeout(r, 500));
-                    window.bookmanager.flipNext();
+                    await new Promise(r => setTimeout(r, 300));
+                    window.bookmanager.loadTwoPageAndTurn("<?= FULLURLROOTPATH?>/book/page/hero/p1", "<?= FULLURLROOTPATH?>/book/page/hero/p2");
                 });
             }
             else{
