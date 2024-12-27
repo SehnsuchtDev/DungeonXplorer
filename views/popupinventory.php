@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="bg-[#000000d4] h-screen w-screen  text-[#ADADAD]">
+    <div class="bg-[#000000d4] h-screen w-screen text-[#ADADAD]">
         <div class="bg-[#2E2E2E] inset-0 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-max w-11/12 max-w-3xl p-4 rounded shadow-lg ">
 
             <button id="close" class="bg-[#C4975E] rounded w-8 h-8  absolute -top-4 -right-4">

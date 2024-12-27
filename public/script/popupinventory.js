@@ -19,7 +19,7 @@ popup.addEventListener("load", () => {
     items.forEach(item => {
         item.addEventListener("click", () => {
             let value = item.getAttribute("value");
-            openInvDetails(value);
+            if(value !== null) openInvDetails(value);
         });
     });
 
