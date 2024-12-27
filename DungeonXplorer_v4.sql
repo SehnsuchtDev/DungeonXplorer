@@ -24,7 +24,6 @@ CREATE TABLE `Items` (
                          `it_image` TEXT NOT NULL
 );
 
-
 CREATE TABLE `ItemsClass` (
                               `it_id` INT,
                               `cl_id` INT
@@ -34,8 +33,9 @@ CREATE TABLE `Loot` (
                         `lo_id` INT NOT NULL,
                         `it_id` INT,
                         `lo_effet` varchar(30),
-                        `lo_piece` BOOLEAN,
-                        `lo_quantity` INT
+                        `lo_piece` INT,
+                        `lo_quantity` INT,
+                        `sp_id` INT
 );
 
 CREATE TABLE `Monster` (
@@ -63,9 +63,8 @@ CREATE TABLE `Hero` (
                         `he_armor` INT,
                         `he_primary_weapon` INT,
                         `he_secondary_weapon` INT,
-                        `he_spell_list` TEXT,
                         `he_xp` INT NOT NULL,
-                        `he_current_level` INT DEFAULT 1,
+                        `he_current_level` INT NOT NULL DEFAULT 1,
                         `he_purse` INT DEFAULT 0,
                         `ch_id` INT NOT NULL DEFAULT 1
 );
@@ -188,3 +187,5 @@ ALTER TABLE `Hero` ADD FOREIGN KEY (`he_primary_weapon`) REFERENCES `Items` (`it
 ALTER TABLE `Hero` ADD FOREIGN KEY (`he_secondary_weapon`) REFERENCES `Items` (`it_id`);
 
 ALTER TABLE `Class` ADD FOREIGN KEY (`cl_primary_weapon`) REFERENCES `Items` (`it_id`);
+
+ALTER TABLE `Loot` ADD FOREIGN KEY (`sp_id`) REFERENCES `Spell` (`sp_id`);
