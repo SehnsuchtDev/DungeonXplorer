@@ -26,7 +26,7 @@
 
     <div class="flex flex-row space-w">
 
-        <?php if ($_SESSION["user"]->isTheUserAnAdmin()): ?>
+        <?php if (isset($_SESSION["user"]) && $_SESSION["user"]->isTheUserAnAdmin()): ?>
             <a href="<?= FULLURLROOTPATH ?>/admin"
                class="bg-[#C4975E] my-7 mx-6 place-content-center rounded-lg max-[615px]:invisible max-[615px]:absolute">
                 <p class="font-['Pirata_One'] text-2xl mx-3 text-[#e5e5e5]">Page Administrateur</p>

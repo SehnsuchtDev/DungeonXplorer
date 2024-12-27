@@ -39,7 +39,7 @@ L’internaute (joueur) peut :
 - warrior@gmail.com -> 1234
 - wizard@gmail.com -> 1234
 - thief@gmail.com -> 1234
-- admin@mail.com -> 1234
+- admin@gmail.com -> 1234
 
 ## 🔖 Bibliothèques
 

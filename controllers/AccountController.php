@@ -90,7 +90,7 @@ class AccountController
                 $user->updateUsername($nouveauUsername);
             }
 
-            header("location:" . FULLURLROOTPATH . "/login");
+            header("location:" . FULLURLROOTPATH . "/book");
         } else {
             header("location:" . FULLURLROOTPATH . "/error403");
         }
