@@ -25,6 +25,8 @@
                 <td class="p-4 sm:p-6">
                     <div>
                         <img src="../public/assets/Village01.jpg" alt="image chapitre" class="w-32 sm:w-48 lg:w-64" />
+                        <p>Image : &nbsp;</p>
+            <input type="file" required class="max-h-6 rounded bg-[#3a3a3a]">
                     </div>
                 </td>
         
