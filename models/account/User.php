@@ -14,7 +14,7 @@ class User{
     private $id;
     private string $name = "";
     private string $email = "";
-    private bool $isAdmin = false;  
+    private ?bool $isAdmin = null;
     private ?Hero $hero = null;
 
 
@@ -160,12 +160,22 @@ class User{
 
         $stmt->bindParam(':us_id',$this->id);
         $stmt->bindParam(':us_username',$newUsername);
-        
+
         $stmt->execute();
 
         $this->name = $newUsername;
     }
 
-}
+    public function isTheUserAnAdmin() : bool{
+        if($this->isAdmin === null){
+            $bdd = \Dbconnection::getConnection();
 
-?>
+            $stmt = $bdd->prepare("SELECT count(*) as nb FROM Administrateur WHERE us_id = ?;");
+            $stmt->execute([$this->id]);
+
+            $this->isAdmin = $stmt->fetch()['nb'] == 1;
+        }
+        return $this->isAdmin;
+    }
+
+}
