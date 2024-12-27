@@ -84,8 +84,8 @@ CREATE TABLE `Chapter` (
                            `ch_id` INT PRIMARY KEY AUTO_INCREMENT,
                            `ch_content` TEXT NOT NULL,
                            `ch_image` VARCHAR(255),
-                           `lo_id` int NOT NULL,
-                           `ce_id` int NOT NULL
+                           `lo_id` int,
+                           `ce_id` int
 );
 
 CREATE TABLE `Inventory` (
