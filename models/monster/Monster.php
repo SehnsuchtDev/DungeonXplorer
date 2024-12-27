@@ -62,6 +62,7 @@ class Monster{
 
 
     public function attack(Hero &$hero): bool{
+        $isDead = false;
         $attaque = rand(1,6) + $this->getStrength() + $this->getMana();
         $defense = rand(1,6) + (int)($hero->getStrength()/2);
         if($hero instanceof Warrior){
@@ -76,8 +77,8 @@ class Monster{
         }
         if(($hero->getPV() - $degats) <= 0 ){
             $hero->death();
+            $isDead = true;
         }
-        $isDead = ($hero->getPV() - $degats) <= 0;
         $hero->setPV($hero->getPV() - $degats);
         return $isDead;
     }
