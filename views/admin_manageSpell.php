@@ -2,11 +2,7 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Page Administrateur </title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="public/script/tailwind.config.js"></script>
+    <?php include(__DIR__ . '/shared/head.php'); ?>
 </head>
 
 <body class="bg-[#1a1a1a]">
@@ -41,7 +37,7 @@
                         <td class="p-7 text-right text-lg flex-col">
                             <div class="flex">
                                 <input type="submit" value="Modifier" class="bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] my-1.5">
-                                <a href="<?= FULLURLROOTPATH ?>/admin/spell/delete/<?=$spell["sp_id"]?>" class="bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] ml-2 my-1.5">
+                                <a href="<?= FULLURLROOTPATH ?>/admin/spell/delete/<?=$spell["sp_id"]?>" class="text-center content-center bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] ml-2 my-1.5">
                                     Supprimer</a>
                             </div>
                         </td>
@@ -49,26 +45,6 @@
                 </tr>
             <?php endforeach ?>
         </table>
-    </div>
-
-    <div
-        class="max-h-[400px] bg-[#2e2e2e] rounded shadow m-6 p-6 px-16 text-xl text-[#E5E5E5] font-['Roboto'] place-self-center border border-[#C4975E]">
-        <div class="flex">
-            <p>Nom : &nbsp;</p>
-            <input name="nom" type="text" placeholder="nom du sort" class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Coût en mana : &nbsp;</p>
-            <input name="coutMana" type="number" value="0" class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Dégâts : &nbsp;</p>
-            <input name="degat" type="number" value="0" class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-        <div class="text-center">
-            <a href="" class="bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] ml-2 mt-5">
-                Ajouter</a>
-        </div>
     </div>
 
 
