@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 
-    <div id="chapDiv" class="bg-[#F6F0E8] h-full w-full filter drop-shadow-lg shadow-inner">
+    <div id="chapDiv" class="pagediv bg-[#F6F0E8] h-full w-full filter drop-shadow-lg shadow-inner">
 
         <div class="p-6 font-['Pirata_One'] justify-items-center text-center">
         
@@ -19,7 +19,7 @@
                 <br>
                 <p class="text-2xl font-bold"><?=$mcqQuestion?></p>
                 <br>
-                <form id="mcqTest" class="text-left" method="post" action="<?=constant('FULLURLROOTPATH')?>/book/page/chapter/mcqtest">
+                <form id="mcqTest<?=$seed?>" class="text-left" method="post" action="<?=constant('FULLURLROOTPATH')?>/book/page/chapter/mcqtest">
                     <?php foreach ($mcqChoices as $key => $choice):?>
                         <input class="pointer-events-auto" type="radio" name="choice" value="<?=$key?>"><?=$choice?></input><br>
                     <?php endforeach;?>
@@ -51,13 +51,13 @@
 
                     <!-- AVANT COMBAT -->
                     <div class="bg-[#C4975E] py-3 px-6 m-3 text-2xl rounded max-w-xs mx-auto pointer-events-auto cursor-pointer">
-                        <a class="pageButton" href="<?=constant('FULLURLROOTPATH')?>/book/page/chapter/fight"><button <?= $eventIsDone ? 'disabled' : '' ?> ><?=$fightStatus?></button></a>
+                        <a class="pageButton<?=$seed?>" href="<?=constant('FULLURLROOTPATH')?>/book/page/chapter/fight"><button <?= $eventIsDone ? 'disabled' : '' ?> ><?=$fightStatus?></button></a>
                     </div>
             <?php endif;?>
             <br>
 
             <?php foreach ($nextChapterId as $id):?>
-            <a class="btn-next" href="<?=constant('FULLURLROOTPATH'). '/book/page/chapter/changeChapter/'.$id?>">
+            <a class="btn-next<?=$seed?>" href="<?=constant('FULLURLROOTPATH'). '/book/page/chapter/changeChapter/'.$id?>">
                 <button class="z-10 pointer-events-auto" <?= $eventIsDone ? '' : 'disabled' ?>>Allez au chapitre <?=$id?></button>
             </a>
             <?php endforeach;?>
@@ -67,27 +67,32 @@
     </div>
 
     <script defer>
+    let chapterTrun<?=$seed?> = false;
 
-    for(let e of document.querySelectorAll(".pageButton")){
+    for(let e of document.querySelectorAll(".pageButton<?=$seed?>")){
         e.addEventListener("click",(event)=>{
             event.preventDefault();
-            window.bookmanager.refreshDivWithGetMethod(e.href,"chapDiv>");
+            window.bookmanager.refreshDivWithGetMethod(e.href,"chapDiv");
         })
     }
 
-    for(let a of document.querySelectorAll(".btn-next")){
+    for(let a of document.querySelectorAll(".btn-next<?=$seed?>")){
         a.addEventListener("click",(event)=>{
             event.preventDefault();
+            if(chapterTrun<?=$seed?>) return;
+            chapterTrun<?=$seed?> = true;
             fetch(a.href).then(()=>{
                 window.bookmanager.loadTwoPageAndTurn("<?=FULLURLROOTPATH?>/book/page/chapter/p1", "<?=FULLURLROOTPATH?>/book/page/chapter/p2");
             })
         })
     }
 
-    document.getElementById("mcqTest").addEventListener("submit",(event)=>{
+    <?php if($mcq):?>
+    document.getElementById("mcqTest<?=$seed?>").addEventListener("submit",(event)=>{
         event.preventDefault();
         const formData = new FormData(event.target);
         bookmanager.refreshDivWithPostMethod(event.target.action, formData,"chapDiv");
     });
+    <?php endif;?>
 
     </script>

@@ -1,6 +1,6 @@
-<div id="divInscription" class="bookcover text-[#FFFFFF] place-self-center font-['Pirata_One'] w-full h-full">
+<div id="divInscription" class="pagediv bookcover text-[#FFFFFF] place-self-center font-['Pirata_One'] w-full h-full">
     <h1 class="text-center text-4xl p-16"> Inscription </h1>
-    <form id="formulaire-inscription" method="post" action="<?= FULLURLROOTPATH ?>/book/page/signup">
+    <form id="formulaire-inscription<?=$seed?>" method="post" action="<?= FULLURLROOTPATH ?>/book/page/signup">
         <span class="flex justify-between items-center p-4 max-[600px]:flex-col">
             <label class="px-4 text-[2.5vh] w-[10vw]">Pseudo:</label>
             <input type="text" name="pseudo" placeholder="Veuillez rentrer votre pseudo"
@@ -20,11 +20,11 @@
         </span>
     
     <span class="flex flex-col items-center space-y-4 mt-16">
-        <input id="register" type="submit" value="S'Inscrire" class=" bg-[#2E2E2E] p-4 w-48  rounded pointer-events-auto">
+        <input type="submit" value="S'Inscrire" class=" bg-[#2E2E2E] p-4 w-48  rounded pointer-events-auto">
     </input>
         
         <p class="text-[2.2vh] h-1"> ou </p>
-        <button id="connect" type="button"
+        <button id="connect<?=$seed?>" type="button"
             class=" bg-[#2E2E2E] p-2 w-32 m-100 text-[2.2vh] rounded pointer-events-auto"> Se connecter
         </button> 
     </span>
@@ -45,7 +45,7 @@
                 }
                 
                 <?php elseif(isset($errors)): ?>
-                    let str = "";
+                    str = "";
                     <?php foreach($errors as $e): ?>
                         str += "<?=$e?>\n";
                     <?php endforeach ?>
@@ -54,14 +54,13 @@
                 
     
     
-    document.getElementById("formulaire-inscription").addEventListener("submit",(event)=>{
+    document.getElementById("formulaire-inscription<?=$seed?>").addEventListener("submit",(event)=>{
         event.preventDefault();
         const formData = new FormData(event.target);
         bookmanager.refreshDivWithPostMethod(event.target.action, formData,"divInscription");
     });
 
-    btnConnect = document.getElementById("connect");
-    btnConnect.addEventListener("click", (event) => {
+    document.getElementById("connect<?=$seed?>").addEventListener("click", (event) => {
         window.bookmanager.replacePage("book/page/login");
     });
 </script>

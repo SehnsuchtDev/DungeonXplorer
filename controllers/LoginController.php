@@ -8,6 +8,8 @@ class LoginController {
 
 
     public function show(): void{
+        $seed = rand();
+
         if(isset($_SESSION['user'])){
             $errors = [];
         }
@@ -15,6 +17,8 @@ class LoginController {
     }
 
     public function login() : void{
+
+        $seed = rand();
 
         $errors = [];
 

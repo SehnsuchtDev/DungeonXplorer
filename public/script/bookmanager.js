@@ -18,8 +18,16 @@ pageFlip.loadFromHTML(htmlParentElement.querySelectorAll("div"));
 
 window.bookmanager.loadPage = async (url) => {
     const newBookPage = document.createElement("div");
+    const html = await (await (fetch(url))).text();
 
-    newBookPage.innerHTML = await (await (fetch(url))).text();
+    const parser = new DOMParser();
+    const dom = parser.parseFromString(html, "text/html");
+    const domdiv = dom.querySelectorAll(".pagediv")[0];
+    const div = document.getElementById(domdiv.id);
+    if(div) div.id="";
+
+
+    newBookPage.innerHTML = html;
 
     const bookPages = Array.from(pageFlip.getPageCollection().pagesElement);
     bookPages.push(newBookPage);
@@ -86,30 +94,7 @@ window.bookmanager.refreshDivWithPostMethod = async(lien,formData,elementid) => 
             method: "POST",
             body: formData,
         });
-        
-        if (response.ok) {
-            const html = await response.text();
-            
-            const div = document.getElementById(elementid);
-            div.innerHTML="";
-
-            const parser = new DOMParser(),
-            dom = parser.parseFromString(html, "text/html");
-            for(let child of dom.getElementById(elementid).children){
-                div.appendChild(child.cloneNode(true))
-            }
-
-            for (let script of dom.querySelectorAll("script")) {
-                const newScript = document.createElement("script");
-                if (script.src)
-                    newScript.src = script.src;
-                else
-                    newScript.textContent = script.textContent;
-                document.head.appendChild(newScript);
-                document.head.removeChild(newScript);
-            }
-
-        }
+        await refreshPageWithResponse(response,elementid);
     } catch(e){
 
     }
@@ -120,31 +105,44 @@ window.bookmanager.refreshDivWithPostMethod = async(lien,formData,elementid) => 
 window.bookmanager.refreshDivWithGetMethod = async(lien,elementid) => {
     try {
         const response = await fetch(lien);
-        
-        if (response.ok) {
-            const html = await response.text();
-            
-            const div = document.getElementById(elementid);
-            div.innerHTML="";
+        await refreshPageWithResponse(response,elementid);
 
-            const parser = new DOMParser(),
-            dom = parser.parseFromString(html, "text/html");
-            for(let child of dom.getElementById(elementid).children){
-                div.appendChild(child.cloneNode(true))
-            }
-
-            for (let script of dom.querySelectorAll("script")) {
-                const newScript = document.createElement("script");
-                if (script.src)
-                    newScript.src = script.src;
-                else
-                    newScript.textContent = script.textContent;
-                document.head.appendChild(newScript);
-                document.head.removeChild(newScript);
-            }
-
-        }
     } catch(e){
+
+    }
+}
+
+async function refreshPageWithResponse(response,elementid){
+
+
+    if (response.ok) {
+
+
+        const html = await response.text();
+
+
+        const div = document.getElementById(elementid);
+        div.innerHTML="";
+
+
+
+
+        const parser = new DOMParser();
+        const dom = parser.parseFromString(html, "text/html");
+        const domdiv = dom.querySelectorAll(".pagediv")[0];
+        for(let child of domdiv.children){
+            div.appendChild(child.cloneNode(true))
+        }
+
+        for (let script of dom.querySelectorAll("script")) {
+            const newScript = document.createElement("script");
+            if (script.src)
+                newScript.src = script.src;
+            else
+                newScript.textContent = script.textContent;
+            document.head.appendChild(newScript);
+            document.head.removeChild(newScript);
+        }
 
     }
 }
