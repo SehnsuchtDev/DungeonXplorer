@@ -27,4 +27,14 @@ class SpellManager{
         return $stmt->fetchAll();
     }
 
+    public function getSpell(int $spellId) : Spell {
+        $bdd = \Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("SELECT sp_name as name,sp_manacost as manaCost,sp_damage as damage FROM Spell WHERE sp_id = ?;");
+        $stmt->execute([$spellId]);
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, Spell::class);
+
+        return $stmt->fetch();
+    }
+
 }

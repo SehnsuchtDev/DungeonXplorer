@@ -6,6 +6,7 @@ const secondary = document.getElementById("secondary-weapon");
 popup.style.visibility = "hidden";
 
 popup.addEventListener("load", () => {
+    window.book.updateStatusBar();
 
     const close = popup.contentDocument.getElementById("close");
     close.addEventListener("click", () => {
@@ -68,10 +69,12 @@ function hiddenInventory() {
 }
 
 function displayInventory() {
+    popup.setAttribute("data", "./book/inventory");
     popup.style.visibility = "visible";
 }
 
 function openItemDetails(id,backButton) {
+    window.book.updateStatusBar();
     popup.setAttribute("data", "./book/inventory/details/" + id);
     if (backButton == true) {
         popup.addEventListener("load", () => {
@@ -83,5 +86,6 @@ function openItemDetails(id,backButton) {
 }
 
 function closeItemsDetails() {
+    window.book.updateStatusBar();
     popup.setAttribute("data", "./book/inventory");
 }

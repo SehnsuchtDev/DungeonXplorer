@@ -24,8 +24,8 @@ class SignupController {
 
         $username = $_POST['pseudo'] ?? '';
         $email = $_POST['mail'] ?? '';
-        $password = $_POST['motDePasse'] ?? '';
-        //$password_confirm = $_POST['confirm_password'] ?? '';
+        $password = $_POST['password'] ?? '';
+        $password_confirm = $_POST['passwordconfirm'] ?? '';
 
         if(empty($username))
             $errors[] = "Vous devez saisir un pseudo !";
@@ -36,10 +36,10 @@ class SignupController {
         if(empty($password))
             $errors[] = "Vous devez saisir un mot de passe !";
 
-        // if(empty($password_confirm))
-        //     $errors[] = "Vous devez confirmer votre mot de passe !";
-        // else if($password !== $password_confirm)
-        //     $errors[] = "Les mots de passe ne sont pas identique !";
+        if(empty($password_confirm))
+             $errors[] = "Vous devez confirmer votre mot de passe !";
+        else if($password !== $password_confirm)
+             $errors[] = "Les mots de passe ne sont pas identique !";
 
 
         if(empty($errors)){

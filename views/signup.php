@@ -16,13 +16,13 @@
 
         <span class="flex justify-between items-center p-2 flex-col">
             <label class="px-4 text-[2.2vh]">Mot de passe:</label>
-            <input type="password" name="motDePasse" placeholder="Veuillez rentrer votre mot de passe"
+            <input type="password" name="password" placeholder="Veuillez rentrer votre mot de passe"
                 class="text-[2.2vh] border-2 w-[25vw] min-w-64 max-w-80 max-h-7 bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
         </span>
 
         <span class="flex justify-between items-center p-2 flex-col">
             <label class="px-4 text-[2.2vh]">Confirmer le mot de passe:</label>
-            <input type="password" name="motDePasse" placeholder="Veuillez confirmer votre mot de passe"
+            <input type="password" name="passwordconfirm" placeholder="Veuillez confirmer votre mot de passe"
                 class="text-[2.2vh] border-2 w-[25vw] min-w-64 max-w-80 max-h-7 bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
         </span>
 
