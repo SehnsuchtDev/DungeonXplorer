@@ -17,9 +17,9 @@
 
 
     <div
-        class="overflow-y-auto max-h-[400px] bg-[#2e2e2e] rounded shadow m-6 text-xl text-[#E5E5E5] font-['Roboto'] place-self-center">
+        class="overflow-y-auto max-h-[400px] bg-[#2e2e2e] rounded shadow m-6 text-xl text-[#E5E5E5] font-['Roboto'] place-self-center ">
         <table class="w-full">
-           <!-- include ici pour tous les comptes -->
+           <!-- include ici pour tous les chapitres -->
            <?php include "./contentManagementFrame.php"; ?>
             <?php include "./contentManagementFrame.php"; ?>
             <?php include "./contentManagementFrame.php"; ?>

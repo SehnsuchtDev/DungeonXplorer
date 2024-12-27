@@ -18,13 +18,13 @@
 
         <div class="flex flex-col">
             <p>Choix: &nbsp;</p>
-             <div class="flex flex-col">
-                <div class="flex flex-row">
-                    <input type="text" value="Si vous survivez au loup" class=" rounded bg-[#2e2e2e] ml-10">
-                    <input type="text" value="Chapitre 7" class=" rounded bg-[#2e2e2e] indent-10">
-                </div>
+             <div class="flex flex-col lg:flex-row">
+                <input type="text" value="Si vous survivez au loup" class="rounded bg-[#2e2e2e] ml-10">
+                <input type="text" value="Chapitre 7" class="rounded bg-[#2e2e2e] indent-10">
+            </div>
+
                 
-                <div class="flex flex-row">
+                <div class="flex flex-col lg:flex-row">
                     <input type="text" value="Si le loup vous terrasse" class=" rounded bg-[#2e2e2e] ml-10">
                     <input type="text" value="Chapitre 10" class=" rounded bg-[#2e2e2e] mx-10">
                 </div>
