@@ -29,7 +29,9 @@
                     </td>
                     <td>
                         <p class="text-lg font-bold text-[#E5E5E5]"><?=$item['name']?></p>
-                        <p class="text-lg font-bold text-[#C4975E]">x<?=$item['quantity']?></p>
+                        <?php if(array_key_exists('quantity',$item)): ?>
+                            <p class="text-lg font-bold text-[#C4975E]">x<?=$item['quantity']?></p>
+                        <?php endif;?>
                     </td>
                 </tr>
 
@@ -46,17 +48,19 @@
                 <tr>
                     <td>
                         <div class=" text-[#E5E5E5]  px-3 py-1">
-                            <?php if ($item['usable']) :?>
+                            <?php if (array_key_exists('usable',$item) && $item['usable']) :?>
                                 <a href="<?=FULLURLROOTPATH?>/inventory/use/<?=$item['id']?>" class="inv-btn bg-[#4A7A66] hover:bg-[#3B6253] rounded p-1">Utiliser</a>
-                            <?php elseif ($item['handitem']) :?>
+                            <?php elseif (array_key_exists('handitem',$item) && $item['handitem']) :?>
                                 <a href="<?=FULLURLROOTPATH?>/inventory/equip/<?=$item['id']?>/primaryweapon" class="inv-btn bg-[#4A7A66] hover:bg-[#3B6253] rounded p-1">Equiper en Arme principale</a>
                                 <br><br>
                                 <a href="<?=FULLURLROOTPATH?>/inventory/equip/<?=$item['id']?>/secondaryweapon" class="inv-btn bg-[#4A7A66] hover:bg-[#3B6253] rounded p-1">Equiper en Arme secondaire</a>
                                 <br><br>
-                            <?php elseif ($item['armor']) :?>
+                            <?php elseif (array_key_exists('armor',$item) && $item['armor']) :?>
                                 <a href="<?=FULLURLROOTPATH?>/inventory/equip/<?=$item['id']?>/armor" class="inv-btn bg-[#4A7A66] hover:bg-[#3B6253] rounded p-1 ">Equiper</a>
                             <?php endif;?>
-                            <a class="inv-btn bg-[#8B1E1E] hover:bg-[#6E1818] rounded p-1" href="<?=FULLURLROOTPATH?>/inventory/drop/<?=$item['id']?>">Jetter</a>
+                            <?php if(isset($inventory) && $inventory): ?>
+                                <a class="inv-btn bg-[#8B1E1E] hover:bg-[#6E1818] rounded p-1" href="<?=FULLURLROOTPATH?>/inventory/drop/<?=$item['id']?>">Jetter</a>
+                            <?php endif;?>
                         </div>
                     </td>
                 </tr>

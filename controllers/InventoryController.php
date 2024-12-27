@@ -8,6 +8,7 @@ use dungeonxplorer\item\Armor;
 use dungeonxplorer\item\ConsumableItem;
 use dungeonxplorer\item\HandItem;
 use dungeonxplorer\item\Inventory;
+use dungeonxplorer\managers\ItemManager;
 
 class InventoryController{
 
@@ -29,11 +30,6 @@ class InventoryController{
         $this->inventory = $this->hero->getInventory();
     }
 
-    private function redirect(): void{
-        header('Location: '.FULLURLROOTPATH.'/chapter');
-        exit();
-    }
-
     public function show(){
         $items = array();
         $weight = $this->inventory->calculateWeight();
@@ -45,7 +41,8 @@ class InventoryController{
         require __DIR__ . '/../views/popupinventory.php';
     }
 
-    public function showDetails(int $id){
+    public function showInventroyDetails(int $id){
+        $inventory = true;
         $itemModel = $this->inventory->getItems()[$id];
         $item = ['id' => $itemModel['item']->getId(),
                 'name' => $itemModel['item']->getName(),
@@ -59,6 +56,19 @@ class InventoryController{
         require __DIR__ . '/../views/popupitemsinventory.php';
     }
 
+    public function showItemDetails(int $id){
+        $itemModel = ItemManager::getInstance()->getItem($id);
+        if($itemModel == null){
+            throw new \InvalidArgumentException("Item not found");
+        }
+        $item = ['id' => $itemModel->getId(),
+            'name' => $itemModel->getName(),
+            'desc' => $itemModel->getDescription(),
+            'image' => $itemModel->getImage()
+        ];
+        require __DIR__ . '/../views/popupitemsinventory.php';
+    }
+
     public function useItem(int $id): void{
         try{
             $this->inventory->useItemWithId($id,$this->hero);
@@ -66,22 +76,18 @@ class InventoryController{
             //Skip: effect is not applied
             $this->inventory->removeItemWithId($id,1);
         }
-        $this->redirect();
     }
 
     public function equipPrimaryWeapon(int $id): void{
         $this->inventory->equipPrimaryItemWithId($id,$this->hero);
-        $this->redirect();
     }
 
     public function equipSecondaryWeapon(int $id): void{
         $this->inventory->equipSecondaryItemWithId($id,$this->hero);
-        $this->redirect();
     }
 
     public function dropItem(int $id): void{
         $this->inventory->removeItemWithId($id,1);
-        $this->redirect();
     }
 
     public function equipArmor(int $id): void{
@@ -89,6 +95,5 @@ class InventoryController{
             throw new \InvalidArgumentException("Only Warrior can equip armor");
         }
         $this->inventory->equipArmorWithId($id,$this->hero);
-        $this->redirect();
     }
 }

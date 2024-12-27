@@ -45,14 +45,19 @@ class StatusBarController{
         $hero['xp'] = $this->hero->getXp();
         $hero['level'] = $this->hero->getCurrentLevel();
 
-        if($this->hero->getPrimaryWeapon() != null)
+        if($this->hero->getPrimaryWeapon() != null) {
             $primaryWeaponImage = $this->hero->getPrimaryWeapon()->getImage();
+            $primaryWeaponId = $this->hero->getPrimaryWeapon()->getId();
+        }
 
-        if($this->hero->getSecondaryWeapon() != null)
+        if($this->hero->getSecondaryWeapon() != null) {
             $secondaryWeaponImage = $this->hero->getSecondaryWeapon()->getImage();
+            $secondaryWeaponId = $this->hero->getSecondaryWeapon()->getId();
+        }
 
         if($this->hero instanceof Warrior && $this->hero->getArmor() !== null){
             $armorImage = $this->hero->getArmor()->getImage();
+            $armorId = $this->hero->getArmor()->getId();
         }
 
 

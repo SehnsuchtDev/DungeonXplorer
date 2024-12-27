@@ -37,7 +37,8 @@ $router->post('book/page/chapter/mcqtest','ChapterController@MCQTestAnswer');
 $router->get('book/statusbar','StatusBarController@show');
 
 $router->get("book/inventory", "InventoryController@show");
-$router->get("book/inventory/details/(\d+)", "InventoryController@showDetails");
+$router->get("book/inventory/details/(\d+)", "InventoryController@showInventroyDetails");
+$router->get("book/item/details/(\d+)", "InventoryController@showItemDetails");
 
 
 $router->get('/inventory/use/(\d+)','InventoryController@useItem');

@@ -62,15 +62,15 @@
                 <div class="flex flex-row items-center">
                     <?php if (isset($primaryWeaponImage)) :?>
                     <img src="<?= FULLURLROOTPATH ?>/public/assets/<?=$primaryWeaponImage?>" alt="Arme primaire" width="50 vw" class="mr-[1vw] border border-[#C4975E] hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] rounded
-                            max-[615px]:rotate-90" id="primary-weapon">
+                            max-[615px]:rotate-90" id="primary-weapon" itemId="<?=$primaryWeaponId?>">
                     <?php endif;?>
                     <?php if (isset($secondaryWeaponImage)) :?>
                     <img src="<?= FULLURLROOTPATH ?>/public/assets/<?=$secondaryWeaponImage?>" alt="Arme secondaire" width="30 vw" class="mr-[1vw] border border-[#C4975E] hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] rounded
-                            max-[615px]:rotate-90" id="secondary-weapon">
+                            max-[615px]:rotate-90" id="secondary-weapon" itemId="<?=$secondaryWeaponId?>">
                     <?php endif;?>
                     <?php if (isset($armorImage)) :?>
                     <img src="<?= FULLURLROOTPATH ?>/public/assets/<?=$armorImage?>" alt="Armure équipée" width="30 vw" class="border border-[#C4975E] hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] rounded
-                            max-[615px]:rotate-90" id="equipped-armor">
+                            max-[615px]:rotate-90" id="equipped-armor" itemId="<?=$armorId?>">
                     <?php endif;?>
                 </div>
 
@@ -95,6 +95,7 @@
         let button = document.getElementById("inventory-button");
         let primary = document.getElementById("primary-weapon");
         let secondary = document.getElementById("secondary-weapon");
+        let armor = document.getElementById("equipped-armor");
 
         button.id=""
 
@@ -106,16 +107,24 @@
         if(primary){
             primary.id="";
             primary.addEventListener("click", () => {
-                openItemDetails(false);
-                displayInventory();
+                openItemDetails(primary.getAttribute("itemId"));
+                displayPopup();
             });
             }
 
         if(secondary) {
             secondary.id = "";
             secondary.addEventListener("click", () => {
-                openItemDetails(false);
-                displayInventory();
+                openItemDetails(secondary.getAttribute("itemId"));
+                displayPopup();
+            });
+        }
+
+        if(armor) {
+            armor.id = "";
+            armor.addEventListener("click", () => {
+                openItemDetails(armor.getAttribute("itemId"));
+                displayPopup();
             });
         }
     }
