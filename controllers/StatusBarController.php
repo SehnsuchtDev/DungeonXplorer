@@ -15,7 +15,7 @@ use dungeonxplorer\item\HandItem;
 class StatusBarController{
 
     private User $user;
-    private Hero $hero;
+    private ?Hero $hero;
 
 
     public function __construct(){
@@ -32,7 +32,7 @@ class StatusBarController{
     }
 
     public function show(){
-        if(!isset($this->hero)){
+        if(!isset($this->hero) && $this->hero == null){
             $this->showEmptyDiv();
             return;
         }
