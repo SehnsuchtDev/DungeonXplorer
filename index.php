@@ -25,11 +25,16 @@ $router->get('/chapter','ChapterController2@showChapter');
 $router->get('/book/page/chapter/p1','ChapterController@showChapterP1');
 $router->get('/book/page/chapter/p2','ChapterController@showChapterP2');
 
+$router->get('/book/page/death/p1','ChapterController@showDeathP1');
+$router->get('/book/page/death/p2','ChapterController@showDeathP2');
+
 $router->get('book/page/chapter/changeChapter/(\d+)','ChapterController@changeChapter');
 //$router->get('/chapter/fight','ChapterController@fight');
 $router->get('/book/page/chapter/fight','ChapterController@fight');
 //$router->post('/chapter/mcqtest','ChapterController@MCQTestAnswer');
 $router->post('book/page/chapter/mcqtest','ChapterController@MCQTestAnswer');
+
+
 
 $router->get('/inventory/use/(\d+)','InventoryController@useItem');
 $router->get('/inventory/equip/(\d+)/primaryweapon','InventoryController@equipPrimaryWeapon');

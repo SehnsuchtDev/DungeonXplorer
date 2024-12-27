@@ -2,6 +2,7 @@
 
 namespace dungeonxplorer\monster;
 
+use dungeonxplorer\hero\class\Warrior;
 use dungeonxplorer\hero\Hero;
 use dungeonxplorer\item\Shield;
 
@@ -60,7 +61,7 @@ class Monster{
     }
 
 
-    public function attack(Hero &$hero): void{
+    public function attack(Hero &$hero): bool{
         $attaque = rand(1,6) + $this->getStrength() + $this->getMana();
         $defense = rand(1,6) + (int)($hero->getStrength()/2);
         if($hero instanceof Warrior){
@@ -76,7 +77,9 @@ class Monster{
         if(($hero->getPV() - $degats) <= 0 ){
             $hero->death();
         }
+        $isDead = ($hero->getPV() - $degats) <= 0;
         $hero->setPV($hero->getPV() - $degats);
+        return $isDead;
     }
 
 

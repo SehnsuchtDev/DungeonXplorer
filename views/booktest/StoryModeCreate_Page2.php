@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-    <div id="creationHero" class="bg-[#F6F0E8] h-full w-full filter drop-shadow-lg shadow-inner">
+    <div id="creationHero" class="pagediv bg-[#F6F0E8] h-full w-full filter drop-shadow-lg shadow-inner">
     <form id="formulaireCreateHero" method="post" action="<?= FULLURLROOTPATH ?>/book/page/hero " >
         <div class="p-10 font-['Pirata_One']">
             <div class="flex">
