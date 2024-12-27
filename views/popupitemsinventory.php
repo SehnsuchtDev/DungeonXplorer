@@ -25,6 +25,7 @@
 
                 <table id="table" class="border-separate border-spacing-5 bg-[#1A1A1A] rounded ">
 
+<<<<<<< HEAD
                     <tr>
                         <td rowspan="3" class="border border-[#C4975E] rounded overflow-hidden ">
                             <img src="<?= FULLURLROOTPATH ?>/public/assets/<?= $item['image'] ?>" alt="Item image"
@@ -46,6 +47,28 @@
                             </p>
                         </td>
                     </tr>
+=======
+                <tr>
+                    <td rowspan="3" class="border border-[#C4975E] rounded overflow-hidden w-[256px] h-[256px]">
+                        <img src="<?=FULLURLROOTPATH?>/public/assets/<?=$item['image']?>" alt="Item image" class="object-cover w-full h-full">
+                    </td>
+                    <td>
+                        <p class="text-lg font-bold text-[#E5E5E5]"><?=$item['name']?></p>
+                        <?php if(array_key_exists('quantity',$item)): ?>
+                            <p class="text-lg font-bold text-[#C4975E]">x<?=$item['quantity']?></p>
+                        <?php endif;?>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <p class="text-sm max-w-96 text-[#E5E5E5]">
+                            <?=$item['desc']?>
+                        </p>
+                    </td>
+                </tr>
+>>>>>>> 92a2ac1b5d7d28db19a5ca04fd759092f061fe7e
 
 
                     <tr>

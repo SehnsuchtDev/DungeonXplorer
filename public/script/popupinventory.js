@@ -19,7 +19,7 @@ popup.addEventListener("load", () => {
     items.forEach(item => {
         item.addEventListener("click", () => {
             let value = item.getAttribute("value");
-            openInvDetails(value);
+            if(value !== null) openInvDetails(value);
         });
     });
 
@@ -52,7 +52,7 @@ function displayPopup() {
  * load and display details of a specific inventory item based on its ID
  */
 function openInvDetails(id) {
-    popup.setAttribute("data", "./book/inventory/details/" + id);
+    popup.setAttribute("data", FULLURLROOTPATH + "/book/inventory/details/" + id);
     popup.addEventListener("load", () => {
         const back = popup.contentDocument.getElementById("back");
         back.addEventListener("click", closeItemsDetails);
@@ -64,7 +64,7 @@ function openInvDetails(id) {
  * open specific item details from the general item view
  */
 function openItemDetails(id) {
-    popup.setAttribute("data", "./book/item/details/" + id);
+    popup.setAttribute("data", FULLURLROOTPATH +"/book/item/details/" + id);
     popup.addEventListener("load", () => {
         const back = popup.contentDocument.getElementById("back");
         back.addEventListener("click", hiddenInventory);
@@ -77,5 +77,5 @@ function openItemDetails(id) {
  */
 function closeItemsDetails() {
     window.book.updateStatusBar();
-    popup.setAttribute("data", "./book/inventory");
+    popup.setAttribute("data", FULLURLROOTPATH +"/book/inventory");
 }

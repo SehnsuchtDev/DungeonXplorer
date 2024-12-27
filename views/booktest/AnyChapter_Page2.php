@@ -48,7 +48,7 @@
                     <p class="content-center">&nbsp; <?= $monster['mana'] ?> </p>
                 </div>
                 <div class="flex m-4">
-                    <img src="<?= FULLURLROOTPATH ?>/public\assets\shield.png" alt="player's shield" width="50" height="50"
+                    <img src="<?= FULLURLROOTPATH ?>/public\assets\initiative_icon.png" alt="player's shield" width="50" height="50"
                         title="player's shield" />
                     <p class="content-center">&nbsp; <?= $monster['initiative'] ?></p>
                 </div>
@@ -66,7 +66,7 @@
         <?php foreach ($nextChapterId as $id): ?>
             <a class="btn-next<?= $seed ?> p-1 m-2 bg-[#C4975E] rounded"
                 href="<?= constant('FULLURLROOTPATH') . '/book/page/chapter/changeChapter/' . $id ?>">
-                <button class="z-10 pointer-events-auto" <?= $eventIsDone ? '' : 'disabled' ?>>Allez au chapitre
+                <button class="z-10 pointer-events-auto cursor-pointer" <?= $eventIsDone ? '' : 'disabled' ?>>Allez au chapitre
                     <?= $id ?></button>
             </a>
         <?php endforeach; ?>
@@ -75,8 +75,11 @@
 
 </div>
 <script defer>
+<<<<<<< HEAD
 
     // Updates the status bar (e.g., health, mana, etc.)
+=======
+>>>>>>> 92a2ac1b5d7d28db19a5ca04fd759092f061fe7e
     updateStatusBar();
 
     // Prevents multiple page turns for the same chapter

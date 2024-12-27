@@ -40,6 +40,7 @@ class Warrior extends Hero{
             $degats = $attaque - $defense;
         }
         $monster->setPV($monster->getPV() - $degats);
+
     }
 
     public function getArmor() : ?Armor{

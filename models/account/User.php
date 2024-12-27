@@ -12,10 +12,10 @@ require_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'autoload.php';
 class User
 {
 
-    private int $id;
+    private $id;
     private string $name = "";
     private string $email = "";
-    private bool $isAdmin = false;
+    private ?bool $isAdmin = null;
     private ?Hero $hero = null;
 
 
@@ -102,7 +102,7 @@ class User
     /**
      * Get the user's ID
      */
-    public function getUserId(): int
+    public function getUserId()
     {
         return $this->id;
     }
@@ -110,9 +110,11 @@ class User
     /**
      * Set a hero for the user
      */
-    public function setHero(Hero $newHero)
+    public function setHero(?Hero $newHero)
     {
         $this->hero = $newHero;
+        if ($newHero === null)
+            return;
 
         $bdd = Dbconnection::getConnection();
 
@@ -126,7 +128,6 @@ class User
         $stmt->bindParam(':idOfMyUser', $this->id);
 
         $stmt->execute();
-        //$result = $stmt->fetch(\PDO::FETCH_OBJ);        //result of the query
     }
 
     /**
@@ -205,6 +206,17 @@ class User
         $this->name = $newUsername;
     }
 
-}
+    public function isTheUserAnAdmin(): bool
+    {
+        if ($this->isAdmin === null) {
+            $bdd = \Dbconnection::getConnection();
 
-?>
+            $stmt = $bdd->prepare("SELECT count(*) as nb FROM Administrateur WHERE us_id = ?;");
+            $stmt->execute([$this->id]);
+
+            $this->isAdmin = $stmt->fetch()['nb'] == 1;
+        }
+        return $this->isAdmin;
+    }
+
+}

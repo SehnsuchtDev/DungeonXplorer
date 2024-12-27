@@ -31,6 +31,9 @@ class HeroManager{
 
         $res = $stmt->fetch();
 
+        if(!$res){
+            return null;
+        }
         if(isset($res['cl_id']))
             switch ($res['cl_id']) {
                 case 1:
@@ -76,7 +79,6 @@ class HeroManager{
         $classData->execute();
         $classInformation = $classData->fetch(\PDO::FETCH_OBJ);
 
-        $hero;
         $itemManager = ItemManager::getInstance();
 
         if($class === "1"){
@@ -204,18 +206,158 @@ class HeroManager{
         $hero->setPurse(0);
 
         $hero->setInventory(new Inventory());
-
         if($hero instanceof MagicHero)
-            $hero->setMana($classInformation->cl_base_mana);
+              $hero->setMana($classInformation->cl_base_mana);
 
-        switch (get_class($hero)) {
-            case Warrior::class :
-                $hero->setArmor(null);
-                break;
-            case Wizard::class :
-                $hero->setSpells(array());
-                break;
+          switch (get_class($hero)) {
+              case Warrior::class :
+                  $hero->setArmor(null);
+                  break;
+              case Wizard::class :
+                  $hero->setSpells(array());
+                  break;
+          }
+    }
+
+    public function save($hero){
+
+        $bdd = \Dbconnection::getConnection();
+
+        // First we update the hero information in the DBB
+        $stmt = $bdd->prepare("UPDATE Hero   
+        set he_name = :nameOfMyHero,
+        he_pv = :pvOfOurHero,
+        he_mana = :manaOfOurHero,
+        he_strength = :strengthOfOurHero, 
+        he_initiative = :initiativeOfOurHero,
+        he_armor = :armorOfOurHero, 
+        he_primary_weapon = :primaryWeaponOfOurHero, 
+        he_secondary_weapon = :secondaryWeaponOfOurHero, 
+        he_xp = :xpOfOurHero,
+        he_current_level = :currentLevelOfOurHero, 
+        he_purse = :purseOfOurHero, 
+        ch_id = :chapterOfOurHero 
+        where he_id = :idOfMyHero
+        ");
+
+        $id = $hero->getId();
+
+        $name = $hero->getName();
+        $pv = $hero->getPv();
+        $strength = $hero->getStrength();
+        $initiative = $hero->getInitiative();
+        $primaryWeapon = $hero->getPrimaryWeapon()->getId();
+        $secondaryWeapon = $hero->getSecondaryWeapon()?->getId();
+        $xp = $hero->getXp();
+        $currentLevel = $hero->getCurrentLevel();
+        $purse =  $hero->getPurse();
+        $chapter = $hero->getCurrentChapter()->getId();
+
+        $stmt->bindParam(":idOfMyHero", $id);
+
+        $stmt->bindParam(":nameOfMyHero", $name);
+        $stmt->bindParam(":pvOfOurHero", $pv);
+        $stmt->bindParam(":strengthOfOurHero", $strength); 
+        $stmt->bindParam(":initiativeOfOurHero", $initiative); 
+        $stmt->bindParam(":primaryWeaponOfOurHero", $primaryWeapon); 
+        $stmt->bindParam(":secondaryWeaponOfOurHero", $secondaryWeapon); 
+        $stmt->bindParam(":xpOfOurHero", $xp);
+        $stmt->bindParam(":currentLevelOfOurHero", $currentLevel); 
+        $stmt->bindParam(":purseOfOurHero", $purse); 
+        $stmt->bindParam(":chapterOfOurHero", $chapter);
+        
+        // If he's a warrior
+        $mana = null;
+        $armor = null;
+        if($hero->getClassHero() === 1){
+            $armor = $hero->getArmor()?->getId();
+        }else{
+            $mana = $hero->getMana();
         }
+        $stmt->bindParam(":manaOfOurHero", $mana);
+        $stmt->bindParam(":armorOfOurHero", $armor);
+        
+        $stmt->execute();
+
+        // Then we update the spell information if he's a wizzard 
+        // First we update the hero information
+        $class = $hero->getClassHero();
+        if($class === 2){
+            
+            // On supprime d'abord tout les spells puis on rajoute 
+            // afin d'actualiser si il y a des nouveaux spells
+            $spellRemovalRequest = $bdd->prepare("delete from HeroSpell  where he_id = :idOfMyHero");
+            $spellRemovalRequest->bindParam(":idOfMyHero", $id);
+            $spellRemovalRequest->execute();
+
+            foreach($hero->getSpells() as $key){
+                echo '<pre>';
+                echo "the key , " . $key->getName();
+                echo '</pre></br>';
+                $spellsRequest = null;
+                $spellsRequest = $bdd->prepare("insert into HeroSpell(he_id, sp_id) VALUES (:idOfMyHero, (select sp_id from Spell where sp_name = :nameOfMySpell))");
+
+                $spellName = $key->getName();
+                $spellsRequest->bindParam(":idOfMyHero", $id);
+                $spellsRequest->bindParam(":nameOfMySpell", $spellName);
+
+                $spellsRequest->execute();
+            }
+        }
+        
+        
+        $inventoryRemovalRequest = $bdd->prepare("delete from Inventory where he_id = :idOfMyHero");
+        $inventoryRemovalRequest->bindParam(":idOfMyHero", $id);
+        $inventoryRemovalRequest->execute();
+
+        foreach($hero->getInventory()->getItems() as $key){
+            
+            $inventoryRequest = null;
+            $inventoryRequest = $bdd->prepare("insert into Inventory(he_id, it_id, quantity) VALUES (:idOfMyHero, :idOfMyItem, :quantityOfMyItem)");
+
+            $itemId = $key['item']->getId();
+            $itemQuantity = $key['quantity'];
+
+            $inventoryRequest->bindParam(":idOfMyHero", $id);
+            $inventoryRequest->bindParam(":idOfMyItem", $itemId);
+            $inventoryRequest->bindParam(":quantityOfMyItem", $itemQuantity);
+
+            $inventoryRequest->execute();
+        }
+    }
+
+    public function deleteHero($userID){
+
+        $bdd = \Dbconnection::getConnection();
+
+        // First we retrieve our hero id of our user
+        // to simplify future queries
+        $retrieveHeroIDRequest = $bdd->prepare("select he_id from User where us_id = :idOfOurUser");
+        $retrieveHeroIDRequest->bindParam(":idOfOurUser", $userID);
+        $retrieveHeroIDRequest->execute();
+
+        $result = $retrieveHeroIDRequest->fetch(\PDO::FETCH_OBJ);        //result of the query
+        $idOfOurHero = $result->he_id;
+
+        // We delete the information in the HeroSpell table 
+        $removalSpellRequest = $bdd->prepare("DELETE FROM HeroSpell where he_id = :idOfOurHero");
+        $removalSpellRequest->bindParam(":idOfOurHero", $idOfOurHero);
+        $removalSpellRequest->execute();
+
+        // We delete the information in the Inventory table
+        $removalInventoryRequest = $bdd->prepare("DELETE FROM Inventory where he_id = :idOfOurHero");
+        $removalInventoryRequest->bindParam(":idOfOurHero", $idOfOurHero);
+        $removalInventoryRequest->execute();
+
+        // We change he_id value in the User table to be able to delete the hero
+        $updateHeroIdRequest = $bdd->prepare("UPDATE User set he_id = null where us_id = :idOfOurUser");
+        $updateHeroIdRequest->bindParam(":idOfOurUser", $userID);
+        $updateHeroIdRequest->execute();
+
+        // Finally we delete the Hero from our Database 
+        $removalHeroRequest = $bdd->prepare("DELETE FROM Hero where he_id = :idOfOurHero");
+        $removalHeroRequest->bindParam(":idOfOurHero", $idOfOurHero);
+        $removalHeroRequest->execute();
 
     }
 

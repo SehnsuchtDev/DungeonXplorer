@@ -1,5 +1,4 @@
-<?php if (session_status() != PHP_SESSION_ACTIVE)
-    session_start();
+<?php
 
 use dungeonxplorer\account\User;
 

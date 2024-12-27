@@ -46,6 +46,14 @@ class Chapter
     }
 
     /**
+     * Getter for the chapter id
+     */
+    public function getId()
+    {
+        return $this->chapterId;
+    }
+
+    /**
      * Getter for the event associated with the chapter
      */
     public function getChapterEvent(): ?ChapterEvent
