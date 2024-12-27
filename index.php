@@ -67,7 +67,7 @@ $router->post("book/page/hero","HeroCreationController@creation");
 $router->get("book/page/hero/p2","HeroCreationController@showp2");
 
 
-$router->get('account/delete/hero',"HeroSuppressionController@show");
+$router->get('account/delete/hero',"AccountController@deleteHero");
 
 $router->run();
 

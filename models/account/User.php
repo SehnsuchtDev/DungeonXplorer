@@ -92,8 +92,10 @@ class User{
         return $this->id;
     }
 
-    public function setHero(Hero $newHero){
+    public function setHero(?Hero $newHero){
         $this->hero = $newHero;
+        if($newHero === null)
+            return;
       
         $bdd = Dbconnection::getConnection();
 
@@ -107,7 +109,6 @@ class User{
         $stmt->bindParam(':idOfMyUser',$this->id);
 
         $stmt->execute();
-        //$result = $stmt->fetch(\PDO::FETCH_OBJ);        //result of the query
     }
 
 

@@ -1,4 +1,6 @@
-<?php session_start();
+<?php use dungeonxplorer\managers\HeroManager;
+
+session_start();
 
 require_once __DIR__ . '/../autoload.php';
 
@@ -74,6 +76,15 @@ class AccountController{
             header("location:".FULLURLROOTPATH."/error403");
         }
 
+    }
+
+    public function deleteHero(){
+        $user = $_SESSION['user'];
+        $user->setHero(null);
+
+        HeroManager::getInstance()->deleteHero($user->getUserId());
+
+        header("location:".FULLURLROOTPATH.'/book');
     }
 
 }
