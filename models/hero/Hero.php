@@ -32,24 +32,6 @@ abstract class Hero{
     private int $purse = 0;
     private Inventory $inventory;        // Inventory
 
-    
-
-    public function getImage(){
-        return $this->image;
-    }
-
-    public function getClassHero(){
-        return $this->classHero;
-    }
-
-    public function getName(){
-        return $this->name;
-    }
-
-    public function getBiography(){
-        return $this->biography;
-    }
-
     public function hydrate(array $donnees): void {
 
         foreach ($donnees as $key => $value) {
@@ -86,34 +68,60 @@ abstract class Hero{
         $this->inventory = $inventory;
     }
 
-    public function setId(int $id): void
-    {
-        $this->id = $id;
+    public function setId($heroId){
+        $this->id = $heroId;
     }
 
-    public function setName(string $name): void
-    {
-        $this->name = $name;
+    public function setName($heroName){
+        $this->name = $heroName;
     }
 
-    public function setClassHero(int $classHero): void
-    {
-        $this->classHero = $classHero;
+    public function setClassHero($heroClass){
+        $this->classHero = $heroClass;
     }
 
-    public function setImage(string $image): void
-    {
-        $this->image = $image;
+    public function setImage($heroImage){
+        $this->image = $heroImage;
     }
 
-    public function setBiography(string $biography): void
-    {
-        $this->biography = $biography;
+    public function setBiography($heroBiography){
+        $this->biography = $heroBiography;
     }
 
-    public function setPv(int $pv): void
-    {
-        $this->pv = $pv;
+    public function setPv($heroPV){
+        $this->pv = $heroPV;
+    }
+
+    public function setInitiative($initiativeHero){
+        $this->initiative = $initiativeHero;
+    }
+
+    public function setPrimaryWeapon(HandItem $heroPrimaryWeapon){
+        $this->primaryWeapon = $heroPrimaryWeapon;
+    }
+
+    public function setSecondaryWeapon($heroSecondaryWeapon){
+        $this->secondaryWeapon = $heroSecondaryWeapon;
+    }
+
+    public function setSpellList(array $heroSpellList){
+        $this->spellList = $heroSpellList;
+    }
+
+    public function setXp($heroXP){
+        $this->xp = $heroXP;
+    }
+
+    public function setCurrentLevel($heroCurrentLevel){
+        $this->currentLevel = $heroCurrentLevel;
+    }
+
+    public function setCurrentChapter(Chapter $heroCurrentChapter){
+        $this->currentChapter = $heroCurrentChapter;
+    }
+
+    public function setPurse($heroPurse){
+        $this->purse = $heroPurse;
     }
 
     public function setStrength(int $strength): void
@@ -121,39 +129,74 @@ abstract class Hero{
         $this->strength = $strength;
     }
 
-    public function setInitiative(int $initiative): void
+    public function getCurrentChapter(): Chapter
     {
-        $this->initiative = $initiative;
+        return $this->currentChapter;
     }
 
-    public function setPrimaryWeapon($primaryWeapon): void
-    {
-        $this->primaryWeapon = $primaryWeapon;
+    public function changeChapter(int $chapterId) : bool{
+        if($this->getCurrentChapter()->getChapterId() == $chapterId)
+            return false;
+        if($this->getCurrentChapter()->getChapterEvent() != null && !$this->getCurrentChapter()->getChapterEvent()->isDone())
+            return false;
+        if($chapterId <= 1){
+            $this->death();
+            return true;
+        }
+        $this->getCurrentChapter()->getNextChapter();
+        foreach ($this->getCurrentChapter()->getNextChapter() as $nextChapter) {
+            if($nextChapter->getChapterId() == $chapterId){
+                if($nextChapter->getTreasures() != null)
+                    $nextChapter->getTreasures()->give($this);
+                $this->setCurrentChapter($nextChapter);
+                return true;
+            }
+        }
+        return false;
     }
 
-    public function setSecondaryWeapon($secondaryWeapon): void
+    public function getPv(): int
     {
-        $this->secondaryWeapon = $secondaryWeapon;
+        return $this->pv;
     }
 
+    public function getStrength(): int
+    {
+        return $this->strength;
+    }
+
+    public function getInitiative(): int
+    {
+        return $this->initiative;
+    }
+  
     public function setXp(int $xp): void{
         $this->xp = $xp;
         $this->setCurrentLevel(LevelManager::getInstance()->getLevelWithXp($this->getClassHero(),$this->xp)->getLevel());
     }
 
-    public function setCurrentLevel(int $currentLevel): void
+    public function getXp(): int
     {
-        $this->currentLevel = $currentLevel;
+        return $this->xp;
     }
 
-    public function setCurrentChapter(Chapter $currentChapter): void
+    public function getInventory(): Inventory
     {
-        $this->currentChapter = $currentChapter;
+        return $this->inventory;
     }
 
-    public function setPurse(int $purse): void
+    public function addPiece(int $quantity){
+        $this->purse += $quantity;
+    }
+
+    public function death(){
+        //TODO: Restore default heros values
+        throw new \Exception("=========== Todo dead function in Hero.php =============");
+    }
+
+    public function getPurse(): int
     {
-        $this->purse = $purse;
+        return $this->purse;
     }
 
 
@@ -250,6 +293,5 @@ abstract class Hero{
         return $armor;
 
     }
-
 
 }

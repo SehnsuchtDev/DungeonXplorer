@@ -37,6 +37,7 @@ class Inventory{
         return $this->items;
     }
 
+
     public function calculateWeight(): int {
         $weight = 0;
         foreach($this->items as $item){
