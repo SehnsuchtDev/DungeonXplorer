@@ -15,7 +15,7 @@ use dungeonxplorer\item\HandItem;
 class StatusBarController{
 
     private User $user;
-    private ?Hero $hero;
+    private ?Hero $hero = null;
 
 
     public function __construct(){
