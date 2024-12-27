@@ -67,6 +67,11 @@
     </div>
 
     <script defer>
+        <?php if(isset($dead) && $dead): ?>
+            alert("Vous êtes mort");
+        <?php endif; ?>
+
+
     let chapterTrun<?=$seed?> = false;
 
     for(let e of document.querySelectorAll(".pageButton<?=$seed?>")){

@@ -34,18 +34,19 @@ class Fight extends ChapterEvent{
         $this->playerTurn=!$this->playerTurn;
     }
 
-    public function fight(Hero &$hero) : void{
+    public function fight(Hero &$hero) : bool{
+        $isDead = false;
         if($this->getPlayerTurn($hero))
             $hero->attack($this->monster);
         else
-            $this->monster->attack($hero);
+            $isDead=$this->monster->attack($hero);
         if($this->monster->isDead()){
             $this->setDone(true);
             $hero->setXp($hero->getXp() + $this->monster->getXp());
             $this->getLoot()->give($hero);
-            return;
         }
         $this->changeTurn();
+        return $isDead;
     }
 
     public static function initiativeCalcul(Hero $hero,Monster $monster) : bool{

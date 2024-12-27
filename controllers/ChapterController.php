@@ -178,6 +178,10 @@ class ChapterController{
             }
             $choice = $_POST['choice'];
             $mcqAnswer = $mcq->isCorrect(($choice+1),$this->hero);
+            if(!$mcqAnswer){
+                require dirname(__DIR__) . '/views/booktest/Death_Load.php';
+                return;
+            }
         }
 
         $this->showChapterP2();
@@ -186,10 +190,14 @@ class ChapterController{
     public function fight() : void{
         $fight = $this->getChapter()->getChapterEvent();
         if($fight instanceof Fight){
-            $fight->fight($this->hero);
+            if($fight->fight($this->hero)){
+                require dirname(__DIR__) . '/views/booktest/Death_Load.php';
+                return;
+            }
         }
         $this->showChapterP2();
     }
+
 
     public function changeChapter(int $chapterId) : void{
         $this->hero->changeChapter($chapterId); 
@@ -197,6 +205,15 @@ class ChapterController{
 
     private function getChapter(): Chapter{
         return $this->hero->getCurrentChapter();
+    }
+
+    public function showDeathP1() : void{
+        require dirname(__DIR__) . '/views/booktest/Death_Page1.php';
+    }
+
+    public function showDeathP2() : void{
+        $seed = rand();
+        require dirname(__DIR__) . '/views/booktest/Death_Page2.php';
     }
 
 }
