@@ -87,6 +87,38 @@ class AdminManager{
          $stmt->execute();
     }
 
+    public function getAllSpellInformation(){
+        $bdd = \Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("select sp_id, sp_name, sp_manacost, sp_damage from Spell");
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function deleteSpell($spellID){
+        $bdd = \Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("DELETE FROM Spell where sp_id = :idOfOurSpell");
+
+        $stmt->bindParam(':idOfOurSpell',$spellID);
+        
+        $stmt->execute();
+   }
+
+   public function modifySpell($spellID, $name, $manaCost, $damage){
+    $bdd = \Dbconnection::getConnection();$bdd = \Dbconnection::getConnection();
+    
+    $stmt = $bdd->prepare("UPDATE Spell set sp_name = :spellName, 
+    sp_manacost = :spellManaCost, sp_damage = :spellDamage where sp_id = :spellID");
+
+    $stmt->bindParam(':spellName',$name);
+    $stmt->bindParam(':spellManaCost',$manaCost);
+    $stmt->bindParam(':spellDamage',$damage);
+    $stmt->bindParam(':spellID',$spellID);
+    
+    $stmt->execute();
+   }
 }
 
 
