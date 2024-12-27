@@ -7,7 +7,6 @@ const secondary = document.getElementById("secondary-weapon");
 popup.style.visibility = "hidden";
 
 popup.addEventListener("load", () => {
-    console.log("loaded");
 
     const close = popup.contentDocument.getElementById("close");
     close.addEventListener("click", () => {
@@ -19,8 +18,8 @@ popup.addEventListener("load", () => {
 
     items.forEach(item => {
         item.addEventListener("click", () => {
-            console.log(item);
-            openItemDetails(true);
+            let value = item.getAttribute("value");
+            openItemDetails(value,true);
         });
     });
 
@@ -32,12 +31,12 @@ button.addEventListener("click", displayInventory);
 
 // weapon buttons in the hero bar
 primary.addEventListener("click", () => {
-    openItemDetails(false);
+    openItemDetails(0,false);
     displayInventory();
 });
 
 secondary.addEventListener("click", () => {
-    openItemDetails(false);
+    openItemDetails(0,false);
     displayInventory();
 });
 
@@ -73,13 +72,12 @@ function displayInventory() {
     popup.style.visibility = "visible";
 }
 
-function openItemDetails(backButton) {
-    popup.setAttribute("data", "./book/inventory/details");
+function openItemDetails(id,backButton) {
+    popup.setAttribute("data", "./book/inventory/details/" + id);
     if (backButton == true) {
         popup.addEventListener("load", () => {
             const back = popup.contentDocument.getElementById("back");
             back.addEventListener("click", closeItemsDetails);
-            back.style.visibility = "visible";
         });
     }
 }

@@ -34,7 +34,8 @@ $router->get('/book/page/chapter/fight','ChapterController@fight');
 //$router->post('/chapter/mcqtest','ChapterController@MCQTestAnswer');
 $router->post('book/page/chapter/mcqtest','ChapterController@MCQTestAnswer');
 
-
+$router->get("book/inventory", "InventoryController@show");
+$router->get("book/inventory/details/(\d+)", "InventoryController@showDetails");
 
 $router->get('/inventory/use/(\d+)','InventoryController@useItem');
 $router->get('/inventory/equip/(\d+)/primaryweapon','InventoryController@equipPrimaryWeapon');
@@ -61,8 +62,7 @@ $router->get("book/page/hero/p1","HeroCreationController@showp1");
 $router->post("book/page/hero","HeroCreationController@creation");
 $router->get("book/page/hero/p2","HeroCreationController@showp2");
 
-$router->get("book/inventory", "InventoryController@show");
-$router->get("book/inventory/details", "InventoryController@showDetails");
+
 
 
 $router->run();
