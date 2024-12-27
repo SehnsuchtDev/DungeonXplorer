@@ -61,7 +61,7 @@
         <?php foreach ($nextChapterId as $id): ?>
             <a class="btn-next<?= $seed ?> p-1 m-2 bg-[#C4975E] rounded"
                 href="<?= constant('FULLURLROOTPATH') . '/book/page/chapter/changeChapter/' . $id ?>">
-                <button class="z-10 pointer-events-auto" <?= $eventIsDone ? '' : 'disabled' ?>>Allez au chapitre
+                <button class="z-10 pointer-events-auto cursor-pointer" <?= $eventIsDone ? '' : 'disabled' ?>>Allez au chapitre
                     <?= $id ?></button>
             </a>
         <?php endforeach; ?>

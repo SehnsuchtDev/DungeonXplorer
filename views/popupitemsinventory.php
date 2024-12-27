@@ -24,8 +24,8 @@
             <table id="table" class="border-separate border-spacing-5 bg-[#1A1A1A] rounded ">
 
                 <tr>
-                    <td rowspan="3" class="border border-[#C4975E] rounded overflow-hidden ">
-                        <img src="<?=FULLURLROOTPATH?>/public/assets/<?=$item['image']?>" alt="Item image" class="object-cover w-[256px]">
+                    <td rowspan="3" class="border border-[#C4975E] rounded overflow-hidden w-[256px] h-[256px]">
+                        <img src="<?=FULLURLROOTPATH?>/public/assets/<?=$item['image']?>" alt="Item image" class="object-cover w-full h-full">
                     </td>
                     <td>
                         <p class="text-lg font-bold text-[#E5E5E5]"><?=$item['name']?></p>
@@ -38,7 +38,7 @@
 
                 <tr>
                     <td>
-                        <p class="text-sm text-[#E5E5E5]">
+                        <p class="text-sm max-w-96 text-[#E5E5E5]">
                             <?=$item['desc']?>
                         </p>
                     </td>
