@@ -7,6 +7,7 @@
     <title> Gestionnaire des histoires </title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="public/script/tailwind.config.js"></script>
+    <script defer src="contentManagement.js"></script>
 </head>
 
 <body class="bg-[#1a1a1a]">
