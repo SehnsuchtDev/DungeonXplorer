@@ -37,7 +37,7 @@ class Inventory{
         return $this->items;
     }
 
-    private function calculateWeight(): int {
+    public function calculateWeight(): int {
         $weight = 0;
         foreach($this->items as $item){
             $weight += $item['item']->getWeight() * $item['quantity'];

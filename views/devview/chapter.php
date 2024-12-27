@@ -67,7 +67,7 @@
     <h2>Inventory :</h2>
     <ul>
         <?php foreach ($items as $item):?>
-            <li><img src="<?=constant('FULLURLROOTPATH')?>/public/assets/<?=$item['image']?>" width=75px>
+            <li><img src="<?=FULLURLROOTPATH?>/public/assets/<?=$item['image']?>" width=75px>
                 <?=$item['name']?> : <?=$item['quantity']?>
                 <?php if ($item['usable']) :?>
                     <a href="<?=constant('FULLURLROOTPATH')?>/inventory/use/<?=$item['id']?>">Utiliser</a>

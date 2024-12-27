@@ -4,6 +4,9 @@ use dungeonxplorer\account\User;
 use dungeonxplorer\exceptions\NotMagicHeroException;
 use dungeonxplorer\hero\class\Warrior;
 use dungeonxplorer\hero\Hero;
+use dungeonxplorer\item\Armor;
+use dungeonxplorer\item\ConsumableItem;
+use dungeonxplorer\item\HandItem;
 use dungeonxplorer\item\Inventory;
 
 class InventoryController{
@@ -29,6 +32,31 @@ class InventoryController{
     private function redirect(): void{
         header('Location: '.FULLURLROOTPATH.'/chapter');
         exit();
+    }
+
+    public function show(){
+        $items = array();
+        $weight = $this->inventory->calculateWeight();
+        foreach ($this->inventory->getItems() as $item)
+            $items[] = ['id' => $item['item']->getId(),
+                        'quantity' => $item['quantity'],
+                        'image' => $item['item']->getImage()
+                        ];
+        require __DIR__ . '/../views/popupinventory.php';
+    }
+
+    public function showDetails(int $id){
+        $itemModel = $this->inventory->getItems()[$id];
+        $item = ['id' => $itemModel['item']->getId(),
+                'name' => $itemModel['item']->getName(),
+                'desc' => $itemModel['item']->getDescription(),
+                'quantity' => $itemModel['quantity'],
+                'image' => $itemModel['item']->getImage(),
+                'usable' => $itemModel['item'] instanceof ConsumableItem,
+                'armor' => $itemModel['item'] instanceof Armor,
+                'handitem' => $itemModel['item'] instanceof HandItem
+                ];
+        require __DIR__ . '/../views/popupitemsinventory.php';
     }
 
     public function useItem(int $id): void{
