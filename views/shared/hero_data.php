@@ -94,22 +94,27 @@
         let primary = document.getElementById("primary-weapon");
         let secondary = document.getElementById("secondary-weapon");
 
-        button.id="";
-        primary.id="";
-        secondary.id="";
+        button.id=""
 
         // inventory button in the hero bar
+
         button.addEventListener("click", displayInventory);
-
         // weapon buttons in the hero bar
-        primary.addEventListener("click", () => {
-            openItemDetails(false);
-            displayInventory();
-        });
 
-        secondary.addEventListener("click", () => {
-            openItemDetails(false);
-            displayInventory();
-        });
+        if(primary){
+            primary.id="";
+            primary.addEventListener("click", () => {
+                openItemDetails(false);
+                displayInventory();
+            });
+            }
+
+        if(secondary) {
+            secondary.id = "";
+            secondary.addEventListener("click", () => {
+                openItemDetails(false);
+                displayInventory();
+            });
+        }
     }
 </script>
