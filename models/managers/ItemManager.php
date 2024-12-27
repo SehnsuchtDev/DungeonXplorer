@@ -58,7 +58,7 @@ class ItemManager{
         return $item;
     }
 
-    public function modifyItem($id, $name, $description, $poids, $nbMax, $equipable, $armure, $nomEffet, $valEffet, $coutMana, $valProtection, $nbDegat, $image){
+    public function modifyItem($id, $name, $description, $poids, $nbMax, $equipable, $armure, $nomEffet, $valEffet, $coutMana, $valProtection, $nbDegat){
         $bdd = \Dbconnection::getConnection();
 
         $stmt = $bdd->prepare("UPDATE Items set
@@ -72,8 +72,7 @@ class ItemManager{
         it_effectvalue = :itemEffectValue,
         it_manacost = :itemManaCost,
         it_protectvalue = :itemProtectValue,
-        it_damage = :itemDamage,
-        it_image = :itemImage
+        it_damage = :itemDamage
         where it_id = :item_id");
 
         $stmt->bindParam(':itemName',$name);
@@ -87,9 +86,32 @@ class ItemManager{
         $stmt->bindParam(':itemManaCost',$coutMana);
         $stmt->bindParam(':itemProtectValue',$valProtection);
         $stmt->bindParam(':itemDamage',$nbDegat);
-        $stmt->bindParam(':itemImage',$image);
 
         $stmt->bindParam(':item_id',$id);
+        
+        $stmt->execute();
+    }
+
+    public function addItem($name, $description, $poids, $nbMax, $equipable, $armure, $nomEffet, $valEffet, $coutMana, $valProtection, $nbDegat, $image){
+        $bdd = \Dbconnection::getConnection();
+    
+        $stmt = $bdd->prepare("INSERT INTO Items(it_name, it_description,it_weight, it_maxstack, 
+        it_handitem, it_armor, it_effectname, it_effectvalue, it_manacost, it_protectvalue, it_damage, it_image) VALUES
+        (:itemName, :itemDesc, :itemWeight, :itemMaxStack, :itemHandItem, :itemArmor, :itemEffectName,
+        :itemEffectValue, :itemManaCost, :itemProtectValue, :itemDamage, :itemImage)");
+
+        $stmt->bindParam(':itemName',$name);
+        $stmt->bindParam(':itemDesc',$description);
+        $stmt->bindParam(':itemWeight',$poids);
+        $stmt->bindParam(':itemMaxStack',$nbMax);
+        $stmt->bindParam(':itemHandItem',$equipable);
+        $stmt->bindParam(':itemArmor',$armure);
+        $stmt->bindParam(':itemEffectName',$nomEffet);
+        $stmt->bindParam(':itemEffectValue',$valEffet);
+        $stmt->bindParam(':itemManaCost',$coutMana);
+        $stmt->bindParam(':itemProtectValue',$valProtection);
+        $stmt->bindParam(':itemDamage',$nbDegat);
+        $stmt->bindParam(':itemImage',$image);
         
         $stmt->execute();
     }

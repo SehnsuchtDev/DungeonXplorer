@@ -72,7 +72,7 @@
                             </div>
                             <div class="flex m-3">
                                 <img src="<?= FULLURLROOTPATH ?>/public/assets/<?=$item["it_image"]?>" alt="image" width="100" height="100" class="m-3" />
-                                <input name="image" type="file" class="max-h-6 rounded bg-[#3a3a3a] self-center ">
+                                <input type="file" class="max-h-6 rounded bg-[#3a3a3a] self-center ">
                             </div>
                         </td>
                         
@@ -91,61 +91,72 @@
 
     <div
         class="max-h-[500px] bg-[#2e2e2e] rounded shadow m-6 p-6 px-16 text-xl text-[#E5E5E5] font-['Roboto'] place-self-center border border-[#C4975E]">
-        <div class="flex">
-            <p>Nom : &nbsp;</p>
-            <input type="text" required class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Description : &nbsp;</p>
-            <input type="text" class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Poids : &nbsp;</p>
-            <input type="number" value="0" required class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Nombre max : &nbsp;</p>
-            <input type="number" value="0" required class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Equipable : &nbsp;</p>
-            <input type="checkbox" class="max-h-6 rounded  bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Armure : &nbsp;</p>
-            <input type="checkbox" class="max-h-6 rounded  bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Nom de l'effet : &nbsp;</p>
-            <input type="text" class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Valeur de l'effet : &nbsp;</p>
-            <input type="number" class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Coût en mana : &nbsp;</p>
-            <input type="number" class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Valeur de protection : &nbsp;</p>
-            <input type="number" class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Nombre de dégâts : &nbsp;</p>
-            <input type="number" class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Image : &nbsp;</p>
-            <input type="file" required class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-        <div class="text-center">
-            <button class="bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] ml-2 mt-5">
-                Ajouter</button>
-        </div>
+        <form action="<?= FULLURLROOTPATH ?>/admin/item/add/" method="post">
+            <div class="flex">
+                <p>Nom : &nbsp;</p>
+                <input name="name" type="text" required class="max-h-6 rounded bg-[#3a3a3a]">
+            </div>
+            <div class="flex">
+                <p>Description : &nbsp;</p>
+                <input name="desc" type="text" class="max-h-6 rounded bg-[#3a3a3a]">
+            </div>
+            <div class="flex">
+                <p>Poids : &nbsp;</p>
+                <input name="poids" type="number" value="0" required class="max-h-6 rounded bg-[#3a3a3a]">
+            </div>
+            <div class="flex">
+                <p>Nombre max : &nbsp;</p>
+                <input name="nbMax" type="number" value="0" required class="max-h-6 rounded bg-[#3a3a3a]">
+            </div>
+            <div class="flex">
+                <p>Equipable : &nbsp;</p>
+                <input name="equip" type="checkbox" class="max-h-6 rounded  bg-[#3a3a3a]">
+            </div>
+            <div class="flex">
+                <p>Armure : &nbsp;</p>
+                <input name="armure" type="checkbox" class="max-h-6 rounded  bg-[#3a3a3a]">
+            </div>
+            <div class="flex">
+                <p>Nom de l'effet : &nbsp;</p>
+                <input name="nomEffet" type="text" class="max-h-6 rounded bg-[#3a3a3a]">
+            </div>
+            <div class="flex">
+                <p>Valeur de l'effet : &nbsp;</p>
+                <input name="valEffet" type="number" class="max-h-6 rounded bg-[#3a3a3a]">
+            </div>
+            <div class="flex">
+                <p>Coût en mana : &nbsp;</p>
+                <input name="coutMana" type="number" class="max-h-6 rounded bg-[#3a3a3a]">
+            </div>
+            <div class="flex">
+                <p>Valeur de protection : &nbsp;</p>
+                <input name="valProtection" type="number" class="max-h-6 rounded bg-[#3a3a3a]">
+            </div>
+            <div class="flex">
+                <p>Nombre de dégâts : &nbsp;</p>
+                <input name="nbDegat" type="number" class="max-h-6 rounded bg-[#3a3a3a]">
+            </div>
+            <div class="flex">
+                <p>Image : &nbsp;</p>
+                <input name="image" type="file" required class="max-h-6 rounded bg-[#3a3a3a]">
+            </div>
+            <div class="text-center">
+                <input type="submit" value="Ajouter" class="bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] ml-2 mt-5">
+            </div>
+        </form>
     </div>
 
     <?php include __DIR__ . "/shared/footer.php"; ?>
+
+    <script>
+        <?php if (isset($errors)): ?>
+        str = "";
+        <?php foreach ($errors as $e): ?>
+            str += "<?= $e ?>\n";
+        <?php endforeach ?>
+        alert(str);
+        <?php endif; ?>
+    </script>
 
 </body>
 

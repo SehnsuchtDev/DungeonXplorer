@@ -87,11 +87,10 @@ class AdminController{
     public function modifyItem(int $itemID){
         $errors = [];
 
-        var_dump($_POST);
-        $name = $_POST["name"] ?? null;
-        $description = $_POST["desc"] ?? null;
-        $poids = $_POST["poids"] ?? null;
-        $nbMax = $_POST["nbMax"] ?? null;
+        $name = $_POST["name"] ?? "";
+        $description = $_POST["desc"] ?? "";
+        $poids = intval($_POST["poids"]) ?? 0;
+        $nbMax = intval($_POST["nbMax"]) ?? 0;
 
         /*// Can't retrieve checkbox value
         $equipable = $_POST["equip"];
@@ -108,11 +107,10 @@ class AdminController{
         }
 
         $nomEffet = $_POST["nomEffet"] ?? null;
-        $valEffet = $_POST["valEffet"] ?? null;
-        $coutMana = $_POST["coutMana"] ?? null;
-        $valProtection = $_POST["valProtection"] ?? null;
-        $nbDegat = $_POST["nbDegat"] ?? null;
-        $image = $_POST["image"] ?? null; 
+        $valEffet = intval($_POST["valEffet"]) ?? null;
+        $coutMana = intval($_POST["coutMana"]) ?? null;
+        $valProtection = intval($_POST["valProtection"]) ?? null;
+        $nbDegat = intval($_POST["nbDegat"]) ?? null;
 
         if(empty($name))
             $errors[] = "Vous devez saisir un nom à l'item !";
@@ -120,28 +118,66 @@ class AdminController{
             $errors[] = "Vous devez saisir une description à cet item!!";
         if(empty($poids))
             $errors[] = "Vous devez saisir un poids à cet item !!";
-        
         if(empty($nbMax))
             $errors[] = "Vous devez saisir une capacité max possible de cet item !";
-        if(empty($valProtection))
-            $errors[] = "Vous devez saisir une valeur de protection de cet item !!";
-        if(empty($nbDegat))
-            $errors[] = "Vous devez saisir un nombre de dégar de cet item !!";
-        if(empty($image))
-            $errors[] = "Vous devez saisir une image pour cet item !!";
     
         if(empty($errors)){
             echo "Il y a pas d'erreurs !!";
-            ItemManager::getInstance()->modifyItem( $itemID, $name, $description, $poids, $nbMax, $equipable, $armure, $nomEffet, $valEffet, $coutMana, $valProtection, $nbDegat, $image);
+            ItemManager::getInstance()->modifyItem( $itemID, $name, $description, $poids, $nbMax, $equipable, $armure, $nomEffet, $valEffet, $coutMana, $valProtection, $nbDegat);
         }else{
             foreach($errors as $error){
                 echo $error . "<br>";
             }
             echo "Il y a des erreurs !!";
         }
-        
+        header("Location: " . FULLURLROOTPATH . "/adminItem");
     }
 
+    public function addItem(){
+
+        $errors = [];
+
+        $name = $_POST["name"] ?? "";
+        $description = $_POST["desc"] ?? "";
+        $poids = intval($_POST["poids"]) ?? 0;
+        $nbMax = intval($_POST["nbMax"]) ?? 0;
+
+        $equipable = 0; 
+        $armure = 0; 
+        if(isset($_POST["equip"])){
+            $equipable = 1;
+        }
+
+        if(isset($_POST["armure"])){
+            $armure = 1; 
+        }
+
+        $nomEffet = $_POST["nomEffet"] ?? null;
+        $valEffet = intval($_POST["valEffet"]) ?? null;
+        $coutMana = intval($_POST["coutMana"]) ?? null;
+        $valProtection = intval($_POST["valProtection"]) ?? null;
+        $nbDegat = intval($_POST["nbDegat"]) ?? null;
+
+        $image = $_POST["image"] ?? null;
+
+        if(empty($name))
+            $errors[] = "Vous devez saisir un nom à l'item !";
+        if(empty($description))
+            $errors[] = "Vous devez saisir une description à cet item!!";
+        if(empty($poids))
+            $errors[] = "Vous devez saisir un poids à cet item !!";
+        if(empty($nbMax))
+            $errors[] = "Vous devez saisir une capacité max possible de cet item !";
+        if(empty($image)){
+            $errors[] = "Vous devez saisir une photo de cet item !";
+        }
+    
+        if(empty($errors)){
+            ItemManager::getInstance()->addItem( $name, $description, $poids, $nbMax, $equipable, $armure, $nomEffet, $valEffet, $coutMana, $valProtection, $nbDegat, $image);
+        }
+        $itemTable =  AdminManager::getInstance()->getAllItemInformation();
+        require dirname(__DIR__) . "/views/admin_manageItem.php";
+    }
 
 
     public function showManageLevel(){

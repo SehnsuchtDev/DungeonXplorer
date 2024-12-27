@@ -82,6 +82,7 @@ $router->get("admin/user/delete/character/(\d+)", "AdminController@deleteCharact
 // Everything to do with managing an item
 $router->get("admin/item/delete/(\d+)", "AdminController@deleteItem");
 $router->post("admin/item/modify/(\d+)", "AdminController@modifyItem");
+$router->post("admin/item/add", "AdminController@addItem");
 
 $router->run();
 
