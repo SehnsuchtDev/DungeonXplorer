@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 
 use dungeonxplorer\account\User;
 use dungeonxplorer\exceptions\NotMagicHeroException;

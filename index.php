@@ -2,6 +2,7 @@
 
 require __DIR__ . '/libs/router/Router.php';
 require __DIR__ . DIRECTORY_SEPARATOR . 'autoload.php';
+session_start();
 
 define('URLROOTPATH', dirname($_SERVER['PHP_SELF']));
 define('FULLURLROOTPATH', (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']));

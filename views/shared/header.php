@@ -1,6 +1,3 @@
-<?php
-    if(session_status()!=PHP_SESSION_ACTIVE) session_start();
-?>
 <header class="bg-[#2e2e2e] flex flex-row justify-between">
 
     <div class="flex flex-row">

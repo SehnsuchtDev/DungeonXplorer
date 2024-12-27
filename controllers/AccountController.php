@@ -1,6 +1,5 @@
 <?php use dungeonxplorer\managers\HeroManager;
 
-session_start();
 
 require_once __DIR__ . '/../autoload.php';
 

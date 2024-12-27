@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 
 use dungeonxplorer\managers\HeroManager;
 use dungeonxplorer\hero\Hero;
