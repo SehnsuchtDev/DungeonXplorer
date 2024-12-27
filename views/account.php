@@ -12,7 +12,7 @@
     <!-- ACCUEIL -->
      
         <div class="bg-[rgba(46,46,46,0.80)] place-self-center max-w-[50em] rounded text-[#e5e5e5] font-['Roboto'] p-12 m-24 text-xl">
-            <p class="font-['Pirata_One'] text-center">VicLeTombeur</p>
+            <p class="font-['Pirata_One'] text-3xl text-center"><?= $name ?></p>
             </br>
             <div class="flex">
                 <p class="text-[#C4975E]">Username(s) : &nbsp;</p>
