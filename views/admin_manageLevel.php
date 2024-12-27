@@ -21,95 +21,52 @@
         <table class="w-full">
 
             <!-- ajouter ici pour tous les comptes -->
+            <?php foreach($level as $key => $levelId):?>
+
             <tr class="border border-[#C4975E]">
+                <form action="<?= FULLURLROOTPATH ?>/admin/class/modify/<?=$levelId['le_id']?>" method="post">
                 <td class="p-10">
                     <div class="flex">
-                        <p>Nom : &nbsp;</p>
-                        <select name="classe" id="class-select" class="max-h-6 rounded bg-[#3a3a3a]">
-                            <option selected value="thief">Voleur</option>
-                            <option value="wizard">Sorcier</option>
-                            <option value="warrior">Guerrier</option>
-                        </select>
-                    </div>
-                    <div class="flex">
-                        <p>Numéro du niveau : &nbsp;</p>
-                        <input type="number" required value="0" class="max-h-6 rounded bg-[#3a3a3a]">
+                        <p>Numéro du niveau : </p>
+                        <input type="number" name="numero" required value="<?php echo $levelId['le_level']?>" class="max-h-6 rounded bg-[#3a3a3a]">
                     </div>
                     <div class="flex">
                         <p>Xp requis : &nbsp;</p>
-                        <input type="number" required value="0" required class="max-h-6 rounded bg-[#3a3a3a]">
+                        <input type="number"  name="xp" required value="<?php echo $levelId['le_required_xp']?>" required class="max-h-6 rounded bg-[#3a3a3a]">
                     </div>
                     <div class="flex">
                         <p>PV bonus : &nbsp;</p>
-                        <input type="number" required value="0" required class="max-h-6 rounded bg-[#3a3a3a]">
+                        <input type="number"  name="pvBonus" required value="<?php echo $levelId['le_pv_bonus']?>" required class="max-h-6 rounded bg-[#3a3a3a]">
                     </div>
                     <div class="flex">
                         <p>Mana bonus : &nbsp;</p>
-                        <input type="number" required value="0" class="max-h-6 rounded  bg-[#3a3a3a]">
+                        <input type="number"   name="mana" required value="<?php echo $levelId['le_mana_bonus']?>" class="max-h-6 rounded  bg-[#3a3a3a]">
                     </div>
                     <div class="flex">
                         <p>Force bonus : &nbsp;</p>
-                        <input type="number" required value="0" class="max-h-6 rounded  bg-[#3a3a3a]">
+                        <input type="number"  name="force" required value="<?php echo $levelId['le_strength_bonus']?>" class="max-h-6 rounded  bg-[#3a3a3a]">
                     </div>
                     <div class="flex">
                         <p>Initiative bonus : &nbsp;</p>
-                        <input type="number" required value="0" class="max-h-6 rounded bg-[#3a3a3a]">
+                        <input type="number" name="initiative" required value="<?php echo $levelId['le_initiative_bonus']?>" class="max-h-6 rounded bg-[#3a3a3a]">
                     </div>
                 </td>
 
                 <td class="p-7 text-right text-lg flex-col">
                     <div class="flex flex-col">
-                        <button class="bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] my-1.5">
-                            Modifier</button>
-                        <button class="bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] my-1.5">
-                            Supprimer</button>
+                        <input type="submit" value="Modifier" class="bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] my-1.5">
+
+                        <a href="admin/class/delete" class="bg-[#C4975E] text-center text-white w-36 h-10 rounded hover:bg-[#C49700] my-1.5">
+                            Supprimer</a>
                     </div>
                 </td>
+                </form>
             </tr>
+            <?php endforeach?>
 
         </table>
     </div>
 
-    <div
-        class="max-h-[500px] bg-[#2e2e2e] rounded shadow m-6 p-6 px-16 text-xl text-[#E5E5E5] font-['Roboto'] place-self-center border border-[#C4975E]">
-        <div class="flex">
-            <p>Nom : &nbsp;</p>
-            <select name="classe" id="class-select" class="max-h-6 rounded bg-[#3a3a3a]">
-                <option value="thief">Voleur</option>
-                <option value="wizard">Sorcier</option>
-                <option value="warrior">Guerrier</option>
-            </select>
-        </div>
-        <div class="flex">
-            <p>Numéro du niveau : &nbsp;</p>
-            <input type="number" required class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Xp requis : &nbsp;</p>
-            <input type="number" required value="0" required class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>PV bonus : &nbsp;</p>
-            <input type="number" required value="0" required class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Mana bonus : &nbsp;</p>
-            <input type="number" required class="max-h-6 rounded  bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Force bonus : &nbsp;</p>
-            <input type="number" required class="max-h-6 rounded  bg-[#3a3a3a]">
-        </div>
-        <div class="flex">
-            <p>Initiative bonus : &nbsp;</p>
-            <input type="number" required class="max-h-6 rounded bg-[#3a3a3a]">
-        </div>
-
-        <div class="text-center">
-            <button class="bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] ml-2 mt-5">
-                Ajouter</button>
-        </div>
-    </div>
 
     <?php include __DIR__ . "/shared/footer.php"; ?>
 

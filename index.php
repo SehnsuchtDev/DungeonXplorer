@@ -80,12 +80,17 @@ $router->post("admin/user/modify/(\d+)", "AdminController@modifyUser");
 $router->get("admin/user/delete/adventure/(\d+)", "AdminController@deleteAdventure");
 $router->get("admin/user/delete/character/(\d+)", "AdminController@deleteCharacter");
 
+
+$router->post("admin/level/modify/(\d+)","AdminController@modifyLevel");
+$router->get('admin/level/delete/(\d+)','AdminController@deleteLevel');
+
 // Everything to do with managing an item
 $router->get("admin/item/delete/(\d+)", "AdminController@deleteItem");
 $router->post("admin/item/modify/(\d+)", "AdminController@modifyItem");
 $router->post("admin/item/add", "AdminController@addItem");
 
 $router->get('account/delete/hero',"AccountController@deleteHero");
+
 
 
 $router->run();
