@@ -78,6 +78,32 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('hero-data').innerHTML = data;
+                inventoryButton();
             });
+    }
+    document.addEventListener("DOMContentLoaded", inventoryButton);
+
+    function inventoryButton() {
+        let button = document.getElementById("inventory-button");
+        let primary = document.getElementById("primary-weapon");
+        let secondary = document.getElementById("secondary-weapon");
+
+        button.id="";
+        primary.id="";
+        secondary.id="";
+
+        // inventory button in the hero bar
+        button.addEventListener("click", displayInventory);
+
+        // weapon buttons in the hero bar
+        primary.addEventListener("click", () => {
+            openItemDetails(false);
+            displayInventory();
+        });
+
+        secondary.addEventListener("click", () => {
+            openItemDetails(false);
+            displayInventory();
+        });
     }
 </script>

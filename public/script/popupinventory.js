@@ -1,7 +1,4 @@
-const button = document.getElementById("inventory-button");
 const popup = document.getElementById("inventory-object");
-const primary = document.getElementById("primary-weapon");
-const secondary = document.getElementById("secondary-weapon");
 
 // management of the inventory popup
 popup.style.visibility = "hidden";
@@ -25,20 +22,6 @@ popup.addEventListener("load", () => {
     });
 
 
-});
-
-// inventory button in the hero bar
-button.addEventListener("click", displayInventory);
-
-// weapon buttons in the hero bar
-primary.addEventListener("click", () => {
-    openItemDetails(false);
-    displayInventory();
-});
-
-secondary.addEventListener("click", () => {
-    openItemDetails(false);
-    displayInventory();
 });
 
 /*
