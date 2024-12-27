@@ -41,7 +41,10 @@ class Level{
             $this->gain[] = new GainEffect(Effect::INITIATIVE, $donnees['le_initiative_bonus']);
     }
 
-
+    public function getLevel(): int
+    {
+        return $this->level;
+    }
 
 }
 

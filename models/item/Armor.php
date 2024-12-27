@@ -2,6 +2,8 @@
 
 namespace dungeonxplorer\item;
 
+use dungeonxplorer\hero\class\Warrior;
+
 class Armor extends Item{
 
     private int $armorAmount = 0;
@@ -13,6 +15,19 @@ class Armor extends Item{
             $this->armorAmount = $donnees['it_protectvalue'];
         }
     }
+
+    public function equip(Warrior $hero){
+        if($hero->getArmor() != null){
+            $hero->getInventory()->addItem($hero->getArmor(), 1);
+        }
+        $hero->setArmor($this);
+    }
+
+    public function getArmorAmount(): int{
+        return $this->armorAmount;
+    }
+
+
 
 
 }

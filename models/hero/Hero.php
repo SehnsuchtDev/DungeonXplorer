@@ -5,8 +5,11 @@ namespace dungeonxplorer\hero;
 use dungeonxplorer\chapter\Chapter;
 use dungeonxplorer\item\HandItem;
 use dungeonxplorer\item\Inventory;
+use dungeonxplorer\item\Shield;
 use dungeonxplorer\managers\ChapterManager;
+use dungeonxplorer\managers\HeroManager;
 use dungeonxplorer\managers\ItemManager;
+use dungeonxplorer\managers\LevelManager;
 use dungeonxplorer\monster\Monster;
 
 require dirname(__DIR__,2) . DIRECTORY_SEPARATOR . 'autoload.php';
@@ -166,6 +169,11 @@ abstract class Hero{
     {
         return $this->initiative;
     }
+  
+    public function setXp(int $xp): void{
+        $this->xp = $xp;
+        $this->setCurrentLevel(LevelManager::getInstance()->getLevelWithXp($this->getClassHero(),$this->xp)->getLevel());
+    }
 
     public function getXp(): int
     {
@@ -191,25 +199,79 @@ abstract class Hero{
         return $this->purse;
     }
 
+
+    public function setSpellList(array $heroSpellList){
+        $this->spellList = $heroSpellList;
+    }
+
+
+    public function getCurrentChapter(): Chapter
+    {
+        return $this->currentChapter;
+    }
+
+    public function changeChapter(int $chapterId) : bool{
+        if($this->getCurrentChapter()->getChapterId() == $chapterId)
+            return false;
+        if($this->getCurrentChapter()->getChapterEvent() != null && !$this->getCurrentChapter()->getChapterEvent()->isDone())
+            return false;
+        if($chapterId <= 1){
+            $this->death();
+            return true;
+        }
+        $this->getCurrentChapter()->getNextChapter();
+        foreach ($this->getCurrentChapter()->getNextChapter() as $nextChapter) {
+            if($nextChapter->getChapterId() == $chapterId){
+                if($nextChapter->getTreasures() != null)
+                    $nextChapter->getTreasures()->give($this);
+                $this->setCurrentChapter($nextChapter);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function getPv(): int
+    {
+        return $this->pv;
+    }
+
+    public function getStrength(): int
+    {
+        return $this->strength;
+    }
+
+    public function getInitiative(): int
+    {
+        return $this->initiative;
+    }
+
+    public function getXp(): int
+    {
+        return $this->xp;
+    }
+
+    public function getInventory(): Inventory
+    {
+        return $this->inventory;
+    }
+
+    public function addPiece(int $quantity){
+        $this->purse += $quantity;
+    }
+
+    public function death(){
+        HeroManager::getInstance()->reset($this);
+    }
+
+    public function getPurse(): int
+    {
+        return $this->purse;
+    }
+
      
     public function getCurrentLevel(){
         return $this->currentLevel;
-    }
-
-    public function getName(){
-        return $this->name;
-    }
-
-    public function getClassHero(){
-        return $this->classHero;
-    }
-
-    public function getImage(){
-        return $this->image;
-    }
-
-    public function getBiography(){
-        return $this->biography;
     }
 
     public function getPrimaryWeapon(){
@@ -220,5 +282,16 @@ abstract class Hero{
         return $this->secondaryWeapon;
     }
 
+    public abstract function attack(Monster &$monster):void;
+
+    public function getArmorAmount(){
+        $armor = 0;
+        if($this->getPrimaryWeapon() instanceof Shield)
+            $armor += $this->getPrimaryWeapon()->getArmourAmount();
+        if($this->getSecondaryWeapon() != null && $this->getSecondaryWeapon() instanceof Shield)
+            $armor += $this->getSecondaryWeapon()->getArmourAmount();
+        return $armor;
+
+    }
 
 }

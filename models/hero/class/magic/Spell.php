@@ -4,9 +4,22 @@ namespace dungeonxplorer\hero\class\magic;
 
 class Spell{
 
-    private $name = "";
-    private $manaCost = 0;
-    private $damage = 0;
+    private string $name = "";
+    private int $manaCost = 0;
+    private int $damage = 0;
+
+    public function getName() : string{
+        return $this->name;
+    }
+
+    public function getManaCost() : int{
+        return $this->manaCost;
+    }
+
+    public function getDamage() : int{
+        return $this->damage;
+    }
+
 
     public function setName($name){
         $this->name = $name;

@@ -2,11 +2,10 @@
 
 namespace dungeonxplorer\hero\class\magic;
 
-use dungeonxplorer\managers\SpellManager;
-
 abstract class MagicHero extends \dungeonxplorer\hero\Hero{
 
     private $mana = 0;
+
 
     public function hydrate(array $donnees): void
     {
@@ -14,8 +13,15 @@ abstract class MagicHero extends \dungeonxplorer\hero\Hero{
         $this->mana = $donnees['he_mana'];
     }
 
-    public function getMana(){
+
+    public function getMana(): int
+    {
         return $this->mana;
+    }
+
+    public function setMana(int $mana): void
+    {
+        $this->mana = $mana;
     }
 
 }

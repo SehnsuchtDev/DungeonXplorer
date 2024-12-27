@@ -2,7 +2,7 @@
 
 namespace dungeonxplorer\managers;
 
-use dungeonxplorer\item\HandItem;
+use dungeonxplorer\hero\class\magic\MagicHero;
 use dungeonxplorer\hero\class\magic\Thief;
 use dungeonxplorer\hero\class\magic\Wizard;
 use dungeonxplorer\hero\class\Warrior;
@@ -11,7 +11,6 @@ use dungeonxplorer\hero\class\magic\Spell;
 use dungeonxplorer\hero\Hero;
 use dungeonxplorer\managers\ItemManager;
 use dungeonxplorer\item\Inventory;
-
 use dungeonxplorer\item\Item;
 
 require_once dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'autoload.php';
@@ -211,7 +210,18 @@ class HeroManager{
         $hero->setCurrentChapter($chapter);
         $hero->setPurse(0);
 
+        $hero->setInventory(new Inventory());
+        if($hero instanceof MagicHero)
+              $hero->setMana($classInformation->cl_base_mana);
 
+          switch (get_class($hero)) {
+              case Warrior::class :
+                  $hero->setArmor(null);
+                  break;
+              case Wizard::class :
+                  $hero->setSpells(array());
+                  break;
+          }
     }
 
     public function save($hero){
@@ -358,37 +368,3 @@ class HeroManager{
     }
 
 }
-
- HeroManager::getInstance()->deleteHero(4);
-
-
-
-/*
-$hero = HeroManager::getInstance()->getHero(91);    // CHANGER LE HERO ID !!!!!!
-
-$inventory = new Inventory();
-$item1 = ItemManager::getInstance()->getItem(5);
-$item2 = ItemManager::getInstance()->getItem(8);
-
-$inventory->addItem($item1, 1);
-$inventory->addItem($item2, 2);
-$hero->setInventory($inventory);
-
-
-// test de save de spell (SI C EST UN MAGE)
-// $spell = new Spell();
-// $spell->setName("Boule de Feu");
-
-// $spell2 = new Spell();
-// $spell2->setName("Caca en boîte");
-
-// $hero->addSpell($spell);
-// $hero->addSpell($spell2);
-
-
-//test de save de l'objet héro en bdd
-
-$hero->setPV(40000);
-
-HeroManager::getInstance()->save($hero);
-*/

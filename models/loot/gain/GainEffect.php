@@ -2,6 +2,7 @@
 
 namespace dungeonxplorer\loot\gain;
 
+use dungeonxplorer\hero\Hero;
 use dungeonxplorer\item\potion\Effect;
 
 class GainEffect implements Gain {
@@ -20,9 +21,8 @@ class GainEffect implements Gain {
     }
 
 
-    public function give()
-    {
-        // TODO: Implement give() method.
+    public function give(Hero $hero): void{
+        $this->effect->apply($hero, $this->quantity);
     }
 }
 

@@ -2,7 +2,11 @@
 
 namespace dungeonxplorer\item\class;
 
-class MagicWand extends ClassItem implements \dungeonxplorer\item\HandItem{
+use dungeonxplorer\item\HandItem;
+use dungeonxplorer\item\HandItemTrait;
+
+class MagicWand extends ClassItem implements HandItem{
+    use HandItemTrait;
 
     private int $manaCost = 0;
 

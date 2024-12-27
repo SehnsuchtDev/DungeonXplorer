@@ -2,16 +2,23 @@
 
 namespace dungeonxplorer\item\class;
 
-class Weapon extends ClassItem implements \dungeonxplorer\item\HandItem{
+use dungeonxplorer\item\HandItem;
+use dungeonxplorer\item\HandItemTrait;
 
-    private int $strenght = 0;
+class Weapon extends ClassItem implements HandItem{
+    use HandItemTrait;
+
+    private int $strength = 0;
 
     public function hydrate(array $donnees): void
     {
         parent::hydrate($donnees);
-        $this->strenght = $donnees['it_damage'];
+        $this->strength = $donnees['it_damage'];
     }
-
+  
+    public function getStrength(){
+        return $this->strength;
+    }
 
 }
 

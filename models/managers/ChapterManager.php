@@ -4,7 +4,7 @@ namespace dungeonxplorer\managers;
 
 use dungeonxplorer\chapter\Chapter;
 
-require_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'autoload.php';
+require_once dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'autoload.php';
 class ChapterManager
 {
     private static self $instance;
