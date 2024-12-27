@@ -21,6 +21,18 @@ class Spell{
     }
 
 
+    public function setName($name){
+        $this->name = $name;
+    }
+
+    public function setManaCost($mana){
+        $this->manaCost = $mana;
+    }
+
+    public function setDamage($damage){
+        $this->damage = $damage;
+    }
+
 }
 
 ?>

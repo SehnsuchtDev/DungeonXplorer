@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 
-    <div id="creationHero" class="pagediv bg-[#F6F0E8] h-full w-full filter drop-shadow-lg shadow-inner">
-    <form id="formulaireCreateHero" method="post" action="<?= FULLURLROOTPATH ?>/book/page/hero " >
+<div id="creationHero" class="pagediv bg-[#F6F0E8] h-full w-full filter drop-shadow-lg shadow-inner">
+    <form id="formulaireCreateHero" method="post" action="<?= FULLURLROOTPATH ?>/book/page/hero ">
         <div class="p-10 font-['Pirata_One']">
+
+            <!-- Character Profile Section -->
             <div class="flex">
-                <img id="image" src="<?= FULLURLROOTPATH ?>/public\assets\Wizard.jpg" alt="profile picture" width="100" height="100"
-                    title="profile picture" class="rounded" />
+                <img id="image" src="<?= FULLURLROOTPATH ?>/public\assets\Wizard.jpg" alt="profile picture" width="100"
+                    height="100" title="profile picture" class="rounded" />
                 <input type="text" value="Nom" name="name" id="name" alt="character's name"
                     class="pointer-events-auto text-black font-bold text-3xl ml-6 p-1 place-content-center max-h-12 max-w-48">
             </div>
 
+            <!-- Biography Section -->
             <div class="text-justify">
                 <p class="text-black font-bold text-3xl m-3 mt-10">Biographie</p>
                 <textarea id="biography" name="biography" alt="character's name" rows="8" cols="33"
@@ -18,6 +21,7 @@
 
             </div>
 
+            <!-- Class Selection Section -->
             <div class="flex">
                 <p class="text-black font-bold text-3xl m-3">Classe : &nbsp;</p>
                 <select id="class" name="class" class="pointer-events-auto font-['Roboto'] place-self-center max-h-6">
@@ -27,50 +31,51 @@
                 </select>
             </div>
 
-            <input type="submit" value="Enregistrer" class="bg-[#C4975E] p-3 text-2xl border-solid border-2 border-black rounded max-w-xs mx-auto pointer-events-auto cursor-pointer">
+            <!-- Submit Button -->
+            <input type="submit" value="Enregistrer"
+                class="bg-[#C4975E] p-3 text-2xl border-solid border-2 border-black rounded max-w-xs mx-auto pointer-events-auto cursor-pointer">
 
         </div>
     </form>
 
-    </div>
+</div>
 
-    
 
-    <script defer> 
-    
-            const selectElement = document.getElementById('class');
-            selectElement.addEventListener('change',(event)=>{
-                const selectedValue = event.target.value;
-                let imageSource = "";
-                switch(selectedValue){
-                    case '1':
-                        imageSource = "Dark Knight.jpg";
-                        break;
-                    case '2':
-                        imageSource = "Wizard.jpg";
-                        break;
-                    case '3':
-                        imageSource = "Thief.jpg";
-                        break;
-                }
-                
-                const imageElement = document.getElementById('image');
-                imageElement.src =`<?=FULLURLROOTPATH?>/public/assets/${imageSource}`;
-            })
 
-            <?php if(isset($errors) && empty($errors)): ?>
-                <?php elseif(isset($errors)): ?>
-                    let str = "";
-                    <?php foreach($errors as $e): ?>
-                        str += "<?=$e?>\n";
-                    <?php endforeach ?>
-                    alert(str);
-            <?php endif; ?>
+<script defer>
 
-        document.getElementById("formulaireCreateHero").addEventListener("submit",(event)=>{
+    const selectElement = document.getElementById('class');
+    selectElement.addEventListener('change', (event) => {
+        const selectedValue = event.target.value;
+        let imageSource = "";
+        switch (selectedValue) {
+            case '1':
+                imageSource = "Dark Knight.jpg";
+                break;
+            case '2':
+                imageSource = "Wizard.jpg";
+                break;
+            case '3':
+                imageSource = "Thief.jpg";
+                break;
+        }
+
+        const imageElement = document.getElementById('image');
+        imageElement.src = `<?= FULLURLROOTPATH ?>/public/assets/${imageSource}`;
+    })
+
+    <?php if (isset($errors) && empty($errors)): ?>
+    <?php elseif (isset($errors)): ?>
+        let str = "";
+        <?php foreach ($errors as $e): ?>
+            str += "<?= $e ?>\n";
+        <?php endforeach ?>
+        alert(str);
+    <?php endif; ?>
+
+    document.getElementById("formulaireCreateHero").addEventListener("submit", (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
-        bookmanager.refreshDivWithPostMethod(event.target.action, formData,"creationHero");
+        bookmanager.refreshDivWithPostMethod(event.target.action, formData, "creationHero");
     });
-    </script>
-
+</script>

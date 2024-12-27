@@ -2,9 +2,10 @@
 
 require __DIR__ . '/libs/router/Router.php';
 require __DIR__ . DIRECTORY_SEPARATOR . 'autoload.php';
+session_start();
 
 define('URLROOTPATH', dirname($_SERVER['PHP_SELF']));
-define('FULLURLROOTPATH', (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']));
+define('FULLURLROOTPATH', (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://" . $_SERVER['HTTP_HOST'] . (dirname($_SERVER['PHP_SELF']) == '/' ? '' : dirname($_SERVER['PHP_SELF'])));
 define('FULLCURRENTURL', (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']));
 
 $router = new Router();
@@ -37,7 +38,8 @@ $router->post('book/page/chapter/mcqtest','ChapterController@MCQTestAnswer');
 $router->get('book/statusbar','StatusBarController@show');
 
 $router->get("book/inventory", "InventoryController@show");
-$router->get("book/inventory/details/(\d+)", "InventoryController@showDetails");
+$router->get("book/inventory/details/(\d+)", "InventoryController@showInventroyDetails");
+$router->get("book/item/details/(\d+)", "InventoryController@showItemDetails");
 
 
 $router->get('/inventory/use/(\d+)','InventoryController@useItem');
@@ -65,7 +67,6 @@ $router->get("book/page/hero/p1","HeroCreationController@showp1");
 $router->post("book/page/hero","HeroCreationController@creation");
 $router->get("book/page/hero/p2","HeroCreationController@showp2");
 
-
 $router->get("admin", "AdminController@show");
 // $router->get("adminAccount", "AdminController@showManageAccount");
 $router->get("adminChapter", "AdminController@showManageChapter");
@@ -79,14 +80,22 @@ $router->post("admin/user/modify/(\d+)", "AdminController@modifyUser");
 $router->get("admin/user/delete/adventure/(\d+)", "AdminController@deleteAdventure");
 $router->get("admin/user/delete/character/(\d+)", "AdminController@deleteCharacter");
 
+
+$router->post("admin/level/modify/(\d+)","AdminController@modifyLevel");
+$router->get('admin/level/delete/(\d+)','AdminController@deleteLevel');
+
 // Everything to do with managing an item
 $router->get("admin/item/delete/(\d+)", "AdminController@deleteItem");
 $router->post("admin/item/modify/(\d+)", "AdminController@modifyItem");
 $router->post("admin/item/add", "AdminController@addItem");
 
+
 $router->post("admin/spell/modify/(\d+)", "AdminController@modifySpell");
 $router->get("admin/spell/delete/(\d+)", "AdminController@deleteSpell");
 $router->post("admin/spell/add", "AdminController@addSpell");
+
+$router->get('account/delete/hero',"AccountController@deleteHero");
+
 
 
 $router->run();

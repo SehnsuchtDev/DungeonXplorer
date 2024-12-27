@@ -64,8 +64,8 @@ class Monster{
     public function attack(Hero &$hero): bool{
         $attaque = rand(1,6) + $this->getStrength() + $this->getMana();
         $defense = rand(1,6) + (int)($hero->getStrength()/2);
-        if($hero instanceof Warrior){
-            $defense += $defense + $hero->getArmor();
+        if($hero instanceof Warrior && $hero->getArmor()){
+            $defense += $defense + $hero->getArmor()->getArmorAmount();
         }
         if($hero->getPrimaryWeapon() instanceOf Shield){
             $defense += $defense + $hero->getPrimaryWeapon()->getArmourAmount();

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace dungeonxplorer\hero;
 
@@ -32,7 +32,10 @@ abstract class Hero{
     private int $purse = 0;
     private Inventory $inventory;        // Inventory
 
-    
+    public function __construct(){
+        $this->inventory = new Inventory();
+    }
+
 
     public function getImage(){
         return $this->image;
@@ -157,11 +160,6 @@ abstract class Hero{
     }
 
 
-    public function setSpellList(array $heroSpellList){
-        $this->spellList = $heroSpellList;
-    }
-
-
     public function getCurrentChapter(): Chapter
     {
         return $this->currentChapter;
@@ -174,6 +172,7 @@ abstract class Hero{
             return false;
         if($chapterId <= 1){
             $this->death();
+            HeroManager::getInstance()->save($this);
             return true;
         }
         $this->getCurrentChapter()->getNextChapter();
@@ -182,6 +181,7 @@ abstract class Hero{
                 if($nextChapter->getTreasures() != null)
                     $nextChapter->getTreasures()->give($this);
                 $this->setCurrentChapter($nextChapter);
+                HeroManager::getInstance()->save($this);
                 return true;
             }
         }
@@ -226,7 +226,7 @@ abstract class Hero{
         return $this->purse;
     }
 
-     
+
     public function getCurrentLevel(){
         return $this->currentLevel;
     }
