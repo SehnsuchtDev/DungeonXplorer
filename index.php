@@ -78,6 +78,9 @@ $router->post("admin/user/modify/(\d+)", "AdminController@modifyUser");
 $router->get("admin/user/delete/adventure/(\d+)", "AdminController@deleteAdventure");
 $router->get("admin/user/delete/character/(\d+)", "AdminController@deleteCharacter");
 
+$router->post("admin/class/modify/(\d+)","AdminController@modifyLevel");
+$router->get('admin/class/delete/(\d+)','AdminController@deleteLevel');
+
 
 $router->run();
 

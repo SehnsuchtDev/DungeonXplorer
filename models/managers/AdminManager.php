@@ -67,6 +67,32 @@ class AdminManager{
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function getAllLevelInformation(){
+        $bdd = \Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("select le_id,cl_id,le_level,le_required_xp,le_pv_bonus,le_mana_bonus,le_strength_bonus,le_initiative_bonus from Level"); ///
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+
+    public function updateLevel($id,$numero,$xp,$pvBonus,$mana,$force,$initiative){
+        $bdd = \Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("update Level set le_level=$numero,le_required_xp=$xp,le_pv_bonus=$pvBonus,le_mana_bonus=$mana,le_strength_bonus=$force,le_initiative_bonus=$initiative where le_id=$id");
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function deleteLevel($id){
+        $bdd = \Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("delete from Level where le_id=$id");
+        $stmt->execute();
+    }
+
 }
 
 
