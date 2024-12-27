@@ -9,83 +9,78 @@
     <script src="public/script/tailwind.config.js"></script>
 </head>
 
-<body class="bg-[#1a1a1a]">
+<body class="bg-[#1a1a1a] ">
 
     <?php include('./shared/header.php'); ?>
     <?php include('./shared/admin_menu.php'); ?>
 
     <h1 class="p-10 text-center text-3xl font-['Pirata_One'] text-[#E5E5E5]"> Gestionnaire des items</h1>
 
-
     <div
-        class="overflow-y-auto max-h-[400px] bg-[#2e2e2e] rounded shadow m-6 text-xl text-[#E5E5E5] font-['Roboto'] place-self-center">
-        <table class="w-full">
-
-            <!-- ajouter ici pour tous les comptes -->
-            <tr class="border border-[#C4975E]">
-                <td class="p-10">
-                    <div class="flex">
+    class="overflow-y-auto h-auto w-full sm:w-[90%] md:w-[80%] lg:w-[500px] bg-[#2e2e2e] rounded shadow text-xl text-[#E5E5E5] font-['Roboto'] mx-auto my-5 p-5">
+    <table class="w-full">
+        <tr class="border border-[#C4975E] flex flex-wrap md:flex-nowrap">
+            <td class="p-5 flex-1">
+                <div class="flex flex-wrap sm:flex-col gap-3">
+                    <div class="flex items-center">
                         <p>Nom : &nbsp;</p>
-                        <input type="text" value="nom de l'item" class="max-h-6 rounded bg-[#3a3a3a]">
+                        <input type="text" value="nom de l'item" class="w-full max-w-[200px] rounded bg-[#3a3a3a]">
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <p>Description : &nbsp;</p>
-                        <input type="text" value="" class="max-h-6 rounded bg-[#3a3a3a]">
+                        <input type="text" value="" class="w-full max-w-[200px] rounded bg-[#3a3a3a]">
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <p>Poids : &nbsp;</p>
-                        <input type="number" value="0" class="max-h-6 rounded bg-[#3a3a3a]">
+                        <input type="number" value="0" class="w-full max-w-[100px] rounded bg-[#3a3a3a]">
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <p>Nombre max : &nbsp;</p>
-                        <input type="number" value="0" class="max-h-6 rounded bg-[#3a3a3a]">
+                        <input type="number" value="0" class="w-full max-w-[100px] rounded bg-[#3a3a3a]">
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <p>Equipable : &nbsp;</p>
-                        <input type="checkbox" class="max-h-6 rounded  bg-[#3a3a3a]">
+                        <input type="checkbox" class="rounded bg-[#3a3a3a]">
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <p>Armure : &nbsp;</p>
-                        <input type="checkbox" class="max-h-6 rounded  bg-[#3a3a3a]">
+                        <input type="checkbox" class="rounded bg-[#3a3a3a]">
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <p>Nom de l'effet : &nbsp;</p>
-                        <input type="text" value="" class="max-h-6 rounded bg-[#3a3a3a]">
+                        <input type="text" value="" class="w-full max-w-[200px] rounded bg-[#3a3a3a]">
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <p>Valeur de l'effet : &nbsp;</p>
-                        <input type="number" value="0" class="max-h-6 rounded bg-[#3a3a3a]">
+                        <input type="number" value="0" class="w-full max-w-[100px] rounded bg-[#3a3a3a]">
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <p>Coût en mana : &nbsp;</p>
-                        <input type="number" value="0" class="max-h-6 rounded bg-[#3a3a3a]">
+                        <input type="number" value="0" class="w-full max-w-[100px] rounded bg-[#3a3a3a]">
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <p>Valeur de protection : &nbsp;</p>
-                        <input type="number" value="0" class="max-h-6 rounded bg-[#3a3a3a]">
+                        <input type="number" value="0" class="w-full max-w-[100px] rounded bg-[#3a3a3a]">
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <p>Nombre de dégâts : &nbsp;</p>
-                        <input type="number" value="0" class="max-h-6 rounded bg-[#3a3a3a]">
+                        <input type="number" value="0" class="w-full max-w-[100px] rounded bg-[#3a3a3a]">
                     </div>
-                    <div class="flex m-3">
-                        <img src="../public/assets/Giant Spider.jpg" alt="image" width="100" height="100" class="m-3" />
-                        <input type="file" class="max-h-6 rounded bg-[#3a3a3a] self-center ">
+                    <div class="flex items-center gap-3">
+                        <img src="../public/assets/Giant Spider.jpg" alt="image" width="100" height="100" class="rounded">
+                        <input type="file" class="rounded bg-[#3a3a3a]">
                     </div>
-                </td>
+                </div>
+            </td>
 
-                <td class="p-7 text-right text-lg flex-col">
-                    <div class="flex flex-col">
-                        <button class="bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] my-1.5">
-                            Modifier</button>
-                        <button class="bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] my-1.5">
-                            Supprimer</button>
-                    </div>
-                </td>
-            </tr>
+            <td class="p-5 flex justify-end flex-col items-end">
+                <button class="bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] my-1.5">Modifier</button>
+                <button class="bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] my-1.5">Supprimer</button>
+            </td>
+        </tr>
+    </table>
+</div>
 
-        </table>
-    </div>
 
     <div
         class="max-h-[500px] bg-[#2e2e2e] rounded shadow m-6 p-6 px-16 text-xl text-[#E5E5E5] font-['Roboto'] place-self-center border border-[#C4975E]">
@@ -138,7 +133,7 @@
             <input type="file" required class="max-h-6 rounded bg-[#3a3a3a]">
         </div>
         <div class="text-center">
-            <button class="bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] ml-2 mt-5">
+            <button class="bg-[#C4975E] text-white w-36 h-10 rounded hover:bg-[#C49700] ">
                 Ajouter</button>
         </div>
     </div>
