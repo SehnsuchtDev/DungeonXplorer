@@ -1,12 +1,25 @@
 <?php
 
-class ErrorController{
+/**
+ * ErrorController Class
+ * Handles the display of error pages for the application.
+ */
+class ErrorController
+{
 
-    public function show(){
+    /**
+     * Displays the 404 error page.
+     */
+    public function show()
+    {
         require dirname(__DIR__) . "/views/error404.php";
     }
 
-    public function show403(){
+    /**
+     * Displays the 403 error page.
+     */
+    public function show403()
+    {
         require dirname(__DIR__) . "/views/error403.php";
     }
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+<!-- Page 1 for any chapter -->
 
 <div class="pagediv bg-[#F6F0E8] h-full w-full filter drop-shadow-lg shadow-inner">
 

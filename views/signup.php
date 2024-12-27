@@ -1,70 +1,75 @@
+<!-- Container for the sign-up form -->
 <div id="divInscription"
     class="pagediv bookcover ml-[400px] text-[#FFFFFF] place-self-center font-['Pirata_One'] w-full h-full">
-    <h1 class="text-center text-4xl p-9"> Inscription </h1>
+    <h1 class="text-center text-4xl p-6"> Inscription </h1>
+
+    <!-- Sign-up form with dynamic form action and method -->
     <form id="formulaire-inscription<?= $seed ?>" method="post" action="<?= FULLURLROOTPATH ?>/book/page/signup">
         <span class="flex justify-between items-center p-2 flex-col">
-            <label class="text-[2.5vh]">Pseudo:</label>
-            <input type="text" name="pseudo" placeholder="Veuillez rentrer votre pseudo"
-                class="text-[2.5vh] border-2 w-[25vw] min-w-64 bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
+            <label for="pseudo" class="text-[2.2vh]">Pseudo:</label>
+            <input id="pseudo" type="text" name="pseudo" placeholder="Veuillez rentrer votre pseudo"
+                class="text-[2.2vh] border-2 w-[25vw] min-w-64 max-w-80 max-h-7 bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
         </span>
 
         <span class="flex justify-between items-center p-2 flex-col">
-            <label class="px-4 text-[2.5vh]">E-mail:</label>
-            <input type="email" name="mail" placeholder="Veuillez rentrer votre adresse mail"
-                class="text-[2.5vh] border-2 w-[25vw] min-w-64 bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
+            <label for="email" class="px-4 text-[2.2vh]">E-mail:</label>
+            <input id="email" type="email" name="mail" placeholder="Veuillez rentrer votre adresse mail"
+                class="text-[2.2vh] border-2 w-[25vw] min-w-64 max-w-80 max-h-7 bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
         </span>
 
         <span class="flex justify-between items-center p-2 flex-col">
-            <label class="px-4 text-[2.5vh]">Mot de passe:</label>
-            <input type="password" name="motDePasse" placeholder="Veuillez rentrer votre mot de passe"
-                class="text-[2.5vh] border-2 w-[25vw] min-w-64 bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
+            <label for="password" class="px-4 text-[2.2vh]">Mot de passe:</label>
+            <input id="password" type="password" name="password" placeholder="Veuillez rentrer votre mot de passe"
+                class="text-[2.2vh] border-2 w-[25vw] min-w-64 max-w-80 max-h-7 bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
         </span>
 
         <span class="flex justify-between items-center p-2 flex-col">
-            <label class="px-4 text-[2.5vh]">Confirmer le mot de passe:</label>
-            <input type="password" name="motDePasse" placeholder="Veuillez confirmer votre mot de passe"
-                class="text-[2.5vh] border-2 w-[25vw] min-w-64 bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
+            <label for="confirmpsw" class="px-4 text-[2.2vh]">Confirmer le mot de passe:</label>
+            <input id="confirmpsw" type="password" name="passwordconfirm"
+                placeholder="Veuillez confirmer votre mot de passe"
+                class="text-[2.2vh] border-2 w-[25vw] min-w-64 max-w-80 max-h-7 bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
         </span>
 
         <span class="flex flex-col items-center space-y-3 mt-8">
-            <input type="submit" value="S'Inscrire" class=" bg-[#2E2E2E] p-4 w-48  rounded pointer-events-auto
+            <input type="submit" value="S'Inscrire" class=" bg-[#2E2E2E] py-3 px-5 text-[2vh] rounded pointer-events-auto cursor-pointer
                 max-[640px]:w-32
                 max-[640px]:p-3
                 max-[500px]:p-2">
             </input>
 
-            <p class="text-[3vh] h-1 pb-4"> ou </p>
+            ou
             <button id="connect<?= $seed ?>" type="button"
-                class=" bg-[#2E2E2E] p-2 w-32 text-[2.7vh] rounded pointer-events-auto"> Se connecter
+                class=" bg-[#2E2E2E] py-2 px-4 text-[2vh] rounded pointer-events-auto cursor-pointer"> Se connecter
             </button>
         </span>
     </form>
 </div>
 
-<script defer>
+<!-- JavaScript for form submission and dynamic page management -->
+<script>
 
-<?php if(isset($errors) && empty($errors)): ?>
-                if(window.bookmanager == undefined){
-                    document.addEventListener("DOMContentLoaded",async()=>{
-                    await new Promise(r => setTimeout(r, 300));
-                    window.bookmanager.loadTwoPageAndTurn("<?= FULLURLROOTPATH?>/book/page/hero/p1", "<?= FULLURLROOTPATH?>/book/page/hero/p2");
-                });
-                }
-                else{
-                    window.location.reload();
-                }
-                
-                <?php elseif(isset($errors)): ?>
-                    str = "";
-                    <?php foreach($errors as $e): ?>
-                        str += "<?=$e?>\n";
-                    <?php endforeach ?>
-                    alert(str);
-                <?php endif; ?>
-                
-    
-    
-    document.getElementById("formulaire-inscription<?=$seed?>").addEventListener("submit",(event)=>{
+    <?php if (isset($errors) && empty($errors)): ?>
+        if (window.bookmanager == undefined) {
+            document.addEventListener("DOMContentLoaded", async () => {
+                await new Promise(r => setTimeout(r, 300));
+                window.bookmanager.loadTwoPageAndTurn("<?= FULLURLROOTPATH ?>/book/page/hero/p1", "<?= FULLURLROOTPATH ?>/book/page/hero/p2");
+            });
+        }
+        else {
+            window.location.reload();
+        }
+
+    <?php elseif (isset($errors)): ?>
+        str = "";
+        <?php foreach ($errors as $e): ?>
+            str += "<?= $e ?>\n";
+        <?php endforeach ?>
+        alert(str);
+    <?php endif; ?>
+
+
+
+    document.getElementById("formulaire-inscription<?= $seed ?>").addEventListener("submit", (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
         bookmanager.refreshDivWithPostMethod(event.target.action, formData, "divInscription");
