@@ -3,26 +3,27 @@
     <h1 class="text-center text-4xl p-6"> Inscription </h1>
     <form id="formulaire-inscription<?= $seed ?>" method="post" action="<?= FULLURLROOTPATH ?>/book/page/signup">
         <span class="flex justify-between items-center p-2 flex-col">
-            <label class="text-[2.2vh]">Pseudo:</label>
-            <input type="text" name="pseudo" placeholder="Veuillez rentrer votre pseudo"
+            <label for="pseudo" class="text-[2.2vh]">Pseudo:</label>
+            <input id="pseudo" type="text" name="pseudo" placeholder="Veuillez rentrer votre pseudo"
                 class="text-[2.2vh] border-2 w-[25vw] min-w-64 max-w-80 max-h-7 bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
         </span>
 
         <span class="flex justify-between items-center p-2 flex-col">
-            <label class="px-4 text-[2.2vh]">E-mail:</label>
-            <input type="email" name="mail" placeholder="Veuillez rentrer votre adresse mail"
+            <label for="email" class="px-4 text-[2.2vh]">E-mail:</label>
+            <input id="email" type="email" name="mail" placeholder="Veuillez rentrer votre adresse mail"
                 class="text-[2.2vh] border-2 w-[25vw] min-w-64 max-w-80 max-h-7 bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
         </span>
 
         <span class="flex justify-between items-center p-2 flex-col">
-            <label class="px-4 text-[2.2vh]">Mot de passe:</label>
-            <input type="password" name="password" placeholder="Veuillez rentrer votre mot de passe"
+            <label for="password" class="px-4 text-[2.2vh]">Mot de passe:</label>
+            <input id="password" type="password" name="password" placeholder="Veuillez rentrer votre mot de passe"
                 class="text-[2.2vh] border-2 w-[25vw] min-w-64 max-w-80 max-h-7 bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
         </span>
 
         <span class="flex justify-between items-center p-2 flex-col">
-            <label class="px-4 text-[2.2vh]">Confirmer le mot de passe:</label>
-            <input type="password" name="passwordconfirm" placeholder="Veuillez confirmer votre mot de passe"
+            <label for="confirmpsw" class="px-4 text-[2.2vh]">Confirmer le mot de passe:</label>
+            <input id="confirmpsw" type="password" name="passwordconfirm"
+                placeholder="Veuillez confirmer votre mot de passe"
                 class="text-[2.2vh] border-2 w-[25vw] min-w-64 max-w-80 max-h-7 bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
         </span>
 
@@ -33,7 +34,7 @@
                 max-[500px]:p-2">
             </input>
 
-            <p class=""> ou </p>
+            ou
             <button id="connect<?= $seed ?>" type="button"
                 class=" bg-[#2E2E2E] py-2 px-4 text-[2vh] rounded pointer-events-auto cursor-pointer"> Se connecter
             </button>
@@ -41,7 +42,7 @@
     </form>
 </div>
 
-<script defer>
+<script> //defer
 
     <?php if (isset($errors) && empty($errors)): ?>
         if (window.bookmanager == undefined) {

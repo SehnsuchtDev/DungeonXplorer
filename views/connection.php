@@ -6,14 +6,14 @@
         max-[500px]:p-6"> Connexion </h1>
     <form id="formulaire-connexion<?= $seed ?>" method="post" action="<?= FULLURLROOTPATH ?>/book/page/login">
         <span class="flex justify-between items-center p-2 flex-col">
-            <label class="text-[2.5vh] m-3">E-mail:</label>
+            <label for="mail" class="text-[2.5vh] m-3">E-mail:</label>
             <input id="mail" type="email" name="email" placeholder="Veuillez rentrer votre adresse mail"
                 class="text-[2.5vh] border-2 w-[25vw] min-w-64 max-w-80 bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
         </span>
 
         <span class="flex justify-between items-center p-2 flex-col">
-            <label class="text-[2.5vh] m-3">Mot de passe:</label>
-            <input type="password" name="password" placeholder="Veuillez rentrer votre mot de passe"
+            <label for="password" class="text-[2.5vh] m-3">Mot de passe:</label>
+            <input id="password" type="password" name="password" placeholder="Veuillez rentrer votre mot de passe"
                 class=" text-[2.5vh] border-2 w-[25vw] min-w-64 max-w-80 bg-[#2E2E2E] rounded text-center pointer-events-auto z-0">
         </span>
 
@@ -23,7 +23,7 @@
                     max-[640px]:w-32
                     max-[640px]:p-3
                     max-[500px]:p-2" />
-            <p class=""> ou </p>
+            ou
             <button id="register<?= $seed ?>" type="button"
                 class=" bg-[#2E2E2E] py-3 px-5 text-[2vh] rounded pointer-events-auto cursor-pointer"> S'inscrire
             </button>
@@ -33,7 +33,7 @@
 
 </div>
 
-<script defer>
+<script> //defer
 
 
     <?php if (isset($errors) && empty($errors)): ?>
