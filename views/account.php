@@ -42,6 +42,10 @@
                     <a href="account/delete">Supprimer le compte</a>        
                 </p>
                 </div>
+                <div class="bg-[#C4975E] my-7 mx-6 p-3 place-content-center rounded-lg" >
+                    <p class="font-['Pirata_One'] mx-3 text-[#e5e5e5]">
+                    <a href="account/delete/hero">Supprimer le héros</a>        
+                </p>
             </div>
         </div>
   
