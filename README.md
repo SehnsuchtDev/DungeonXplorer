@@ -26,6 +26,21 @@ L’internaute (joueur) peut :
 ✔️ Consulter sa page de profil
 ✔️ Supprimer son compte
 
+## :mag: Manuel d'utilisation
+
+- placez un fichier .env à la racine, un exemple est disponible
+- exécutez le script DungeonXplorer_v4.sql
+- exécutez le script data.sql
+
+## :see_no_evil: Comptes utilisateurs
+
+- ADRESSE MAIL -> MOT DE PASSE
+
+- warrior@gmail.com -> 1234
+- wizard@gmail.com -> 1234
+- thief@gmail.com -> 1234
+- admin@mail.com -> 1234
+
 ## 🔖 Bibliothèques
 
 - [StPageFlip](https://nodlik.github.io/StPageFlip/)
