@@ -6,6 +6,9 @@
 
 <head>
     <?php include(__DIR__ .'/shared/head.php'); ?>
+    <script>
+        const FULLURLROOTPATH = "<?= FULLURLROOTPATH ?>";
+    </script>
     <script defer src="<?= FULLURLROOTPATH ?>/public/script/popupinventory.js"></script>
     <script type="module" src="<?= FULLURLROOTPATH ?>/public/script/bookmanager.js"></script>
 </head>

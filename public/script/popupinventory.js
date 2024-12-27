@@ -40,7 +40,7 @@ function displayPopup() {
 }
 
 function openInvDetails(id) {
-    popup.setAttribute("data", "./book/inventory/details/" + id);
+    popup.setAttribute("data", FULLURLROOTPATH + "/book/inventory/details/" + id);
     popup.addEventListener("load", () => {
         const back = popup.contentDocument.getElementById("back");
         back.addEventListener("click", closeItemsDetails);
@@ -49,7 +49,7 @@ function openInvDetails(id) {
 }
 
 function openItemDetails(id) {
-    popup.setAttribute("data", "./book/item/details/" + id);
+    popup.setAttribute("data", FULLURLROOTPATH +"/book/item/details/" + id);
     popup.addEventListener("load", () => {
         const back = popup.contentDocument.getElementById("back");
         back.addEventListener("click", hiddenInventory);
@@ -59,5 +59,5 @@ function openItemDetails(id) {
 
 function closeItemsDetails() {
     window.book.updateStatusBar();
-    popup.setAttribute("data", "./book/inventory");
+    popup.setAttribute("data", FULLURLROOTPATH +"/book/inventory");
 }
