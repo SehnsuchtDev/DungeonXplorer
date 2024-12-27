@@ -69,8 +69,9 @@
     </div>
 
 </div>
-
 <script defer>
+
+
     let chapterTrun<?= $seed ?> = false;
 
     for (let e of document.querySelectorAll(".pageButton<?= $seed ?>")) {
