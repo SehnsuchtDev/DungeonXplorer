@@ -58,6 +58,15 @@ class AdminManager{
         HeroManager::getInstance()->deleteHero($userID);
     }
 
+    public function getAllUserInformation(){
+        $bdd = \Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("select us_id, us_username, us_email, he_id from User");
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
 }
 
 

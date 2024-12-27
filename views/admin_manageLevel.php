@@ -11,8 +11,8 @@
 
 <body class="bg-[#1a1a1a]">
 
-    <?php include('./shared/header.php'); ?>
-    <?php include('./shared/admin_menu.php'); ?>
+    <?php include(__DIR__ . '/shared/header.php'); ?>
+    <?php include(__DIR__ . '/shared/admin_menu.php'); ?>
 
     <h1 class="p-10 text-center text-3xl font-['Pirata_One'] text-[#E5E5E5]"> Gestionnaire des niveaux</h1>
 
@@ -111,7 +111,7 @@
         </div>
     </div>
 
-    <?php include "./shared/footer.php"; ?>
+    <?php include __DIR__ . "/shared/footer.php"; ?>
 
 </body>
 

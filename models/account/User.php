@@ -108,9 +108,7 @@ class User{
         if(isset($res['he_id']))
             $user->hero = HeroManager::getInstance()->getHero($res['he_id']);
 
-
         return $user;
-
     }
 
 
@@ -205,6 +203,11 @@ class User{
         $stmt->execute();
 
         $this->email = $newEMail;
+    }
+
+    public function isTheUserAnAdmin(){
+        return true;
+        //return $this->isAdmin;
     }
 
 }
