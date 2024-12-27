@@ -310,7 +310,6 @@ class HeroManager{
         $inventoryRemovalRequest->bindParam(":idOfMyHero", $id);
         $inventoryRemovalRequest->execute();
 
-        echo "------------------------------------------<br>";
         foreach($hero->getInventory()->getItems() as $key){
             
             $inventoryRequest = null;

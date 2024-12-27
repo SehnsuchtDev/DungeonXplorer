@@ -20,6 +20,7 @@ class StatusBarController{
 
     public function __construct(){
         if(!array_key_exists('user', $_SESSION) && !isset($_SESSION['user'])){
+            $this->showEmptyDiv();
             return;
         }
         $this->user = $_SESSION['user'];
@@ -27,8 +28,7 @@ class StatusBarController{
     }
 
     public function showEmptyDiv(){
-        echo '<div id="hero-data"></div>';
-        return;
+        require dirname(__DIR__). DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR .'shared'. DIRECTORY_SEPARATOR. 'hero_data.php';
     }
 
     public function show(){
