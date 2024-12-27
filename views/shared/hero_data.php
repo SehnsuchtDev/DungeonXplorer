@@ -79,7 +79,7 @@
     </div>
 </div>
 <script defer>
-    function updateStatusBar() {
+    let updateStatusBar = () => {
         fetch('<?= FULLURLROOTPATH ?>/book/statusbar')
             .then(response => response.text())
             .then(data => {
@@ -87,6 +87,8 @@
                 inventoryButton();
             });
     }
+    window.book.updateStatusBar = updateStatusBar;
+
     document.addEventListener("DOMContentLoaded", inventoryButton);
 
     function inventoryButton() {
