@@ -17,6 +17,33 @@ class User{
     private bool $isAdmin = false;  
     private ?Hero $hero = null;
 
+    public static function getUserById($userID){
+        $bdd = Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("SELECT us_username, us_email,us_password, us_id, he_id FROM User WHERE us_id=:id");
+
+        $stmt->bindParam(':id',$userID);
+        $stmt->execute();
+
+        if($stmt->rowCount() !== 1)
+            throw new \InvalidArgumentException("User not found",0);
+
+        $stmt->setFetchMode(\PDO::FETCH_ASSOC);
+
+        $res= $stmt->fetch();
+
+        $user = new self();
+        $user->name = $res['us_username'];
+        $user->email = $res['us_email'];
+        $user->id = $res['us_id'];
+
+        if(isset($res['he_id']))
+            $user->hero = HeroManager::getInstance()->getHero($res['he_id']);
+
+
+        return $user;
+
+    }
 
    
     private static function exists(string $email, string $name):bool{
@@ -28,7 +55,6 @@ class User{
         $stmt->execute();
 
         return ($stmt->fetch()['nb'] !== 0);
-        
     }
 
     public static function createUser(string $name,string $email,string $password): self{
@@ -126,6 +152,9 @@ class User{
 
     public function delete(){
 
+        // Allows you to delete a hero by account id 
+        HeroManager::getInstance()->deleteHero($this->id);
+
         $bdd = \Dbconnection::getConnection();
 
         $stmt = $bdd->prepare("DELETE FROM User where us_id = :us_id");
@@ -148,7 +177,6 @@ class User{
         $stmt->bindParam(':us_password',$password);
         
         $stmt->execute();
-
     }
 
     public function updateUsername($newUsername){
@@ -163,6 +191,20 @@ class User{
         $stmt->execute();
 
         $this->name = $newUsername;
+    }
+
+    public function updateMailAddress($newEMail){
+
+        $bdd = \Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("UPDATE User set us_email = :us_email where us_id = :us_id");
+
+        $stmt->bindParam(':us_id',$this->id);
+        $stmt->bindParam(':us_email',$newEMail);
+        
+        $stmt->execute();
+
+        $this->email = $newEMail;
     }
 
 }
