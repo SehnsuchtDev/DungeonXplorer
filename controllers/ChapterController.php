@@ -173,7 +173,7 @@ class ChapterController{
         $mcq = $this->getChapter()->getChapterEvent();
         if($mcq instanceof MCQTest){
             if(!array_key_exists('choice',$_POST)){
-                $this->showChapter(false);
+                $this->showChapterP2();
                 return;
             }
             $choice = $_POST['choice'];
