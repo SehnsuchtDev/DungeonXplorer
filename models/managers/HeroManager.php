@@ -36,6 +36,9 @@ class HeroManager{
 
         $res = $stmt->fetch();
 
+        if(!$res){
+            return null;
+        }
         if(isset($res['cl_id']))
             switch ($res['cl_id']) {
                 case 1:
@@ -215,7 +218,7 @@ class HeroManager{
 
         $bdd = \Dbconnection::getConnection();
 
-        // First we update the hero information
+        // First we update the hero information in the DBB
         $stmt = $bdd->prepare("UPDATE Hero   
         set he_name = :nameOfMyHero,
         he_pv = :pvOfOurHero,
@@ -236,7 +239,6 @@ class HeroManager{
 
         $name = $hero->getName();
         $pv = $hero->getPv();
-        $mana = $hero->getMana();
         $strength = $hero->getStrength();
         $initiative = $hero->getInitiative();
         $primaryWeapon = $hero->getPrimaryWeapon()->getId();
@@ -250,7 +252,6 @@ class HeroManager{
 
         $stmt->bindParam(":nameOfMyHero", $name);
         $stmt->bindParam(":pvOfOurHero", $pv);
-        $stmt->bindParam(":manaOfOurHero", $mana);
         $stmt->bindParam(":strengthOfOurHero", $strength); 
         $stmt->bindParam(":initiativeOfOurHero", $initiative); 
         $stmt->bindParam(":primaryWeaponOfOurHero", $primaryWeapon); 
@@ -261,19 +262,22 @@ class HeroManager{
         $stmt->bindParam(":chapterOfOurHero", $chapter);
         
         // If he's a warrior
+        $mana = null;
         $armor = null;
         if($hero->getClassHero() === 1){
-            $armor = $hero->getArmor()->getId();
+            $armor = $hero->getArmor()?->getId();
+        }else{
+            $mana = $hero->getMana();
         }
+        $stmt->bindParam(":manaOfOurHero", $mana);
         $stmt->bindParam(":armorOfOurHero", $armor);
-        
         
         $stmt->execute();
 
         // Then we update the spell information if he's a wizzard 
         // First we update the hero information
-        var_dump($hero->getSpells());
-        if($hero->getSpells() !== null){
+        $class = $hero->getClassHero();
+        if($class === 2){
             
             // On supprime d'abord tout les spells puis on rajoute 
             // afin d'actualiser si il y a des nouveaux spells
@@ -303,10 +307,6 @@ class HeroManager{
 
         echo "------------------------------------------<br>";
         foreach($hero->getInventory()->getItems() as $key){
-            echo '<pre>';
-            var_dump($key);
-            echo "the key name  : " . $key['item']->getName() . ", item id : " . $key['item']->getId() . ", quantité : " . $key['quantity'];
-            echo '</pre></br>';
             
             $inventoryRequest = null;
             $inventoryRequest = $bdd->prepare("insert into Inventory(he_id, it_id, quantity) VALUES (:idOfMyHero, :idOfMyItem, :quantityOfMyItem)");
@@ -319,61 +319,76 @@ class HeroManager{
             $inventoryRequest->bindParam(":quantityOfMyItem", $itemQuantity);
 
             $inventoryRequest->execute();
-            
         }
-            
+    }
+
+    public function deleteHero($userID){
+
+        $bdd = \Dbconnection::getConnection();
+
+        // First we retrieve our hero id of our user
+        // to simplify future queries
+        $retrieveHeroIDRequest = $bdd->prepare("select he_id from User where us_id = :idOfOurUser");
+        $retrieveHeroIDRequest->bindParam(":idOfOurUser", $userID);
+        $retrieveHeroIDRequest->execute();
+
+        $result = $retrieveHeroIDRequest->fetch(\PDO::FETCH_OBJ);        //result of the query
+        $idOfOurHero = $result->he_id;
+
+        // We delete the information in the HeroSpell table 
+        $removalSpellRequest = $bdd->prepare("DELETE FROM HeroSpell where he_id = :idOfOurHero");
+        $removalSpellRequest->bindParam(":idOfOurHero", $idOfOurHero);
+        $removalSpellRequest->execute();
+
+        // We delete the information in the Inventory table
+        $removalInventoryRequest = $bdd->prepare("DELETE FROM Inventory where he_id = :idOfOurHero");
+        $removalInventoryRequest->bindParam(":idOfOurHero", $idOfOurHero);
+        $removalInventoryRequest->execute();
+
+        // We change he_id value in the User table to be able to delete the hero
+        $updateHeroIdRequest = $bdd->prepare("UPDATE User set he_id = null where us_id = :idOfOurUser");
+        $updateHeroIdRequest->bindParam(":idOfOurUser", $userID);
+        $updateHeroIdRequest->execute();
+
+        // Finally we delete the Hero from our Database 
+        $removalHeroRequest = $bdd->prepare("DELETE FROM Hero where he_id = :idOfOurHero");
+        $removalHeroRequest->bindParam(":idOfOurHero", $idOfOurHero);
+        $removalHeroRequest->execute();
 
     }
 
 }
 
-$hero = HeroManager::getInstance()->getHero(74);
-echo '<pre>';
-    var_dump($hero);
-echo '</pre></br>';
+ HeroManager::getInstance()->deleteHero(4);
+
+
+
+/*
+$hero = HeroManager::getInstance()->getHero(91);    // CHANGER LE HERO ID !!!!!!
 
 $inventory = new Inventory();
 $item1 = ItemManager::getInstance()->getItem(5);
-$item2 = ItemManager::getInstance()->getItem(6);
+$item2 = ItemManager::getInstance()->getItem(8);
 
-$inventory->addItem($item1, 3);
-$inventory->addItem($item2, 10);
-
+$inventory->addItem($item1, 1);
+$inventory->addItem($item2, 2);
 $hero->setInventory($inventory);
-var_dump($hero->getInventory());
 
-/*// test de save de spell
-$spell = new Spell();
-$spell->setName("Boule de Feu");
 
-$spell2 = new Spell();
-$spell2->setName("Caca en boîte");
+// test de save de spell (SI C EST UN MAGE)
+// $spell = new Spell();
+// $spell->setName("Boule de Feu");
 
-$hero->addSpell($spell);
-$hero->addSpell($spell2);
+// $spell2 = new Spell();
+// $spell2->setName("Caca en boîte");
 
-echo '<pre>';
-    var_dump($hero);
-echo '</pre></br>';
-*/
-HeroManager::getInstance()->save($hero);
+// $hero->addSpell($spell);
+// $hero->addSpell($spell2);
 
-/*
-$hero = HeroManager::getInstance()->getHero(70);
-echo '<pre>';
-    var_dump($hero);
-echo '</pre></br>';
+
+//test de save de l'objet héro en bdd
 
 $hero->setPV(40000);
 
-echo '<pre>';
-    var_dump($hero);
-echo '</pre></br>';
-
-HeroManager::getInstance()->reset($hero);
-
-echo '<pre>';
-    var_dump($hero);
-echo '</pre></br>';
+HeroManager::getInstance()->save($hero);
 */
-
