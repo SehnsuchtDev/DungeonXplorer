@@ -6,7 +6,7 @@ use dungeonxplorer\managers\ItemManager;
 class AdminController{
 
     public function show(){
-        if($_SESSION['user']->isTheUserAnAdmin()){
+        if(isset($_SESSION['user']) && $_SESSION['user']->isTheUserAnAdmin()){
             $userTable = AdminManager::getInstance()->getAllUserInformation();
             require dirname(__DIR__) . "/views/admin_manageAccount.php";
         }else{
@@ -119,7 +119,7 @@ class AdminController{
 
 
     public function showManageChapter(){
-        if($_SESSION['user']->isTheUserAnAdmin()){
+        if( isset($_SESSION['user']) && $_SESSION['user']->isTheUserAnAdmin()){
             require dirname(__DIR__) . "/views/admin_manageChapter.php";
         }else{
             header("Location: " . FULLURLROOTPATH . "/error403");
@@ -127,7 +127,7 @@ class AdminController{
     }
 
     public function showManageItem(){
-        if($_SESSION['user']->isTheUserAnAdmin()){
+        if(isset($_SESSION['user']) && $_SESSION['user']->isTheUserAnAdmin()){
             $itemTable =  AdminManager::getInstance()->getAllItemInformation();
             require dirname(__DIR__) . "/views/admin_manageItem.php";
         }else{
@@ -230,7 +230,7 @@ class AdminController{
 
 
     public function showManageLevel(){
-        if($_SESSION['user']->isTheUserAnAdmin()){
+        if(isset($_SESSION['user']) && $_SESSION['user']->isTheUserAnAdmin()){
             $level = AdminManager::getInstance()->getAllLevelInformation();
             require dirname(__DIR__) . "/views/admin_manageLevel.php";
         }else{
@@ -239,7 +239,7 @@ class AdminController{
     }
     
     public function showManageSpell(){
-        if($_SESSION['user']->isTheUserAnAdmin()){
+        if(isset($_SESSION['user']) && $_SESSION['user']->isTheUserAnAdmin()){
             $spellTable =  AdminManager::getInstance()->getAllSpellInformation();
             require dirname(__DIR__) . "/views/admin_manageSpell.php";
         }else{
