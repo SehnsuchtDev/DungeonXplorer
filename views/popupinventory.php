@@ -11,7 +11,9 @@
 </head>
 
 <body>
+    <!-- Background overlay that covers the entire screen -->
     <div class="bg-[#000000d4] h-screen w-screen  text-[#ADADAD]">
+        <!-- Pop-up container with specific styling for position, background, and shadow -->
         <div
             class="bg-[#2E2E2E] inset-0 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-max w-11/12 max-w-3xl p-4 rounded shadow-lg ">
 
@@ -47,7 +49,7 @@
                 </table>
             </div>
 
-
+            <!-- Display the current weight and number of items in the pop-up -->
             <div class="text-xs flex justify-between ">
                 <p>Poids: <?= $weight ?>/15</p>
                 <p>Items: <?= count($items); ?>/8</p>

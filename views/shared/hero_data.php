@@ -1,3 +1,4 @@
+<!-- hero's data bar -->
 <div id="hero-data">
     <div class="w-[90%] ml-9 flex flex-col items-center justify-center font-['Pirata_One'] text-[#ADADAD] text-[5vh]">
         <!-- max-[776px]:w-[92%]

@@ -26,19 +26,31 @@ popup.addEventListener("load", () => {
 
 });
 
+/**
+ * hide the inventory popup
+ */
 function hiddenInventory() {
     popup.style.visibility = "hidden";
 }
 
+/**
+ * display the inventory popup by setting its data attribute and making it visible
+ */
 function displayInventory() {
     popup.setAttribute("data", "./book/inventory");
     displayPopup();
 }
 
+/**
+ * makes the popup visible
+ */
 function displayPopup() {
     popup.style.visibility = "visible";
 }
 
+/**
+ * load and display details of a specific inventory item based on its ID
+ */
 function openInvDetails(id) {
     popup.setAttribute("data", "./book/inventory/details/" + id);
     popup.addEventListener("load", () => {
@@ -48,6 +60,9 @@ function openInvDetails(id) {
     });
 }
 
+/**
+ * open specific item details from the general item view
+ */
 function openItemDetails(id) {
     popup.setAttribute("data", "./book/item/details/" + id);
     popup.addEventListener("load", () => {
@@ -57,6 +72,9 @@ function openItemDetails(id) {
     });
 }
 
+/**
+ * close the item details and revert back to the inventory view
+ */
 function closeItemsDetails() {
     window.book.updateStatusBar();
     popup.setAttribute("data", "./book/inventory");

@@ -1,6 +1,8 @@
 <div id="divConnection"
     class="pagediv ml-[200px] bookcover bg-contain bg-no-repeat text-[#FFFFFF] place-self-center font-['Pirata_One'] w-full h-full">
 
+    <!-- login page -->
+
     <h1 class="text-center text-4xl p-12 font-['Pirata_One']
         max-[590px]:p-10
         max-[500px]:p-6"> Connexion </h1>
@@ -33,8 +35,7 @@
 
 </div>
 
-<script> //defer
-
+<script>
 
     <?php if (isset($errors) && empty($errors)): ?>
         if (window.bookmanager == undefined) {

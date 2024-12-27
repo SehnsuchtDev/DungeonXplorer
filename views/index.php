@@ -9,7 +9,7 @@
     <!-- HEADER -->
     <?php include(__DIR__ . '/shared/header.php'); ?>
 
-    <!-- ACCUEIL -->
+    <!-- INDEX -->
 
     <img src="public/assets/castle.png" alt="Castle" title="Castle" class="z-0 max-w-[55%] absolute right-0" />
 
@@ -86,6 +86,7 @@
         </div>
     </div>
 
+    <!-- FOOTER -->
     <?php include(__DIR__ . '/shared/footer.php'); ?>
 
 </body>

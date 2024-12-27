@@ -1,6 +1,9 @@
+<!-- Container for the sign-up form -->
 <div id="divInscription"
     class="pagediv bookcover ml-[400px] text-[#FFFFFF] place-self-center font-['Pirata_One'] w-full h-full">
     <h1 class="text-center text-4xl p-6"> Inscription </h1>
+
+    <!-- Sign-up form with dynamic form action and method -->
     <form id="formulaire-inscription<?= $seed ?>" method="post" action="<?= FULLURLROOTPATH ?>/book/page/signup">
         <span class="flex justify-between items-center p-2 flex-col">
             <label for="pseudo" class="text-[2.2vh]">Pseudo:</label>
@@ -42,7 +45,8 @@
     </form>
 </div>
 
-<script> //defer
+<!-- JavaScript for form submission and dynamic page management -->
+<script>
 
     <?php if (isset($errors) && empty($errors)): ?>
         if (window.bookmanager == undefined) {

@@ -1,17 +1,19 @@
 <?php
-    require dirname(__DIR__,) . DIRECTORY_SEPARATOR . 'autoload.php';
+require dirname(__DIR__, ) . DIRECTORY_SEPARATOR . 'autoload.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-    <?php include(__DIR__ .'/shared/head.php'); ?>
+    <?php include(__DIR__ . '/shared/head.php'); ?>
     <script defer src="<?= FULLURLROOTPATH ?>/public/script/popupinventory.js"></script>
     <script type="module" src="<?= FULLURLROOTPATH ?>/public/script/bookmanager.js"></script>
 </head>
 
 <body class="bg-[#1a1a1a]">
     <?php include(__DIR__ . '/shared/header.php'); ?>
+
+    <!-- Display the book -->
 
     <div class="flex flex-col items-center justify-center mb-12">
         <object id="inventory-object" title="Inventaire" data="<?= FULLURLROOTPATH ?>/book/inventory" type="text/html"
@@ -24,7 +26,7 @@
         <!--<object id="statusbar" title="Barre d'info sur le hero" data="<?= FULLURLROOTPATH ?>/book/statusbar" type="text/html" class="w-full h-[8vh]"></object>-->
     </div>
 
-    <?php include( __DIR__ . '/shared/footer.php'); ?>
+    <?php include(__DIR__ . '/shared/footer.php'); ?>
 </body>
 
 </html>

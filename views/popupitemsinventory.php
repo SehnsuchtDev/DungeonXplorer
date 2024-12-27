@@ -11,7 +11,9 @@
 </head>
 
 <body>
+    <!-- Dark background overlay that covers the full screen -->
     <div class="bg-[#000000d4] h-screen w-screen  text-[#ADADAD]">
+        <!-- Inventory pop-up window centered on the screen -->
         <div id="inventory"
             class="bg-[#2E2E2E] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-max fixed  inset-0  max-w-xl rounded">
             <button id="back"
@@ -76,6 +78,7 @@
             </div>
         </div>
     </div>
+    <!-- JavaScript to handle item actions -->
     <script>
         for (let e of document.querySelectorAll(".inv-btn")) {
             e.addEventListener("click", (event) => {
