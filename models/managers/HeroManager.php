@@ -83,7 +83,6 @@ class HeroManager{
         $classData->execute();
         $classInformation = $classData->fetch(\PDO::FETCH_OBJ);
 
-        $hero;
         $itemManager = ItemManager::getInstance();
 
         if($class === "1"){
