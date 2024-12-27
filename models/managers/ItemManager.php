@@ -58,4 +58,40 @@ class ItemManager{
         return $item;
     }
 
+    public function modifyItem($id, $name, $description, $poids, $nbMax, $equipable, $armure, $nomEffet, $valEffet, $coutMana, $valProtection, $nbDegat, $image){
+        $bdd = \Dbconnection::getConnection();
+
+        $stmt = $bdd->prepare("UPDATE Items set
+        it_name = :itemName, 
+        it_description = :itemDesc,
+        it_weight = :itemWeight,
+        it_maxstack = :itemMaxStack,
+        it_handitem = :itemHandItem,
+        it_armor = :itemArmor,
+        it_effectname = :itemEffectName,
+        it_effectvalue = :itemEffectValue,
+        it_manacost = :itemManaCost,
+        it_protectvalue = :itemProtectValue,
+        it_damage = :itemDamage,
+        it_image = :itemImage
+        where it_id = :item_id");
+
+        $stmt->bindParam(':itemName',$name);
+        $stmt->bindParam(':itemDesc',$description);
+        $stmt->bindParam(':itemWeight',$poids);
+        $stmt->bindParam(':itemMaxStack',$nbMax);
+        $stmt->bindParam(':itemHandItem',$equipable);
+        $stmt->bindParam(':itemArmor',$armure);
+        $stmt->bindParam(':itemEffectName',$nomEffet);
+        $stmt->bindParam(':itemEffectValue',$valEffet);
+        $stmt->bindParam(':itemManaCost',$coutMana);
+        $stmt->bindParam(':itemProtectValue',$valProtection);
+        $stmt->bindParam(':itemDamage',$nbDegat);
+        $stmt->bindParam(':itemImage',$image);
+
+        $stmt->bindParam(':item_id',$id);
+        
+        $stmt->execute();
+    }
+
 }

@@ -73,11 +73,15 @@ $router->get("adminItem", "AdminController@showManageItem");
 $router->get("adminLevel", "AdminController@showManageLevel");
 $router->get("adminSpell", "AdminController@showManageSpell");
 
+// Everything to do with managing a hero
 $router->get("admin/user/delete/(\d+)","AdminController@deleteUser");
 $router->post("admin/user/modify/(\d+)", "AdminController@modifyUser");
 $router->get("admin/user/delete/adventure/(\d+)", "AdminController@deleteAdventure");
 $router->get("admin/user/delete/character/(\d+)", "AdminController@deleteCharacter");
 
+// Everything to do with managing an item
+$router->get("admin/item/delete/(\d+)", "AdminController@deleteItem");
+$router->post("admin/item/modify/(\d+)", "AdminController@modifyItem");
 
 $router->run();
 
