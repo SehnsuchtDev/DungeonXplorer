@@ -12,7 +12,7 @@
     <img src="public/assets/castle.png" alt="Castle" title="Castle" class="z-0 max-w-[55%] absolute right-0"/>
     
     <main class="z-20 relative">
-        <h1 class="font-['Pirata_One'] text-[#e5e5e5] text-center m-[3em] text-4xl [text-shadow:_0_3px_0_rgb(0_0_0_/_60%)]
+        <h1 class="font-['Pirata_One'] text-[#e5e5e5] text-center m-[2em] text-5xl [text-shadow:_0_3px_0_rgb(0_0_0_/_60%)]
             max-[440px]:m-[1em]">DungeonXplorer</h1>
 
         <div class="bg-[rgba(46,46,46,0.80)] place-self-center max-w-[50em] rounded text-[#e5e5e5] font-['Roboto'] p-12 m-24 text-center text-xl">
