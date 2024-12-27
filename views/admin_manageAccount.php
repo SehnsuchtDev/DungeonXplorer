@@ -12,6 +12,7 @@
 <body class="bg-[#1a1a1a]">
 
     <?php include('./shared/header.php'); ?>
+    <?php include('./shared/admin_menu.php'); ?>
 
     <h1 class="p-10 text-center text-3xl font-['Pirata_One'] text-[#E5E5E5]"> Gestionnaire des comptes</h1>
 

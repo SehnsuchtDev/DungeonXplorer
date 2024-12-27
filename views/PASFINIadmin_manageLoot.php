@@ -12,6 +12,7 @@
 <body class="bg-[#1a1a1a]">
 
     <?php include('./shared/header.php'); ?>
+    <?php include('./shared/admin_menu.php'); ?>
 
     <h1 class="p-10 text-center text-3xl font-['Pirata_One'] text-[#E5E5E5]"> Gestionnaire des loots </h1>
 
@@ -31,7 +32,7 @@
                         </select>
                     </div>
                     <div class="flex">
-                        <p>Numéro du niveau : &nbsp;</p>
+                        <p>Effet : &nbsp;</p>
                         <input type="number" required value="0" class="max-h-6 rounded bg-[#3a3a3a]">
                     </div>
                     <div class="flex">
