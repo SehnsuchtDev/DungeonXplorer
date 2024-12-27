@@ -2,11 +2,7 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Page Administrateur </title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="public/script/tailwind.config.js"></script>
+    <?php include(__DIR__ .'/shared/head.php'); ?>
 </head>
 
 <body class="bg-[#1a1a1a]">
@@ -18,7 +14,7 @@
 
 
     <div
-        class="overflow-y-auto max-h-[400px] bg-[#2e2e2e] rounded shadow m-6 text-xl text-[#E5E5E5] font-['Roboto'] place-self-center">
+        class="overflow-y-auto max-h-[400px] bg-[#2e2e2e] rounded shadow m-6 text-xl text-[#E5E5E5] font-['Roboto'] place-self-center w-[50vw]">
         <table class="w-full">
 
             <!-- ajouter ici pour tous les comptes -->

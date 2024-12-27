@@ -9,12 +9,6 @@
             </div>
         </a>
 
-        <a href="<?=FULLURLROOTPATH?>/adminChapter">
-            <div class="bg-[#C4975E] my-4 mx-6 p-2 place-content-center rounded-lg">
-                <p class="font-['Pirata_One'] mx-3 text-[#e5e5e5] cursor-pointer min-w-16">Chapitres</p>
-            </div>
-        </a>
-
         <a href="<?=FULLURLROOTPATH?>/adminItem">
             <div class="bg-[#C4975E] my-4 mx-6 p-2 place-content-center rounded-lg">
                 <p class="font-['Pirata_One'] mx-3 text-[#e5e5e5] cursor-pointer min-w-16">Items</p>

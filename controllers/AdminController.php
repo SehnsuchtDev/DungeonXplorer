@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 
 use dungeonxplorer\managers\AdminManager;
 use dungeonxplorer\managers\ItemManager;

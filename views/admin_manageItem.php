@@ -2,11 +2,7 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Page Administrateur </title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="public/script/tailwind.config.js"></script>
+    <?php include(__DIR__ .'/shared/head.php'); ?>
 </head>
 
 <body class="bg-[#1a1a1a]">
