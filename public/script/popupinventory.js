@@ -74,7 +74,7 @@ function displayInventory() {
 }
 
 function openItemDetails(backButton) {
-    popup.setAttribute("data", "./popupitemsinventory.php");
+    popup.setAttribute("data", "./book/inventory/details");
     if (backButton == true) {
         popup.addEventListener("load", () => {
             const back = popup.contentDocument.getElementById("back");
@@ -85,5 +85,14 @@ function openItemDetails(backButton) {
 }
 
 function closeItemsDetails() {
-    popup.setAttribute("data", "./popupinventory.php");
+    popup.setAttribute("data", "./book/inventory");
 }
+
+
+
+
+
+
+
+
+

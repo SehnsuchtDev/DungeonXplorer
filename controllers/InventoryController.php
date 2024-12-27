@@ -31,6 +31,23 @@ class InventoryController{
         exit();
     }
 
+    public function show(){
+        $items = array();
+        foreach ($this->inventory->getItems() as $item)
+            $items[] = ['id' => $item['item']->getId(),
+                        'name' => $item['item']->getName(),
+                        'quantity' => $item['quantity'],
+                        'image' => $item['item']->getImage(),
+                        'usable' => $item['item'] instanceof ConsumableItem,
+                        'armor' => $item['item'] instanceof Armor,
+                        'handitem' => $item['item'] instanceof HandItem
+                        ];
+        require __DIR__ . '/../views/popupinventory.php';
+    }
+    public function showDetails(){
+        require __DIR__ . '/../views/popupitemsinventory.php';
+    }
+
     public function useItem(int $id): void{
         try{
             $this->inventory->useItemWithId($id,$this->hero);

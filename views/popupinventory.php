@@ -17,54 +17,119 @@
             <button id="close" class="bg-[#C4975E] rounded w-8 h-8  absolute -top-4 -right-4">
                 &times;
             </button>
-
-
             <div>
-
-
                 <table id="table" class="border-separate border-spacing-2 w-full">
                     <tr>
-                        <th
-                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md   rounded">
-                            <img src="../public/assets/Sword01.jpg" alt="Sword01"
-                                class="object-cover w-full h-full rounded">
-                        </th>
-                        <th
-                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
-                            <img src="../public/assets/Sword02.png" alt="Sword02"
-                                class="object-cover w-full h-full rounded">
-                        </th>
 
+                        <?php if(isset($items[0])){?>
                         <th
-                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
-                            <img src="../public/assets/Sword03.png" alt="Sword03"
-                                class="object-cover w-full h-full rounded">
+                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded w-[185px] h-[185px]">
+                            <img src="<?=constant('FULLURLROOTPATH')?>/public/assets/<?=$items[0]['image']?>" class="object-cover w-full h-full rounded">
                         </th>
-                        <th
-                            class="relative hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
+                        <?php 
+                        } else{ 
+                        ?>
+                            <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md rounded w-[185px] h-[185px]">
+                            </th>
+                        <?php }  ?>
+                       
 
-                            <div class="absolute z-20 left-0 ml-2 text-[#C4975E]">x5</div>
-                            <img src="../public/assets/Potions.jpg" alt="Potions"
-                                class="object-cover w-full h-full rounded">
+
+                        <?php if(isset($items[1])){?>
+                        <th
+                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md   rounded w-[185px] h-[185px]">
+                            <img src="<?=constant('FULLURLROOTPATH')?>/public/assets/<?=$items[1]['image']?>" class="object-cover w-full h-full rounded">
                         </th>
+                        <?php 
+                        } else{ 
+                            ?>
+                            <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md rounded w-[185px] h-[185px]">
+                        </th>
+                        <?php } ?>
+
+                        <?php if(isset($items[2])){?>
+                        <th
+                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md   rounded w-[185px] h-[185px]">
+                            <img src="<?=constant('FULLURLROOTPATH')?>/public/assets/<?=$items[2]['image']?>" class="object-cover w-full h-full rounded">
+                        </th>
+                        <?php 
+                        } else{ 
+                            ?>
+                            <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded w-[185px] h-[185px] ">
+                        </th>
+                        <?php } ?>
+
+
+
+
+
+                        <?php if(isset($items[3])){?>
+                        <th
+                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md   rounded w-[185px] h-[185px]">
+                            <img src="<?=constant('FULLURLROOTPATH')?>/public/assets/<?=$items[3]['image']?>" class="object-cover w-full h-full rounded">
+                        </th>
+                        <?php 
+                        } else{ 
+                            ?>
+                            <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded w-[185px] h-[185px] ">
+                        </th>
+                        <?php } ?>
+
+
                     </tr>
                     <tr>
+                    <?php if(isset($items[4])){?>
                         <th
-                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
-                            <img src="../public/assets/Chest01.jpg" alt="Chest01"
-                                class="object-cover w-full h-full rounded">
+                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md   rounded w-[185px] h-[185px]">
+                            <img src="<?=constant('FULLURLROOTPATH')?>/public/assets/<?=$items[4]['image']?>" class="object-cover w-full h-full rounded">
                         </th>
+                        <?php 
+                        } else{ 
+                            ?>
+                            <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded w-[185px] h-[185px] ">
+                        </th>
+                        <?php } ?>
+
+
+                        <?php if(isset($items[5])){?>
                         <th
-                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
-                            <img src="../public/assets/Chest02.jpg" alt="Chest02"
-                                class="object-cover w-full h-full rounded">
+                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md   rounded w-[185px] h-[185px]">
+                            <img src="<?=constant('FULLURLROOTPATH')?>/public/assets/<?=$items[5]['image']?>" class="object-cover w-full h-full rounded">
                         </th>
+                        <?php 
+                        } else{ 
+                            ?>
+                            <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded w-[185px] h-[185px] ">
+                        </th>
+                        <?php } ?>
+
+
+                        <?php if(isset($items[6])){?>
                         <th
-                            class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
+                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md   rounded w-[185px] h-[185px]">
+                            <img src="<?=constant('FULLURLROOTPATH')?>/public/assets/<?=$items[6]['image']?>" class="object-cover w-full h-full rounded">
                         </th>
+                        <?php 
+                        } else{ 
+                            ?>
+                            <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded w-[185px] h-[185px] ">
+                        </th>
+                        <?php } ?>
+
+
+                        <?php if(isset($items[7])){?>
                         <th
-                            class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded">
+                            class="hover:cursor-pointer hover:drop-shadow-sm hover:border-[#8B1E1E] bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md   rounded w-[185px] h-[185px]">
+                            <img src="<?=constant('FULLURLROOTPATH')?>/public/assets/<?=$items[7]['image']?>" class="object-cover w-full h-full rounded">
                         </th>
+                        <?php 
+                        } else{ 
+                            ?>
+                            <th class="bg-[radial-gradient(60.63%_60.63%_at_38.67%_60.63%,_#1A1A1A_0%,_#2E2E2E_100%)] border border-[#C4975E] shadow-md  rounded w-[185px] h-[185px] ">
+                        </th>
+                        <?php } ?>
+
+
                     </tr>
                 </table>
             </div>

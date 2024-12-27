@@ -11,7 +11,7 @@
                 <p class="ml-2">10</p>
             </div>
             <div class="flex flex-row items-center">
-                <img src="<?= FULLURLROOTPATH ?>/public/assets/hero_data_icons/defense_icon.svg" alt="Icône défense" width="50 vw">
+                <img src="<?= FULLURLROOTPATH ?>/public/assets/initiative_icon.png" alt="Icône défense" width="50 vw">
                 <p class="ml-2">5</p>
             </div>
             <div class="flex flex-col items-center">
@@ -24,7 +24,7 @@
 
 
         <div class="ml-10 w-[40%] flex flex-row-reverse justify-evenly">
-            <button id="inventory-button">
+            <button id="inventory-button" href="<?= FULLURLROOTPATH ?>/book/inventory" class="cursor-pointer">
                 <img src="<?= FULLURLROOTPATH ?>/public/assets/hero_data_icons/inventory_icon.svg" alt="Inventory icon" width="50 vw">
             </button>
             <div class="flex flex-row items-center">

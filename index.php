@@ -56,6 +56,8 @@ $router->get("book/page/hero/p1","HeroCreationController@showp1");
 $router->post("book/page/hero","HeroCreationController@creation");
 $router->get("book/page/hero/p2","HeroCreationController@showp2");
 
+$router->get("book/inventory", "InventoryController@show");
+$router->get("book/inventory/details", "InventoryController@showDetails");
 
 
 $router->run();
