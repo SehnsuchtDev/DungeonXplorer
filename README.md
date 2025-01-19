@@ -6,7 +6,7 @@ Projet réalisé dans le cadre de la ressource R3.01.
 
 ## 🧑‍💻 Auteurs
 
-Léopold BEUVE, Isaac DELAUNEY Milan JANSSENS, Louane K'DUAL, Léo-Paul MARIE et Victor YVRAY RUFFINATTI TD2
+Léopold BEUVE, Isaac DELAUNEY, [@kuani50](https://github.com/kuani50), Louane K'DUAL, Léo-Paul MARIE et Victor YVRAY RUFFINATTI TD2
 
 ## :memo: Deadline
 
